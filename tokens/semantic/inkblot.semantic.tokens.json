@@ -1,0 +1,140 @@
+{
+  "$description": "Inkblot Studio semantic tokens. Map primitives to component-ready semantic meanings. Use these in components - never raw primitives.",
+  "inkblot": {
+    "semantic": {
+      "color": {
+        "$type": "color",
+        "$description": "Semantic color mappings for UI components",
+        "background": {
+          "primary": { "$value": "{inkblot.color.neutral.white}", "$description": "Main app background" },
+          "secondary": { "$value": "{inkblot.color.neutral.gray.100}", "$description": "Secondary surfaces" },
+          "tertiary": { "$value": "{inkblot.color.neutral.gray.200}", "$description": "Tertiary, grouped content" },
+          "inverse": { "$value": "{inkblot.color.neutral.gray.900}", "$description": "Dark mode / inverted" }
+        },
+        "text": {
+          "primary": { "$value": "{inkblot.color.neutral.gray.900}", "$description": "Primary text - 4.5:1 contrast minimum" },
+          "secondary": { "$value": "{inkblot.color.neutral.gray.500}", "$description": "Secondary text" },
+          "tertiary": { "$value": "{inkblot.color.neutral.gray.400}", "$description": "Placeholder, hints" },
+          "inverse": { "$value": "{inkblot.color.neutral.white}", "$description": "Text on dark" },
+          "link": { "$value": "{inkblot.color.accent.blue.500}", "$description": "Links" },
+          "linkHover": { "$value": "{inkblot.color.accent.blue.600}", "$description": "Link hover state" }
+        },
+        "border": {
+          "default": { "$value": "{inkblot.color.neutral.gray.200}", "$description": "Default borders" },
+          "strong": { "$value": "{inkblot.color.neutral.gray.300}", "$description": "Emphasized borders" },
+          "focus": { "$value": "{inkblot.color.accent.blue.500}", "$description": "Focus ring" }
+        },
+        "interactive": {
+          "primary": { "$value": "{inkblot.color.accent.blue.500}", "$description": "Primary buttons, links" },
+          "primaryHover": { "$value": "{inkblot.color.accent.blue.600}", "$description": "Primary hover" },
+          "primaryActive": { "$value": "{inkblot.color.accent.blue.700}", "$description": "Primary pressed" },
+          "secondary": { "$value": "{inkblot.color.neutral.gray.200}", "$description": "Secondary buttons" },
+          "secondaryHover": { "$value": "{inkblot.color.neutral.gray.300}", "$description": "Secondary hover" }
+        },
+        "status": {
+          "success": { "$value": "{inkblot.color.semantic.success.main}", "$description": "Success state" },
+          "warning": { "$value": "{inkblot.color.semantic.warning.main}", "$description": "Warning state" },
+          "error": { "$value": "{inkblot.color.semantic.error.main}", "$description": "Error state" },
+          "info": { "$value": "{inkblot.color.semantic.info.main}", "$description": "Info state" }
+        }
+      },
+      "typography": {
+        "$description": "Semantic type styles - composite tokens for headings, body, etc.",
+        "heading": {
+          "1": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{inkblot.typography.fontFamily.display}",
+              "fontSize": "{inkblot.typography.fontSize.3xl}",
+              "fontWeight": "{inkblot.typography.fontWeight.bold}",
+              "lineHeight": "{inkblot.typography.lineHeight.tight}",
+              "letterSpacing": "{inkblot.typography.letterSpacing.tight}"
+            },
+            "$description": "Page title"
+          },
+          "2": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{inkblot.typography.fontFamily.display}",
+              "fontSize": "{inkblot.typography.fontSize.2xl}",
+              "fontWeight": "{inkblot.typography.fontWeight.semibold}",
+              "lineHeight": "{inkblot.typography.lineHeight.tight}",
+              "letterSpacing": "{inkblot.typography.letterSpacing.tight}"
+            },
+            "$description": "Section title"
+          },
+          "3": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{inkblot.typography.fontFamily.sans}",
+              "fontSize": "{inkblot.typography.fontSize.xl}",
+              "fontWeight": "{inkblot.typography.fontWeight.semibold}",
+              "lineHeight": "{inkblot.typography.lineHeight.snug}",
+              "letterSpacing": "{inkblot.typography.letterSpacing.normal}"
+            },
+            "$description": "Subsection title"
+          },
+          "4": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{inkblot.typography.fontFamily.sans}",
+              "fontSize": "{inkblot.typography.fontSize.lg}",
+              "fontWeight": "{inkblot.typography.fontWeight.semibold}",
+              "lineHeight": "{inkblot.typography.lineHeight.snug}",
+              "letterSpacing": "{inkblot.typography.letterSpacing.normal}"
+            },
+            "$description": "Card title"
+          }
+        },
+        "body": {
+          "default": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{inkblot.typography.fontFamily.sans}",
+              "fontSize": "{inkblot.typography.fontSize.base}",
+              "fontWeight": "{inkblot.typography.fontWeight.regular}",
+              "lineHeight": "{inkblot.typography.lineHeight.normal}",
+              "letterSpacing": "{inkblot.typography.letterSpacing.normal}"
+            },
+            "$description": "Body text"
+          },
+          "small": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{inkblot.typography.fontFamily.sans}",
+              "fontSize": "{inkblot.typography.fontSize.sm}",
+              "fontWeight": "{inkblot.typography.fontWeight.regular}",
+              "lineHeight": "{inkblot.typography.lineHeight.normal}",
+              "letterSpacing": "{inkblot.typography.letterSpacing.normal}"
+            },
+            "$description": "Small body, captions"
+          },
+          "large": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{inkblot.typography.fontFamily.sans}",
+              "fontSize": "{inkblot.typography.fontSize.md}",
+              "fontWeight": "{inkblot.typography.fontWeight.regular}",
+              "lineHeight": "{inkblot.typography.lineHeight.relaxed}",
+              "letterSpacing": "{inkblot.typography.letterSpacing.normal}"
+            },
+            "$description": "Emphasized body"
+          }
+        },
+        "label": {
+          "default": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{inkblot.typography.fontFamily.sans}",
+              "fontSize": "{inkblot.typography.fontSize.xs}",
+              "fontWeight": "{inkblot.typography.fontWeight.medium}",
+              "lineHeight": "{inkblot.typography.lineHeight.normal}",
+              "letterSpacing": "{inkblot.typography.letterSpacing.wide}"
+            },
+            "$description": "Form labels, badges"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inkblot Studio — Design Tokens</title>
+  <link rel="stylesheet" href="/css/inkblot-variables.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--inkblot-typography-font-family-sans);
+      background: linear-gradient(180deg, #f5f5f7 0%, #e8e8ed 50%, #fafafa 100%);
+      color: var(--inkblot-semantic-color-text-primary);
+      line-height: var(--inkblot-typography-line-height-normal);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--inkblot-spacing-16) var(--inkblot-spacing-8);
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0, 122, 255, 0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font: var(--inkblot-semantic-typography-heading-1);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin: 0 0 var(--inkblot-spacing-4);
+      background: linear-gradient(135deg, var(--inkblot-color-neutral-gray-900) 0%, var(--inkblot-color-neutral-gray-600) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+
+    .hero .tagline {
+      font: var(--inkblot-semantic-typography-body-large);
+      color: var(--inkblot-semantic-color-text-secondary);
+      max-width: 480px;
+      margin: 0 0 var(--inkblot-spacing-12);
+      line-height: var(--inkblot-typography-line-height-relaxed);
+      position: relative;
+    }
+
+    .live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--inkblot-spacing-2);
+      padding: var(--inkblot-spacing-2) var(--inkblot-spacing-4);
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: var(--inkblot-radius-full);
+      font: var(--inkblot-semantic-typography-label-default);
+      color: var(--inkblot-semantic-color-text-secondary);
+      box-shadow: var(--inkblot-shadow-sm);
+      position: fixed;
+      top: var(--inkblot-spacing-6);
+      right: var(--inkblot-spacing-6);
+      z-index: 1000;
+    }
+
+    .live-pill::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--inkblot-semantic-color-status-success);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.9); }
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 var(--inkblot-spacing-8) var(--inkblot-spacing-24);
+    }
+
+    .section {
+      margin-bottom: var(--inkblot-spacing-20);
+    }
+
+    .section-card {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      border-radius: var(--inkblot-radius-xl);
+      padding: var(--inkblot-spacing-10);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+      transition: transform var(--inkblot-duration-normal) var(--inkblot-easing-default),
+                  box-shadow var(--inkblot-duration-normal) var(--inkblot-easing-default);
+    }
+
+    .section-card:hover {
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
+    }
+
+    .section-title {
+      font: var(--inkblot-semantic-typography-heading-3);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 0 0 var(--inkblot-spacing-6);
+      color: var(--inkblot-semantic-color-text-primary);
+    }
+
+    .section-subtitle {
+      font: var(--inkblot-semantic-typography-body-small);
+      color: var(--inkblot-semantic-color-text-tertiary);
+      margin: calc(-1 * var(--inkblot-spacing-4)) 0 var(--inkblot-spacing-6);
+    }
+
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: var(--inkblot-spacing-4);
+    }
+
+    .swatch {
+      border-radius: var(--inkblot-radius-lg);
+      overflow: hidden;
+      transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-default);
+    }
+
+    .swatch:hover {
+      transform: translateY(-2px);
+    }
+
+    .swatch-color {
+      height: 72px;
+      transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-default);
+    }
+
+    .swatch:hover .swatch-color {
+      transform: scale(1.02);
+    }
+
+    .swatch-label {
+      font: var(--inkblot-semantic-typography-label-default);
+      padding: var(--inkblot-spacing-3);
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--inkblot-semantic-color-text-secondary);
+      letter-spacing: 0.01em;
+    }
+
+    .type-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--inkblot-spacing-8);
+    }
+
+    .type-row {
+      padding: var(--inkblot-spacing-6);
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: var(--inkblot-radius-lg);
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      transition: background var(--inkblot-duration-fast) var(--inkblot-easing-default);
+    }
+
+    .type-row:hover {
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .type-row .meta {
+      font: var(--inkblot-semantic-typography-label-default);
+      color: var(--inkblot-semantic-color-text-tertiary);
+      margin-bottom: var(--inkblot-spacing-2);
+      letter-spacing: 0.02em;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: var(--inkblot-spacing-4);
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: var(--inkblot-spacing-3) var(--inkblot-spacing-6);
+      border: none;
+      border-radius: var(--inkblot-radius-lg);
+      font: var(--inkblot-semantic-typography-body-default);
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--inkblot-duration-fast) var(--inkblot-easing-default);
+      min-height: var(--inkblot-size-touch-target-comfortable);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: var(--inkblot-semantic-color-interactive-primary);
+      color: var(--inkblot-semantic-color-text-inverse);
+      box-shadow: 0 2px 8px rgba(0, 122, 255, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--inkblot-semantic-color-interactive-primary-hover);
+      box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--inkblot-semantic-color-text-primary);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 1);
+      border-color: rgba(0, 0, 0, 0.12);
+    }
+
+    .badges {
+      display: flex;
+      gap: var(--inkblot-spacing-3);
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      padding: var(--inkblot-spacing-2) var(--inkblot-spacing-4);
+      border-radius: var(--inkblot-radius-full);
+      font: var(--inkblot-semantic-typography-label-default);
+      font-weight: 500;
+      color: white;
+      letter-spacing: 0.02em;
+      transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-default);
+    }
+
+    .badge:hover {
+      transform: scale(1.02);
+    }
+
+    .badge-success { background: var(--inkblot-semantic-color-status-success); }
+    .badge-warning { background: var(--inkblot-semantic-color-status-warning); }
+    .badge-error { background: var(--inkblot-semantic-color-status-error); }
+    .badge-info { background: var(--inkblot-semantic-color-status-info); }
+
+    .scale-demo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--inkblot-spacing-6);
+      align-items: flex-end;
+    }
+
+    .scale-item {
+      background: var(--inkblot-semantic-color-interactive-primary);
+      border-radius: var(--inkblot-radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--inkblot-semantic-color-text-inverse);
+      font: var(--inkblot-semantic-typography-label-default);
+      font-weight: 500;
+      transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-default);
+    }
+
+    .scale-item:hover {
+      transform: scale(1.05);
+    }
+
+    .radius-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--inkblot-spacing-6);
+    }
+
+    .radius-item {
+      width: 88px;
+      height: 88px;
+      background: linear-gradient(135deg, var(--inkblot-color-accent-blue-400), var(--inkblot-color-accent-blue-600));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font: var(--inkblot-semantic-typography-label-default);
+      font-weight: 500;
+      transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-default);
+    }
+
+    .radius-item:hover {
+      transform: scale(1.05);
+    }
+
+    .shadow-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--inkblot-spacing-8);
+    }
+
+    .shadow-item {
+      width: 100px;
+      height: 100px;
+      background: var(--inkblot-semantic-color-background-primary);
+      border-radius: var(--inkblot-radius-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font: var(--inkblot-semantic-typography-label-default);
+      color: var(--inkblot-semantic-color-text-tertiary);
+      transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-default);
+    }
+
+    .shadow-item:hover {
+      transform: translateY(-4px);
+    }
+
+    .footer {
+      text-align: center;
+      padding: var(--inkblot-spacing-16) var(--inkblot-spacing-8);
+      color: var(--inkblot-semantic-color-text-tertiary);
+      font: var(--inkblot-semantic-typography-body-small);
+    }
+
+    .footer code {
+      background: rgba(0, 0, 0, 0.06);
+      padding: 2px 6px;
+      border-radius: var(--inkblot-radius-sm);
+      font-family: var(--inkblot-typography-font-family-mono);
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="live-pill">Live</div>
+
+  <header class="hero">
+    <h1>Inkblot Studio</h1>
+    <p class="tagline">Design tokens crafted for clarity. Edit <code>tokens/</code> and watch changes flow through instantly.</p>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <div class="section-card">
+        <h2 class="section-title">Colors</h2>
+        <p class="section-subtitle">Semantic palette · Accent scale</p>
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--inkblot-semantic-color-background-primary)"></div>
+            <div class="swatch-label">primary</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--inkblot-semantic-color-text-primary)"></div>
+            <div class="swatch-label">text</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--inkblot-semantic-color-interactive-primary)"></div>
+            <div class="swatch-label">accent</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--inkblot-semantic-color-status-success)"></div>
+            <div class="swatch-label">success</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--inkblot-semantic-color-status-warning)"></div>
+            <div class="swatch-label">warning</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--inkblot-semantic-color-status-error)"></div>
+            <div class="swatch-label">error</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--inkblot-color-accent-blue-500)"></div>
+            <div class="swatch-label">blue.500</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-900)"></div>
+            <div class="swatch-label">gray.900</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-card">
+        <h2 class="section-title">Typography</h2>
+        <p class="section-subtitle">Hierarchy · Readability</p>
+        <div class="type-showcase">
+          <div class="type-row">
+            <div class="meta">Heading 1</div>
+            <div style="font: var(--inkblot-semantic-typography-heading-1)">Design with intention</div>
+          </div>
+          <div class="type-row">
+            <div class="meta">Heading 2</div>
+            <div style="font: var(--inkblot-semantic-typography-heading-2)">Every detail matters</div>
+          </div>
+          <div class="type-row">
+            <div class="meta">Body</div>
+            <div style="font: var(--inkblot-semantic-typography-body-default)">The quick brown fox jumps over the lazy dog. Clean, readable, purposeful.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-card">
+        <h2 class="section-title">Components</h2>
+        <p class="section-subtitle">Buttons · Badges</p>
+        <div class="btn-group">
+          <button class="btn btn-primary">Continue</button>
+          <button class="btn btn-secondary">Learn more</button>
+        </div>
+        <div class="badges" style="margin-top: var(--inkblot-spacing-6)">
+          <span class="badge badge-success">Success</span>
+          <span class="badge badge-warning">Warning</span>
+          <span class="badge badge-error">Error</span>
+          <span class="badge badge-info">Info</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-card">
+        <h2 class="section-title">Spacing</h2>
+        <p class="section-subtitle">4pt grid</p>
+        <div class="scale-demo">
+          <div class="scale-item" style="width: var(--inkblot-spacing-2); height: var(--inkblot-spacing-2)">2</div>
+          <div class="scale-item" style="width: var(--inkblot-spacing-4); height: var(--inkblot-spacing-4)">4</div>
+          <div class="scale-item" style="width: var(--inkblot-spacing-6); height: var(--inkblot-spacing-6)">6</div>
+          <div class="scale-item" style="width: var(--inkblot-spacing-8); height: var(--inkblot-spacing-8)">8</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-card">
+        <h2 class="section-title">Radius</h2>
+        <p class="section-subtitle">Corner treatment</p>
+        <div class="radius-row">
+          <div class="radius-item" style="border-radius: var(--inkblot-radius-sm)">sm</div>
+          <div class="radius-item" style="border-radius: var(--inkblot-radius-md)">md</div>
+          <div class="radius-item" style="border-radius: var(--inkblot-radius-lg)">lg</div>
+          <div class="radius-item" style="border-radius: var(--inkblot-radius-xl)">xl</div>
+          <div class="radius-item" style="border-radius: var(--inkblot-radius-full)">full</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-card">
+        <h2 class="section-title">Elevation</h2>
+        <p class="section-subtitle">Depth · Shadow</p>
+        <div class="shadow-row">
+          <div class="shadow-item" style="box-shadow: var(--inkblot-shadow-xs)">xs</div>
+          <div class="shadow-item" style="box-shadow: var(--inkblot-shadow-sm)">sm</div>
+          <div class="shadow-item" style="box-shadow: var(--inkblot-shadow-md)">md</div>
+          <div class="shadow-item" style="box-shadow: var(--inkblot-shadow-lg)">lg</div>
+          <div class="shadow-item" style="box-shadow: var(--inkblot-shadow-xl)">xl</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Inkblot Studio Design Tokens · Edit <code>tokens/</code> to see live updates
+  </footer>
+</body>
+</html>

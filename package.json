@@ -1,0 +1,42 @@
+{
+  "name": "@inkblot-studio/design-tokens",
+  "version": "1.0.0",
+  "description": "Inkblot Studio design token system - Apple-inspired, accessible, AI-ready",
+  "type": "module",
+  "main": "dist/js/inkblot-tokens.js",
+  "exports": {
+    ".": "./dist/js/inkblot-tokens.js",
+    "./css": "./dist/css/inkblot-variables.css",
+    "./scss": "./dist/scss/_inkblot-variables.scss",
+    "./tokens": "./dist/ai/inkblot-tokens-resolved.json"
+  },
+  "files": [
+    "dist",
+    "tokens",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "style-dictionary build --config style-dictionary.config.js",
+    "build:tokens": "style-dictionary build --config style-dictionary.config.js",
+    "dev": "concurrently \"npm run build:watch\" \"vite\"",
+    "build:watch": "chokidar \"tokens/**/*.json\" -c \"npm run build\"",
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "design-tokens",
+    "design-system",
+    "inkblot-studio",
+    "style-dictionary",
+    "css-variables"
+  ],
+  "author": "Inkblot Studio",
+  "license": "MIT",
+  "devDependencies": {
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^8.2.2",
+    "style-dictionary": "^4.0.0",
+    "vite": "^5.4.0",
+    "vite-plugin-live-reload": "^3.0.1"
+  }
+}

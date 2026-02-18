@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Inkblot Studio Design Tokens",
+  "description": "AI training reference - use these token paths when generating Inkblot Studio components",
+  "type": "object",
+  "properties": {
+    "tokenCategories": {
+      "type": "object",
+      "description": "Token organization for AI context",
+      "properties": {
+        "color": {
+          "description": "Use semantic colors in components: inkblot.semantic.color.*",
+          "semantic": {
+            "background": ["primary", "secondary", "tertiary", "inverse"],
+            "text": ["primary", "secondary", "tertiary", "inverse", "link", "linkHover"],
+            "border": ["default", "strong", "focus"],
+            "interactive": ["primary", "primaryHover", "primaryActive", "secondary", "secondaryHover"],
+            "status": ["success", "warning", "error", "info"]
+          }
+        },
+        "spacing": {
+          "description": "4pt grid: 0, 1(4px), 2(8px), 3(12px), 4(16px), 5(20px), 6(24px), 8(32px), 10(40px), 12(48px), 16(64px), 20(80px), 24(96px), 32(128px)"
+        },
+        "typography": {
+          "headings": ["1", "2", "3", "4"],
+          "body": ["default", "small", "large"],
+          "label": ["default"]
+        },
+        "radius": {
+          "values": ["none", "sm", "md", "lg", "xl", "2xl", "full"]
+        },
+        "shadow": {
+          "elevation": ["none", "xs", "sm", "md", "lg", "xl"]
+        },
+        "duration": {
+          "values": ["instant", "fast", "normal", "slow", "slower"]
+        }
+      }
+    },
+    "componentGuidelines": {
+      "description": "AI component generation rules",
+      "rules": [
+        "Use semantic tokens (inkblot.semantic.*) not primitives",
+        "Primary text: var(--inkblot-semantic-color-text-primary)",
+        "Primary background: var(--inkblot-semantic-color-background-primary)",
+        "Primary button: var(--inkblot-semantic-color-interactive-primary)",
+        "Minimum touch target: 44px (WCAG 2.4.11)",
+        "Border radius: 8px for cards/inputs (--inkblot-radius-md)",
+        "Spacing: 4pt grid (8px, 16px, 24px)",
+        "Focus: 2px solid focus color (--inkblot-border-width-medium)"
+      ]
+    }
+  }
+}

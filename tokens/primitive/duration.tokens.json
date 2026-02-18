@@ -1,0 +1,38 @@
+{
+  "$description": "Inkblot Studio motion and animation. Snappy, purposeful - Apple-inspired timing.",
+  "inkblot": {
+    "duration": {
+      "$type": "duration",
+      "$description": "Animation durations in milliseconds",
+      "instant": { "$value": "0ms", "$description": "No animation" },
+      "fast": { "$value": "150ms", "$description": "Micro-interactions" },
+      "normal": { "$value": "250ms", "$description": "Standard transitions" },
+      "slow": { "$value": "400ms", "$description": "Complex animations" },
+      "slower": { "$value": "600ms", "$description": "Page transitions" }
+    },
+    "easing": {
+      "$type": "cubicBezier",
+      "$description": "Animation easing curves",
+      "default": {
+        "$value": [0.25, 0.1, 0.25, 1],
+        "$description": "Standard ease"
+      },
+      "in": {
+        "$value": [0.42, 0, 1, 1],
+        "$description": "Ease in"
+      },
+      "out": {
+        "$value": [0, 0, 0.58, 1],
+        "$description": "Ease out"
+      },
+      "inOut": {
+        "$value": [0.42, 0, 0.58, 1],
+        "$description": "Ease in-out"
+      },
+      "bounce": {
+        "$value": [0.68, -0.55, 0.265, 1.55],
+        "$description": "Bounce effect"
+      }
+    }
+  }
+}

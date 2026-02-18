@@ -1,0 +1,26 @@
+{
+  "$description": "Inkblot Studio border radius. Subtle, refined - Apple-inspired restraint.",
+  "inkblot": {
+    "radius": {
+      "$type": "dimension",
+      "$description": "Border radius scale",
+      "none": { "$value": "0", "$description": "Sharp corners" },
+      "sm": { "$value": "4px", "$description": "Subtle rounding" },
+      "md": { "$value": "8px", "$description": "Cards, inputs" },
+      "lg": { "$value": "12px", "$description": "Modals, panels" },
+      "xl": { "$value": "16px", "$description": "Large surfaces" },
+      "2xl": { "$value": "24px", "$description": "Hero sections" },
+      "full": { "$value": "9999px", "$description": "Pills, avatars" }
+    },
+    "border": {
+      "$type": "dimension",
+      "$description": "Border widths",
+      "width": {
+        "none": { "$value": "0", "$description": "No border" },
+        "thin": { "$value": "1px", "$description": "Subtle dividers" },
+        "medium": { "$value": "2px", "$description": "Emphasized borders" },
+        "thick": { "$value": "4px", "$description": "Focus rings" }
+      }
+    }
+  }
+}

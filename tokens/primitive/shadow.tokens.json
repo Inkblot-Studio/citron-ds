@@ -1,0 +1,41 @@
+{
+  "$description": "Inkblot Studio elevation. Subtle, layered shadows - Apple-inspired depth.",
+  "inkblot": {
+    "shadow": {
+      "$type": "shadow",
+      "$description": "Box shadows - use sparingly for hierarchy",
+      "none": {
+        "$value": "none",
+        "$description": "No shadow"
+      },
+      "xs": {
+        "$value": "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+        "$description": "Subtle lift"
+      },
+      "sm": {
+        "$value": "0 2px 4px 0 rgba(0, 0, 0, 0.08)",
+        "$description": "Cards, dropdowns"
+      },
+      "md": {
+        "$value": "0 4px 8px 0 rgba(0, 0, 0, 0.10)",
+        "$description": "Modals, popovers"
+      },
+      "lg": {
+        "$value": "0 8px 16px 0 rgba(0, 0, 0, 0.12)",
+        "$description": "Overlays"
+      },
+      "xl": {
+        "$value": "0 16px 24px 0 rgba(0, 0, 0, 0.16)",
+        "$description": "Maximum elevation"
+      }
+    },
+    "opacity": {
+      "$type": "number",
+      "$description": "Opacity scale for overlays and disabled states",
+      "disabled": { "$value": 0.38, "$description": "Disabled elements" },
+      "overlay": { "$value": 0.5, "$description": "Modal backdrops" },
+      "subtle": { "$value": 0.6, "$description": "Secondary content" },
+      "default": { "$value": 1, "$description": "Full opacity" }
+    }
+  }
+}
