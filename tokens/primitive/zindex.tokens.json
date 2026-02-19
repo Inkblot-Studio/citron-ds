@@ -1,0 +1,19 @@
+{
+  "$description": "Inkblot Studio z-index hierarchy. Predictable layering for all UI surfaces.",
+  "inkblot": {
+    "zIndex": {
+      "$type": "number",
+      "$description": "Z-index layering scale. Never use arbitrary z-index values.",
+      "hide": { "$value": -1, "$description": "Hidden below base layer" },
+      "base": { "$value": 0, "$description": "Default document flow" },
+      "raised": { "$value": 1, "$description": "Slightly above base (cards on hover)" },
+      "dropdown": { "$value": 10, "$description": "Dropdowns, select menus" },
+      "sticky": { "$value": 20, "$description": "Sticky headers, nav bars" },
+      "overlay": { "$value": 30, "$description": "Backdrop overlays" },
+      "modal": { "$value": 40, "$description": "Modals, dialogs, sheets" },
+      "popover": { "$value": 50, "$description": "Popovers, tooltips" },
+      "toast": { "$value": 60, "$description": "Toast notifications" },
+      "max": { "$value": 9999, "$description": "Emergency override (avoid)" }
+    }
+  }
+}

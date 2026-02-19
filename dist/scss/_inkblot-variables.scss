@@ -50,6 +50,23 @@ $inkblot-easing-in: cubic-bezier(0.42, 0, 1, 1); // Ease in
 $inkblot-easing-out: cubic-bezier(0, 0, 0.58, 1); // Ease out
 $inkblot-easing-in-out: cubic-bezier(0.42, 0, 0.58, 1); // Ease in-out
 $inkblot-easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55); // Bounce effect
+$inkblot-grid-columns-mobile: 4rem; // 4-column grid for < 640px
+$inkblot-grid-columns-tablet: 8rem; // 8-column grid for 640–1023px
+$inkblot-grid-columns-desktop: 12rem; // 12-column grid for 1024–1535px
+$inkblot-grid-columns-wide: 16rem; // 16-column grid for 1536px+
+$inkblot-grid-columns-max: 24rem; // 24-column grid for complex dashboards
+$inkblot-grid-gutter-sm: 0.5rem; // 8px - compact mobile gutter
+$inkblot-grid-gutter-md: 1rem; // 16px - standard gutter
+$inkblot-grid-gutter-lg: 1.5rem; // 24px - spacious desktop gutter
+$inkblot-grid-gutter-xl: 2rem; // 32px - wide layout gutter
+$inkblot-grid-margin-mobile: 1rem; // 16px page margin on mobile
+$inkblot-grid-margin-tablet: 2rem; // 32px page margin on tablet
+$inkblot-grid-margin-desktop: 4rem; // 64px page margin on desktop
+$inkblot-grid-margin-wide: auto; // Auto-center on wide screens
+$inkblot-grid-max-width-content: 768px; // Max width for readable content
+$inkblot-grid-max-width-container: 1200px; // Max width for standard layouts
+$inkblot-grid-max-width-wide: 1440px; // Max width for wide layouts
+$inkblot-grid-max-width-full: 1920px; // Max width for full-bleed
 $inkblot-radius-none: 0; // Sharp corners
 $inkblot-radius-sm: 4px; // Subtle rounding
 $inkblot-radius-md: 8px; // Cards, inputs
@@ -119,6 +136,38 @@ $inkblot-typography-letter-spacing-tight: -0.025em; // Headings
 $inkblot-typography-letter-spacing-normal: 0; // Body
 $inkblot-typography-letter-spacing-wide: 0.025em; // Labels, caps
 $inkblot-typography-letter-spacing-wider: 0.05em; // Uppercase labels
+$inkblot-z-index-hide: -1; // Hidden below base layer
+$inkblot-z-index-base: 0; // Default document flow
+$inkblot-z-index-raised: 1; // Slightly above base (cards on hover)
+$inkblot-z-index-dropdown: 10; // Dropdowns, select menus
+$inkblot-z-index-sticky: 20; // Sticky headers, nav bars
+$inkblot-z-index-overlay: 30; // Backdrop overlays
+$inkblot-z-index-modal: 40; // Modals, dialogs, sheets
+$inkblot-z-index-popover: 50; // Popovers, tooltips
+$inkblot-z-index-toast: 60; // Toast notifications
+$inkblot-z-index-max: 9999; // Emergency override (avoid)
+$inkblot-dark-color-background-primary: #000000; // True black for OLED and depth
+$inkblot-dark-color-background-secondary: #1c1c1e; // Elevated surface
+$inkblot-dark-color-background-tertiary: #2c2c2e; // Grouped content surface
+$inkblot-dark-color-background-inverse: #ffffff; // Inverted surface
+$inkblot-dark-color-text-primary: #f5f5f7; // Primary text on dark - 7:1 AAA on #000
+$inkblot-dark-color-text-secondary: #8e8e93; // Secondary text
+$inkblot-dark-color-text-tertiary: #636366; // Placeholder, hints
+$inkblot-dark-color-text-inverse: #1c1c1e; // Text on light surfaces
+$inkblot-dark-color-text-link: #409cff; // Link on dark - brighter for contrast
+$inkblot-dark-color-text-link-hover: #64b5ff; // Link hover on dark
+$inkblot-dark-color-border-default: #38383a; // Subtle border on dark
+$inkblot-dark-color-border-strong: #48484a; // Emphasized border on dark
+$inkblot-dark-color-border-focus: #409cff; // Focus ring on dark
+$inkblot-dark-color-interactive-primary: #0a84ff; // Primary action on dark
+$inkblot-dark-color-interactive-primary-hover: #409cff; // Primary hover on dark
+$inkblot-dark-color-interactive-primary-active: #0066d6; // Primary pressed on dark
+$inkblot-dark-color-interactive-secondary: #2c2c2e; // Secondary button on dark
+$inkblot-dark-color-interactive-secondary-hover: #3a3a3c; // Secondary hover on dark
+$inkblot-dark-color-status-success: #30d158; // Success on dark
+$inkblot-dark-color-status-warning: #ffd60a; // Warning on dark
+$inkblot-dark-color-status-error: #ff453a; // Error on dark
+$inkblot-dark-color-status-info: #64d2ff; // Info on dark
 $inkblot-semantic-color-background-primary: $inkblot-color-neutral-white; // Main app background
 $inkblot-semantic-color-background-secondary: $inkblot-color-neutral-gray-100; // Secondary surfaces
 $inkblot-semantic-color-background-tertiary: $inkblot-color-neutral-gray-200; // Tertiary, grouped content

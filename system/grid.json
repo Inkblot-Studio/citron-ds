@@ -1,0 +1,101 @@
+{
+  "$schema": "https://inkblot.studio/system/v1/grid.schema.json",
+  "name": "Grid & Layout System",
+  "version": "1.0.0",
+  "description": "Modular grid system scaling from 4 to 24 columns. Mobile-first, responsive, adaptive.",
+
+  "breakpoints": [
+    { "name": "sm", "minWidth": "640px", "columns": 4, "gutter": "8px", "margin": "16px", "label": "Mobile landscape / small tablet" },
+    { "name": "md", "minWidth": "768px", "columns": 8, "gutter": "16px", "margin": "32px", "label": "Tablet portrait" },
+    { "name": "lg", "minWidth": "1024px", "columns": 12, "gutter": "24px", "margin": "64px", "label": "Laptop / tablet landscape" },
+    { "name": "xl", "minWidth": "1280px", "columns": 12, "gutter": "24px", "margin": "auto", "label": "Desktop" },
+    { "name": "2xl", "minWidth": "1536px", "columns": 16, "gutter": "32px", "margin": "auto", "label": "Wide desktop / dashboard" }
+  ],
+
+  "defaultGrid": {
+    "below-sm": {
+      "columns": 4,
+      "gutter": "8px",
+      "margin": "16px",
+      "maxWidth": "100%"
+    }
+  },
+
+  "containers": {
+    "content": { "maxWidth": "768px", "usage": "Blog posts, long-form text, readable content" },
+    "standard": { "maxWidth": "1200px", "usage": "Most page layouts, marketing, dashboards" },
+    "wide": { "maxWidth": "1440px", "usage": "Data-dense dashboards, media galleries" },
+    "full": { "maxWidth": "100%", "usage": "Full-bleed heroes, immersive sections" }
+  },
+
+  "css": {
+    "gridImplementation": ".inkblot-grid { display: grid; grid-template-columns: repeat(var(--inkblot-grid-columns, 12), 1fr); gap: var(--inkblot-grid-gutter, 24px); padding-inline: var(--inkblot-grid-margin, 64px); max-width: var(--inkblot-grid-max-width, 1200px); margin-inline: auto; }",
+    "responsiveOverrides": "@media (max-width: 639px) { .inkblot-grid { --inkblot-grid-columns: 4; --inkblot-grid-gutter: 8px; --inkblot-grid-margin: 16px; } } @media (min-width: 640px) and (max-width: 767px) { .inkblot-grid { --inkblot-grid-columns: 4; --inkblot-grid-gutter: 8px; --inkblot-grid-margin: 16px; } } @media (min-width: 768px) and (max-width: 1023px) { .inkblot-grid { --inkblot-grid-columns: 8; --inkblot-grid-gutter: 16px; --inkblot-grid-margin: 32px; } } @media (min-width: 1024px) and (max-width: 1279px) { .inkblot-grid { --inkblot-grid-columns: 12; --inkblot-grid-gutter: 24px; --inkblot-grid-margin: 64px; } } @media (min-width: 1280px) { .inkblot-grid { --inkblot-grid-columns: 12; --inkblot-grid-gutter: 24px; --inkblot-grid-margin: auto; } } @media (min-width: 1536px) { .inkblot-grid { --inkblot-grid-columns: 16; --inkblot-grid-gutter: 32px; } }"
+  },
+
+  "spanRules": {
+    "description": "Column spans at each breakpoint. AI agents: use these to determine component widths.",
+    "examples": [
+      { "component": "card", "sm": "span 4", "md": "span 4", "lg": "span 4", "xl": "span 3", "note": "Cards fill full width on mobile, 3-up on desktop" },
+      { "component": "sidebar", "sm": "hidden", "md": "span 2", "lg": "span 3", "xl": "span 3", "note": "Sidebar hidden on mobile, appears at md" },
+      { "component": "mainContent", "sm": "span 4", "md": "span 6", "lg": "span 9", "xl": "span 9", "note": "Main content takes remaining space" },
+      { "component": "hero", "sm": "span 4", "md": "span 8", "lg": "span 12", "xl": "span 12", "note": "Hero always full width" }
+    ]
+  },
+
+  "zIndex": {
+    "description": "Strict layering hierarchy. Never use arbitrary z-index values.",
+    "scale": [
+      { "token": "zIndex.hide", "value": -1, "usage": "Hidden elements below document flow" },
+      { "token": "zIndex.base", "value": 0, "usage": "Default stacking context" },
+      { "token": "zIndex.raised", "value": 1, "usage": "Hover-elevated cards, drag items" },
+      { "token": "zIndex.dropdown", "value": 10, "usage": "Dropdowns, select menus, autocomplete" },
+      { "token": "zIndex.sticky", "value": 20, "usage": "Sticky headers, navigation bars" },
+      { "token": "zIndex.overlay", "value": 30, "usage": "Backdrop overlays behind modals" },
+      { "token": "zIndex.modal", "value": 40, "usage": "Modals, dialog boxes, bottom sheets" },
+      { "token": "zIndex.popover", "value": 50, "usage": "Tooltips, popovers, context menus" },
+      { "token": "zIndex.toast", "value": 60, "usage": "Toast notifications, snackbars" },
+      { "token": "zIndex.max", "value": 9999, "usage": "Emergency only. Must document reason." }
+    ],
+    "rule": "Each z-index layer creates a new stacking context. Nested elements inherit their parent's layer. Never exceed the scale."
+  },
+
+  "layoutPatterns": {
+    "description": "Pre-defined layout compositions AI agents can use directly",
+    "patterns": [
+      {
+        "name": "singleColumn",
+        "description": "Centered content column for articles, forms",
+        "css": "max-width: 768px; margin-inline: auto; padding-inline: var(--inkblot-grid-margin);",
+        "useCases": ["blog posts", "form pages", "settings pages", "legal text"]
+      },
+      {
+        "name": "sidebarLayout",
+        "description": "Fixed sidebar + fluid main content",
+        "css": "display: grid; grid-template-columns: 280px 1fr; gap: var(--inkblot-grid-gutter);",
+        "responsive": "Below lg: sidebar collapses to off-canvas drawer",
+        "useCases": ["admin dashboards", "documentation", "email clients"]
+      },
+      {
+        "name": "cardGrid",
+        "description": "Responsive card grid that reflows",
+        "css": "display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--inkblot-spacing-6);",
+        "useCases": ["product listings", "media galleries", "team pages"]
+      },
+      {
+        "name": "splitScreen",
+        "description": "50/50 split for marketing pages",
+        "css": "display: grid; grid-template-columns: 1fr 1fr; gap: 0; min-height: 100vh;",
+        "responsive": "Below md: stack vertically",
+        "useCases": ["hero sections", "comparison layouts", "auth pages"]
+      },
+      {
+        "name": "masonry",
+        "description": "Pinterest-style masonry for variable-height content",
+        "css": "columns: 3; column-gap: var(--inkblot-spacing-6); & > * { break-inside: avoid; margin-bottom: var(--inkblot-spacing-6); }",
+        "responsive": "sm: 1 column, md: 2 columns, lg+: 3 columns",
+        "useCases": ["image galleries", "testimonials", "news feeds"]
+      }
+    ]
+  }
+}

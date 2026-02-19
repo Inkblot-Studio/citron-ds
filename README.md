@@ -1,43 +1,65 @@
-# Inkblot Studio Design Tokens
+# Inkblot Studio Design System
 
-Design token system for **Inkblot Studio** — simple, sophisticated, Apple-inspired. Built for AI training, AI integration, and component libraries.
+The canonical design system for **Inkblot Studio**. Built for AI agents, autonomous workers, and humans collaborating with AI. Every rule is explicit, every constraint defined, every edge case handled.
 
-## Philosophy
+## Principles
 
-- **Clean**: Minimal palette, restrained use of color and shadow
-- **Accessible**: WCAG 2.1 AA contrast, 44px minimum touch targets
-- **Semantic**: Use semantic tokens in components, never raw primitives
-- **AI-ready**: Structured for AI training, integration, and code generation
+- **Radical Clarity** — One correct interpretation per rule. No ambiguity.
+- **Composable Independence** — Every component is self-contained and works in isolation.
+- **Universal Access** — WCAG AAA. 7:1 contrast. 44px touch targets. Full keyboard nav.
+- **AI-First** — Every token, component, and rule is machine-parseable JSON.
+- **Deliberate Restraint** — Minimum visual complexity. Every element earns its place.
 
 ## Quick Start
 
 ```bash
 npm install
 npm run build
+npm run dev        # Live preview at localhost:5173
 ```
 
-### Live Preview
+## Architecture
 
-Preview tokens in the browser with hot reload — edit any file in `tokens/` and see changes instantly:
-
-```bash
-npm run dev
+```
+inkblot-studio-design-tokens/
+├── tokens/                         # W3C DTCG format (source of truth)
+│   ├── primitive/                  # Raw design values
+│   │   ├── color.tokens.json       # Neutral + accent + semantic palettes
+│   │   ├── typography.tokens.json  # Font stacks, scale, weights
+│   │   ├── spacing.tokens.json     # 4pt grid, icon sizes, touch targets
+│   │   ├── radius.tokens.json      # Border radius + widths
+│   │   ├── shadow.tokens.json      # Elevation + opacity
+│   │   ├── duration.tokens.json    # Animation timing + easing curves
+│   │   ├── breakpoint.tokens.json  # Responsive breakpoints
+│   │   ├── grid.tokens.json        # Column counts, gutters, margins, max-widths
+│   │   └── zindex.tokens.json      # Layering hierarchy
+│   └── semantic/                   # Mapped meanings (use in components)
+│       ├── inkblot.semantic.tokens.json  # Light mode
+│       └── dark.tokens.json              # Dark mode overrides
+├── system/                         # Design system specification (JSON)
+│   ├── index.json                  # Master index — start here
+│   ├── foundations.json            # Principles, accessibility, tech stack
+│   ├── grid.json                   # Grid system, breakpoints, layout patterns
+│   ├── components.json             # Full component library spec
+│   ├── motion.json                 # Animation, transitions, micro-interactions
+│   ├── content.json                # Data display, states, iconography, imagery
+│   └── ai.json                     # AI agent consumption rules + examples
+├── dist/                           # Generated outputs
+│   ├── css/inkblot-variables.css
+│   ├── scss/_inkblot-variables.scss
+│   ├── js/inkblot-tokens.js
+│   └── ai/inkblot-tokens-resolved.json
+└── preview/                        # Live preview (Vite)
 ```
 
-Opens http://localhost:5173 with a visual showcase of colors, typography, spacing, shadows, and components.
+## For AI Agents
 
-## Output Formats
+1. Read `system/ai.json` — deterministic rules for rendering components
+2. Read `system/components.json` — anatomy, states, behavior, accessibility for every component
+3. Reference `dist/ai/inkblot-tokens-resolved.json` — flat resolved token values
+4. **Always use semantic tokens** (`inkblot.semantic.*`), never primitives
 
-| Format | Path | Use Case |
-|--------|------|----------|
-| CSS Variables | `dist/css/inkblot-variables.css` | Web apps, import in CSS |
-| SCSS | `dist/scss/_inkblot-variables.scss` | Sass/SCSS projects |
-| JavaScript | `dist/js/inkblot-tokens.js` | JS/TS component libraries |
-| JSON (flat) | `dist/ai/inkblot-tokens-resolved.json` | AI training, integrations |
-
-## Usage
-
-### CSS
+## For Developers
 
 ```css
 @import '@inkblot-studio/design-tokens/css';
@@ -45,60 +67,36 @@ Opens http://localhost:5173 with a visual showcase of colors, typography, spacin
 .button {
   background: var(--inkblot-semantic-color-interactive-primary);
   color: var(--inkblot-semantic-color-text-inverse);
-  padding: var(--inkblot-spacing-2) var(--inkblot-spacing-4);
-  border-radius: var(--inkblot-radius-md);
-  transition: background var(--inkblot-duration-fast) var(--inkblot-easing-default);
+  padding: var(--inkblot-spacing-3) var(--inkblot-spacing-6);
+  border-radius: var(--inkblot-radius-lg);
+  font-weight: var(--inkblot-typography-font-weight-medium);
+  min-height: var(--inkblot-size-touch-target-min);
+  transition: all var(--inkblot-duration-fast) var(--inkblot-easing-default);
 }
 ```
 
-### JavaScript/TypeScript
+## System Specifications
 
-```javascript
-import tokens from '@inkblot-studio/design-tokens';
-// tokens.InkblotColorAccentBlue500 → "#007aff"
-```
+| File | What it covers |
+|------|---------------|
+| `system/foundations.json` | Core principles, WCAG AAA rules, color modes, tech stack |
+| `system/grid.json` | 4–24 column grid, breakpoints, z-index, layout patterns |
+| `system/components.json` | Button, input, checkbox, toggle, select, modal, tooltip, card, chip, table, toast, slider, avatar, skeleton, empty state |
+| `system/motion.json` | Durations, easings, transition patterns, micro-interactions, reduced motion |
+| `system/content.json` | Tables, lists, cards, feeds, loading/empty/error states, iconography, imagery, truncation |
+| `system/ai.json` | Component rendering rules, layout assembly steps, edge cases, testing requirements |
 
-### AI Integration
+## Color Modes
 
-For AI training and component generation:
-
-1. **Token reference**: `dist/ai/inkblot-tokens-resolved.json` — flat, resolved values
-2. **Schema**: `dist/ai/inkblot-tokens-schema.json` — token structure and component guidelines
-3. **Source tokens**: `tokens/` — W3C DTCG format with descriptions
-
-**Component generation rules for AI:**
-- Use semantic tokens: `inkblot.semantic.color.*`, not primitives
-- Spacing: 4pt grid (4, 8, 12, 16, 24, 32px)
-- Touch targets: minimum 44px
-- Border radius: 8px for cards/inputs
-- Primary accent: `#007aff` (Apple system blue)
-
-## Token Structure
-
-```
-inkblot/
-├── color (primitive)
-│   ├── neutral (white, gray 50-950)
-│   ├── accent (blue 50-900)
-│   └── semantic (success, warning, error, info)
-├── semantic (use in components)
-│   ├── color (background, text, border, interactive, status)
-│   └── typography (heading 1-4, body, label)
-├── spacing (0, 1-32)
-├── typography (fontFamily, fontSize, fontWeight, lineHeight)
-├── radius (none, sm, md, lg, xl, 2xl, full)
-├── shadow (none, xs, sm, md, lg, xl)
-├── duration (instant, fast, normal, slow, slower)
-├── easing (default, in, out, inOut, bounce)
-└── breakpoint (sm, md, lg, xl, 2xl)
-```
+Light mode is default. Dark mode activates via `[data-theme="dark"]` or `prefers-color-scheme: dark`.
 
 ## Standards
 
-- **Format**: [W3C Design Tokens Community Group (DTCG)](https://www.designtokens.org/)
+- **Tokens**: [W3C Design Tokens Community Group](https://www.designtokens.org/)
 - **Build**: [Style Dictionary](https://styledictionary.com/) v4
-- **Accessibility**: WCAG 2.1 AA
+- **Accessibility**: WCAG 2.2 AAA
+- **Contrast**: 7:1 normal text, 4.5:1 large text, 3:1 UI components
 
 ## License
 
-MIT © Inkblot Studio
+MIT - Inkblot Studio

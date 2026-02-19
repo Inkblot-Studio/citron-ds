@@ -1,0 +1,54 @@
+{
+  "$schema": "https://inkblot.studio/system/v1/index.schema.json",
+  "name": "Inkblot Studio Design System",
+  "version": "1.0.0",
+  "description": "Master index for the Inkblot Studio design system. Use this file to discover all specifications.",
+  "status": "stable",
+
+  "tokens": {
+    "description": "W3C DTCG format design tokens — the source of truth for all visual values",
+    "format": "Design Tokens Community Group JSON",
+    "buildTool": "Style Dictionary v4",
+    "sources": {
+      "primitive": {
+        "color": "tokens/primitive/color.tokens.json",
+        "typography": "tokens/primitive/typography.tokens.json",
+        "spacing": "tokens/primitive/spacing.tokens.json",
+        "radius": "tokens/primitive/radius.tokens.json",
+        "shadow": "tokens/primitive/shadow.tokens.json",
+        "duration": "tokens/primitive/duration.tokens.json",
+        "breakpoint": "tokens/primitive/breakpoint.tokens.json",
+        "grid": "tokens/primitive/grid.tokens.json",
+        "zindex": "tokens/primitive/zindex.tokens.json"
+      },
+      "semantic": {
+        "light": "tokens/semantic/inkblot.semantic.tokens.json",
+        "dark": "tokens/semantic/dark.tokens.json"
+      }
+    },
+    "outputs": {
+      "css": "dist/css/inkblot-variables.css",
+      "scss": "dist/scss/_inkblot-variables.scss",
+      "js": "dist/js/inkblot-tokens.js",
+      "json": "dist/ai/inkblot-tokens-resolved.json"
+    }
+  },
+
+  "system": {
+    "description": "Design system specifications — component rules, layout, motion, AI integration",
+    "files": {
+      "foundations": { "path": "system/foundations.json", "description": "Core principles, accessibility standards, tech stack, color modes" },
+      "grid": { "path": "system/grid.json", "description": "Grid system, breakpoints, z-index, layout patterns" },
+      "components": { "path": "system/components.json", "description": "Full component library: anatomy, states, behavior, accessibility" },
+      "motion": { "path": "system/motion.json", "description": "Animation durations, easings, transitions, micro-interactions" },
+      "content": { "path": "system/content.json", "description": "Data display, loading/empty/error states, iconography, imagery" },
+      "ai": { "path": "system/ai.json", "description": "AI agent rules: rendering, layout assembly, edge cases, testing" }
+    }
+  },
+
+  "usage": {
+    "forAI": "Read system/ai.json first, then system/components.json for component specs. Reference tokens via dist/ai/inkblot-tokens-resolved.json.",
+    "forDevelopers": "Import dist/css/inkblot-variables.css for tokens. Reference system/components.json for implementation specs.",
+    "forDesigners": "Use tokens/primitive/ as source for Figma variables. Reference system/foundations.json for principles."
+  }
+}

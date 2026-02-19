@@ -1,0 +1,304 @@
+{
+  "$schema": "https://inkblot.studio/system/v1/components.schema.json",
+  "name": "Component Library Specification",
+  "version": "1.0.0",
+  "description": "Complete UI component specification. Every component defines anatomy, states, behavior, accessibility, and token references. AI agents: consume this directly to render correct components.",
+
+  "globalRules": {
+    "stateOrder": ["default", "hover", "focus", "active", "disabled", "loading", "error"],
+    "focusRing": "outline: 2px solid var(--inkblot-semantic-color-border-focus); outline-offset: 2px;",
+    "disabledRule": "opacity: var(--inkblot-opacity-disabled); pointer-events: none; cursor: not-allowed;",
+    "transitionDefault": "transition: all var(--inkblot-duration-fast) var(--inkblot-easing-default);"
+  },
+
+  "components": {
+    "button": {
+      "description": "Primary interactive element for actions. Must always have a visible label.",
+      "anatomy": ["container", "label", "icon (optional, leading or trailing)"],
+      "variants": {
+        "primary": {
+          "default": { "background": "var(--inkblot-semantic-color-interactive-primary)", "color": "var(--inkblot-semantic-color-text-inverse)", "border": "none", "shadow": "0 2px 8px rgba(0,122,255,0.2)" },
+          "hover": { "background": "var(--inkblot-semantic-color-interactive-primary-hover)", "shadow": "0 4px 16px rgba(0,122,255,0.25)" },
+          "focus": { "background": "var(--inkblot-semantic-color-interactive-primary)", "outline": "2px solid var(--inkblot-semantic-color-border-focus)", "outlineOffset": "2px" },
+          "active": { "background": "var(--inkblot-semantic-color-interactive-primary-active)", "transform": "scale(0.98)" },
+          "disabled": { "background": "var(--inkblot-semantic-color-interactive-primary)", "opacity": "var(--inkblot-opacity-disabled)" },
+          "loading": { "background": "var(--inkblot-semantic-color-interactive-primary)", "cursor": "wait", "content": "Spinner replaces label or appears trailing" }
+        },
+        "secondary": {
+          "default": { "background": "transparent", "color": "var(--inkblot-semantic-color-text-primary)", "border": "1px solid var(--inkblot-semantic-color-border-default)" },
+          "hover": { "background": "var(--inkblot-semantic-color-background-secondary)", "borderColor": "var(--inkblot-semantic-color-border-strong)" },
+          "focus": { "outline": "2px solid var(--inkblot-semantic-color-border-focus)", "outlineOffset": "2px" },
+          "active": { "background": "var(--inkblot-semantic-color-background-tertiary)", "transform": "scale(0.98)" },
+          "disabled": { "opacity": "var(--inkblot-opacity-disabled)" }
+        },
+        "ghost": {
+          "default": { "background": "transparent", "color": "var(--inkblot-semantic-color-interactive-primary)", "border": "none" },
+          "hover": { "background": "var(--inkblot-color-accent-blue-50)" },
+          "focus": { "outline": "2px solid var(--inkblot-semantic-color-border-focus)", "outlineOffset": "2px" },
+          "active": { "background": "var(--inkblot-color-accent-blue-100)" }
+        },
+        "danger": {
+          "default": { "background": "var(--inkblot-semantic-color-status-error)", "color": "white" },
+          "hover": { "background": "var(--inkblot-color-semantic-error-dark)" },
+          "focus": { "outline": "2px solid var(--inkblot-semantic-color-status-error)", "outlineOffset": "2px" }
+        }
+      },
+      "sizes": {
+        "sm": { "height": "32px", "padding": "var(--inkblot-spacing-1) var(--inkblot-spacing-3)", "fontSize": "var(--inkblot-typography-font-size-sm)", "borderRadius": "var(--inkblot-radius-md)", "iconSize": "16px" },
+        "md": { "height": "40px", "padding": "var(--inkblot-spacing-2) var(--inkblot-spacing-4)", "fontSize": "var(--inkblot-typography-font-size-base)", "borderRadius": "var(--inkblot-radius-md)", "iconSize": "20px" },
+        "lg": { "height": "48px", "padding": "var(--inkblot-spacing-3) var(--inkblot-spacing-6)", "fontSize": "var(--inkblot-typography-font-size-md)", "borderRadius": "var(--inkblot-radius-lg)", "iconSize": "24px" }
+      },
+      "behavior": {
+        "click": "Execute primary action. Prevent double-click by disabling for 300ms after click.",
+        "keyboard": "Enter or Space activates. Focused via Tab.",
+        "ai": "AI agents: always specify variant, size, label, and action. Never render a button without a label."
+      },
+      "accessibility": {
+        "role": "button",
+        "ariaLabel": "Required if icon-only. Text label serves as accessible name otherwise.",
+        "ariaDisabled": "true when disabled. Keeps element in tab order for screen readers.",
+        "ariaLive": "polite for loading state — announce 'Loading' then 'Complete'."
+      },
+      "cssExample": ".btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--inkblot-spacing-2); font-family: var(--inkblot-typography-font-family-sans); font-weight: var(--inkblot-typography-font-weight-medium); border-radius: var(--inkblot-radius-md); cursor: pointer; transition: all var(--inkblot-duration-fast) var(--inkblot-easing-default); min-height: var(--inkblot-size-touch-target-min); }"
+    },
+
+    "input": {
+      "description": "Text input for user data entry. Always pair with a visible label.",
+      "anatomy": ["container", "label", "field", "placeholder", "helpText (optional)", "errorMessage (optional)", "icon (optional, leading or trailing)"],
+      "variants": {
+        "default": {
+          "default": { "background": "var(--inkblot-semantic-color-background-primary)", "border": "1px solid var(--inkblot-semantic-color-border-default)", "borderRadius": "var(--inkblot-radius-md)" },
+          "hover": { "borderColor": "var(--inkblot-semantic-color-border-strong)" },
+          "focus": { "borderColor": "var(--inkblot-semantic-color-border-focus)", "outline": "2px solid var(--inkblot-semantic-color-border-focus)", "outlineOffset": "-1px" },
+          "error": { "borderColor": "var(--inkblot-semantic-color-status-error)", "outline": "2px solid var(--inkblot-semantic-color-status-error)", "outlineOffset": "-1px" },
+          "disabled": { "background": "var(--inkblot-semantic-color-background-secondary)", "opacity": "var(--inkblot-opacity-disabled)" }
+        }
+      },
+      "sizes": {
+        "sm": { "height": "32px", "padding": "var(--inkblot-spacing-1) var(--inkblot-spacing-3)", "fontSize": "var(--inkblot-typography-font-size-sm)" },
+        "md": { "height": "40px", "padding": "var(--inkblot-spacing-2) var(--inkblot-spacing-3)", "fontSize": "var(--inkblot-typography-font-size-base)" },
+        "lg": { "height": "48px", "padding": "var(--inkblot-spacing-3) var(--inkblot-spacing-4)", "fontSize": "var(--inkblot-typography-font-size-md)" }
+      },
+      "behavior": {
+        "validation": "Validate on blur, not on every keystroke. Show error message below field.",
+        "placeholder": "Never use placeholder as label. Placeholder is hint text only.",
+        "keyboard": "Tab to focus. Type to input. Escape to clear (optional).",
+        "ai": "AI agents: always include label, name, type, and validation rules."
+      },
+      "accessibility": {
+        "role": "textbox",
+        "ariaLabel": "Use visible <label> with htmlFor. If no visible label, use aria-label.",
+        "ariaDescribedby": "Point to helpText or errorMessage element id.",
+        "ariaInvalid": "true when validation fails.",
+        "ariaRequired": "true when field is required."
+      }
+    },
+
+    "checkbox": {
+      "description": "Binary toggle for options. Use in groups for multi-select.",
+      "anatomy": ["container", "box", "checkmark", "label"],
+      "states": {
+        "unchecked": { "background": "transparent", "border": "2px solid var(--inkblot-semantic-color-border-default)" },
+        "checked": { "background": "var(--inkblot-semantic-color-interactive-primary)", "border": "none", "icon": "white checkmark" },
+        "indeterminate": { "background": "var(--inkblot-semantic-color-interactive-primary)", "icon": "white dash" },
+        "hover": { "borderColor": "var(--inkblot-semantic-color-interactive-primary)" },
+        "focus": { "outline": "2px solid var(--inkblot-semantic-color-border-focus)", "outlineOffset": "2px" },
+        "disabled": { "opacity": "var(--inkblot-opacity-disabled)" }
+      },
+      "sizes": {
+        "sm": { "box": "16px", "iconSize": "12px" },
+        "md": { "box": "20px", "iconSize": "14px" },
+        "lg": { "box": "24px", "iconSize": "16px" }
+      },
+      "accessibility": { "role": "checkbox", "ariaChecked": "true | false | mixed", "keyboard": "Space to toggle. Tab to navigate between checkboxes." }
+    },
+
+    "toggle": {
+      "description": "On/off switch for boolean settings. Immediate effect (no submit).",
+      "anatomy": ["track", "thumb", "label"],
+      "states": {
+        "off": { "track": "var(--inkblot-semantic-color-border-default)", "thumb": "white" },
+        "on": { "track": "var(--inkblot-semantic-color-interactive-primary)", "thumb": "white" },
+        "hover": { "track": "on ? var(--inkblot-semantic-color-interactive-primary-hover) : var(--inkblot-semantic-color-border-strong)" },
+        "focus": { "outline": "2px solid var(--inkblot-semantic-color-border-focus)", "outlineOffset": "2px" },
+        "disabled": { "opacity": "var(--inkblot-opacity-disabled)" }
+      },
+      "sizes": {
+        "sm": { "track": "36px x 20px", "thumb": "16px" },
+        "md": { "track": "44px x 24px", "thumb": "20px" },
+        "lg": { "track": "52px x 28px", "thumb": "24px" }
+      },
+      "behavior": { "click": "Toggle immediately. No form submission needed.", "keyboard": "Space to toggle.", "animation": "Thumb slides with var(--inkblot-duration-fast) var(--inkblot-easing-default)" },
+      "accessibility": { "role": "switch", "ariaChecked": "true | false" }
+    },
+
+    "select": {
+      "description": "Dropdown for single selection from a list.",
+      "anatomy": ["trigger", "label", "value", "chevron", "dropdown", "option", "optionGroup (optional)"],
+      "states": {
+        "closed": { "border": "1px solid var(--inkblot-semantic-color-border-default)" },
+        "open": { "border": "1px solid var(--inkblot-semantic-color-border-focus)", "dropdown": "visible with var(--inkblot-shadow-md)" },
+        "optionHover": { "background": "var(--inkblot-semantic-color-background-secondary)" },
+        "optionSelected": { "background": "var(--inkblot-color-accent-blue-50)", "fontWeight": "var(--inkblot-typography-font-weight-medium)" }
+      },
+      "behavior": {
+        "open": "Click trigger or press Enter/Space/ArrowDown to open.",
+        "navigate": "Arrow keys move highlight. Type-ahead filters options.",
+        "select": "Enter selects highlighted option. Click selects option. Escape closes.",
+        "ai": "AI agents: provide options array with {value, label, disabled?}."
+      },
+      "accessibility": { "role": "combobox (trigger) + listbox (dropdown)", "ariaExpanded": "true when open", "ariaActiveDescendant": "id of highlighted option" }
+    },
+
+    "modal": {
+      "description": "Overlay dialog for focused tasks. Traps focus. Blocks page interaction.",
+      "anatomy": ["overlay", "container", "header", "title", "closeButton", "body", "footer (optional)"],
+      "sizes": {
+        "sm": { "width": "400px", "maxHeight": "85vh" },
+        "md": { "width": "560px", "maxHeight": "85vh" },
+        "lg": { "width": "720px", "maxHeight": "85vh" },
+        "full": { "width": "100vw", "height": "100vh" }
+      },
+      "behavior": {
+        "open": "Animate in: fade overlay (var(--inkblot-duration-normal)), scale container from 95% to 100%.",
+        "close": "Escape key, click overlay, or click close button. Reverse animation.",
+        "scroll": "Body scroll locked when open. Modal content scrolls internally.",
+        "focusTrap": "Tab cycles through focusable elements within modal only.",
+        "ai": "AI agents: always include title, at least one close mechanism, and describe the action."
+      },
+      "accessibility": {
+        "role": "dialog",
+        "ariaModal": "true",
+        "ariaLabelledby": "title element id",
+        "focusManagement": "Move focus to first focusable element on open. Return focus to trigger on close."
+      },
+      "overlay": { "background": "rgba(0, 0, 0, var(--inkblot-opacity-overlay))", "zIndex": "var(--inkblot-z-index-overlay)" },
+      "container": { "zIndex": "var(--inkblot-z-index-modal)", "borderRadius": "var(--inkblot-radius-xl)", "shadow": "var(--inkblot-shadow-xl)" }
+    },
+
+    "tooltip": {
+      "description": "Contextual help text on hover/focus. Non-interactive.",
+      "anatomy": ["container", "arrow", "content"],
+      "placement": ["top", "bottom", "left", "right"],
+      "behavior": {
+        "show": "On hover (300ms delay) or focus. Hide on mouse leave or blur.",
+        "positioning": "Auto-flip if near viewport edge. 8px offset from trigger.",
+        "ai": "AI agents: use for supplementary info only. Never put critical info in tooltips."
+      },
+      "style": { "background": "var(--inkblot-semantic-color-background-inverse)", "color": "var(--inkblot-semantic-color-text-inverse)", "padding": "var(--inkblot-spacing-2) var(--inkblot-spacing-3)", "borderRadius": "var(--inkblot-radius-md)", "fontSize": "var(--inkblot-typography-font-size-sm)", "maxWidth": "240px", "zIndex": "var(--inkblot-z-index-popover)" },
+      "accessibility": { "role": "tooltip", "ariaDescribedby": "Trigger points to tooltip via aria-describedby" }
+    },
+
+    "card": {
+      "description": "Contained surface for grouped content. Primary layout primitive.",
+      "anatomy": ["container", "header (optional)", "media (optional)", "body", "footer (optional)"],
+      "variants": {
+        "elevated": { "background": "var(--inkblot-semantic-color-background-primary)", "shadow": "var(--inkblot-shadow-sm)", "border": "none" },
+        "outlined": { "background": "var(--inkblot-semantic-color-background-primary)", "shadow": "none", "border": "1px solid var(--inkblot-semantic-color-border-default)" },
+        "filled": { "background": "var(--inkblot-semantic-color-background-secondary)", "shadow": "none", "border": "none" }
+      },
+      "style": { "borderRadius": "var(--inkblot-radius-lg)", "padding": "var(--inkblot-spacing-6)", "transition": "box-shadow var(--inkblot-duration-fast) var(--inkblot-easing-default), transform var(--inkblot-duration-fast) var(--inkblot-easing-default)" },
+      "interactive": {
+        "hover": { "shadow": "var(--inkblot-shadow-md)", "transform": "translateY(-2px)" },
+        "focus": { "outline": "2px solid var(--inkblot-semantic-color-border-focus)", "outlineOffset": "2px" },
+        "rule": "Only apply hover/focus if card is clickable (wrapped in <a> or has onClick)."
+      },
+      "accessibility": { "rule": "If clickable, use <a> or <button> as root, not <div>. Include aria-label if card text doesn't describe the action." }
+    },
+
+    "chip": {
+      "description": "Compact element for tags, filters, or selections.",
+      "anatomy": ["container", "label", "icon (optional, leading)", "removeButton (optional, trailing)"],
+      "variants": {
+        "filled": { "background": "var(--inkblot-semantic-color-background-tertiary)", "color": "var(--inkblot-semantic-color-text-primary)" },
+        "outlined": { "background": "transparent", "border": "1px solid var(--inkblot-semantic-color-border-default)" },
+        "accent": { "background": "var(--inkblot-color-accent-blue-50)", "color": "var(--inkblot-semantic-color-interactive-primary)" }
+      },
+      "style": { "borderRadius": "var(--inkblot-radius-full)", "padding": "var(--inkblot-spacing-1) var(--inkblot-spacing-3)", "fontSize": "var(--inkblot-typography-font-size-sm)", "height": "28px" },
+      "accessibility": { "removable": "Remove button has aria-label 'Remove {chipLabel}'" }
+    },
+
+    "table": {
+      "description": "Structured data display in rows and columns.",
+      "anatomy": ["container", "header", "headerCell", "body", "row", "cell", "footer (optional)", "pagination (optional)"],
+      "style": {
+        "headerCell": { "fontWeight": "var(--inkblot-typography-font-weight-semibold)", "fontSize": "var(--inkblot-typography-font-size-xs)", "letterSpacing": "var(--inkblot-typography-letter-spacing-wide)", "color": "var(--inkblot-semantic-color-text-secondary)", "padding": "var(--inkblot-spacing-3) var(--inkblot-spacing-4)", "borderBottom": "1px solid var(--inkblot-semantic-color-border-default)", "textTransform": "uppercase" },
+        "cell": { "padding": "var(--inkblot-spacing-3) var(--inkblot-spacing-4)", "borderBottom": "1px solid var(--inkblot-semantic-color-border-default)", "fontSize": "var(--inkblot-typography-font-size-sm)" },
+        "rowHover": { "background": "var(--inkblot-semantic-color-background-secondary)" },
+        "rowSelected": { "background": "var(--inkblot-color-accent-blue-50)" },
+        "rowStriped": { "oddRow": "var(--inkblot-semantic-color-background-secondary)" }
+      },
+      "behavior": { "sorting": "Click header to sort. Arrow icon indicates direction.", "selection": "Checkbox in first column for row selection.", "pagination": "Below table. Show page size selector and page navigation." },
+      "accessibility": { "role": "table with proper th scope", "ariaSort": "ascending | descending | none on sortable headers", "ariaSelected": "true on selected rows" }
+    },
+
+    "toast": {
+      "description": "Non-blocking notification. Auto-dismisses. Stacks vertically.",
+      "anatomy": ["container", "icon", "message", "action (optional)", "dismissButton"],
+      "variants": {
+        "info": { "border": "1px solid var(--inkblot-color-accent-blue-200)", "background": "var(--inkblot-color-accent-blue-50)", "icon": "info-circle" },
+        "success": { "border": "1px solid rgba(48, 179, 80, 0.3)", "background": "rgba(48, 179, 80, 0.1)", "icon": "check-circle" },
+        "warning": { "border": "1px solid rgba(230, 134, 0, 0.3)", "background": "rgba(230, 134, 0, 0.1)", "icon": "alert-triangle" },
+        "error": { "border": "1px solid rgba(230, 53, 43, 0.3)", "background": "rgba(230, 53, 43, 0.1)", "icon": "alert-circle" }
+      },
+      "behavior": {
+        "position": "Fixed, bottom-right. 16px from edges.",
+        "autoDismiss": "5000ms default. Pause on hover. Never auto-dismiss errors.",
+        "stacking": "New toasts push older ones up. Max 3 visible. Queue the rest.",
+        "animation": "Slide in from right (var(--inkblot-duration-normal) var(--inkblot-easing-out)). Fade out on dismiss."
+      },
+      "style": { "borderRadius": "var(--inkblot-radius-lg)", "padding": "var(--inkblot-spacing-3) var(--inkblot-spacing-4)", "shadow": "var(--inkblot-shadow-lg)", "zIndex": "var(--inkblot-z-index-toast)", "maxWidth": "420px", "minWidth": "320px" },
+      "accessibility": { "role": "status", "ariaLive": "polite (info, success) | assertive (error, warning)" }
+    },
+
+    "slider": {
+      "description": "Range input for selecting a numeric value.",
+      "anatomy": ["track", "fill", "thumb", "label", "valueDisplay (optional)"],
+      "states": {
+        "default": { "track": "var(--inkblot-semantic-color-border-default)", "fill": "var(--inkblot-semantic-color-interactive-primary)", "thumb": "white with shadow" },
+        "hover": { "thumb": "scale(1.1)" },
+        "active": { "thumb": "scale(1.2)" },
+        "disabled": { "opacity": "var(--inkblot-opacity-disabled)" }
+      },
+      "behavior": { "drag": "Thumb follows pointer. Snap to steps if defined.", "keyboard": "Arrow keys increment/decrement. Home/End go to min/max.", "ai": "AI agents: provide min, max, step, defaultValue." },
+      "accessibility": { "role": "slider", "ariaValuemin": "number", "ariaValuemax": "number", "ariaValuenow": "number", "ariaLabel": "required" }
+    },
+
+    "avatar": {
+      "description": "User or entity representation as image or initials.",
+      "anatomy": ["container", "image | initials", "statusBadge (optional)"],
+      "sizes": {
+        "xs": { "size": "24px", "fontSize": "10px" },
+        "sm": { "size": "32px", "fontSize": "12px" },
+        "md": { "size": "40px", "fontSize": "14px" },
+        "lg": { "size": "56px", "fontSize": "20px" },
+        "xl": { "size": "80px", "fontSize": "28px" }
+      },
+      "style": { "borderRadius": "var(--inkblot-radius-full)", "objectFit": "cover" },
+      "fallback": "If image fails: show initials on colored background. Color derived from name hash.",
+      "accessibility": { "alt": "User's name or 'User avatar'" }
+    },
+
+    "skeleton": {
+      "description": "Loading placeholder that mimics content layout.",
+      "style": { "background": "linear-gradient(90deg, var(--inkblot-semantic-color-background-secondary) 25%, var(--inkblot-semantic-color-background-tertiary) 50%, var(--inkblot-semantic-color-background-secondary) 75%)", "backgroundSize": "200% 100%", "animation": "shimmer 1.5s ease-in-out infinite", "borderRadius": "var(--inkblot-radius-md)" },
+      "variants": {
+        "text": { "height": "16px", "width": "random 60-100%", "marginBottom": "8px" },
+        "heading": { "height": "28px", "width": "40%", "marginBottom": "16px" },
+        "avatar": { "width": "40px", "height": "40px", "borderRadius": "50%" },
+        "image": { "width": "100%", "aspectRatio": "16/9" },
+        "button": { "width": "120px", "height": "40px" }
+      },
+      "rule": "Match skeleton shapes to the content they replace. Never show generic blocks.",
+      "accessibility": { "ariaHidden": "true", "ariaLabel": "Loading content", "role": "status" }
+    },
+
+    "emptyState": {
+      "description": "Placeholder when no data exists. Must always include an action.",
+      "anatomy": ["container", "illustration (optional)", "title", "description", "action"],
+      "style": { "textAlign": "center", "padding": "var(--inkblot-spacing-16) var(--inkblot-spacing-8)", "maxWidth": "420px", "margin": "auto" },
+      "rule": "Every empty state must tell the user what to do next. Include a primary action button.",
+      "accessibility": { "role": "status" }
+    }
+  }
+}

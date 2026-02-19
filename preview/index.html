@@ -3,487 +3,676 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inkblot Studio — Design Tokens</title>
+  <title>Inkblot Studio — Design System</title>
   <link rel="stylesheet" href="/css/inkblot-variables.css" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    
-    html {
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      scroll-behavior: smooth;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
 
     body {
-      margin: 0;
       font-family: var(--inkblot-typography-font-family-sans);
-      background: linear-gradient(180deg, #f5f5f7 0%, #e8e8ed 50%, #fafafa 100%);
+      background: var(--inkblot-semantic-color-background-primary);
       color: var(--inkblot-semantic-color-text-primary);
       line-height: var(--inkblot-typography-line-height-normal);
       min-height: 100vh;
-      overflow-x: hidden;
+      transition: background var(--inkblot-duration-slow) var(--inkblot-easing-default),
+                  color var(--inkblot-duration-slow) var(--inkblot-easing-default);
+    }
+
+    [data-theme="dark"] {
+      --inkblot-semantic-color-background-primary: var(--inkblot-dark-color-background-primary);
+      --inkblot-semantic-color-background-secondary: var(--inkblot-dark-color-background-secondary);
+      --inkblot-semantic-color-background-tertiary: var(--inkblot-dark-color-background-tertiary);
+      --inkblot-semantic-color-background-inverse: var(--inkblot-dark-color-background-inverse);
+      --inkblot-semantic-color-text-primary: var(--inkblot-dark-color-text-primary);
+      --inkblot-semantic-color-text-secondary: var(--inkblot-dark-color-text-secondary);
+      --inkblot-semantic-color-text-tertiary: var(--inkblot-dark-color-text-tertiary);
+      --inkblot-semantic-color-text-inverse: var(--inkblot-dark-color-text-inverse);
+      --inkblot-semantic-color-text-link: var(--inkblot-dark-color-text-link);
+      --inkblot-semantic-color-text-link-hover: var(--inkblot-dark-color-text-link-hover);
+      --inkblot-semantic-color-border-default: var(--inkblot-dark-color-border-default);
+      --inkblot-semantic-color-border-strong: var(--inkblot-dark-color-border-strong);
+      --inkblot-semantic-color-border-focus: var(--inkblot-dark-color-border-focus);
+      --inkblot-semantic-color-interactive-primary: var(--inkblot-dark-color-interactive-primary);
+      --inkblot-semantic-color-interactive-primary-hover: var(--inkblot-dark-color-interactive-primary-hover);
+      --inkblot-semantic-color-interactive-primary-active: var(--inkblot-dark-color-interactive-primary-active);
+      --inkblot-semantic-color-interactive-secondary: var(--inkblot-dark-color-interactive-secondary);
+      --inkblot-semantic-color-interactive-secondary-hover: var(--inkblot-dark-color-interactive-secondary-hover);
+      --inkblot-semantic-color-status-success: var(--inkblot-dark-color-status-success);
+      --inkblot-semantic-color-status-warning: var(--inkblot-dark-color-status-warning);
+      --inkblot-semantic-color-status-error: var(--inkblot-dark-color-status-error);
+      --inkblot-semantic-color-status-info: var(--inkblot-dark-color-status-info);
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: var(--inkblot-z-index-sticky, 20);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.72);
+      border-bottom: 1px solid var(--inkblot-semantic-color-border-default);
+      padding: var(--inkblot-spacing-3) var(--inkblot-spacing-6);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    [data-theme="dark"] .nav {
+      background: rgba(0, 0, 0, 0.72);
+    }
+
+    .nav-brand {
+      font-size: var(--inkblot-typography-font-size-sm);
+      font-weight: var(--inkblot-typography-font-weight-semibold);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--inkblot-spacing-6);
+      list-style: none;
+      padding: 0;
+    }
+
+    .nav-links a {
+      font-size: var(--inkblot-typography-font-size-sm);
+      color: var(--inkblot-semantic-color-text-secondary);
+      text-decoration: none;
+      transition: color var(--inkblot-duration-fast) var(--inkblot-easing-default);
+    }
+
+    .nav-links a:hover { color: var(--inkblot-semantic-color-text-primary); }
+
+    .theme-toggle {
+      width: 44px; height: 24px;
+      background: var(--inkblot-semantic-color-border-default);
+      border: none; border-radius: var(--inkblot-radius-full);
+      cursor: pointer; position: relative;
+      transition: background var(--inkblot-duration-fast) var(--inkblot-easing-default);
+    }
+
+    .theme-toggle::after {
+      content: '';
+      position: absolute; top: 2px; left: 2px;
+      width: 20px; height: 20px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      transition: transform var(--inkblot-duration-fast) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    [data-theme="dark"] .theme-toggle {
+      background: var(--inkblot-dark-color-interactive-primary);
+    }
+
+    [data-theme="dark"] .theme-toggle::after {
+      transform: translateX(20px);
     }
 
     .hero {
-      min-height: 70vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      padding: clamp(80px, 12vh, 160px) var(--inkblot-spacing-8);
       text-align: center;
-      padding: var(--inkblot-spacing-16) var(--inkblot-spacing-8);
-      position: relative;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0, 122, 255, 0.06) 0%, transparent 60%);
-      pointer-events: none;
+      max-width: 720px;
+      margin: 0 auto;
     }
 
     .hero h1 {
-      font: var(--inkblot-semantic-typography-heading-1);
-      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-size: clamp(2.5rem, 6vw, 3.75rem);
       font-weight: 700;
-      letter-spacing: -0.03em;
-      margin: 0 0 var(--inkblot-spacing-4);
-      background: linear-gradient(135deg, var(--inkblot-color-neutral-gray-900) 0%, var(--inkblot-color-neutral-gray-600) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      position: relative;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
+      margin-bottom: var(--inkblot-spacing-4);
     }
 
     .hero .tagline {
-      font: var(--inkblot-semantic-typography-body-large);
+      font-size: var(--inkblot-typography-font-size-lg);
       color: var(--inkblot-semantic-color-text-secondary);
-      max-width: 480px;
-      margin: 0 0 var(--inkblot-spacing-12);
       line-height: var(--inkblot-typography-line-height-relaxed);
-      position: relative;
+      margin-bottom: var(--inkblot-spacing-8);
     }
 
-    .live-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--inkblot-spacing-2);
-      padding: var(--inkblot-spacing-2) var(--inkblot-spacing-4);
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      border-radius: var(--inkblot-radius-full);
-      font: var(--inkblot-semantic-typography-label-default);
-      color: var(--inkblot-semantic-color-text-secondary);
-      box-shadow: var(--inkblot-shadow-sm);
-      position: fixed;
-      top: var(--inkblot-spacing-6);
-      right: var(--inkblot-spacing-6);
-      z-index: 1000;
-    }
-
-    .live-pill::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      background: var(--inkblot-semantic-color-status-success);
-      border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.6; transform: scale(0.9); }
+    .hero-actions {
+      display: flex;
+      gap: var(--inkblot-spacing-3);
+      justify-content: center;
     }
 
     .container {
-      max-width: 980px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 var(--inkblot-spacing-8) var(--inkblot-spacing-24);
     }
 
-    .section {
-      margin-bottom: var(--inkblot-spacing-20);
-    }
+    .section { margin-bottom: var(--inkblot-spacing-20); }
 
-    .section-card {
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(0, 0, 0, 0.04);
-      border-radius: var(--inkblot-radius-xl);
-      padding: var(--inkblot-spacing-10);
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
-      transition: transform var(--inkblot-duration-normal) var(--inkblot-easing-default),
-                  box-shadow var(--inkblot-duration-normal) var(--inkblot-easing-default);
-    }
-
-    .section-card:hover {
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
+    .section-header {
+      margin-bottom: var(--inkblot-spacing-8);
+      padding-bottom: var(--inkblot-spacing-4);
+      border-bottom: 1px solid var(--inkblot-semantic-color-border-default);
     }
 
     .section-title {
-      font: var(--inkblot-semantic-typography-heading-3);
+      font-size: var(--inkblot-typography-font-size-xl);
       font-weight: 600;
       letter-spacing: -0.02em;
-      margin: 0 0 var(--inkblot-spacing-6);
-      color: var(--inkblot-semantic-color-text-primary);
+      margin-bottom: var(--inkblot-spacing-1);
     }
 
-    .section-subtitle {
-      font: var(--inkblot-semantic-typography-body-small);
+    .section-desc {
+      font-size: var(--inkblot-typography-font-size-sm);
       color: var(--inkblot-semantic-color-text-tertiary);
-      margin: calc(-1 * var(--inkblot-spacing-4)) 0 var(--inkblot-spacing-6);
     }
+
+    .card {
+      background: var(--inkblot-semantic-color-background-secondary);
+      border-radius: var(--inkblot-radius-xl);
+      padding: var(--inkblot-spacing-8);
+      transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-default),
+                  box-shadow var(--inkblot-duration-fast) var(--inkblot-easing-default);
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--inkblot-shadow-md);
+    }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--inkblot-spacing-6); }
+    .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--inkblot-spacing-6); }
+    @media (max-width: 768px) { .two-col, .three-col { grid-template-columns: 1fr; } }
 
     .swatch-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-      gap: var(--inkblot-spacing-4);
+      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+      gap: var(--inkblot-spacing-3);
     }
 
-    .swatch {
-      border-radius: var(--inkblot-radius-lg);
-      overflow: hidden;
-      transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-default);
-    }
-
-    .swatch:hover {
-      transform: translateY(-2px);
-    }
-
-    .swatch-color {
-      height: 72px;
-      transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-default);
-    }
-
-    .swatch:hover .swatch-color {
-      transform: scale(1.02);
-    }
-
-    .swatch-label {
-      font: var(--inkblot-semantic-typography-label-default);
-      padding: var(--inkblot-spacing-3);
-      background: rgba(255, 255, 255, 0.8);
+    .swatch { border-radius: var(--inkblot-radius-lg); overflow: hidden; }
+    .swatch-color { height: 64px; transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-default); }
+    .swatch:hover .swatch-color { transform: scale(1.03); }
+    .swatch-meta {
+      padding: var(--inkblot-spacing-2) var(--inkblot-spacing-2);
+      font-size: 10px;
+      font-weight: var(--inkblot-typography-font-weight-medium);
       color: var(--inkblot-semantic-color-text-secondary);
-      letter-spacing: 0.01em;
-    }
-
-    .type-showcase {
-      display: flex;
-      flex-direction: column;
-      gap: var(--inkblot-spacing-8);
+      letter-spacing: 0.02em;
+      background: var(--inkblot-semantic-color-background-secondary);
     }
 
     .type-row {
-      padding: var(--inkblot-spacing-6);
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: var(--inkblot-radius-lg);
-      border: 1px solid rgba(0, 0, 0, 0.03);
-      transition: background var(--inkblot-duration-fast) var(--inkblot-easing-default);
+      padding: var(--inkblot-spacing-4) 0;
+      border-bottom: 1px solid var(--inkblot-semantic-color-border-default);
     }
 
-    .type-row:hover {
-      background: rgba(255, 255, 255, 0.8);
-    }
-
+    .type-row:last-child { border-bottom: none; }
     .type-row .meta {
-      font: var(--inkblot-semantic-typography-label-default);
+      font-size: 10px;
+      font-weight: var(--inkblot-typography-font-weight-medium);
       color: var(--inkblot-semantic-color-text-tertiary);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
       margin-bottom: var(--inkblot-spacing-2);
-      letter-spacing: 0.02em;
-    }
-
-    .btn-group {
-      display: flex;
-      gap: var(--inkblot-spacing-4);
-      flex-wrap: wrap;
     }
 
     .btn {
       padding: var(--inkblot-spacing-3) var(--inkblot-spacing-6);
       border: none;
       border-radius: var(--inkblot-radius-lg);
-      font: var(--inkblot-semantic-typography-body-default);
+      font-family: inherit;
+      font-size: var(--inkblot-typography-font-size-sm);
       font-weight: 500;
       cursor: pointer;
       transition: all var(--inkblot-duration-fast) var(--inkblot-easing-default);
-      min-height: var(--inkblot-size-touch-target-comfortable);
+      min-height: var(--inkblot-size-touch-target-min);
       display: inline-flex;
       align-items: center;
       justify-content: center;
     }
 
-    .btn:active {
-      transform: scale(0.98);
-    }
+    .btn:active { transform: scale(0.97); }
 
     .btn-primary {
       background: var(--inkblot-semantic-color-interactive-primary);
       color: var(--inkblot-semantic-color-text-inverse);
-      box-shadow: 0 2px 8px rgba(0, 122, 255, 0.25);
+      box-shadow: 0 2px 8px rgba(0, 122, 255, 0.2);
     }
 
     .btn-primary:hover {
       background: var(--inkblot-semantic-color-interactive-primary-hover);
-      box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
+      box-shadow: 0 4px 16px rgba(0, 122, 255, 0.25);
     }
 
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.9);
+      background: transparent;
       color: var(--inkblot-semantic-color-text-primary);
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--inkblot-semantic-color-border-default);
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 1);
-      border-color: rgba(0, 0, 0, 0.12);
+      background: var(--inkblot-semantic-color-background-secondary);
+      border-color: var(--inkblot-semantic-color-border-strong);
     }
 
-    .badges {
-      display: flex;
-      gap: var(--inkblot-spacing-3);
-      flex-wrap: wrap;
+    .btn-ghost {
+      background: transparent;
+      color: var(--inkblot-semantic-color-interactive-primary);
     }
 
+    .btn-ghost:hover { background: rgba(0, 122, 255, 0.06); }
+
+    .btn-danger {
+      background: var(--inkblot-semantic-color-status-error);
+      color: white;
+    }
+
+    .btn-sm { min-height: 32px; padding: var(--inkblot-spacing-1) var(--inkblot-spacing-3); font-size: var(--inkblot-typography-font-size-xs); }
+    .btn-lg { min-height: 48px; padding: var(--inkblot-spacing-3) var(--inkblot-spacing-8); font-size: var(--inkblot-typography-font-size-md); border-radius: var(--inkblot-radius-xl); }
+
+    .badges { display: flex; gap: var(--inkblot-spacing-3); flex-wrap: wrap; }
     .badge {
-      padding: var(--inkblot-spacing-2) var(--inkblot-spacing-4);
+      padding: var(--inkblot-spacing-1) var(--inkblot-spacing-3);
       border-radius: var(--inkblot-radius-full);
-      font: var(--inkblot-semantic-typography-label-default);
+      font-size: var(--inkblot-typography-font-size-xs);
       font-weight: 500;
       color: white;
-      letter-spacing: 0.02em;
-      transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-default);
-    }
-
-    .badge:hover {
-      transform: scale(1.02);
+      letter-spacing: 0.01em;
     }
 
     .badge-success { background: var(--inkblot-semantic-color-status-success); }
-    .badge-warning { background: var(--inkblot-semantic-color-status-warning); }
+    .badge-warning { background: var(--inkblot-semantic-color-status-warning); color: #1c1c1e; }
     .badge-error { background: var(--inkblot-semantic-color-status-error); }
     .badge-info { background: var(--inkblot-semantic-color-status-info); }
 
-    .scale-demo {
+    .input-group { display: flex; flex-direction: column; gap: var(--inkblot-spacing-1); }
+    .input-label {
+      font-size: var(--inkblot-typography-font-size-xs);
+      font-weight: var(--inkblot-typography-font-weight-medium);
+      color: var(--inkblot-semantic-color-text-secondary);
+      letter-spacing: 0.02em;
+    }
+
+    .input {
+      padding: var(--inkblot-spacing-2) var(--inkblot-spacing-3);
+      border: 1px solid var(--inkblot-semantic-color-border-default);
+      border-radius: var(--inkblot-radius-md);
+      font-family: inherit;
+      font-size: var(--inkblot-typography-font-size-base);
+      background: var(--inkblot-semantic-color-background-primary);
+      color: var(--inkblot-semantic-color-text-primary);
+      min-height: 40px;
+      transition: border-color var(--inkblot-duration-fast) var(--inkblot-easing-default);
+      outline: none;
+    }
+
+    .input:hover { border-color: var(--inkblot-semantic-color-border-strong); }
+    .input:focus { border-color: var(--inkblot-semantic-color-border-focus); box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.15); }
+    .input-error { border-color: var(--inkblot-semantic-color-status-error); }
+    .input-help { font-size: var(--inkblot-typography-font-size-xs); color: var(--inkblot-semantic-color-text-tertiary); }
+    .input-error-msg { font-size: var(--inkblot-typography-font-size-xs); color: var(--inkblot-semantic-color-status-error); }
+
+    .toggle-track {
+      width: 44px; height: 24px;
+      background: var(--inkblot-semantic-color-border-default);
+      border-radius: var(--inkblot-radius-full);
+      position: relative; cursor: pointer; border: none;
+      transition: background var(--inkblot-duration-fast) var(--inkblot-easing-default);
+    }
+
+    .toggle-track.on { background: var(--inkblot-semantic-color-interactive-primary); }
+
+    .toggle-thumb {
+      width: 20px; height: 20px;
+      background: white;
+      border-radius: 50%;
+      position: absolute; top: 2px; left: 2px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      transition: transform var(--inkblot-duration-fast) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .toggle-track.on .toggle-thumb { transform: translateX(20px); }
+
+    .scale-row {
       display: flex;
       flex-wrap: wrap;
-      gap: var(--inkblot-spacing-6);
+      gap: var(--inkblot-spacing-4);
       align-items: flex-end;
     }
 
-    .scale-item {
+    .scale-box {
       background: var(--inkblot-semantic-color-interactive-primary);
       border-radius: var(--inkblot-radius-md);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--inkblot-semantic-color-text-inverse);
-      font: var(--inkblot-semantic-typography-label-default);
-      font-weight: 500;
-      transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-default);
-    }
-
-    .scale-item:hover {
-      transform: scale(1.05);
-    }
-
-    .radius-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--inkblot-spacing-6);
-    }
-
-    .radius-item {
-      width: 88px;
-      height: 88px;
-      background: linear-gradient(135deg, var(--inkblot-color-accent-blue-400), var(--inkblot-color-accent-blue-600));
-      display: flex;
-      align-items: center;
-      justify-content: center;
       color: white;
-      font: var(--inkblot-semantic-typography-label-default);
+      font-size: 10px;
       font-weight: 500;
       transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-default);
     }
 
-    .radius-item:hover {
-      transform: scale(1.05);
+    .scale-box:hover { transform: scale(1.08); }
+
+    .radius-row { display: flex; flex-wrap: wrap; gap: var(--inkblot-spacing-4); }
+    .radius-box {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, var(--inkblot-color-accent-blue-400), var(--inkblot-color-accent-blue-600));
+      display: flex; align-items: center; justify-content: center;
+      color: white;
+      font-size: 11px;
+      font-weight: 500;
+      transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-default);
     }
 
-    .shadow-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--inkblot-spacing-8);
-    }
+    .radius-box:hover { transform: scale(1.06); }
 
-    .shadow-item {
-      width: 100px;
-      height: 100px;
+    .shadow-row { display: flex; flex-wrap: wrap; gap: var(--inkblot-spacing-6); }
+    .shadow-box {
+      width: 100px; height: 100px;
       background: var(--inkblot-semantic-color-background-primary);
       border-radius: var(--inkblot-radius-xl);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font: var(--inkblot-semantic-typography-label-default);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
       color: var(--inkblot-semantic-color-text-tertiary);
       transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-default);
     }
 
-    .shadow-item:hover {
-      transform: translateY(-4px);
+    .shadow-box:hover { transform: translateY(-4px); }
+
+    .skeleton { border-radius: var(--inkblot-radius-md); background: linear-gradient(90deg, var(--inkblot-semantic-color-background-secondary) 25%, var(--inkblot-semantic-color-background-tertiary) 50%, var(--inkblot-semantic-color-background-secondary) 75%); background-size: 200% 100%; animation: shimmer 1.5s ease-in-out infinite; }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+    .empty-state {
+      text-align: center;
+      padding: var(--inkblot-spacing-12) var(--inkblot-spacing-6);
+      color: var(--inkblot-semantic-color-text-secondary);
     }
+
+    .empty-state h3 { font-size: var(--inkblot-typography-font-size-lg); font-weight: 600; margin-bottom: var(--inkblot-spacing-2); color: var(--inkblot-semantic-color-text-primary); }
+    .empty-state p { font-size: var(--inkblot-typography-font-size-sm); margin-bottom: var(--inkblot-spacing-6); }
+
+    .toast-demo {
+      display: flex;
+      flex-direction: column;
+      gap: var(--inkblot-spacing-3);
+    }
+
+    .toast {
+      display: flex;
+      align-items: center;
+      gap: var(--inkblot-spacing-3);
+      padding: var(--inkblot-spacing-3) var(--inkblot-spacing-4);
+      border-radius: var(--inkblot-radius-lg);
+      font-size: var(--inkblot-typography-font-size-sm);
+      box-shadow: var(--inkblot-shadow-lg);
+    }
+
+    .toast-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .toast-info { background: var(--inkblot-color-accent-blue-50); border: 1px solid rgba(0,122,255,0.15); }
+    .toast-info .toast-dot { background: var(--inkblot-semantic-color-status-info); }
+    .toast-success { background: rgba(48,179,80,0.08); border: 1px solid rgba(48,179,80,0.15); }
+    .toast-success .toast-dot { background: var(--inkblot-semantic-color-status-success); }
+    .toast-error { background: rgba(230,53,43,0.08); border: 1px solid rgba(230,53,43,0.15); }
+    .toast-error .toast-dot { background: var(--inkblot-semantic-color-status-error); }
 
     .footer {
       text-align: center;
       padding: var(--inkblot-spacing-16) var(--inkblot-spacing-8);
       color: var(--inkblot-semantic-color-text-tertiary);
-      font: var(--inkblot-semantic-typography-body-small);
+      font-size: var(--inkblot-typography-font-size-xs);
+      border-top: 1px solid var(--inkblot-semantic-color-border-default);
     }
 
     .footer code {
-      background: rgba(0, 0, 0, 0.06);
+      background: var(--inkblot-semantic-color-background-secondary);
       padding: 2px 6px;
       border-radius: var(--inkblot-radius-sm);
       font-family: var(--inkblot-typography-font-family-mono);
-      font-size: 0.75rem;
+      font-size: 11px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="live-pill">Live</div>
+  <nav class="nav">
+    <span class="nav-brand">Inkblot Studio</span>
+    <ul class="nav-links">
+      <li><a href="#colors">Colors</a></li>
+      <li><a href="#typography">Type</a></li>
+      <li><a href="#components">Components</a></li>
+      <li><a href="#spacing">Spacing</a></li>
+      <li><a href="#elevation">Elevation</a></li>
+      <li><a href="#states">States</a></li>
+    </ul>
+    <button class="theme-toggle" aria-label="Toggle dark mode" onclick="document.documentElement.toggleAttribute('data-theme') || document.documentElement.setAttribute('data-theme', document.documentElement.getAttribute('data-theme') === 'dark' ? '' : 'dark')"></button>
+  </nav>
 
   <header class="hero">
-    <h1>Inkblot Studio</h1>
-    <p class="tagline">Design tokens crafted for clarity. Edit <code>tokens/</code> and watch changes flow through instantly.</p>
+    <h1>Design System</h1>
+    <p class="tagline">Tokens, components, and rules crafted for precision. Built for AI agents and humans alike.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary btn-lg">Get started</button>
+      <button class="btn btn-secondary btn-lg">View tokens</button>
+    </div>
   </header>
 
   <main class="container">
-    <section class="section">
-      <div class="section-card">
-        <h2 class="section-title">Colors</h2>
-        <p class="section-subtitle">Semantic palette · Accent scale</p>
-        <div class="swatch-grid">
-          <div class="swatch">
-            <div class="swatch-color" style="background: var(--inkblot-semantic-color-background-primary)"></div>
-            <div class="swatch-label">primary</div>
+    <section class="section" id="colors">
+      <div class="section-header">
+        <h2 class="section-title">Color</h2>
+        <p class="section-desc">Semantic palette &middot; Accent scale &middot; Status</p>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3 style="font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; margin-bottom: var(--inkblot-spacing-4)">Neutral</h3>
+          <div class="swatch-grid">
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-white); border: 1px solid var(--inkblot-semantic-color-border-default)"></div><div class="swatch-meta">white</div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-50)"></div><div class="swatch-meta">50</div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-100)"></div><div class="swatch-meta">100</div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-200)"></div><div class="swatch-meta">200</div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-300)"></div><div class="swatch-meta">300</div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-400)"></div><div class="swatch-meta">400</div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-500)"></div><div class="swatch-meta">500</div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-600)"></div><div class="swatch-meta">600</div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-700)"></div><div class="swatch-meta">700</div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-800)"></div><div class="swatch-meta">800</div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-900)"></div><div class="swatch-meta">900</div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-950)"></div><div class="swatch-meta">950</div></div>
           </div>
-          <div class="swatch">
-            <div class="swatch-color" style="background: var(--inkblot-semantic-color-text-primary)"></div>
-            <div class="swatch-label">text</div>
+        </div>
+        <div>
+          <h3 style="font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; margin-bottom: var(--inkblot-spacing-4)">Accent Blue</h3>
+          <div class="swatch-grid">
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-50)"></div><div class="swatch-meta">50</div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-100)"></div><div class="swatch-meta">100</div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-200)"></div><div class="swatch-meta">200</div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-300)"></div><div class="swatch-meta">300</div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-400)"></div><div class="swatch-meta">400</div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-500)"></div><div class="swatch-meta">500</div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-600)"></div><div class="swatch-meta">600</div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-700)"></div><div class="swatch-meta">700</div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-800)"></div><div class="swatch-meta">800</div></div>
+            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-900)"></div><div class="swatch-meta">900</div></div>
           </div>
-          <div class="swatch">
-            <div class="swatch-color" style="background: var(--inkblot-semantic-color-interactive-primary)"></div>
-            <div class="swatch-label">accent</div>
-          </div>
-          <div class="swatch">
-            <div class="swatch-color" style="background: var(--inkblot-semantic-color-status-success)"></div>
-            <div class="swatch-label">success</div>
-          </div>
-          <div class="swatch">
-            <div class="swatch-color" style="background: var(--inkblot-semantic-color-status-warning)"></div>
-            <div class="swatch-label">warning</div>
-          </div>
-          <div class="swatch">
-            <div class="swatch-color" style="background: var(--inkblot-semantic-color-status-error)"></div>
-            <div class="swatch-label">error</div>
-          </div>
-          <div class="swatch">
-            <div class="swatch-color" style="background: var(--inkblot-color-accent-blue-500)"></div>
-            <div class="swatch-label">blue.500</div>
-          </div>
-          <div class="swatch">
-            <div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-900)"></div>
-            <div class="swatch-label">gray.900</div>
+          <h3 style="font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; margin: var(--inkblot-spacing-6) 0 var(--inkblot-spacing-4)">Status</h3>
+          <div class="badges">
+            <span class="badge badge-success">Success</span>
+            <span class="badge badge-warning">Warning</span>
+            <span class="badge badge-error">Error</span>
+            <span class="badge badge-info">Info</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-card">
+    <section class="section" id="typography">
+      <div class="section-header">
         <h2 class="section-title">Typography</h2>
-        <p class="section-subtitle">Hierarchy · Readability</p>
-        <div class="type-showcase">
-          <div class="type-row">
-            <div class="meta">Heading 1</div>
-            <div style="font: var(--inkblot-semantic-typography-heading-1)">Design with intention</div>
-          </div>
-          <div class="type-row">
-            <div class="meta">Heading 2</div>
-            <div style="font: var(--inkblot-semantic-typography-heading-2)">Every detail matters</div>
-          </div>
-          <div class="type-row">
-            <div class="meta">Body</div>
-            <div style="font: var(--inkblot-semantic-typography-body-default)">The quick brown fox jumps over the lazy dog. Clean, readable, purposeful.</div>
-          </div>
-        </div>
+        <p class="section-desc">Modular scale &middot; System font stack &middot; Semantic hierarchy</p>
       </div>
+      <div class="type-row"><div class="meta">DISPLAY &middot; 60px</div><div style="font-size: var(--inkblot-typography-font-size-5xl); font-weight: 700; letter-spacing: -0.035em; line-height: 1.1">Inkblot</div></div>
+      <div class="type-row"><div class="meta">HEADING 1 &middot; 36px</div><div style="font: var(--inkblot-semantic-typography-heading-1)">Design with intention</div></div>
+      <div class="type-row"><div class="meta">HEADING 2 &middot; 30px</div><div style="font: var(--inkblot-semantic-typography-heading-2)">Every detail matters</div></div>
+      <div class="type-row"><div class="meta">HEADING 3 &middot; 24px</div><div style="font: var(--inkblot-semantic-typography-heading-3)">Components at scale</div></div>
+      <div class="type-row"><div class="meta">BODY &middot; 16px</div><div style="font: var(--inkblot-semantic-typography-body-default); max-width: 640px">The quick brown fox jumps over the lazy dog. Clean typography creates hierarchy and guides the eye through content naturally.</div></div>
+      <div class="type-row"><div class="meta">SMALL &middot; 13px</div><div style="font: var(--inkblot-semantic-typography-body-small); color: var(--inkblot-semantic-color-text-secondary)">Caption text for metadata, timestamps, and secondary information.</div></div>
+      <div class="type-row"><div class="meta">LABEL &middot; 12px</div><div style="font: var(--inkblot-semantic-typography-label-default); text-transform: uppercase; color: var(--inkblot-semantic-color-text-tertiary)">Form label</div></div>
+      <div class="type-row"><div class="meta">MONO</div><div style="font-family: var(--inkblot-typography-font-family-mono); font-size: var(--inkblot-typography-font-size-sm); color: var(--inkblot-semantic-color-text-secondary)">var(--inkblot-spacing-4)</div></div>
     </section>
 
-    <section class="section">
-      <div class="section-card">
+    <section class="section" id="components">
+      <div class="section-header">
         <h2 class="section-title">Components</h2>
-        <p class="section-subtitle">Buttons · Badges</p>
-        <div class="btn-group">
-          <button class="btn btn-primary">Continue</button>
-          <button class="btn btn-secondary">Learn more</button>
+        <p class="section-desc">Buttons &middot; Inputs &middot; Toggles &middot; Toasts &middot; States</p>
+      </div>
+      <div class="two-col">
+        <div class="card">
+          <h3 style="font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; margin-bottom: var(--inkblot-spacing-6)">Buttons</h3>
+          <div style="display: flex; flex-direction: column; gap: var(--inkblot-spacing-4)">
+            <div style="display: flex; gap: var(--inkblot-spacing-3); flex-wrap: wrap; align-items: center">
+              <button class="btn btn-primary btn-sm">Small</button>
+              <button class="btn btn-primary">Default</button>
+              <button class="btn btn-primary btn-lg">Large</button>
+            </div>
+            <div style="display: flex; gap: var(--inkblot-spacing-3); flex-wrap: wrap">
+              <button class="btn btn-primary">Primary</button>
+              <button class="btn btn-secondary">Secondary</button>
+              <button class="btn btn-ghost">Ghost</button>
+              <button class="btn btn-danger">Danger</button>
+            </div>
+            <div style="display: flex; gap: var(--inkblot-spacing-3)">
+              <button class="btn btn-primary" disabled style="opacity: var(--inkblot-opacity-disabled)">Disabled</button>
+            </div>
+          </div>
         </div>
-        <div class="badges" style="margin-top: var(--inkblot-spacing-6)">
-          <span class="badge badge-success">Success</span>
-          <span class="badge badge-warning">Warning</span>
-          <span class="badge badge-error">Error</span>
-          <span class="badge badge-info">Info</span>
+        <div class="card">
+          <h3 style="font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; margin-bottom: var(--inkblot-spacing-6)">Form inputs</h3>
+          <div style="display: flex; flex-direction: column; gap: var(--inkblot-spacing-4)">
+            <div class="input-group">
+              <label class="input-label">Email address</label>
+              <input class="input" type="email" placeholder="you@example.com" />
+              <span class="input-help">We'll never share your email.</span>
+            </div>
+            <div class="input-group">
+              <label class="input-label">Password</label>
+              <input class="input input-error" type="password" value="short" />
+              <span class="input-error-msg">Password must be at least 8 characters.</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: var(--inkblot-spacing-3)">
+              <button class="toggle-track on" role="switch" aria-checked="true" onclick="this.classList.toggle('on'); this.setAttribute('aria-checked', this.classList.contains('on'))"><span class="toggle-thumb"></span></button>
+              <span style="font-size: var(--inkblot-typography-font-size-sm)">Enable notifications</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: var(--inkblot-spacing-6)">
+        <div class="card">
+          <h3 style="font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; margin-bottom: var(--inkblot-spacing-6)">Toast notifications</h3>
+          <div class="toast-demo">
+            <div class="toast toast-info"><span class="toast-dot"></span>Your changes have been saved.</div>
+            <div class="toast toast-success"><span class="toast-dot"></span>Account created successfully.</div>
+            <div class="toast toast-error"><span class="toast-dot"></span>Unable to connect. Check your network.</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-card">
-        <h2 class="section-title">Spacing</h2>
-        <p class="section-subtitle">4pt grid</p>
-        <div class="scale-demo">
-          <div class="scale-item" style="width: var(--inkblot-spacing-2); height: var(--inkblot-spacing-2)">2</div>
-          <div class="scale-item" style="width: var(--inkblot-spacing-4); height: var(--inkblot-spacing-4)">4</div>
-          <div class="scale-item" style="width: var(--inkblot-spacing-6); height: var(--inkblot-spacing-6)">6</div>
-          <div class="scale-item" style="width: var(--inkblot-spacing-8); height: var(--inkblot-spacing-8)">8</div>
+    <section class="section" id="spacing">
+      <div class="section-header">
+        <h2 class="section-title">Spacing &amp; Radius</h2>
+        <p class="section-desc">4pt grid &middot; Consistent rhythm &middot; Corner treatment</p>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3 style="font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; margin-bottom: var(--inkblot-spacing-4)">Spacing scale</h3>
+          <div class="scale-row">
+            <div class="scale-box" style="width: var(--inkblot-spacing-1); height: var(--inkblot-spacing-1)"></div>
+            <div class="scale-box" style="width: var(--inkblot-spacing-2); height: var(--inkblot-spacing-2)">2</div>
+            <div class="scale-box" style="width: var(--inkblot-spacing-3); height: var(--inkblot-spacing-3)">3</div>
+            <div class="scale-box" style="width: var(--inkblot-spacing-4); height: var(--inkblot-spacing-4)">4</div>
+            <div class="scale-box" style="width: var(--inkblot-spacing-6); height: var(--inkblot-spacing-6)">6</div>
+            <div class="scale-box" style="width: var(--inkblot-spacing-8); height: var(--inkblot-spacing-8)">8</div>
+            <div class="scale-box" style="width: var(--inkblot-spacing-12); height: var(--inkblot-spacing-12)">12</div>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; margin-bottom: var(--inkblot-spacing-4)">Border radius</h3>
+          <div class="radius-row">
+            <div class="radius-box" style="border-radius: var(--inkblot-radius-none)">none</div>
+            <div class="radius-box" style="border-radius: var(--inkblot-radius-sm)">sm</div>
+            <div class="radius-box" style="border-radius: var(--inkblot-radius-md)">md</div>
+            <div class="radius-box" style="border-radius: var(--inkblot-radius-lg)">lg</div>
+            <div class="radius-box" style="border-radius: var(--inkblot-radius-xl)">xl</div>
+            <div class="radius-box" style="border-radius: var(--inkblot-radius-full)">full</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-card">
-        <h2 class="section-title">Radius</h2>
-        <p class="section-subtitle">Corner treatment</p>
-        <div class="radius-row">
-          <div class="radius-item" style="border-radius: var(--inkblot-radius-sm)">sm</div>
-          <div class="radius-item" style="border-radius: var(--inkblot-radius-md)">md</div>
-          <div class="radius-item" style="border-radius: var(--inkblot-radius-lg)">lg</div>
-          <div class="radius-item" style="border-radius: var(--inkblot-radius-xl)">xl</div>
-          <div class="radius-item" style="border-radius: var(--inkblot-radius-full)">full</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-card">
+    <section class="section" id="elevation">
+      <div class="section-header">
         <h2 class="section-title">Elevation</h2>
-        <p class="section-subtitle">Depth · Shadow</p>
-        <div class="shadow-row">
-          <div class="shadow-item" style="box-shadow: var(--inkblot-shadow-xs)">xs</div>
-          <div class="shadow-item" style="box-shadow: var(--inkblot-shadow-sm)">sm</div>
-          <div class="shadow-item" style="box-shadow: var(--inkblot-shadow-md)">md</div>
-          <div class="shadow-item" style="box-shadow: var(--inkblot-shadow-lg)">lg</div>
-          <div class="shadow-item" style="box-shadow: var(--inkblot-shadow-xl)">xl</div>
+        <p class="section-desc">Shadow depth &middot; Visual hierarchy</p>
+      </div>
+      <div class="shadow-row">
+        <div class="shadow-box" style="box-shadow: none">none</div>
+        <div class="shadow-box" style="box-shadow: var(--inkblot-shadow-xs)">xs</div>
+        <div class="shadow-box" style="box-shadow: var(--inkblot-shadow-sm)">sm</div>
+        <div class="shadow-box" style="box-shadow: var(--inkblot-shadow-md)">md</div>
+        <div class="shadow-box" style="box-shadow: var(--inkblot-shadow-lg)">lg</div>
+        <div class="shadow-box" style="box-shadow: var(--inkblot-shadow-xl)">xl</div>
+      </div>
+    </section>
+
+    <section class="section" id="states">
+      <div class="section-header">
+        <h2 class="section-title">Content states</h2>
+        <p class="section-desc">Loading &middot; Empty &middot; Error</p>
+      </div>
+      <div class="three-col">
+        <div class="card">
+          <h3 style="font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; margin-bottom: var(--inkblot-spacing-4)">Loading</h3>
+          <div style="display: flex; flex-direction: column; gap: var(--inkblot-spacing-3)">
+            <div class="skeleton" style="width: 40%; height: 24px"></div>
+            <div class="skeleton" style="width: 100%; height: 14px"></div>
+            <div class="skeleton" style="width: 80%; height: 14px"></div>
+            <div class="skeleton" style="width: 30%; height: 32px; margin-top: var(--inkblot-spacing-2)"></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; margin-bottom: var(--inkblot-spacing-4)">Empty state</h3>
+          <div class="empty-state">
+            <h3>No results</h3>
+            <p>Try adjusting your search or filters.</p>
+            <button class="btn btn-primary btn-sm">Clear filters</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; margin-bottom: var(--inkblot-spacing-4)">Error</h3>
+          <div style="background: rgba(230,53,43,0.06); border: 1px solid rgba(230,53,43,0.15); border-radius: var(--inkblot-radius-lg); padding: var(--inkblot-spacing-4); font-size: var(--inkblot-typography-font-size-sm)">
+            <div style="font-weight: 600; color: var(--inkblot-semantic-color-status-error); margin-bottom: var(--inkblot-spacing-1)">Connection failed</div>
+            <div style="color: var(--inkblot-semantic-color-text-secondary)">Unable to reach the server. Please check your connection and try again.</div>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    Inkblot Studio Design Tokens · Edit <code>tokens/</code> to see live updates
+    Inkblot Studio Design System v1.0 &middot; Tokens in <code>tokens/</code> &middot; Specs in <code>system/</code> &middot; Live preview
   </footer>
+
+  <script>
+    document.querySelector('.theme-toggle').addEventListener('click', function() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      html.setAttribute('data-theme', current === 'dark' ? '' : 'dark');
+    });
+  </script>
 </body>
 </html>
