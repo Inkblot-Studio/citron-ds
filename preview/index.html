@@ -66,7 +66,12 @@
       font-size: var(--inkblot-typography-font-size-sm);
       font-weight: var(--inkblot-typography-font-weight-semibold);
       letter-spacing: -0.01em;
+      color: var(--inkblot-semantic-color-text-primary);
+      text-decoration: none;
+      transition: opacity var(--inkblot-duration-fast) var(--inkblot-easing-default);
     }
+    .nav-brand:hover { opacity: 0.8; }
+    .nav-brand:focus-visible { outline: 2px solid var(--inkblot-semantic-color-border-focus); outline-offset: 2px; border-radius: 2px; }
 
     .nav-links {
       display: flex;
@@ -80,9 +85,12 @@
       color: var(--inkblot-semantic-color-text-secondary);
       text-decoration: none;
       transition: color var(--inkblot-duration-fast) var(--inkblot-easing-default);
+      padding: var(--inkblot-spacing-1) 0;
+      border-bottom: 2px solid transparent;
     }
 
     .nav-links a:hover { color: var(--inkblot-semantic-color-text-primary); }
+    .nav-links a:focus-visible { outline: 2px solid var(--inkblot-semantic-color-border-focus); outline-offset: 2px; border-radius: 2px; }
 
     .theme-toggle {
       width: 44px; height: 24px;
@@ -91,6 +99,7 @@
       cursor: pointer; position: relative;
       transition: background var(--inkblot-duration-fast) var(--inkblot-easing-default);
     }
+    .theme-toggle:focus-visible { outline: 2px solid var(--inkblot-semantic-color-border-focus); outline-offset: 2px; }
 
     .theme-toggle::after {
       content: '';
@@ -136,6 +145,7 @@
       display: flex;
       gap: var(--inkblot-spacing-3);
       justify-content: center;
+      flex-wrap: wrap;
     }
 
     .container {
@@ -187,9 +197,20 @@
       gap: var(--inkblot-spacing-3);
     }
 
-    .swatch { border-radius: var(--inkblot-radius-lg); overflow: hidden; }
+    .swatch {
+      border-radius: var(--inkblot-radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      border: 1px solid transparent;
+      transition: border-color var(--inkblot-duration-fast) var(--inkblot-easing-default),
+                  box-shadow var(--inkblot-duration-fast) var(--inkblot-easing-default);
+    }
+    .swatch:hover { border-color: var(--inkblot-semantic-color-border-default); box-shadow: var(--inkblot-shadow-sm); }
+    .swatch:focus-visible { outline: 2px solid var(--inkblot-semantic-color-border-focus); outline-offset: 2px; }
+    .swatch.copied { border-color: var(--inkblot-semantic-color-status-success); }
     .swatch-color { height: 64px; transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-default); }
-    .swatch:hover .swatch-color { transform: scale(1.03); }
+    .swatch:hover .swatch-color { transform: scale(1.02); }
     .swatch-meta {
       padding: var(--inkblot-spacing-2) var(--inkblot-spacing-2);
       font-size: 10px;
@@ -197,14 +218,22 @@
       color: var(--inkblot-semantic-color-text-secondary);
       letter-spacing: 0.02em;
       background: var(--inkblot-semantic-color-background-secondary);
+      transition: color var(--inkblot-duration-fast) var(--inkblot-easing-default),
+                  background var(--inkblot-duration-fast) var(--inkblot-easing-default);
     }
 
     .type-row {
-      padding: var(--inkblot-spacing-4) 0;
+      padding: var(--inkblot-spacing-4) var(--inkblot-spacing-3);
+      margin: 0 calc(-1 * var(--inkblot-spacing-3));
       border-bottom: 1px solid var(--inkblot-semantic-color-border-default);
+      border-radius: var(--inkblot-radius-md);
+      transition: background var(--inkblot-duration-fast) var(--inkblot-easing-default);
     }
 
-    .type-row:last-child { border-bottom: none; }
+    .type-row:hover { background: var(--inkblot-semantic-color-background-secondary); }
+    .type-row:first-child { border-radius: var(--inkblot-radius-md) var(--inkblot-radius-md) 0 0; }
+    .type-row:last-child { border-bottom: none; border-radius: 0 0 var(--inkblot-radius-md) var(--inkblot-radius-md); }
+    .type-row:only-child { border-radius: var(--inkblot-radius-md); }
     .type-row .meta {
       font-size: 10px;
       font-weight: var(--inkblot-typography-font-weight-medium);
@@ -230,6 +259,7 @@
     }
 
     .btn:active { transform: scale(0.97); }
+    .btn:focus-visible { outline: 2px solid var(--inkblot-semantic-color-border-focus); outline-offset: 2px; }
 
     .btn-primary {
       background: var(--inkblot-semantic-color-interactive-primary);
@@ -306,6 +336,7 @@
 
     .input:hover { border-color: var(--inkblot-semantic-color-border-strong); }
     .input:focus { border-color: var(--inkblot-semantic-color-border-focus); box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.15); }
+    .input:focus-visible { outline: none; }
     .input-error { border-color: var(--inkblot-semantic-color-status-error); }
     .input-help { font-size: var(--inkblot-typography-font-size-xs); color: var(--inkblot-semantic-color-text-tertiary); }
     .input-error-msg { font-size: var(--inkblot-typography-font-size-xs); color: var(--inkblot-semantic-color-status-error); }
@@ -330,6 +361,7 @@
     }
 
     .toggle-track.on .toggle-thumb { transform: translateX(20px); }
+    .toggle-track:focus-visible { outline: 2px solid var(--inkblot-semantic-color-border-focus); outline-offset: 2px; }
 
     .scale-row {
       display: flex;
@@ -390,6 +422,18 @@
     .empty-state h3 { font-size: var(--inkblot-typography-font-size-lg); font-weight: 600; margin-bottom: var(--inkblot-spacing-2); color: var(--inkblot-semantic-color-text-primary); }
     .empty-state p { font-size: var(--inkblot-typography-font-size-sm); margin-bottom: var(--inkblot-spacing-6); }
 
+    .error-demo {
+      background: rgba(230, 53, 43, 0.08);
+      border: 1px solid rgba(230, 53, 43, 0.25);
+      border-radius: var(--inkblot-radius-lg);
+      padding: var(--inkblot-spacing-4);
+      font-size: var(--inkblot-typography-font-size-sm);
+    }
+    [data-theme="dark"] .error-demo {
+      background: rgba(255, 69, 58, 0.12);
+      border-color: rgba(255, 69, 58, 0.3);
+    }
+
     .toast-demo {
       display: flex;
       flex-direction: column;
@@ -440,7 +484,7 @@
 </head>
 <body>
   <nav class="nav">
-    <span class="nav-brand">Inkblot Studio</span>
+    <a href="#" class="nav-brand" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">Inkblot Studio</a>
     <ul class="nav-links">
       <li><a href="#colors">Colors</a></li>
       <li><a href="#typography">Type</a></li>
@@ -449,58 +493,64 @@
       <li><a href="#elevation">Elevation</a></li>
       <li><a href="#states">States</a></li>
     </ul>
-    <button class="theme-toggle" aria-label="Toggle dark mode" onclick="document.documentElement.toggleAttribute('data-theme') || document.documentElement.setAttribute('data-theme', document.documentElement.getAttribute('data-theme') === 'dark' ? '' : 'dark')"></button>
+    <button class="theme-toggle" aria-label="Toggle dark mode" id="theme-toggle"></button>
   </nav>
 
   <header class="hero">
     <h1>Design System</h1>
     <p class="tagline">Tokens, components, and rules crafted for precision. Built for AI agents and humans alike.</p>
     <div class="hero-actions">
-      <button class="btn btn-primary btn-lg">Get started</button>
-      <button class="btn btn-secondary btn-lg">View tokens</button>
+      <button class="btn btn-primary btn-lg" onclick="document.getElementById('components').scrollIntoView({ behavior: 'smooth' })">Get started</button>
+      <button class="btn btn-secondary btn-lg" onclick="document.getElementById('colors').scrollIntoView({ behavior: 'smooth' })">View tokens</button>
     </div>
   </header>
 
   <main class="container">
     <section class="section" id="colors">
-      <div class="section-header">
+        <div class="section-header">
         <h2 class="section-title">Color</h2>
-        <p class="section-desc">Semantic palette &middot; Accent scale &middot; Status</p>
+        <p class="section-desc">Semantic palette &middot; Accent scale &middot; Status &middot; Click any swatch to copy token</p>
       </div>
       <div class="two-col">
         <div>
           <h3 style="font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; margin-bottom: var(--inkblot-spacing-4)">Neutral</h3>
           <div class="swatch-grid">
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-white); border: 1px solid var(--inkblot-semantic-color-border-default)"></div><div class="swatch-meta">white</div></div>
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-50)"></div><div class="swatch-meta">50</div></div>
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-100)"></div><div class="swatch-meta">100</div></div>
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-200)"></div><div class="swatch-meta">200</div></div>
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-300)"></div><div class="swatch-meta">300</div></div>
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-400)"></div><div class="swatch-meta">400</div></div>
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-500)"></div><div class="swatch-meta">500</div></div>
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-600)"></div><div class="swatch-meta">600</div></div>
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-700)"></div><div class="swatch-meta">700</div></div>
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-800)"></div><div class="swatch-meta">800</div></div>
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-900)"></div><div class="swatch-meta">900</div></div>
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-950)"></div><div class="swatch-meta">950</div></div>
+            <div class="swatch" data-hex="#ffffff" data-token="--inkblot-color-neutral-white" title="#ffffff — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-neutral-white); border: 1px solid var(--inkblot-semantic-color-border-default)"></div><div class="swatch-meta">white</div></div>
+            <div class="swatch" data-hex="#fafafa" data-token="--inkblot-color-neutral-gray-50" title="#fafafa — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-50)"></div><div class="swatch-meta">50</div></div>
+            <div class="swatch" data-hex="#f5f5f5" data-token="--inkblot-color-neutral-gray-100" title="#f5f5f5 — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-100)"></div><div class="swatch-meta">100</div></div>
+            <div class="swatch" data-hex="#ebebeb" data-token="--inkblot-color-neutral-gray-200" title="#ebebeb — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-200)"></div><div class="swatch-meta">200</div></div>
+            <div class="swatch" data-hex="#d1d1d6" data-token="--inkblot-color-neutral-gray-300" title="#d1d1d6 — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-300)"></div><div class="swatch-meta">300</div></div>
+            <div class="swatch" data-hex="#8e8e93" data-token="--inkblot-color-neutral-gray-400" title="#8e8e93 — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-400)"></div><div class="swatch-meta">400</div></div>
+            <div class="swatch" data-hex="#636366" data-token="--inkblot-color-neutral-gray-500" title="#636366 — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-500)"></div><div class="swatch-meta">500</div></div>
+            <div class="swatch" data-hex="#48484a" data-token="--inkblot-color-neutral-gray-600" title="#48484a — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-600)"></div><div class="swatch-meta">600</div></div>
+            <div class="swatch" data-hex="#3a3a3c" data-token="--inkblot-color-neutral-gray-700" title="#3a3a3c — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-700)"></div><div class="swatch-meta">700</div></div>
+            <div class="swatch" data-hex="#2c2c2e" data-token="--inkblot-color-neutral-gray-800" title="#2c2c2e — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-800)"></div><div class="swatch-meta">800</div></div>
+            <div class="swatch" data-hex="#1c1c1e" data-token="--inkblot-color-neutral-gray-900" title="#1c1c1e — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-900)"></div><div class="swatch-meta">900</div></div>
+            <div class="swatch" data-hex="#000000" data-token="--inkblot-color-neutral-gray-950" title="#000000 — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-neutral-gray-950)"></div><div class="swatch-meta">950</div></div>
           </div>
         </div>
         <div>
           <h3 style="font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; margin-bottom: var(--inkblot-spacing-4)">Accent Blue</h3>
           <div class="swatch-grid">
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-50)"></div><div class="swatch-meta">50</div></div>
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-100)"></div><div class="swatch-meta">100</div></div>
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-200)"></div><div class="swatch-meta">200</div></div>
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-300)"></div><div class="swatch-meta">300</div></div>
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-400)"></div><div class="swatch-meta">400</div></div>
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-500)"></div><div class="swatch-meta">500</div></div>
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-600)"></div><div class="swatch-meta">600</div></div>
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-700)"></div><div class="swatch-meta">700</div></div>
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-800)"></div><div class="swatch-meta">800</div></div>
-            <div class="swatch"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-900)"></div><div class="swatch-meta">900</div></div>
+            <div class="swatch" data-hex="#e8f4ff" data-token="--inkblot-color-accent-blue-50" title="#e8f4ff — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-50)"></div><div class="swatch-meta">50</div></div>
+            <div class="swatch" data-hex="#c7e3ff" data-token="--inkblot-color-accent-blue-100" title="#c7e3ff — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-100)"></div><div class="swatch-meta">100</div></div>
+            <div class="swatch" data-hex="#a1d0ff" data-token="--inkblot-color-accent-blue-200" title="#a1d0ff — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-200)"></div><div class="swatch-meta">200</div></div>
+            <div class="swatch" data-hex="#6eb8ff" data-token="--inkblot-color-accent-blue-300" title="#6eb8ff — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-300)"></div><div class="swatch-meta">300</div></div>
+            <div class="swatch" data-hex="#3d9eff" data-token="--inkblot-color-accent-blue-400" title="#3d9eff — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-400)"></div><div class="swatch-meta">400</div></div>
+            <div class="swatch" data-hex="#007aff" data-token="--inkblot-color-accent-blue-500" title="#007aff — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-500)"></div><div class="swatch-meta">500</div></div>
+            <div class="swatch" data-hex="#0066d6" data-token="--inkblot-color-accent-blue-600" title="#0066d6 — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-600)"></div><div class="swatch-meta">600</div></div>
+            <div class="swatch" data-hex="#0052ad" data-token="--inkblot-color-accent-blue-700" title="#0052ad — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-700)"></div><div class="swatch-meta">700</div></div>
+            <div class="swatch" data-hex="#003d84" data-token="--inkblot-color-accent-blue-800" title="#003d84 — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-800)"></div><div class="swatch-meta">800</div></div>
+            <div class="swatch" data-hex="#002952" data-token="--inkblot-color-accent-blue-900" title="#002952 — Click to copy"><div class="swatch-color" style="background: var(--inkblot-color-accent-blue-900)"></div><div class="swatch-meta">900</div></div>
           </div>
           <h3 style="font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; margin: var(--inkblot-spacing-6) 0 var(--inkblot-spacing-4)">Status</h3>
-          <div class="badges">
+          <div class="swatch-grid" style="max-width: 280px">
+            <div class="swatch" data-hex="#30b350" data-token="--inkblot-semantic-color-status-success" title="#30b350 — Click to copy"><div class="swatch-color" style="background: var(--inkblot-semantic-color-status-success)"></div><div class="swatch-meta">success</div></div>
+            <div class="swatch" data-hex="#e68600" data-token="--inkblot-semantic-color-status-warning" title="#e68600 — Click to copy"><div class="swatch-color" style="background: var(--inkblot-semantic-color-status-warning)"></div><div class="swatch-meta">warning</div></div>
+            <div class="swatch" data-hex="#e6352b" data-token="--inkblot-semantic-color-status-error" title="#e6352b — Click to copy"><div class="swatch-color" style="background: var(--inkblot-semantic-color-status-error)"></div><div class="swatch-meta">error</div></div>
+            <div class="swatch" data-hex="#007aff" data-token="--inkblot-semantic-color-status-info" title="#007aff — Click to copy"><div class="swatch-color" style="background: var(--inkblot-semantic-color-status-info)"></div><div class="swatch-meta">info</div></div>
+          </div>
+          <div class="badges" style="margin-top: var(--inkblot-spacing-4)">
             <span class="badge badge-success">Success</span>
             <span class="badge badge-warning">Warning</span>
             <span class="badge badge-error">Error</span>
@@ -654,7 +704,7 @@
         </div>
         <div class="card">
           <h3 style="font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; margin-bottom: var(--inkblot-spacing-4)">Error</h3>
-          <div style="background: rgba(230,53,43,0.06); border: 1px solid rgba(230,53,43,0.15); border-radius: var(--inkblot-radius-lg); padding: var(--inkblot-spacing-4); font-size: var(--inkblot-typography-font-size-sm)">
+          <div class="error-demo">
             <div style="font-weight: 600; color: var(--inkblot-semantic-color-status-error); margin-bottom: var(--inkblot-spacing-1)">Connection failed</div>
             <div style="color: var(--inkblot-semantic-color-text-secondary)">Unable to reach the server. Please check your connection and try again.</div>
           </div>
@@ -668,10 +718,34 @@
   </footer>
 
   <script>
-    document.querySelector('.theme-toggle').addEventListener('click', function() {
+    // Theme toggle
+    document.getElementById('theme-toggle').addEventListener('click', function() {
       const html = document.documentElement;
       const current = html.getAttribute('data-theme');
       html.setAttribute('data-theme', current === 'dark' ? '' : 'dark');
+    });
+
+    // Swatch copy to clipboard (hex + CSS variable)
+    document.querySelectorAll('.swatch[data-hex]').forEach(function(swatch) {
+      swatch.setAttribute('tabindex', '0');
+      swatch.addEventListener('click', function() {
+        const hex = this.getAttribute('data-hex');
+        const token = this.getAttribute('data-token');
+        const text = token ? 'var(' + token + ')' : hex;
+        navigator.clipboard.writeText(text).then(function() {
+          var meta = swatch.querySelector('.swatch-meta');
+          var label = meta.textContent;
+          meta.textContent = 'Copied!';
+          swatch.classList.add('copied');
+          setTimeout(function() {
+            meta.textContent = label;
+            swatch.classList.remove('copied');
+          }, 1200);
+        });
+      });
+      swatch.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); }
+      });
     });
   </script>
 </body>
