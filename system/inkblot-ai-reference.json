@@ -152,16 +152,91 @@
   },
 
   "iconSemantics": {
-    "description": "Map semantic meaning to icon names. Use Lucide/Heroicons/Phosphor.",
-    "success": "check-circle | CheckCircle",
-    "error": "alert-circle | XCircle",
-    "warning": "alert-triangle | AlertTriangle",
-    "info": "info | Info",
-    "close": "x | X",
-    "chevronDown": "chevron-down | ChevronDown",
-    "chevronRight": "chevron-right | ChevronRight",
-    "search": "search | Search",
-    "loading": "loader-2 | Loader2 (with animate-spin)"
+    "description": "Complete icon-to-meaning mapping. Library: Lucide (free, ISC). Format: kebab-case | PascalCase (React). Full spec in system/icons.json.",
+    "library": "Lucide (https://lucide.dev). Install: npm install lucide-react. 24×24 stroke icons, strokeWidth: 2.",
+    "sizes": {
+      "xs": "12px",
+      "sm": "16px → var(--inkblot-size-icon-sm)",
+      "md": "20px → var(--inkblot-size-icon-md)",
+      "lg": "24px → var(--inkblot-size-icon-lg)",
+      "xl": "32px",
+      "2xl": "48px (empty states)"
+    },
+    "status": {
+      "success":  { "icon": "check-circle | CheckCircle",    "color": "var(--inkblot-semantic-color-status-success)" },
+      "error":    { "icon": "x-circle | XCircle",             "color": "var(--inkblot-semantic-color-status-error)" },
+      "warning":  { "icon": "alert-triangle | AlertTriangle", "color": "var(--inkblot-semantic-color-status-warning)" },
+      "info":     { "icon": "info | Info",                     "color": "var(--inkblot-semantic-color-status-info)" },
+      "loading":  { "icon": "loader-2 | Loader2",             "animation": "spin 1s linear infinite" },
+      "pending":  { "icon": "clock | Clock" },
+      "verified": { "icon": "badge-check | BadgeCheck" }
+    },
+    "actions": {
+      "close": "x | X",           "add": "plus | Plus",         "delete": "trash-2 | Trash2",
+      "edit": "pencil | Pencil",   "save": "save | Save",        "copy": "copy | Copy",
+      "share": "share-2 | Share2", "download": "download | Download", "upload": "upload | Upload",
+      "search": "search | Search", "filter": "sliders-horizontal | SlidersHorizontal",
+      "refresh": "refresh-cw | RefreshCw", "more": "more-horizontal | MoreHorizontal",
+      "settings": "settings | Settings", "undo": "undo-2 | Undo2", "redo": "redo-2 | Redo2",
+      "lock": "lock | Lock",      "unlock": "unlock | Unlock",  "link": "link | Link",
+      "externalLink": "external-link | ExternalLink", "archive": "archive | Archive",
+      "bookmark": "bookmark | Bookmark", "like": "heart | Heart", "flag": "flag | Flag",
+      "print": "printer | Printer", "login": "log-in | LogIn", "logout": "log-out | LogOut"
+    },
+    "navigation": {
+      "menu": "menu | Menu",       "back": "arrow-left | ArrowLeft",  "forward": "arrow-right | ArrowRight",
+      "home": "home | Home",       "chevronDown": "chevron-down | ChevronDown",
+      "chevronRight": "chevron-right | ChevronRight", "chevronLeft": "chevron-left | ChevronLeft",
+      "chevronUp": "chevron-up | ChevronUp",
+      "firstPage": "chevrons-left | ChevronsLeft", "lastPage": "chevrons-right | ChevronsRight"
+    },
+    "entities": {
+      "user": "user | User",               "users": "users | Users",
+      "notification": "bell | Bell",        "chat": "message-circle | MessageCircle",
+      "mail": "mail | Mail",                "phone": "phone | Phone",
+      "file": "file | File",                "fileText": "file-text | FileText",
+      "folder": "folder | Folder",          "calendar": "calendar | Calendar",
+      "clock": "clock | Clock",             "tag": "tag | Tag",
+      "location": "map-pin | MapPin",       "globe": "globe | Globe",
+      "database": "database | Database",    "code": "code | Code",
+      "key": "key | Key",                   "shield": "shield | Shield",
+      "creditCard": "credit-card | CreditCard", "cart": "shopping-cart | ShoppingCart",
+      "chart": "bar-chart-3 | BarChart3",   "star": "star | Star",
+      "help": "help-circle | HelpCircle",   "image": "image | Image"
+    },
+    "componentIcons": {
+      "button":   { "submit": "check", "cancel": "x", "save": "save", "delete": "trash-2", "loading": "loader-2 (spin)" },
+      "input":    { "email": "mail", "password": "lock (leading) + eye/eye-off (trailing toggle)", "search": "search (leading) + x (clear trailing)", "url": "globe", "phone": "phone", "date": "calendar", "time": "clock", "currency": "dollar-sign", "location": "map-pin", "validation": { "valid": "check-circle (green)", "invalid": "alert-circle (red)" } },
+      "select":   { "trigger": "chevron-down (rotate 180° when open)", "selected": "check (trailing)", "clear": "x" },
+      "modal":    { "close": "x (top-right)", "info": "info (lg)", "warning": "alert-triangle (lg)", "error": "x-circle (lg)", "success": "check-circle (lg)" },
+      "toast":    { "info": "info", "success": "check-circle", "warning": "alert-triangle", "error": "x-circle", "dismiss": "x (sm)" },
+      "card":     { "like": "heart", "share": "share-2", "bookmark": "bookmark", "more": "more-horizontal", "expand": "chevron-down" },
+      "listItem": { "disclosure": "chevron-right", "edit": "pencil (sm)", "delete": "trash-2 (sm)", "more": "more-vertical (sm)", "drag": "grip-vertical (sm)" },
+      "table":    { "sortAsc": "arrow-up", "sortDesc": "arrow-down", "sortNeutral": "arrow-up-down", "rowExpand": "chevron-right", "rowActions": "more-horizontal" },
+      "chip":     { "remove": "x (sm)" },
+      "emptyState": { "noData": "inbox (2xl)", "noResults": "search-x (2xl)", "error": "alert-circle (2xl)", "noPermission": "shield-off (2xl)" },
+      "nav":      { "hamburger": "menu", "close": "x" },
+      "tooltip":  { "trigger": "help-circle (sm)" }
+    },
+    "togglePairs": {
+      "visibility": ["eye", "eye-off"],
+      "notification": ["bell", "bell-off"],
+      "sound": ["volume-2", "volume-x"],
+      "lock": ["lock", "unlock"],
+      "darkMode": ["moon", "sun"],
+      "favorite": ["star (filled)", "star (stroke)"],
+      "like": ["heart (filled)", "heart (stroke)"],
+      "sidebar": ["panel-left", "panel-left-close"],
+      "viewMode": ["layout-grid", "list"]
+    },
+    "positioning": {
+      "leading": "Before text. Default for status, entity, nav icons.",
+      "trailing": "After text. For actions, disclosure, external links, sort arrows.",
+      "standalone": "No text. Must have aria-label. 44px min touch target.",
+      "inset": "Inside input field. Position absolute, vertically centered."
+    },
+    "spacing": "Icon-to-text gap: var(--inkblot-spacing-2). Compact: var(--inkblot-spacing-1). Relaxed: var(--inkblot-spacing-3).",
+    "a11y": "Decorative icons: aria-hidden='true'. Icon-only buttons: aria-label required. Never rely on color alone — use distinct shapes."
   },
 
   "cssSnippets": {

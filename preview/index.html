@@ -49,9 +49,20 @@
     [data-theme="dark"] .nav { background: rgba(0,0,0,0.72); }
     .nav-brand { font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; letter-spacing: -0.01em; color: var(--inkblot-semantic-color-text-primary); text-decoration: none; transition: opacity 150ms; }
     .nav-brand:hover { opacity: 0.7; }
-    .nav-links { display: flex; gap: var(--inkblot-spacing-4); list-style: none; padding: 0; overflow-x: auto; }
-    .nav-links a { font-size: var(--inkblot-typography-font-size-xs); color: var(--inkblot-semantic-color-text-secondary); text-decoration: none; white-space: nowrap; transition: color 150ms; }
+    .nav-menu { display: contents; }
+    .nav-links { display: flex; gap: var(--inkblot-spacing-4); list-style: none; padding: 0; margin: 0; }
+    .nav-links a { font-size: var(--inkblot-typography-font-size-xs); color: var(--inkblot-semantic-color-text-secondary); text-decoration: none; white-space: nowrap; transition: color 150ms; padding: var(--inkblot-spacing-2) 0; }
     .nav-links a:hover { color: var(--inkblot-semantic-color-text-primary); }
+    .nav-hamburger { display: none; width: 44px; height: 44px; padding: 0; border: none; background: transparent; cursor: pointer; align-items: center; justify-content: center; border-radius: var(--inkblot-radius-md); transition: background 150ms; position: relative; flex-shrink: 0; }
+    .nav-hamburger:hover { background: var(--inkblot-semantic-color-background-secondary); }
+    .nav-hamburger span, .nav-hamburger span::before, .nav-hamburger span::after { display: block; width: 20px; height: 2px; background: var(--inkblot-semantic-color-text-primary); border-radius: 1px; transition: transform 200ms, opacity 200ms; }
+    .nav-hamburger span { position: relative; }
+    .nav-hamburger span::before, .nav-hamburger span::after { content: ''; position: absolute; left: 0; top: 0; }
+    .nav-hamburger span::before { transform: translateY(-6px); }
+    .nav-hamburger span::after { transform: translateY(6px); }
+    .nav.open .nav-hamburger span { background: transparent; }
+    .nav.open .nav-hamburger span::before { transform: translateY(0) rotate(45deg); }
+    .nav.open .nav-hamburger span::after { transform: translateY(0) rotate(-45deg); }
     .theme-toggle { width: 44px; height: 24px; background: var(--inkblot-semantic-color-border-default); border: none; border-radius: var(--inkblot-radius-full); cursor: pointer; position: relative; transition: background 150ms; flex-shrink: 0; }
     .theme-toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: white; border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.15); transition: transform 150ms cubic-bezier(0.175,0.885,0.32,1.275); }
     [data-theme="dark"] .theme-toggle { background: var(--inkblot-dark-color-interactive-primary); }
@@ -208,6 +219,7 @@
     .state-table td { padding: var(--inkblot-spacing-2) var(--inkblot-spacing-3); border-bottom: 1px solid var(--inkblot-semantic-color-border-default); }
     .state-table tr:last-child td { border-bottom: none; }
     .state-table code { font-family: var(--inkblot-typography-font-family-mono); font-size: 11px; background: var(--inkblot-semantic-color-background-tertiary); padding: 2px 6px; border-radius: var(--inkblot-radius-sm); }
+    .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
     /* INTERACTION FLOW */
     .flow-steps { display: flex; flex-direction: column; gap: var(--inkblot-spacing-2); counter-reset: step; }
@@ -240,8 +252,101 @@
     .perf-item h4 { font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; margin-bottom: var(--inkblot-spacing-2); }
     .perf-item p { font-size: 12px; color: var(--inkblot-semantic-color-text-secondary); line-height: 1.5; }
 
+    /* ICON SEMANTICS */
+    .icon-table { width: 100%; border-collapse: collapse; font-size: var(--inkblot-typography-font-size-sm); }
+    .icon-table th { text-align: left; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--inkblot-semantic-color-text-tertiary); padding: var(--inkblot-spacing-2) var(--inkblot-spacing-3); border-bottom: 1px solid var(--inkblot-semantic-color-border-default); }
+    .icon-table td { padding: var(--inkblot-spacing-2) var(--inkblot-spacing-3); border-bottom: 1px solid var(--inkblot-semantic-color-border-default); font-size: 13px; }
+    .icon-table tr:last-child td { border-bottom: none; }
+    .icon-table code { font-family: var(--inkblot-typography-font-family-mono); font-size: 11px; background: var(--inkblot-semantic-color-background-tertiary); padding: 2px 6px; border-radius: var(--inkblot-radius-sm); }
+    .icon-table .icon-preview { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: var(--inkblot-radius-md); background: var(--inkblot-semantic-color-background-secondary); }
+    .icon-table .icon-preview svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .icon-size-demos { display: flex; align-items: end; gap: var(--inkblot-spacing-6); flex-wrap: wrap; }
+    .icon-size-demo { display: flex; flex-direction: column; align-items: center; gap: var(--inkblot-spacing-2); }
+    .icon-size-demo .icon-box { display: flex; align-items: center; justify-content: center; background: var(--inkblot-semantic-color-background-secondary); border-radius: var(--inkblot-radius-lg); }
+    .icon-size-demo .icon-box svg { stroke: var(--inkblot-semantic-color-interactive-primary); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .icon-size-demo span { font-size: 10px; color: var(--inkblot-semantic-color-text-tertiary); font-weight: 500; }
+    .icon-pos-demos { display: flex; flex-wrap: wrap; gap: var(--inkblot-spacing-4); }
+    .icon-pos-demo { display: inline-flex; align-items: center; gap: var(--inkblot-spacing-2); padding: var(--inkblot-spacing-2) var(--inkblot-spacing-4); background: var(--inkblot-semantic-color-background-secondary); border-radius: var(--inkblot-radius-lg); font-size: var(--inkblot-typography-font-size-sm); }
+    .icon-pos-demo svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .icon-lib-badge { display: inline-flex; align-items: center; gap: var(--inkblot-spacing-2); padding: var(--inkblot-spacing-2) var(--inkblot-spacing-4); background: var(--inkblot-semantic-color-background-secondary); border-radius: var(--inkblot-radius-full); font-size: var(--inkblot-typography-font-size-sm); font-weight: 500; margin-bottom: var(--inkblot-spacing-6); }
+    @media (max-width: 768px) {
+      .icon-table td, .icon-table th { padding: var(--inkblot-spacing-2); font-size: 12px; }
+      .icon-table code { font-size: 10px; }
+      .icon-size-demos { gap: var(--inkblot-spacing-4); }
+    }
+
     .footer { text-align: center; padding: var(--inkblot-spacing-12) var(--inkblot-spacing-8); color: var(--inkblot-semantic-color-text-tertiary); font-size: var(--inkblot-typography-font-size-xs); border-top: 1px solid var(--inkblot-semantic-color-border-default); }
     .footer code { background: var(--inkblot-semantic-color-background-secondary); padding: 2px 6px; border-radius: var(--inkblot-radius-sm); font-family: var(--inkblot-typography-font-family-mono); font-size: 11px; }
+
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      .nav { padding: var(--inkblot-spacing-3) var(--inkblot-spacing-4); flex-wrap: nowrap; position: relative; }
+      .nav-hamburger { display: flex; margin-left: auto; margin-right: var(--inkblot-spacing-2); }
+      .nav-menu { display: block; position: absolute; top: 100%; left: 0; right: 0; background: var(--inkblot-semantic-color-background-primary); border-bottom: 1px solid var(--inkblot-semantic-color-border-default); box-shadow: var(--inkblot-shadow-lg); max-height: 0; overflow: hidden; opacity: 0; transition: max-height 250ms cubic-bezier(0.25,0.1,0.25,1), opacity 200ms ease; z-index: 10; }
+      .nav.open .nav-menu { max-height: 80vh; overflow-y: auto; opacity: 1; }
+      .nav-links { flex-direction: column; gap: 0; padding: var(--inkblot-spacing-2) var(--inkblot-spacing-4) var(--inkblot-spacing-4); }
+      .nav-links a { display: block; font-size: var(--inkblot-typography-font-size-sm); padding: var(--inkblot-spacing-3) var(--inkblot-spacing-2); min-height: 44px; line-height: 1.4; white-space: normal; border-radius: var(--inkblot-radius-md); }
+      .nav-links a:hover { background: var(--inkblot-semantic-color-background-secondary); }
+      .container { padding: 0 var(--inkblot-spacing-4) var(--inkblot-spacing-16); }
+      .hero { padding: clamp(48px, 8vh, 96px) var(--inkblot-spacing-4); }
+      .hero h1 { font-size: clamp(2rem, 8vw, 2.5rem); }
+      .hero .tagline { font-size: var(--inkblot-typography-font-size-base); }
+      .hero-actions { gap: var(--inkblot-spacing-2); }
+      .hero-actions .btn { width: 100%; max-width: 280px; }
+      .card { padding: var(--inkblot-spacing-4); }
+      .section-header { margin-bottom: var(--inkblot-spacing-4); }
+      .section-title { font-size: var(--inkblot-typography-font-size-lg); }
+      .swatch-grid { grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: var(--inkblot-spacing-1); }
+      .swatch-color { height: 48px; }
+      .swatch-meta { padding: 4px; font-size: 9px; }
+      .motion-grid { grid-template-columns: repeat(2, 1fr); gap: var(--inkblot-spacing-3); }
+      .motion-box { font-size: 10px; }
+      .easing-grid { grid-template-columns: 1fr 1fr; gap: var(--inkblot-spacing-3); }
+      .easing-value { font-size: 9px; }
+      .responsive-vis { grid-template-columns: 1fr; height: 80px; }
+      .responsive-vis div:not(:first-child) { display: none; }
+      .state-table { font-size: 12px; }
+      .state-table th, .state-table td { padding: var(--inkblot-spacing-2); }
+      .state-table code { font-size: 10px; padding: 1px 4px; }
+      .perf-grid { grid-template-columns: 1fr; }
+      .perf-item p { font-size: 11px; }
+      .modal-overlay.open { align-items: stretch; }
+      .modal-dialog { width: 100%; max-width: none; height: 100%; max-height: 100vh; margin: 0; padding: var(--inkblot-spacing-6); border-radius: 0; }
+      .footer { padding: var(--inkblot-spacing-8) var(--inkblot-spacing-4); }
+    }
+
+    @media (max-width: 480px) {
+      .nav { padding: var(--inkblot-spacing-2) var(--inkblot-spacing-3); }
+      .nav-brand { font-size: var(--inkblot-typography-font-size-xs); }
+      .container { padding: 0 var(--inkblot-spacing-3) var(--inkblot-spacing-12); }
+      .section { margin-bottom: var(--inkblot-spacing-12); }
+      .section-title { font-size: var(--inkblot-typography-font-size-md); }
+      .card { padding: var(--inkblot-spacing-3); border-radius: var(--inkblot-radius-lg); }
+      .btn { padding: var(--inkblot-spacing-2) var(--inkblot-spacing-4); min-height: 44px; }
+      .btn-lg { padding: var(--inkblot-spacing-3) var(--inkblot-spacing-6); }
+      .swatch-grid { grid-template-columns: repeat(3, 1fr); }
+      .swatch-color { height: 44px; }
+      .motion-grid { grid-template-columns: repeat(2, 1fr); gap: var(--inkblot-spacing-2); }
+      .easing-grid { grid-template-columns: 1fr; }
+      .flow-step { font-size: 12px; }
+      .flow-step::before { width: 20px; height: 20px; font-size: 10px; }
+      .radius-box { width: 56px; height: 56px; font-size: 10px; }
+      .shadow-box { width: 72px; height: 72px; font-size: 10px; }
+      .scale-box { font-size: 9px; }
+      .empty-state { padding: var(--inkblot-spacing-8) var(--inkblot-spacing-3); }
+      .empty-state h3 { font-size: var(--inkblot-typography-font-size-md); }
+      .truncate-3 { max-width: 100% !important; }
+      .aspect-box { font-size: 10px; }
+    }
+
+    @media (max-width: 375px) {
+      .swatch-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-actions .btn { font-size: var(--inkblot-typography-font-size-sm); }
+    }
+
+    /* Prevent horizontal overflow */
+    html, body { overflow-x: hidden; }
+    .container, .card, .section-header, .nav { max-width: 100%; }
 
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
   </style>
@@ -249,11 +354,14 @@
 <body>
   <nav class="nav">
     <a href="#" class="nav-brand" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Inkblot Studio</a>
+    <button class="nav-hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu" id="nav-hamburger"><span></span></button>
+    <div class="nav-menu" id="nav-menu">
     <ul class="nav-links">
       <li><a href="#colors">Colors</a></li>
       <li><a href="#typography">Type</a></li>
       <li><a href="#components">Components</a></li>
       <li><a href="#motion">Motion</a></li>
+      <li><a href="#icons">Icons</a></li>
       <li><a href="#responsive">Responsive</a></li>
       <li><a href="#states-multi">States</a></li>
       <li><a href="#interactions">Flows</a></li>
@@ -262,6 +370,7 @@
       <li><a href="#spacing">Spacing</a></li>
       <li><a href="#elevation">Elevation</a></li>
     </ul>
+    </div>
     <button class="theme-toggle" aria-label="Toggle dark mode" id="theme-toggle"></button>
   </nav>
 
@@ -410,6 +519,156 @@
       </div>
     </section>
 
+    <!-- ICON SEMANTICS -->
+    <section class="section" id="icons">
+      <div class="section-header"><h2 class="section-title">Icon Semantics</h2><p class="section-desc">Lucide icons &middot; Semantic mapping &middot; Component-specific &middot; Sizes &middot; Positioning</p></div>
+      <div class="icon-lib-badge">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        Library: <strong>Lucide</strong> &mdash; free, ISC license, 1500+ icons
+      </div>
+
+      <div class="two-col" style="margin-bottom:var(--inkblot-spacing-8)">
+        <div class="card">
+          <div class="card-title">Status icons</div>
+          <div class="table-scroll">
+          <table class="icon-table">
+            <thead><tr><th>Meaning</th><th>Icon</th><th>Lucide name</th></tr></thead>
+            <tbody>
+              <tr><td>Success</td><td><span class="icon-preview" style="color:var(--inkblot-semantic-color-status-success)"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span></td><td><code>check-circle</code></td></tr>
+              <tr><td>Error</td><td><span class="icon-preview" style="color:var(--inkblot-semantic-color-status-error)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></span></td><td><code>x-circle</code></td></tr>
+              <tr><td>Warning</td><td><span class="icon-preview" style="color:var(--inkblot-semantic-color-status-warning)"><svg viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span></td><td><code>alert-triangle</code></td></tr>
+              <tr><td>Info</td><td><span class="icon-preview" style="color:var(--inkblot-semantic-color-status-info)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span></td><td><code>info</code></td></tr>
+              <tr><td>Loading</td><td><span class="icon-preview"><svg viewBox="0 0 24 24" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></span></td><td><code>loader-2</code></td></tr>
+              <tr><td>Pending</td><td><span class="icon-preview" style="color:var(--inkblot-semantic-color-text-tertiary)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span></td><td><code>clock</code></td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Action icons</div>
+          <div class="table-scroll">
+          <table class="icon-table">
+            <thead><tr><th>Action</th><th>Icon</th><th>Lucide name</th></tr></thead>
+            <tbody>
+              <tr><td>Close</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span></td><td><code>x</code></td></tr>
+              <tr><td>Add</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></td><td><code>plus</code></td></tr>
+              <tr><td>Delete</td><td><span class="icon-preview" style="color:var(--inkblot-semantic-color-status-error)"><svg viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg></span></td><td><code>trash-2</code></td></tr>
+              <tr><td>Edit</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg></span></td><td><code>pencil</code></td></tr>
+              <tr><td>Save</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span></td><td><code>save</code></td></tr>
+              <tr><td>Search</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span></td><td><code>search</code></td></tr>
+              <tr><td>Share</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg></span></td><td><code>share-2</code></td></tr>
+              <tr><td>Download</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></span></td><td><code>download</code></td></tr>
+              <tr><td>Settings</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></span></td><td><code>settings</code></td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="two-col" style="margin-bottom:var(--inkblot-spacing-8)">
+        <div class="card">
+          <div class="card-title">Entity icons</div>
+          <div class="table-scroll">
+          <table class="icon-table">
+            <thead><tr><th>Entity</th><th>Icon</th><th>Lucide name</th></tr></thead>
+            <tbody>
+              <tr><td>User</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span></td><td><code>user</code></td></tr>
+              <tr><td>Notification</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span></td><td><code>bell</code></td></tr>
+              <tr><td>Email</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span></td><td><code>mail</code></td></tr>
+              <tr><td>File</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg></span></td><td><code>file</code></td></tr>
+              <tr><td>Folder</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg></span></td><td><code>folder</code></td></tr>
+              <tr><td>Calendar</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg></span></td><td><code>calendar</code></td></tr>
+              <tr><td>Location</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span></td><td><code>map-pin</code></td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Navigation icons</div>
+          <div class="table-scroll">
+          <table class="icon-table">
+            <thead><tr><th>Purpose</th><th>Icon</th><th>Lucide name</th></tr></thead>
+            <tbody>
+              <tr><td>Menu</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></span></td><td><code>menu</code></td></tr>
+              <tr><td>Back</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg></span></td><td><code>arrow-left</code></td></tr>
+              <tr><td>Forward</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></td><td><code>arrow-right</code></td></tr>
+              <tr><td>Home</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span></td><td><code>home</code></td></tr>
+              <tr><td>Expand</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></td><td><code>chevron-down</code></td></tr>
+              <tr><td>Disclosure</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span></td><td><code>chevron-right</code></td></tr>
+              <tr><td>External link</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg></span></td><td><code>external-link</code></td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-title">Sizes</div>
+      <p style="font-size:var(--inkblot-typography-font-size-sm);color:var(--inkblot-semantic-color-text-secondary);margin-bottom:var(--inkblot-spacing-4)">6 standard sizes mapped to design tokens. AI agents: always use the token, never hard-code pixels.</p>
+      <div class="icon-size-demos" style="margin-bottom:var(--inkblot-spacing-8)">
+        <div class="icon-size-demo"><div class="icon-box" style="width:28px;height:28px"><svg width="12" height="12" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><span>xs &middot; 12px</span></div>
+        <div class="icon-size-demo"><div class="icon-box" style="width:36px;height:36px"><svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><span>sm &middot; 16px</span></div>
+        <div class="icon-size-demo"><div class="icon-box" style="width:40px;height:40px"><svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><span>md &middot; 20px</span></div>
+        <div class="icon-size-demo"><div class="icon-box" style="width:48px;height:48px"><svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><span>lg &middot; 24px</span></div>
+        <div class="icon-size-demo"><div class="icon-box" style="width:56px;height:56px"><svg width="32" height="32" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><span>xl &middot; 32px</span></div>
+        <div class="icon-size-demo"><div class="icon-box" style="width:72px;height:72px"><svg width="48" height="48" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><span>2xl &middot; 48px</span></div>
+      </div>
+
+      <div class="card-title">Positioning</div>
+      <p style="font-size:var(--inkblot-typography-font-size-sm);color:var(--inkblot-semantic-color-text-secondary);margin-bottom:var(--inkblot-spacing-4)">4 standard positions. Leading = before text (default). Trailing = after text. Standalone = no text (needs aria-label). Inset = inside form fields.</p>
+      <div class="icon-pos-demos" style="margin-bottom:var(--inkblot-spacing-8)">
+        <div class="icon-pos-demo"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Leading</div>
+        <div class="icon-pos-demo">Trailing <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></div>
+        <div class="icon-pos-demo" style="padding:var(--inkblot-spacing-2);width:44px;height:44px;justify-content:center"><svg viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></div>
+        <div class="icon-pos-demo"><svg viewBox="0 0 24 24" style="color:var(--inkblot-semantic-color-text-tertiary)"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span style="color:var(--inkblot-semantic-color-text-tertiary)">Inset in field</span></div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Component-specific icons</div>
+          <div class="table-scroll">
+          <table class="icon-table">
+            <thead><tr><th>Component</th><th>Context</th><th>Icon</th></tr></thead>
+            <tbody>
+              <tr><td>Button</td><td>Submit</td><td><code>check</code> (leading)</td></tr>
+              <tr><td>Button</td><td>Cancel</td><td><code>x</code> (leading)</td></tr>
+              <tr><td>Button</td><td>Loading</td><td><code>loader-2</code> (spin)</td></tr>
+              <tr><td>Input</td><td>Email</td><td><code>mail</code> (inset-leading)</td></tr>
+              <tr><td>Input</td><td>Password</td><td><code>lock</code> + <code>eye</code>/<code>eye-off</code></td></tr>
+              <tr><td>Input</td><td>Search</td><td><code>search</code> + <code>x</code> (clear)</td></tr>
+              <tr><td>Select</td><td>Trigger</td><td><code>chevron-down</code> (rotate 180&deg;)</td></tr>
+              <tr><td>Modal</td><td>Close</td><td><code>x</code> (standalone, top-right)</td></tr>
+              <tr><td>Toast</td><td>Dismiss</td><td><code>x</code> (sm, trailing)</td></tr>
+              <tr><td>Table</td><td>Sort</td><td><code>arrow-up-down</code> / <code>arrow-up</code> / <code>arrow-down</code></td></tr>
+              <tr><td>List item</td><td>Disclosure</td><td><code>chevron-right</code> (trailing)</td></tr>
+              <tr><td>Chip</td><td>Remove</td><td><code>x</code> (sm, trailing)</td></tr>
+              <tr><td>Empty state</td><td>No data</td><td><code>inbox</code> (2xl)</td></tr>
+              <tr><td>Empty state</td><td>No results</td><td><code>search-x</code> (2xl)</td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Toggle pairs</div>
+          <p style="font-size:12px;color:var(--inkblot-semantic-color-text-secondary);margin-bottom:var(--inkblot-spacing-3)">Binary state icons. Swap on toggle. Update <code>aria-label</code> to reflect the new action.</p>
+          <div class="table-scroll">
+          <table class="icon-table">
+            <thead><tr><th>State A</th><th>State B</th><th>Use case</th></tr></thead>
+            <tbody>
+              <tr><td><code>eye</code></td><td><code>eye-off</code></td><td>Password visibility</td></tr>
+              <tr><td><code>bell</code></td><td><code>bell-off</code></td><td>Notifications</td></tr>
+              <tr><td><code>volume-2</code></td><td><code>volume-x</code></td><td>Sound</td></tr>
+              <tr><td><code>lock</code></td><td><code>unlock</code></td><td>Lock state</td></tr>
+              <tr><td><code>moon</code></td><td><code>sun</code></td><td>Dark mode</td></tr>
+              <tr><td><code>star</code> (filled)</td><td><code>star</code> (stroke)</td><td>Favorite</td></tr>
+              <tr><td><code>heart</code> (filled)</td><td><code>heart</code> (stroke)</td><td>Like</td></tr>
+              <tr><td><code>layout-grid</code></td><td><code>list</code></td><td>View mode</td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- RESPONSIVE -->
     <section class="section" id="responsive">
       <div class="section-header"><h2 class="section-title">Responsive behavior</h2><p class="section-desc">How components adapt across breakpoints</p></div>
@@ -446,6 +705,7 @@
       <div class="two-col">
         <div class="card">
           <div class="card-title">Priority table</div>
+          <div class="table-scroll">
           <table class="state-table">
             <thead><tr><th>Combination</th><th>Result</th></tr></thead>
             <tbody>
@@ -456,6 +716,7 @@
               <tr><td><code>error</code> + <code>hover</code></td><td>Error border stays. Subtle hover bg allowed</td></tr>
             </tbody>
           </table>
+          </div>
         </div>
         <div class="card">
           <div class="card-title">Live examples</div>
@@ -646,6 +907,20 @@
   <footer class="footer">Inkblot Studio Design System v1.0 &middot; Tokens in <code>tokens/</code> &middot; Specs in <code>system/</code></footer>
 
   <script>
+    (function() {
+      var nav = document.querySelector('.nav');
+      var hamburger = document.getElementById('nav-hamburger');
+      var menu = document.getElementById('nav-menu');
+      if (!hamburger || !menu) return;
+      function openMenu() { nav.classList.add('open'); hamburger.setAttribute('aria-expanded', 'true'); hamburger.setAttribute('aria-label', 'Close menu'); document.body.style.overflow = 'hidden'; }
+      function closeMenu() { nav.classList.remove('open'); hamburger.setAttribute('aria-expanded', 'false'); hamburger.setAttribute('aria-label', 'Open menu'); document.body.style.overflow = ''; }
+      function toggleMenu() { nav.classList.contains('open') ? closeMenu() : openMenu(); }
+      hamburger.addEventListener('click', function(e) { e.stopPropagation(); toggleMenu(); });
+      menu.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeMenu); });
+      document.addEventListener('click', function(e) { if (nav.classList.contains('open') && !nav.contains(e.target)) closeMenu(); });
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && nav.classList.contains('open')) closeMenu(); });
+    })();
+
     document.getElementById('theme-toggle').addEventListener('click', function() {
       var h = document.documentElement;
       h.setAttribute('data-theme', h.getAttribute('data-theme') === 'dark' ? '' : 'dark');
