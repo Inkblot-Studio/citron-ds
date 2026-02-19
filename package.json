@@ -8,7 +8,8 @@
     ".": "./dist/js/inkblot-tokens.js",
     "./css": "./dist/css/inkblot-variables.css",
     "./scss": "./dist/scss/_inkblot-variables.scss",
-    "./tokens": "./dist/ai/inkblot-tokens-resolved.json"
+    "./tokens": "./dist/ai/inkblot-tokens-resolved.json",
+    "./ai-reference": "./dist/ai/inkblot-ai-reference.json"
   },
   "files": [
     "dist",
@@ -16,7 +17,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "style-dictionary build --config style-dictionary.config.js",
+    "build": "style-dictionary build --config style-dictionary.config.js && node -e \"require('fs').copyFileSync('system/inkblot-ai-reference.json', 'dist/ai/inkblot-ai-reference.json')\"",
     "build:tokens": "style-dictionary build --config style-dictionary.config.js",
     "dev": "concurrently \"npm run build:watch\" \"vite\"",
     "build:watch": "chokidar \"tokens/**/*.json\" -c \"npm run build\"",

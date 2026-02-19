@@ -42,7 +42,8 @@
       "components": { "path": "system/components.json", "description": "Full component library: anatomy, states, behavior, accessibility" },
       "motion": { "path": "system/motion.json", "description": "Animation durations, easings, transitions, micro-interactions" },
       "content": { "path": "system/content.json", "description": "Data display, loading/empty/error states, iconography, imagery" },
-      "ai": { "path": "system/ai.json", "description": "AI agent rules: rendering, layout assembly, edge cases, testing" }
+      "ai": { "path": "system/ai.json", "description": "AI agent rules: rendering, layout assembly, edge cases, testing" },
+      "aiReference": { "path": "system/inkblot-ai-reference.json", "description": "Single-file AI reference: token map, composite patterns, CSS snippets, icon semantics" }
     }
   },
 

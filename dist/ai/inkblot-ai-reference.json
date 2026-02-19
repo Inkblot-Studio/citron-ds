@@ -1,0 +1,495 @@
+{
+  "$schema": "https://inkblot.studio/ai/v1/reference.schema.json",
+  "version": "1.0.0",
+  "purpose": "Single-file reference for AI agents to produce complex components and systems without ambiguity. Include this file in your AI context.",
+
+  "tokenMap": {
+    "description": "CSS variable names (use in style output) mapped to categories. AI: prefer semantic tokens.",
+    "cssVariables": {
+      "color": {
+        "background": {
+          "primary": "var(--inkblot-semantic-color-background-primary)",
+          "secondary": "var(--inkblot-semantic-color-background-secondary)",
+          "tertiary": "var(--inkblot-semantic-color-background-tertiary)"
+        },
+        "text": {
+          "primary": "var(--inkblot-semantic-color-text-primary)",
+          "secondary": "var(--inkblot-semantic-color-text-secondary)",
+          "tertiary": "var(--inkblot-semantic-color-text-tertiary)",
+          "inverse": "var(--inkblot-semantic-color-text-inverse)",
+          "link": "var(--inkblot-semantic-color-text-link)",
+          "linkHover": "var(--inkblot-semantic-color-text-link-hover)"
+        },
+        "border": {
+          "default": "var(--inkblot-semantic-color-border-default)",
+          "strong": "var(--inkblot-semantic-color-border-strong)",
+          "focus": "var(--inkblot-semantic-color-border-focus)"
+        },
+        "interactive": {
+          "primary": "var(--inkblot-semantic-color-interactive-primary)",
+          "primaryHover": "var(--inkblot-semantic-color-interactive-primary-hover)",
+          "primaryActive": "var(--inkblot-semantic-color-interactive-primary-active)",
+          "secondary": "var(--inkblot-semantic-color-interactive-secondary)",
+          "secondaryHover": "var(--inkblot-semantic-color-interactive-secondary-hover)"
+        },
+        "status": {
+          "success": "var(--inkblot-semantic-color-status-success)",
+          "warning": "var(--inkblot-semantic-color-status-warning)",
+          "error": "var(--inkblot-semantic-color-status-error)",
+          "info": "var(--inkblot-semantic-color-status-info)"
+        }
+      },
+      "spacing": "var(--inkblot-spacing-{n}) for n in [0,1,2,3,4,5,6,8,10,12,16,20,24,32]",
+      "typography": {
+        "fontFamily": {
+          "sans": "var(--inkblot-typography-font-family-sans)",
+          "mono": "var(--inkblot-typography-font-family-mono)",
+          "display": "var(--inkblot-typography-font-family-display)"
+        },
+        "fontSize": "var(--inkblot-typography-font-size-{xs|sm|base|md|lg|xl|2xl|3xl|4xl|5xl})",
+        "fontWeight": "var(--inkblot-typography-font-weight-{regular|medium|semibold|bold})",
+        "semantic": {
+          "heading1": "var(--inkblot-semantic-typography-heading-1)",
+          "heading2": "var(--inkblot-semantic-typography-heading-2)",
+          "heading3": "var(--inkblot-semantic-typography-heading-3)",
+          "heading4": "var(--inkblot-semantic-typography-heading-4)",
+          "body": "var(--inkblot-semantic-typography-body-default)",
+          "bodySmall": "var(--inkblot-semantic-typography-body-small)",
+          "bodyLarge": "var(--inkblot-semantic-typography-body-large)",
+          "label": "var(--inkblot-semantic-typography-label-default)"
+        }
+      },
+      "radius": "var(--inkblot-radius-{none|sm|md|lg|xl|2xl|full})",
+      "shadow": "var(--inkblot-shadow-{none|xs|sm|md|lg|xl})",
+      "borderWidth": "var(--inkblot-border-width-{none|thin|medium|thick})",
+      "duration": "var(--inkblot-duration-{instant|fast|normal|slow|slower})",
+      "easing": {
+        "default": "cubic-bezier(0.25, 0.1, 0.25, 1)",
+        "in": "cubic-bezier(0.42, 0, 1, 1)",
+        "out": "cubic-bezier(0, 0, 0.58, 1)",
+        "inOut": "cubic-bezier(0.42, 0, 0.58, 1)",
+        "bounce": "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+        "spring": "cubic-bezier(0.175, 0.885, 0.32, 1.275)"
+      },
+      "zIndex": "var(--inkblot-z-index-{base|raised|dropdown|sticky|overlay|modal|popover|toast})",
+      "size": {
+        "touchTargetMin": "var(--inkblot-size-touch-target-min)",
+        "touchTargetComfortable": "var(--inkblot-size-touch-target-comfortable)",
+        "iconSm": "var(--inkblot-size-icon-sm)",
+        "iconMd": "var(--inkblot-size-icon-md)",
+        "iconLg": "var(--inkblot-size-icon-lg)"
+      },
+      "opacity": {
+        "disabled": "var(--inkblot-opacity-disabled)",
+        "overlay": "var(--inkblot-opacity-overlay)"
+      }
+    }
+  },
+
+  "breakpoints": {
+    "description": "Mobile-first. Use min-width in media queries.",
+    "sm": "640px",
+    "md": "768px",
+    "lg": "1024px",
+    "xl": "1280px",
+    "2xl": "1536px",
+    "cssExample": "@media (min-width: 1024px) { /* desktop styles */ }"
+  },
+
+  "grid": {
+    "description": "Column count per breakpoint. Gutter = gap between columns.",
+    "columnsByBreakpoint": {
+      "<640px": 4,
+      "640-767px": 4,
+      "768-1023px": 8,
+      "1024-1279px": 12,
+      "1280-1535px": 12,
+      ">=1536px": 16
+    },
+    "maxWidth": {
+      "content": "768px",
+      "container": "1200px",
+      "wide": "1440px"
+    },
+    "cssGrid": "display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--inkblot-spacing-6); max-width: 1200px; margin-inline: auto; padding-inline: var(--inkblot-spacing-8);"
+  },
+
+  "compositePatterns": {
+    "description": "How to assemble complex components. AI: follow these structures.",
+    "formField": {
+      "structure": ["label", "input | select | textarea", "helpText | errorMessage"],
+      "spacing": "gap: var(--inkblot-spacing-1) between label and input; var(--inkblot-spacing-1) between input and help/error",
+      "labelRequired": true,
+      "errorReplacesHelp": true
+    },
+    "form": {
+      "structure": ["formField[]", "actions (button group)"],
+      "spacing": "var(--inkblot-spacing-6) between fields; var(--inkblot-spacing-8) before actions",
+      "actionsAlign": "flex-end | flex-start | center",
+      "primaryAction": "First in actions array"
+    },
+    "cardWithActions": {
+      "structure": ["header? | image?", "body", "footer with buttons"],
+      "padding": "var(--inkblot-spacing-6)",
+      "actionGap": "var(--inkblot-spacing-3)"
+    },
+    "modalWithForm": {
+      "structure": ["overlay", "modal[header, body=form, footer=form.actions]"],
+      "focusTrap": true,
+      "escapeCloses": true
+    },
+    "dataTable": {
+      "structure": ["table[thead, tbody]", "pagination?"],
+      "headerStyle": "uppercase, label typography, secondary color",
+      "rowHover": "background: var(--inkblot-semantic-color-background-secondary)",
+      "cellPadding": "var(--inkblot-spacing-3) var(--inkblot-spacing-4)"
+    },
+    "listItem": {
+      "structure": ["avatar? | icon?", "content[title, subtitle?]", "trailing? (badge, button, chevron)"],
+      "minHeight": "var(--inkblot-size-touch-target-comfortable)",
+      "padding": "var(--inkblot-spacing-3) var(--inkblot-spacing-4)"
+    }
+  },
+
+  "iconSemantics": {
+    "description": "Map semantic meaning to icon names. Use Lucide/Heroicons/Phosphor.",
+    "success": "check-circle | CheckCircle",
+    "error": "alert-circle | XCircle",
+    "warning": "alert-triangle | AlertTriangle",
+    "info": "info | Info",
+    "close": "x | X",
+    "chevronDown": "chevron-down | ChevronDown",
+    "chevronRight": "chevron-right | ChevronRight",
+    "search": "search | Search",
+    "loading": "loader-2 | Loader2 (with animate-spin)"
+  },
+
+  "cssSnippets": {
+    "focusRing": "outline: 2px solid var(--inkblot-semantic-color-border-focus); outline-offset: 2px;",
+    "focusVisible": ":focus-visible { outline: 2px solid var(--inkblot-semantic-color-border-focus); outline-offset: 2px; }",
+    "disabled": "opacity: var(--inkblot-opacity-disabled); pointer-events: none; cursor: not-allowed;",
+    "transitionDefault": "transition: all var(--inkblot-duration-fast) cubic-bezier(0.25, 0.1, 0.25, 1);",
+    "truncateSingle": "overflow: hidden; text-overflow: ellipsis; white-space: nowrap;",
+    "truncateLines": "display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;",
+    "screenReaderOnly": "position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;"
+  },
+
+  "componentSpacing": {
+    "description": "Standard spacing between composed elements.",
+    "betweenFormFields": "var(--inkblot-spacing-4)",
+    "betweenSections": "var(--inkblot-spacing-8)",
+    "betweenRelatedItems": "var(--inkblot-spacing-4)",
+    "cardInternalPadding": "var(--inkblot-spacing-6)",
+    "buttonGroupGap": "var(--inkblot-spacing-3)",
+    "listItemGap": "var(--inkblot-spacing-3)"
+  },
+
+  "validationRules": {
+    "required": "Show * after label. aria-required='true'. Validate on blur.",
+    "email": "type='email'. Pattern optional. Validate format.",
+    "password": "type='password'. Min 8 chars. Show strength indicator optional.",
+    "numeric": "type='number'. Set min, max, step."
+  },
+
+  "ariaPatterns": {
+    "button": "role='button'. aria-label if icon-only.",
+    "link": "role='link' or <a>. aria-current if active.",
+    "input": "aria-invalid, aria-required, aria-describedby→help|error id.",
+    "modal": "role='dialog' aria-modal='true' aria-labelledby='title-id'.",
+    "toast": "role='status' aria-live='polite' (info) | 'assertive' (error).",
+    "loading": "aria-busy='true' aria-live='polite'.",
+    "tabs": "role='tablist' on container, role='tab' on each tab, role='tabpanel' on content. aria-selected, aria-controls.",
+    "accordion": "button[aria-expanded] controls panel[role='region']. aria-controls → panel id.",
+    "combobox": "role='combobox' on input. aria-expanded, aria-activedescendant on option highlight.",
+    "navigation": "<nav aria-label='Main'> for primary nav. aria-current='page' on active link.",
+    "breadcrumb": "<nav aria-label='Breadcrumb'> with <ol>. aria-current='page' on last item.",
+    "alertDialog": "role='alertdialog' aria-modal='true'. Requires at least one action button. Cannot dismiss by clicking overlay."
+  },
+
+  "componentMotion": {
+    "description": "Exact transition values per interactive state. AI: apply these in CSS.",
+    "button": {
+      "hover": "background 150ms cubic-bezier(0.25,0.1,0.25,1), box-shadow 150ms cubic-bezier(0.25,0.1,0.25,1)",
+      "active": "transform 100ms cubic-bezier(0.25,0.1,0.25,1)",
+      "focus": "outline 0ms (instant)",
+      "loading": "opacity 150ms cubic-bezier(0.25,0.1,0.25,1); spinner appears with fadeIn 150ms",
+      "css": "transition: background var(--inkblot-duration-fast) var(--inkblot-easing-default), box-shadow var(--inkblot-duration-fast) var(--inkblot-easing-default), transform 100ms var(--inkblot-easing-default);"
+    },
+    "input": {
+      "hover": "border-color 150ms cubic-bezier(0.25,0.1,0.25,1)",
+      "focus": "border-color 150ms, box-shadow 150ms (focus ring fades in)",
+      "error": "border-color 150ms (instant feel, but smooth)",
+      "css": "transition: border-color var(--inkblot-duration-fast) var(--inkblot-easing-default), box-shadow var(--inkblot-duration-fast) var(--inkblot-easing-default);"
+    },
+    "card": {
+      "hover": "transform 150ms ease (translateY -2px), box-shadow 150ms ease",
+      "active": "transform 100ms (scale 0.99)",
+      "css": "transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-default), box-shadow var(--inkblot-duration-fast) var(--inkblot-easing-default);"
+    },
+    "toggle": {
+      "stateChange": "thumb: transform 150ms cubic-bezier(0.175,0.885,0.32,1.275); track: background 150ms ease",
+      "css": ".toggle-thumb { transition: transform var(--inkblot-duration-fast) cubic-bezier(0.175,0.885,0.32,1.275); } .toggle-track { transition: background var(--inkblot-duration-fast) var(--inkblot-easing-default); }"
+    },
+    "modal": {
+      "enter": "overlay: opacity 0→1 250ms ease-out; container: scale(0.95)→scale(1) + opacity 0→1 250ms ease-out",
+      "exit": "overlay: opacity 1→0 150ms ease-in; container: scale(1)→scale(0.97) + opacity 1→0 150ms ease-in",
+      "css": ".modal-overlay { transition: opacity var(--inkblot-duration-normal) var(--inkblot-easing-out); } .modal { transition: transform var(--inkblot-duration-normal) var(--inkblot-easing-out), opacity var(--inkblot-duration-normal) var(--inkblot-easing-out); }"
+    },
+    "dropdown": {
+      "open": "opacity 0→1 + translateY(-8px)→translateY(0) 200ms ease-out",
+      "close": "opacity 1→0 + translateY(0)→translateY(-4px) 150ms ease-in",
+      "css": ".dropdown[data-state='open'] { animation: dropdownIn var(--inkblot-duration-normal) var(--inkblot-easing-out); } @keyframes dropdownIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }"
+    },
+    "toast": {
+      "enter": "translateX(100%)→translateX(0) + opacity 0→1, 300ms ease-out",
+      "exit": "opacity 1→0, 150ms ease-in",
+      "css": ".toast-enter { animation: toastIn var(--inkblot-duration-normal) var(--inkblot-easing-out); } @keyframes toastIn { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }"
+    },
+    "tooltip": {
+      "show": "opacity 0→1 + scale(0.96)→scale(1), 150ms ease-out, 300ms delay",
+      "hide": "opacity 1→0, 100ms ease-in, 0ms delay"
+    },
+    "accordion": {
+      "expand": "height 0→auto 250ms ease-in-out (use max-height or grid-template-rows: 0fr→1fr)",
+      "collapse": "height auto→0 200ms ease-in-out"
+    },
+    "skeleton": {
+      "shimmer": "background-position 200% 0 → -200% 0, 1500ms ease-in-out infinite",
+      "css": "@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }"
+    },
+    "reducedMotion": {
+      "rule": "When prefers-reduced-motion: reduce, set all durations to 0.01ms. Remove transforms. Allow opacity ≤100ms only.",
+      "css": "@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }"
+    }
+  },
+
+  "responsiveBehavior": {
+    "description": "How composite components adapt at each breakpoint. AI: apply these rules when generating responsive layouts.",
+    "form": {
+      "mobile": "Single column. Fields stack vertically. Full-width inputs. Actions stack: primary on top, secondary below.",
+      "tablet": "Single column. Fields remain stacked. Actions row: primary right-aligned.",
+      "desktop": "Optional 2-column layout for short forms. Long forms stay single-column. Actions row right-aligned."
+    },
+    "modal": {
+      "mobile": "Full-screen (width: 100vw, height: 100vh, border-radius: 0). No overlay visible. Slide up from bottom.",
+      "tablet": "Centered. Width: 560px max. Max-height: 85vh. Rounded corners.",
+      "desktop": "Centered. Width per size token (sm/md/lg). Max-height: 85vh."
+    },
+    "sidebar": {
+      "mobile": "Hidden. Accessed via hamburger menu → off-canvas drawer (z-index: modal, slide from left).",
+      "tablet": "Collapsed rail (64px wide, icons only). Expand on hover or click.",
+      "desktop": "Fixed 280px sidebar. Always visible."
+    },
+    "table": {
+      "mobile": "Convert to card layout: each row becomes a card with label:value pairs stacked vertically. Hide low-priority columns.",
+      "tablet": "Horizontal scroll with sticky first column. Show all columns.",
+      "desktop": "Full table. No scroll needed."
+    },
+    "cardGrid": {
+      "mobile": "1 column. Cards full width.",
+      "tablet": "2 columns. Min card width: 280px.",
+      "desktop": "3-4 columns via auto-fill minmax(280px, 1fr)."
+    },
+    "navigation": {
+      "mobile": "Bottom tab bar (max 5 items) or hamburger → drawer.",
+      "tablet": "Top horizontal nav. Overflow → 'More' dropdown.",
+      "desktop": "Top horizontal nav or sidebar. All items visible."
+    },
+    "hero": {
+      "mobile": "Stack: image above content. Full-bleed image. Reduced heading size.",
+      "tablet": "Split: image left, content right. Or stacked with larger heading.",
+      "desktop": "Split 50/50 or centered text over background image."
+    },
+    "toast": {
+      "mobile": "Full-width, bottom of screen, 8px margin.",
+      "tablet": "Fixed width (380px), bottom-right.",
+      "desktop": "Fixed width (420px), bottom-right, 24px margin."
+    }
+  },
+
+  "stateCombinations": {
+    "description": "Multi-state resolution rules. When multiple states co-exist, apply in this priority order (highest wins).",
+    "priorityOrder": ["disabled", "loading", "error", "active", "focus", "hover", "default"],
+    "rules": {
+      "disabled+hover": "Disabled wins. No hover effect. Cursor: not-allowed.",
+      "disabled+focus": "Disabled wins visually, BUT keep focus ring for keyboard users (accessibility). aria-disabled='true', NOT disabled attribute.",
+      "disabled+error": "Disabled wins. Error styling suppressed. Error message still visible but dimmed.",
+      "loading+hover": "Loading wins. No hover cursor change. Cursor: wait.",
+      "loading+focus": "Show focus ring on top of loading state. User can Tab away.",
+      "error+focus": "Both visible: error border + focus ring. Use box-shadow for focus to not conflict with error border.",
+      "error+hover": "Error border persists. Subtle hover background allowed.",
+      "error+focus+hover": "Error border + focus ring + hover background. All three visible."
+    },
+    "cssStrategy": {
+      "description": "Use CSS specificity to layer states correctly.",
+      "example": ".input { border-color: var(--inkblot-semantic-color-border-default); } .input:hover { border-color: var(--inkblot-semantic-color-border-strong); } .input:focus-visible { border-color: var(--inkblot-semantic-color-border-focus); box-shadow: 0 0 0 2px rgba(0,122,255,0.15); } .input[aria-invalid='true'] { border-color: var(--inkblot-semantic-color-status-error); } .input[aria-invalid='true']:focus-visible { border-color: var(--inkblot-semantic-color-status-error); box-shadow: 0 0 0 2px rgba(230,53,43,0.15); } .input[aria-disabled='true'] { opacity: var(--inkblot-opacity-disabled); pointer-events: none; }"
+    }
+  },
+
+  "interactionFlows": {
+    "description": "Common event chains. AI: use these to auto-compose interaction logic.",
+    "formSubmission": {
+      "trigger": "click submit button OR press Enter in last field",
+      "steps": [
+        "1. Validate all required fields. Mark invalid fields with aria-invalid='true'.",
+        "2. If errors: scroll to first error field. Set focus on it. Announce via aria-live.",
+        "3. If valid: set submit button to loading state (aria-busy='true').",
+        "4. Send data. On success: show success toast, redirect or reset form.",
+        "5. On failure: show error toast (assertive), restore submit button, preserve inputs."
+      ]
+    },
+    "modalOpen": {
+      "trigger": "click trigger button",
+      "steps": [
+        "1. Record trigger element for focus return.",
+        "2. Render modal + overlay. Animate in (scaleIn 250ms).",
+        "3. Lock body scroll (overflow: hidden on <body>).",
+        "4. Move focus to first focusable element inside modal.",
+        "5. Activate focus trap."
+      ]
+    },
+    "modalClose": {
+      "trigger": "click close button OR click overlay OR press Escape",
+      "steps": [
+        "1. Animate out (150ms).",
+        "2. Remove focus trap.",
+        "3. Unlock body scroll.",
+        "4. Return focus to original trigger element.",
+        "5. Remove modal from DOM (or hide)."
+      ]
+    },
+    "tooltipShow": {
+      "trigger": "mouseenter OR focus (keyboard)",
+      "steps": [
+        "1. Wait 300ms delay (cancel if mouse leaves before delay).",
+        "2. Calculate position (prefer top, auto-flip if near edge).",
+        "3. Render tooltip at 8px offset from trigger.",
+        "4. Animate in (fadeIn + scaleIn 150ms).",
+        "5. Set aria-describedby on trigger → tooltip id."
+      ]
+    },
+    "tooltipHide": {
+      "trigger": "mouseleave OR blur OR Escape",
+      "steps": [
+        "1. Animate out (100ms).",
+        "2. Remove aria-describedby from trigger.",
+        "3. Remove tooltip from DOM."
+      ]
+    },
+    "dropdownToggle": {
+      "trigger": "click trigger OR Enter/Space/ArrowDown on trigger",
+      "open": [
+        "1. Set aria-expanded='true' on trigger.",
+        "2. Render dropdown (position: absolute, z-index: dropdown).",
+        "3. Animate in (slideDown 200ms).",
+        "4. Move focus to first option (or highlighted option)."
+      ],
+      "navigate": "ArrowDown/Up moves highlight. Type-ahead filters. Home/End jump to first/last.",
+      "select": "Enter or click selects. Set trigger value. Close dropdown. Return focus to trigger.",
+      "close": "Escape or click outside. Set aria-expanded='false'. Return focus to trigger."
+    },
+    "infiniteScroll": {
+      "trigger": "scroll position within 200px of container bottom",
+      "steps": [
+        "1. Show loading spinner at bottom of list.",
+        "2. Fetch next page of data.",
+        "3. Append items to list (no layout shift).",
+        "4. Remove spinner.",
+        "5. If no more data: show 'End of list' message. Remove scroll listener."
+      ]
+    },
+    "searchWithDebounce": {
+      "trigger": "keyup in search input",
+      "steps": [
+        "1. Wait 300ms debounce (restart timer on each keystroke).",
+        "2. If input empty: clear results, show default state.",
+        "3. If input non-empty: show loading indicator in results area.",
+        "4. Fetch results.",
+        "5. Render results. Announce count via aria-live: '{n} results found'."
+      ]
+    }
+  },
+
+  "contentRules": {
+    "description": "Text, image, and content handling rules for AI rendering.",
+    "truncation": {
+      "singleLine": {
+        "css": "overflow: hidden; text-overflow: ellipsis; white-space: nowrap;",
+        "usage": "Table cells, nav items, breadcrumbs, single-line labels"
+      },
+      "multiLine": {
+        "css": "display: -webkit-box; -webkit-line-clamp: {n}; -webkit-box-orient: vertical; overflow: hidden;",
+        "defaults": { "cardTitle": 2, "cardDescription": 3, "listItemSubtitle": 1, "toastMessage": 2 },
+        "rule": "Always expose full text via title attribute or expand action."
+      },
+      "never": ["headings (h1-h4)", "error messages", "form labels", "button labels"]
+    },
+    "wordWrapping": {
+      "longWords": "overflow-wrap: break-word; on all text containers.",
+      "urls": "word-break: break-all; on URL-displaying elements.",
+      "code": "white-space: pre-wrap; overflow-x: auto; on code blocks."
+    },
+    "iconAlignment": {
+      "inline": "vertical-align: -0.125em (aligns center of icon with text baseline).",
+      "flexRow": "align-items: center; gap: var(--inkblot-spacing-2);",
+      "sizeMatchText": "Match icon size to line-height of adjacent text. Body text → 20px icon. Label → 16px icon."
+    },
+    "imageAspectRatios": {
+      "hero": "21:9",
+      "landscape": "16:9",
+      "standard": "4:3",
+      "square": "1:1",
+      "portrait": "3:4",
+      "avatar": "1:1 (always circular via border-radius: full)",
+      "thumbnail": "1:1 (square with object-fit: cover)"
+    },
+    "imageFallbacks": {
+      "loading": "Show skeleton placeholder matching aspect ratio.",
+      "error": "Show neutral gray background (#f5f5f5) with subtle image-off icon centered.",
+      "lazyRule": "All images below fold: loading='lazy'. Above fold: loading='eager'."
+    },
+    "emptyValues": {
+      "strings": "Show — (em-dash)",
+      "numbers": "Show — (em-dash)",
+      "dates": "Show — (em-dash)",
+      "images": "Show skeleton or placeholder",
+      "lists": "Show empty state with title + description + action button",
+      "rule": "Never show 'undefined', 'null', 'NaN', 'N/A', or empty string in rendered UI."
+    }
+  },
+
+  "performanceHints": {
+    "description": "Optimization flags for AI-generated code. Apply these to improve runtime performance.",
+    "lazyLoading": {
+      "images": "loading='lazy' on all <img> below the fold.",
+      "components": "React.lazy() + Suspense for modals, drawers, heavy charts, settings panels. Show skeleton as fallback.",
+      "routes": "Code-split every route. Dynamic import().",
+      "rule": "Anything not visible on first paint should be lazy-loaded."
+    },
+    "virtualizedLists": {
+      "threshold": "Virtualize any list with > 50 items.",
+      "libraries": "react-window or @tanstack/virtual",
+      "rule": "Render only visible items + 5 item overscan buffer."
+    },
+    "tables": {
+      "largeDatasets": "Virtualize rows if > 100 rows. Paginate if > 500 total items.",
+      "sorting": "Client-side sort for ≤ 1000 rows. Server-side sort for > 1000.",
+      "rule": "Never render > 100 DOM rows simultaneously."
+    },
+    "animations": {
+      "cssPreferred": "Use CSS transitions and @keyframes instead of JS animation when possible.",
+      "willChange": "Add will-change: transform on elements that animate transform/opacity. Remove after animation completes.",
+      "compositorOnly": "Prefer transform and opacity. Avoid animating width, height, top, left, margin, padding (triggers layout)."
+    },
+    "rendering": {
+      "ssr": "Default for content pages, marketing, SEO-critical pages.",
+      "csr": "Dashboards, authenticated views, real-time data.",
+      "memoization": "React.memo() on list items, table rows, and any component receiving stable props."
+    },
+    "assets": {
+      "images": "Use WebP/AVIF format. Serve responsive sizes via srcset. Max width: 1920px.",
+      "fonts": "System font stack (no custom font download). If custom: preload, font-display: swap.",
+      "icons": "Inline SVG for interactive icons. SVG sprite for decorative icons."
+    }
+  }
+}

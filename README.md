@@ -54,10 +54,19 @@ inkblot-studio-design-tokens/
 
 ## For AI Agents
 
-1. Read `system/ai.json` — deterministic rules for rendering components
-2. Read `system/components.json` — anatomy, states, behavior, accessibility for every component
-3. Reference `dist/ai/inkblot-tokens-resolved.json` — flat resolved token values
-4. **Always use semantic tokens** (`inkblot.semantic.*`), never primitives
+**Primary reference** (include in context): `dist/ai/inkblot-ai-reference.json`
+- CSS variable map for all semantic tokens
+- Composite patterns (form, card, modal, table, list item)
+- Breakpoints, grid, easing (in CSS format)
+- Icon semantics, CSS snippets, component spacing
+- Validation and ARIA patterns
+
+**Supplemental**:
+- `system/ai.json` — rendering templates, layout assembly, edge cases
+- `system/components.json` — full component anatomy and states
+- `dist/ai/inkblot-tokens-resolved.json` — flat resolved values
+
+**Rule**: Always use semantic tokens (`var(--inkblot-semantic-color-*)`), never primitives
 
 ## For Developers
 
