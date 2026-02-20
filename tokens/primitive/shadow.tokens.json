@@ -1,41 +1,41 @@
 {
-  "$description": "Inkblot Studio elevation. Subtle, layered shadows - Apple-inspired depth.",
+  "$description": "Citron elevation. Warm, diffused shadows — like studio lighting on matte paper. No harsh depth.",
   "inkblot": {
     "shadow": {
       "$type": "shadow",
-      "$description": "Box shadows - use sparingly for hierarchy",
+      "$description": "Box shadows — warm-tinted, diffused. Cards should feel like floating matte paper.",
       "none": {
         "$value": "none",
         "$description": "No shadow"
       },
       "xs": {
-        "$value": "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
-        "$description": "Subtle lift"
+        "$value": "0 1px 2px 0 rgba(29, 28, 25, 0.04)",
+        "$description": "Barely there lift"
       },
       "sm": {
-        "$value": "0 2px 4px 0 rgba(0, 0, 0, 0.08)",
-        "$description": "Cards, dropdowns"
+        "$value": "0 2px 8px -1px rgba(29, 28, 25, 0.06), 0 1px 3px -1px rgba(29, 28, 25, 0.04)",
+        "$description": "Cards — soft, warm, diffused"
       },
       "md": {
-        "$value": "0 4px 8px 0 rgba(0, 0, 0, 0.10)",
-        "$description": "Modals, popovers"
+        "$value": "0 4px 16px -2px rgba(29, 28, 25, 0.08), 0 2px 6px -2px rgba(29, 28, 25, 0.04)",
+        "$description": "Elevated cards, dropdowns"
       },
       "lg": {
-        "$value": "0 8px 16px 0 rgba(0, 0, 0, 0.12)",
-        "$description": "Overlays"
+        "$value": "0 8px 24px -4px rgba(29, 28, 25, 0.10), 0 4px 10px -4px rgba(29, 28, 25, 0.04)",
+        "$description": "Modals, popovers"
       },
       "xl": {
-        "$value": "0 16px 24px 0 rgba(0, 0, 0, 0.16)",
-        "$description": "Maximum elevation"
+        "$value": "0 16px 40px -8px rgba(29, 28, 25, 0.12), 0 8px 16px -8px rgba(29, 28, 25, 0.04)",
+        "$description": "Maximum elevation — ambient, not harsh"
       }
     },
     "opacity": {
       "$type": "number",
-      "$description": "Opacity scale for overlays and disabled states",
-      "disabled": { "$value": 0.38, "$description": "Disabled elements" },
-      "overlay": { "$value": 0.5, "$description": "Modal backdrops" },
-      "subtle": { "$value": 0.6, "$description": "Secondary content" },
-      "default": { "$value": 1, "$description": "Full opacity" }
+      "$description": "Opacity scale",
+      "disabled": { "$value": 0.4,  "$description": "Disabled elements" },
+      "overlay":  { "$value": 0.45, "$description": "Modal backdrops — not too heavy" },
+      "subtle":   { "$value": 0.6,  "$description": "Secondary content" },
+      "default":  { "$value": 1,    "$description": "Full opacity" }
     }
   }
 }

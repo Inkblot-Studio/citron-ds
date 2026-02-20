@@ -33,9 +33,9 @@
         },
         "ghost": {
           "default": { "background": "transparent", "color": "var(--inkblot-semantic-color-interactive-primary)", "border": "none" },
-          "hover": { "background": "var(--inkblot-color-accent-blue-50)" },
+          "hover": { "background": "var(--inkblot-color-accent-citron-50)" },
           "focus": { "outline": "2px solid var(--inkblot-semantic-color-border-focus)", "outlineOffset": "2px" },
-          "active": { "background": "var(--inkblot-color-accent-blue-100)" }
+          "active": { "background": "var(--inkblot-color-accent-citron-100)" }
         },
         "danger": {
           "default": { "background": "var(--inkblot-semantic-color-status-error)", "color": "white" },
@@ -139,7 +139,7 @@
         "closed": { "border": "1px solid var(--inkblot-semantic-color-border-default)" },
         "open": { "border": "1px solid var(--inkblot-semantic-color-border-focus)", "dropdown": "visible with var(--inkblot-shadow-md)" },
         "optionHover": { "background": "var(--inkblot-semantic-color-background-secondary)" },
-        "optionSelected": { "background": "var(--inkblot-color-accent-blue-50)", "fontWeight": "var(--inkblot-typography-font-weight-medium)" }
+        "optionSelected": { "background": "var(--inkblot-color-accent-citron-50)", "fontWeight": "var(--inkblot-typography-font-weight-medium)" }
       },
       "behavior": {
         "open": "Click trigger or press Enter/Space/ArrowDown to open.",
@@ -212,7 +212,7 @@
       "variants": {
         "filled": { "background": "var(--inkblot-semantic-color-background-tertiary)", "color": "var(--inkblot-semantic-color-text-primary)" },
         "outlined": { "background": "transparent", "border": "1px solid var(--inkblot-semantic-color-border-default)" },
-        "accent": { "background": "var(--inkblot-color-accent-blue-50)", "color": "var(--inkblot-semantic-color-interactive-primary)" }
+        "accent": { "background": "var(--inkblot-color-accent-citron-50)", "color": "var(--inkblot-semantic-color-interactive-primary)" }
       },
       "style": { "borderRadius": "var(--inkblot-radius-full)", "padding": "var(--inkblot-spacing-1) var(--inkblot-spacing-3)", "fontSize": "var(--inkblot-typography-font-size-sm)", "height": "28px" },
       "accessibility": { "removable": "Remove button has aria-label 'Remove {chipLabel}'" }
@@ -225,7 +225,7 @@
         "headerCell": { "fontWeight": "var(--inkblot-typography-font-weight-semibold)", "fontSize": "var(--inkblot-typography-font-size-xs)", "letterSpacing": "var(--inkblot-typography-letter-spacing-wide)", "color": "var(--inkblot-semantic-color-text-secondary)", "padding": "var(--inkblot-spacing-3) var(--inkblot-spacing-4)", "borderBottom": "1px solid var(--inkblot-semantic-color-border-default)", "textTransform": "uppercase" },
         "cell": { "padding": "var(--inkblot-spacing-3) var(--inkblot-spacing-4)", "borderBottom": "1px solid var(--inkblot-semantic-color-border-default)", "fontSize": "var(--inkblot-typography-font-size-sm)" },
         "rowHover": { "background": "var(--inkblot-semantic-color-background-secondary)" },
-        "rowSelected": { "background": "var(--inkblot-color-accent-blue-50)" },
+        "rowSelected": { "background": "var(--inkblot-color-accent-citron-50)" },
         "rowStriped": { "oddRow": "var(--inkblot-semantic-color-background-secondary)" }
       },
       "behavior": { "sorting": "Click header to sort. Arrow icon indicates direction.", "selection": "Checkbox in first column for row selection.", "pagination": "Below table. Show page size selector and page navigation." },
@@ -236,7 +236,7 @@
       "description": "Non-blocking notification. Auto-dismisses. Stacks vertically.",
       "anatomy": ["container", "icon", "message", "action (optional)", "dismissButton"],
       "variants": {
-        "info": { "border": "1px solid var(--inkblot-color-accent-blue-200)", "background": "var(--inkblot-color-accent-blue-50)", "icon": "info-circle" },
+        "info": { "border": "1px solid var(--inkblot-color-accent-citron-200)", "background": "var(--inkblot-color-accent-citron-50)", "icon": "info-circle" },
         "success": { "border": "1px solid rgba(48, 179, 80, 0.3)", "background": "rgba(48, 179, 80, 0.1)", "icon": "check-circle" },
         "warning": { "border": "1px solid rgba(230, 134, 0, 0.3)", "background": "rgba(230, 134, 0, 0.1)", "icon": "alert-triangle" },
         "error": { "border": "1px solid rgba(230, 53, 43, 0.3)", "background": "rgba(230, 53, 43, 0.1)", "icon": "alert-circle" }

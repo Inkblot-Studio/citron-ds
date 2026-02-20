@@ -1,10 +1,11 @@
 {
   "$schema": "https://inkblot.studio/ai/v1/reference.schema.json",
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "identity": "Citron — warmly minimal, quietly distinctive. Citrus interpreted through restraint, intelligence, and taste.",
   "purpose": "Single-file reference for AI agents to produce complex components and systems without ambiguity. Include this file in your AI context.",
 
   "tokenMap": {
-    "description": "CSS variable names (use in style output) mapped to categories. AI: prefer semantic tokens.",
+    "description": "CSS variable names mapped to categories. AI: prefer semantic tokens. Brand accent is citron (warm amber-citrus, not blue).",
     "cssVariables": {
       "color": {
         "background": {
@@ -65,11 +66,10 @@
       "duration": "var(--inkblot-duration-{instant|fast|normal|slow|slower})",
       "easing": {
         "default": "cubic-bezier(0.25, 0.1, 0.25, 1)",
-        "in": "cubic-bezier(0.42, 0, 1, 1)",
-        "out": "cubic-bezier(0, 0, 0.58, 1)",
-        "inOut": "cubic-bezier(0.42, 0, 0.58, 1)",
-        "bounce": "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
-        "spring": "cubic-bezier(0.175, 0.885, 0.32, 1.275)"
+        "in": "cubic-bezier(0.32, 0, 0.67, 0)",
+        "out": "cubic-bezier(0.33, 1, 0.68, 1)",
+        "inOut": "cubic-bezier(0.65, 0, 0.35, 1)",
+        "expressive": "cubic-bezier(0.22, 1, 0.36, 1)"
       },
       "zIndex": "var(--inkblot-z-index-{base|raised|dropdown|sticky|overlay|modal|popover|toast})",
       "size": {
@@ -302,8 +302,8 @@
       "css": "transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-default), box-shadow var(--inkblot-duration-fast) var(--inkblot-easing-default);"
     },
     "toggle": {
-      "stateChange": "thumb: transform 150ms cubic-bezier(0.175,0.885,0.32,1.275); track: background 150ms ease",
-      "css": ".toggle-thumb { transition: transform var(--inkblot-duration-fast) cubic-bezier(0.175,0.885,0.32,1.275); } .toggle-track { transition: background var(--inkblot-duration-fast) var(--inkblot-easing-default); }"
+      "stateChange": "thumb: transform 120ms expressive ease-out; track: background 120ms ease",
+      "css": ".toggle-thumb { transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-expressive); } .toggle-track { transition: background var(--inkblot-duration-fast) var(--inkblot-easing-default); }"
     },
     "modal": {
       "enter": "overlay: opacity 0→1 250ms ease-out; container: scale(0.95)→scale(1) + opacity 0→1 250ms ease-out",

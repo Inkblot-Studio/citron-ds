@@ -10,7 +10,7 @@
       "cellPadding": "var(--inkblot-spacing-3) var(--inkblot-spacing-4)",
       "rowDivider": "1px solid var(--inkblot-semantic-color-border-default)",
       "hoverRow": "var(--inkblot-semantic-color-background-secondary)",
-      "selectedRow": "var(--inkblot-color-accent-blue-50)",
+      "selectedRow": "var(--inkblot-color-accent-citron-50)",
       "stripedRows": "Alternate rows use var(--inkblot-semantic-color-background-secondary)",
       "sorting": { "icon": "Arrow up/down next to sortable header", "ariaSort": "ascending | descending | none" },
       "pagination": { "position": "Below table", "itemsPerPage": [10, 25, 50, 100], "default": 25 },
@@ -21,7 +21,7 @@
       "types": ["ordered", "unordered", "description", "nav", "feed"],
       "spacing": { "itemGap": "var(--inkblot-spacing-2)", "nestedIndent": "var(--inkblot-spacing-6)" },
       "dividers": "Optional. Use 1px border-bottom between items in dense lists.",
-      "interactive": { "hover": "background: var(--inkblot-semantic-color-background-secondary)", "selected": "background: var(--inkblot-color-accent-blue-50), font-weight: medium" }
+      "interactive": { "hover": "background: var(--inkblot-semantic-color-background-secondary)", "selected": "background: var(--inkblot-color-accent-citron-50), font-weight: medium" }
     },
     "cards": {
       "layout": "Use cardGrid layout pattern. Min card width: 280px.",

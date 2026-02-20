@@ -1,68 +1,69 @@
 {
-  "$description": "Inkblot Studio primitive color palette. Apple-inspired: clean, sophisticated, accessible. sRGB color space.",
+  "$description": "Citron primitive color palette. Warm, restrained, premium. Citrus interpreted through restraint and taste — never literal, never loud.",
   "inkblot": {
-    "$description": "Inkblot Studio design token primitives",
+    "$description": "Inkblot Studio — Citron product line",
     "color": {
       "$type": "color",
-      "$description": "Base color primitives - use semantic tokens in components",
+      "$description": "Base color primitives — use semantic tokens in components, never raw primitives",
       "neutral": {
         "$type": "color",
+        "$description": "Warm neutrals with barely perceptible beige undertone. No blue-tinted greys.",
         "white": {
           "$value": "#ffffff",
-          "$description": "Pure white, primary backgrounds"
+          "$description": "Pure white, floating surfaces"
         },
         "gray": {
-          "50": { "$value": "#fafafa", "$description": "Lightest gray, subtle backgrounds" },
-          "100": { "$value": "#f5f5f5", "$description": "Very light gray" },
-          "200": { "$value": "#ebebeb", "$description": "Light gray, borders" },
-          "300": { "$value": "#d1d1d6", "$description": "Medium light gray" },
-          "400": { "$value": "#8e8e93", "$description": "Medium gray, placeholder text" },
-          "500": { "$value": "#636366", "$description": "Gray" },
-          "600": { "$value": "#48484a", "$description": "Dark gray" },
-          "700": { "$value": "#3a3a3c", "$description": "Darker gray" },
-          "800": { "$value": "#2c2c2e", "$description": "Dark" },
-          "900": { "$value": "#1c1c1e", "$description": "Darkest, primary text" },
-          "950": { "$value": "#000000", "$description": "Pure black" }
+          "50":  { "$value": "#fafaf7", "$description": "Warm off-white, body background" },
+          "100": { "$value": "#f5f4f0", "$description": "Warm surface, secondary bg" },
+          "200": { "$value": "#eae9e3", "$description": "Subtle warm border, dividers" },
+          "300": { "$value": "#d4d3cb", "$description": "Medium warm border" },
+          "400": { "$value": "#93928a", "$description": "Placeholder text, muted" },
+          "500": { "$value": "#6b6a63", "$description": "Secondary text" },
+          "600": { "$value": "#4d4c47", "$description": "Emphasized secondary" },
+          "700": { "$value": "#3a3935", "$description": "Strong text" },
+          "800": { "$value": "#2d2c28", "$description": "Deep warm dark" },
+          "900": { "$value": "#1d1c19", "$description": "Primary text — deep slate, never pure black" },
+          "950": { "$value": "#0f0e0c", "$description": "Deepest warm black" }
         }
       },
       "accent": {
         "$type": "color",
-        "$description": "Primary brand accent - refined blue, Apple-inspired",
-        "blue": {
-          "50": { "$value": "#e8f4ff", "$description": "Lightest blue tint" },
-          "100": { "$value": "#c7e3ff", "$description": "Very light blue" },
-          "200": { "$value": "#a1d0ff", "$description": "Light blue" },
-          "300": { "$value": "#6eb8ff", "$description": "Medium light blue" },
-          "400": { "$value": "#3d9eff", "$description": "Blue" },
-          "500": { "$value": "#007aff", "$description": "Primary accent - Apple system blue" },
-          "600": { "$value": "#0066d6", "$description": "Hover/pressed state" },
-          "700": { "$value": "#0052ad", "$description": "Active state" },
-          "800": { "$value": "#003d84", "$description": "Dark blue" },
-          "900": { "$value": "#002952", "$description": "Darkest blue" }
+        "$description": "Citron brand accent — refined citrus-amber, used sparingly for emphasis. Warm light through citrus peel.",
+        "citron": {
+          "50":  { "$value": "#fdfbf3", "$description": "Barely there citron wash" },
+          "100": { "$value": "#faf4df", "$description": "Soft cream tint" },
+          "200": { "$value": "#f3e6b8", "$description": "Warm wheat" },
+          "300": { "$value": "#e8d38a", "$description": "Light honey" },
+          "400": { "$value": "#d9bc58", "$description": "Citrus glow" },
+          "500": { "$value": "#c4a030", "$description": "Citron primary — the brand tone" },
+          "600": { "$value": "#a38427", "$description": "Deep citron, hover state" },
+          "700": { "$value": "#7f671f", "$description": "Rich amber" },
+          "800": { "$value": "#5c4a18", "$description": "Dark citron" },
+          "900": { "$value": "#3d3111", "$description": "Deepest citron" }
         }
       },
       "semantic": {
         "$type": "color",
-        "$description": "Semantic colors - use for status, feedback, actions",
+        "$description": "Status colors — warm-shifted for cohesion, fully accessible",
         "success": {
-          "light": { "$value": "#34c759", "$description": "Success green" },
-          "main": { "$value": "#30b350", "$description": "Primary success" },
-          "dark": { "$value": "#248a3d", "$description": "Success hover" }
+          "light": { "$value": "#3d9e50", "$description": "Warm success green" },
+          "main":  { "$value": "#358c46", "$description": "Primary success" },
+          "dark":  { "$value": "#2a7538", "$description": "Success hover" }
         },
         "warning": {
-          "light": { "$value": "#ff9500", "$description": "Warning orange" },
-          "main": { "$value": "#e68600", "$description": "Primary warning" },
-          "dark": { "$value": "#cc7700", "$description": "Warning hover" }
+          "light": { "$value": "#e0a020", "$description": "Warm amber warning" },
+          "main":  { "$value": "#c48c1a", "$description": "Primary warning — distinct from citron by saturation" },
+          "dark":  { "$value": "#a67515", "$description": "Warning hover" }
         },
         "error": {
-          "light": { "$value": "#ff3b30", "$description": "Error red" },
-          "main": { "$value": "#e6352b", "$description": "Primary error" },
-          "dark": { "$value": "#cc2f26", "$description": "Error hover" }
+          "light": { "$value": "#d14940", "$description": "Warm red" },
+          "main":  { "$value": "#be3e35", "$description": "Primary error" },
+          "dark":  { "$value": "#a3352d", "$description": "Error hover" }
         },
         "info": {
-          "light": { "$value": "#5ac8fa", "$description": "Info cyan" },
-          "main": { "$value": "#007aff", "$description": "Primary info (matches accent)" },
-          "dark": { "$value": "#0066d6", "$description": "Info hover" }
+          "light": { "$value": "#6ba3c2", "$description": "Muted warm blue" },
+          "main":  { "$value": "#5790ad", "$description": "Primary info — desaturated, warm" },
+          "dark":  { "$value": "#497a94", "$description": "Info hover" }
         }
       }
     }

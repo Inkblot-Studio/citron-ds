@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inkblot Studio — Design System</title>
+  <title>Citron — Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/inkblot-variables.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; }
@@ -45,8 +48,8 @@
     }
 
     /* NAV */
-    .nav { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(255,255,255,0.72); border-bottom: 1px solid var(--inkblot-semantic-color-border-default); padding: var(--inkblot-spacing-3) var(--inkblot-spacing-6); display: flex; align-items: center; justify-content: space-between; }
-    [data-theme="dark"] .nav { background: rgba(0,0,0,0.72); }
+    .nav { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(24px) saturate(1.2); -webkit-backdrop-filter: blur(24px) saturate(1.2); background: rgba(250,250,247,0.78); border-bottom: 1px solid var(--inkblot-semantic-color-border-default); padding: var(--inkblot-spacing-3) var(--inkblot-spacing-6); display: flex; align-items: center; justify-content: space-between; }
+    [data-theme="dark"] .nav { background: rgba(18,17,14,0.78); }
     .nav-brand { font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; letter-spacing: -0.01em; color: var(--inkblot-semantic-color-text-primary); text-decoration: none; transition: opacity 150ms; }
     .nav-brand:hover { opacity: 0.7; }
     .nav-menu { display: contents; }
@@ -64,25 +67,25 @@
     .nav.open .nav-hamburger span::before { transform: translateY(0) rotate(45deg); }
     .nav.open .nav-hamburger span::after { transform: translateY(0) rotate(-45deg); }
     .theme-toggle { width: 44px; height: 24px; background: var(--inkblot-semantic-color-border-default); border: none; border-radius: var(--inkblot-radius-full); cursor: pointer; position: relative; transition: background 150ms; flex-shrink: 0; }
-    .theme-toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: white; border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.15); transition: transform 150ms cubic-bezier(0.175,0.885,0.32,1.275); }
+    .theme-toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: white; border-radius: 50%; box-shadow: 0 1px 3px rgba(29,28,25,0.12); transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-expressive); }
     [data-theme="dark"] .theme-toggle { background: var(--inkblot-dark-color-interactive-primary); }
     [data-theme="dark"] .theme-toggle::after { transform: translateX(20px); }
     *:focus-visible { outline: 2px solid var(--inkblot-semantic-color-border-focus); outline-offset: 2px; }
 
     /* HERO */
     .hero { padding: clamp(64px,10vh,120px) var(--inkblot-spacing-8); text-align: center; max-width: 720px; margin: 0 auto; }
-    .hero h1 { font-size: clamp(2.5rem,6vw,3.75rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.1; margin-bottom: var(--inkblot-spacing-4); }
-    .hero .tagline { font-size: var(--inkblot-typography-font-size-lg); color: var(--inkblot-semantic-color-text-secondary); line-height: 1.6; margin-bottom: var(--inkblot-spacing-8); }
+    .hero h1 { font-size: clamp(2rem,5vw,2.75rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: var(--inkblot-spacing-4); }
+    .hero .tagline { font-size: var(--inkblot-typography-font-size-md); color: var(--inkblot-semantic-color-text-secondary); line-height: 1.65; margin-bottom: var(--inkblot-spacing-10); }
     .hero-actions { display: flex; gap: var(--inkblot-spacing-3); justify-content: center; flex-wrap: wrap; }
 
     /* LAYOUT */
     .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--inkblot-spacing-8) var(--inkblot-spacing-24); }
-    .section { margin-bottom: var(--inkblot-spacing-16); }
-    .section-header { margin-bottom: var(--inkblot-spacing-6); padding-bottom: var(--inkblot-spacing-3); border-bottom: 1px solid var(--inkblot-semantic-color-border-default); }
-    .section-title { font-size: var(--inkblot-typography-font-size-xl); font-weight: 600; letter-spacing: -0.02em; margin-bottom: 2px; }
+    .section { margin-bottom: var(--inkblot-spacing-20); }
+    .section-header { margin-bottom: var(--inkblot-spacing-8); padding-bottom: var(--inkblot-spacing-4); border-bottom: 1px solid var(--inkblot-semantic-color-border-default); }
+    .section-title { font-size: var(--inkblot-typography-font-size-xl); font-weight: 500; letter-spacing: -0.02em; margin-bottom: 4px; }
     .section-desc { font-size: var(--inkblot-typography-font-size-xs); color: var(--inkblot-semantic-color-text-tertiary); }
-    .card { background: var(--inkblot-semantic-color-background-secondary); border-radius: var(--inkblot-radius-xl); padding: var(--inkblot-spacing-6); }
-    .card-title { font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; margin-bottom: var(--inkblot-spacing-4); }
+    .card { background: var(--inkblot-semantic-color-background-secondary); border-radius: var(--inkblot-radius-xl); padding: var(--inkblot-spacing-6); box-shadow: var(--inkblot-shadow-sm); }
+    .card-title { font-size: var(--inkblot-typography-font-size-sm); font-weight: 500; margin-bottom: var(--inkblot-spacing-4); color: var(--inkblot-semantic-color-text-primary); }
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--inkblot-spacing-6); }
     .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--inkblot-spacing-6); }
     .four-col { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--inkblot-spacing-6); }
@@ -90,14 +93,14 @@
     @media (max-width: 640px) { .two-col, .three-col, .four-col { grid-template-columns: 1fr; } }
 
     /* BUTTONS */
-    .btn { padding: var(--inkblot-spacing-3) var(--inkblot-spacing-6); border: none; border-radius: var(--inkblot-radius-lg); font-family: inherit; font-size: var(--inkblot-typography-font-size-sm); font-weight: 500; cursor: pointer; transition: all 150ms cubic-bezier(0.25,0.1,0.25,1); min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: var(--inkblot-spacing-2); }
-    .btn:active { transform: scale(0.97); }
-    .btn-primary { background: var(--inkblot-semantic-color-interactive-primary); color: var(--inkblot-semantic-color-text-inverse); box-shadow: 0 2px 8px rgba(0,122,255,0.2); }
-    .btn-primary:hover { background: var(--inkblot-semantic-color-interactive-primary-hover); box-shadow: 0 4px 16px rgba(0,122,255,0.25); }
-    .btn-secondary { background: transparent; color: var(--inkblot-semantic-color-text-primary); border: 1px solid var(--inkblot-semantic-color-border-default); }
-    .btn-secondary:hover { background: var(--inkblot-semantic-color-background-secondary); border-color: var(--inkblot-semantic-color-border-strong); }
-    .btn-ghost { background: transparent; color: var(--inkblot-semantic-color-interactive-primary); }
-    .btn-ghost:hover { background: rgba(0,122,255,0.06); }
+    .btn { padding: var(--inkblot-spacing-3) var(--inkblot-spacing-6); border: none; border-radius: var(--inkblot-radius-lg); font-family: inherit; font-size: var(--inkblot-typography-font-size-sm); font-weight: 500; cursor: pointer; transition: background var(--inkblot-duration-fast) var(--inkblot-easing-default), box-shadow var(--inkblot-duration-fast) var(--inkblot-easing-default), transform 80ms var(--inkblot-easing-default); min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: var(--inkblot-spacing-2); }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: var(--inkblot-semantic-color-interactive-primary); color: var(--inkblot-color-accent-citron-50); box-shadow: 0 1px 4px rgba(196,160,48,0.15); }
+    .btn-primary:hover { background: var(--inkblot-semantic-color-interactive-primary-hover); box-shadow: 0 2px 10px rgba(196,160,48,0.22); }
+    .btn-secondary { background: var(--inkblot-semantic-color-background-secondary); color: var(--inkblot-semantic-color-text-primary); border: 1px solid var(--inkblot-semantic-color-border-default); box-shadow: var(--inkblot-shadow-xs); }
+    .btn-secondary:hover { background: var(--inkblot-semantic-color-background-tertiary); border-color: var(--inkblot-semantic-color-border-strong); box-shadow: var(--inkblot-shadow-sm); }
+    .btn-ghost { background: transparent; color: var(--inkblot-semantic-color-text-link); }
+    .btn-ghost:hover { background: var(--inkblot-color-accent-citron-50); }
     .btn-danger { background: var(--inkblot-semantic-color-status-error); color: white; }
     .btn-sm { min-height: 32px; padding: var(--inkblot-spacing-1) var(--inkblot-spacing-3); font-size: var(--inkblot-typography-font-size-xs); }
     .btn-lg { min-height: 48px; padding: var(--inkblot-spacing-3) var(--inkblot-spacing-8); font-size: var(--inkblot-typography-font-size-md); border-radius: var(--inkblot-radius-xl); }
@@ -106,7 +109,7 @@
     .badges { display: flex; gap: var(--inkblot-spacing-3); flex-wrap: wrap; }
     .badge { padding: var(--inkblot-spacing-1) var(--inkblot-spacing-3); border-radius: var(--inkblot-radius-full); font-size: var(--inkblot-typography-font-size-xs); font-weight: 500; color: white; }
     .badge-success { background: var(--inkblot-semantic-color-status-success); }
-    .badge-warning { background: var(--inkblot-semantic-color-status-warning); color: #1c1c1e; }
+    .badge-warning { background: var(--inkblot-semantic-color-status-warning); color: var(--inkblot-color-accent-citron-50); }
     .badge-error { background: var(--inkblot-semantic-color-status-error); }
     .badge-info { background: var(--inkblot-semantic-color-status-info); }
 
@@ -129,28 +132,28 @@
     .input-label { font-size: var(--inkblot-typography-font-size-xs); font-weight: 500; color: var(--inkblot-semantic-color-text-secondary); }
     .input { padding: var(--inkblot-spacing-2) var(--inkblot-spacing-3); border: 1px solid var(--inkblot-semantic-color-border-default); border-radius: var(--inkblot-radius-md); font-family: inherit; font-size: var(--inkblot-typography-font-size-base); background: var(--inkblot-semantic-color-background-primary); color: var(--inkblot-semantic-color-text-primary); min-height: 40px; transition: border-color 150ms, box-shadow 150ms; outline: none; }
     .input:hover { border-color: var(--inkblot-semantic-color-border-strong); }
-    .input:focus { border-color: var(--inkblot-semantic-color-border-focus); box-shadow: 0 0 0 2px rgba(0,122,255,0.15); }
+    .input:focus { border-color: var(--inkblot-semantic-color-border-focus); box-shadow: 0 0 0 2px rgba(196,160,48,0.15); }
     .input-error { border-color: var(--inkblot-semantic-color-status-error) !important; }
-    .input-error:focus { box-shadow: 0 0 0 2px rgba(230,53,43,0.15); }
+    .input-error:focus { box-shadow: 0 0 0 2px rgba(190,62,53,0.15); }
     .input-help { font-size: 11px; color: var(--inkblot-semantic-color-text-tertiary); }
     .input-error-msg { font-size: 11px; color: var(--inkblot-semantic-color-status-error); }
 
     /* TOGGLE */
     .toggle-track { width: 44px; height: 24px; background: var(--inkblot-semantic-color-border-default); border-radius: var(--inkblot-radius-full); position: relative; cursor: pointer; border: none; transition: background 150ms; }
     .toggle-track.on { background: var(--inkblot-semantic-color-interactive-primary); }
-    .toggle-thumb { width: 20px; height: 20px; background: white; border-radius: 50%; position: absolute; top: 2px; left: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.15); transition: transform 150ms cubic-bezier(0.175,0.885,0.32,1.275); }
+    .toggle-thumb { width: 20px; height: 20px; background: white; border-radius: 50%; position: absolute; top: 2px; left: 2px; box-shadow: 0 1px 3px rgba(29,28,25,0.12); transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-expressive); }
     .toggle-track.on .toggle-thumb { transform: translateX(20px); }
 
     /* SHADOWS */
     .shadow-row { display: flex; flex-wrap: wrap; gap: var(--inkblot-spacing-6); }
     .shadow-box { width: 100px; height: 100px; background: var(--inkblot-semantic-color-background-primary); border-radius: var(--inkblot-radius-xl); display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--inkblot-semantic-color-text-tertiary); transition: transform 150ms; }
-    .shadow-box:hover { transform: translateY(-4px); }
+    .shadow-box:hover { transform: translateY(-3px); }
 
     /* SPACING */
     .scale-row { display: flex; flex-wrap: wrap; gap: var(--inkblot-spacing-4); align-items: flex-end; }
-    .scale-box { background: var(--inkblot-semantic-color-interactive-primary); border-radius: var(--inkblot-radius-md); display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: 500; }
+    .scale-box { background: var(--inkblot-semantic-color-interactive-primary); border-radius: var(--inkblot-radius-md); display: flex; align-items: center; justify-content: center; color: var(--inkblot-color-accent-citron-50); font-size: 10px; font-weight: 500; }
     .radius-row { display: flex; flex-wrap: wrap; gap: var(--inkblot-spacing-4); }
-    .radius-box { width: 72px; height: 72px; background: linear-gradient(135deg, var(--inkblot-color-accent-blue-400), var(--inkblot-color-accent-blue-600)); display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; font-weight: 500; }
+    .radius-box { width: 72px; height: 72px; background: linear-gradient(135deg, var(--inkblot-color-accent-citron-400), var(--inkblot-color-accent-citron-600)); display: flex; align-items: center; justify-content: center; color: var(--inkblot-color-accent-citron-50); font-size: 11px; font-weight: 500; }
 
     /* SKELETON */
     .skeleton { border-radius: var(--inkblot-radius-md); background: linear-gradient(90deg, var(--inkblot-semantic-color-background-secondary) 25%, var(--inkblot-semantic-color-background-tertiary) 50%, var(--inkblot-semantic-color-background-secondary) 75%); background-size: 200% 100%; animation: shimmer 1.5s ease-in-out infinite; }
@@ -159,18 +162,18 @@
     /* TOASTS */
     .toast { display: flex; align-items: center; gap: var(--inkblot-spacing-3); padding: var(--inkblot-spacing-3) var(--inkblot-spacing-4); border-radius: var(--inkblot-radius-lg); font-size: var(--inkblot-typography-font-size-sm); box-shadow: var(--inkblot-shadow-lg); }
     .toast-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .toast-info { background: var(--inkblot-color-accent-blue-50); border: 1px solid rgba(0,122,255,0.15); }
+    .toast-info { background: rgba(87,144,173,0.07); border: 1px solid rgba(87,144,173,0.18); }
     .toast-info .toast-dot { background: var(--inkblot-semantic-color-status-info); }
-    .toast-success { background: rgba(48,179,80,0.08); border: 1px solid rgba(48,179,80,0.15); }
+    .toast-success { background: rgba(53,140,70,0.07); border: 1px solid rgba(53,140,70,0.18); }
     .toast-success .toast-dot { background: var(--inkblot-semantic-color-status-success); }
-    .toast-error { background: rgba(230,53,43,0.08); border: 1px solid rgba(230,53,43,0.15); }
+    .toast-error { background: rgba(190,62,53,0.07); border: 1px solid rgba(190,62,53,0.18); }
     .toast-error .toast-dot { background: var(--inkblot-semantic-color-status-error); }
-    .toast-warning { background: rgba(230,134,0,0.08); border: 1px solid rgba(230,134,0,0.15); }
+    .toast-warning { background: rgba(196,140,26,0.07); border: 1px solid rgba(196,140,26,0.18); }
     .toast-warning .toast-dot { background: var(--inkblot-semantic-color-status-warning); }
 
     /* ERROR / EMPTY */
-    .error-demo { background: rgba(230,53,43,0.08); border: 1px solid rgba(230,53,43,0.25); border-radius: var(--inkblot-radius-lg); padding: var(--inkblot-spacing-4); font-size: var(--inkblot-typography-font-size-sm); }
-    [data-theme="dark"] .error-demo { background: rgba(255,69,58,0.12); border-color: rgba(255,69,58,0.3); }
+    .error-demo { background: rgba(190,62,53,0.06); border: 1px solid rgba(190,62,53,0.2); border-radius: var(--inkblot-radius-lg); padding: var(--inkblot-spacing-4); font-size: var(--inkblot-typography-font-size-sm); }
+    [data-theme="dark"] .error-demo { background: rgba(224,90,82,0.1); border-color: rgba(224,90,82,0.25); }
     .empty-state { text-align: center; padding: var(--inkblot-spacing-10) var(--inkblot-spacing-4); }
     .empty-state h3 { font-size: var(--inkblot-typography-font-size-lg); font-weight: 600; margin-bottom: var(--inkblot-spacing-2); }
     .empty-state p { font-size: var(--inkblot-typography-font-size-sm); color: var(--inkblot-semantic-color-text-secondary); margin-bottom: var(--inkblot-spacing-4); }
@@ -178,19 +181,19 @@
     /* MOTION DEMO */
     .motion-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: var(--inkblot-spacing-4); }
     .motion-item { text-align: center; }
-    .motion-box { width: 100%; aspect-ratio: 1; background: var(--inkblot-semantic-color-interactive-primary); border-radius: var(--inkblot-radius-lg); display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; font-weight: 500; margin-bottom: var(--inkblot-spacing-2); cursor: pointer; position: relative; overflow: hidden; }
+    .motion-box { width: 100%; aspect-ratio: 1; background: var(--inkblot-semantic-color-interactive-primary); border-radius: var(--inkblot-radius-lg); display: flex; align-items: center; justify-content: center; color: var(--inkblot-color-accent-citron-50); font-size: 11px; font-weight: 500; margin-bottom: var(--inkblot-spacing-2); cursor: pointer; position: relative; overflow: hidden; }
     .motion-label { font-size: 10px; color: var(--inkblot-semantic-color-text-tertiary); font-weight: 500; }
-    .motion-box.hover-lift { transition: transform 150ms cubic-bezier(0.25,0.1,0.25,1), box-shadow 150ms cubic-bezier(0.25,0.1,0.25,1); }
-    .motion-box.hover-lift:hover { transform: translateY(-4px); box-shadow: var(--inkblot-shadow-md); }
-    .motion-box.press { transition: transform 100ms cubic-bezier(0.25,0.1,0.25,1); }
-    .motion-box.press:active { transform: scale(0.92); }
-    .motion-box.scale-in { transition: transform 250ms cubic-bezier(0,0,0.58,1), opacity 250ms cubic-bezier(0,0,0.58,1); }
-    .motion-box.scale-in:hover { transform: scale(1.06); }
-    .motion-box.spring { transition: transform 300ms cubic-bezier(0.175,0.885,0.32,1.275); }
-    .motion-box.spring:hover { transform: scale(1.1); }
-    .motion-box.bounce { transition: transform 400ms cubic-bezier(0.68,-0.55,0.265,1.55); }
-    .motion-box.bounce:hover { transform: translateY(-8px); }
-    .motion-box.fade { transition: opacity 250ms cubic-bezier(0,0,0.58,1); opacity: 0.5; }
+    .motion-box.hover-lift { transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-default), box-shadow var(--inkblot-duration-fast) var(--inkblot-easing-default); }
+    .motion-box.hover-lift:hover { transform: translateY(-3px); box-shadow: var(--inkblot-shadow-md); }
+    .motion-box.press { transition: transform 80ms var(--inkblot-easing-default); }
+    .motion-box.press:active { transform: scale(0.96); }
+    .motion-box.scale-in { transition: transform var(--inkblot-duration-normal) var(--inkblot-easing-out), opacity var(--inkblot-duration-normal) var(--inkblot-easing-out); }
+    .motion-box.scale-in:hover { transform: scale(1.03); }
+    .motion-box.smooth { transition: transform var(--inkblot-duration-normal) var(--inkblot-easing-expressive); }
+    .motion-box.smooth:hover { transform: scale(1.04); }
+    .motion-box.arrive { transition: transform var(--inkblot-duration-slow) var(--inkblot-easing-expressive); }
+    .motion-box.arrive:hover { transform: translateY(-4px); }
+    .motion-box.fade { transition: opacity var(--inkblot-duration-normal) var(--inkblot-easing-out); opacity: 0.5; }
     .motion-box.fade:hover { opacity: 1; }
 
     /* EASING VIS */
@@ -203,11 +206,10 @@
     .easing-item:hover .easing-ball { animation: easingSlide 800ms forwards; }
     @keyframes easingSlide { to { left: calc(100% - 12px); } }
     .easing-item:nth-child(1):hover .easing-ball { animation-timing-function: cubic-bezier(0.25,0.1,0.25,1); }
-    .easing-item:nth-child(2):hover .easing-ball { animation-timing-function: cubic-bezier(0.42,0,1,1); }
-    .easing-item:nth-child(3):hover .easing-ball { animation-timing-function: cubic-bezier(0,0,0.58,1); }
-    .easing-item:nth-child(4):hover .easing-ball { animation-timing-function: cubic-bezier(0.42,0,0.58,1); }
-    .easing-item:nth-child(5):hover .easing-ball { animation-timing-function: cubic-bezier(0.68,-0.55,0.265,1.55); }
-    .easing-item:nth-child(6):hover .easing-ball { animation-timing-function: cubic-bezier(0.175,0.885,0.32,1.275); }
+    .easing-item:nth-child(2):hover .easing-ball { animation-timing-function: cubic-bezier(0.32,0,0.67,0); }
+    .easing-item:nth-child(3):hover .easing-ball { animation-timing-function: cubic-bezier(0.33,1,0.68,1); }
+    .easing-item:nth-child(4):hover .easing-ball { animation-timing-function: cubic-bezier(0.65,0,0.35,1); }
+    .easing-item:nth-child(5):hover .easing-ball { animation-timing-function: cubic-bezier(0.22,1,0.36,1); }
 
     /* RESPONSIVE */
     .responsive-vis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; height: 120px; border-radius: var(--inkblot-radius-lg); overflow: hidden; }
@@ -224,18 +226,18 @@
     /* INTERACTION FLOW */
     .flow-steps { display: flex; flex-direction: column; gap: var(--inkblot-spacing-2); counter-reset: step; }
     .flow-step { display: flex; gap: var(--inkblot-spacing-3); align-items: flex-start; font-size: var(--inkblot-typography-font-size-sm); counter-increment: step; }
-    .flow-step::before { content: counter(step); flex-shrink: 0; width: 24px; height: 24px; background: var(--inkblot-semantic-color-interactive-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; }
+    .flow-step::before { content: counter(step); flex-shrink: 0; width: 24px; height: 24px; background: var(--inkblot-semantic-color-interactive-primary); color: var(--inkblot-color-accent-citron-50); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; }
     .flow-step span { padding-top: 2px; }
 
     /* CONTENT RULES */
     .truncate-1 { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .truncate-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-    .aspect-box { border-radius: var(--inkblot-radius-lg); overflow: hidden; background: linear-gradient(135deg, var(--inkblot-color-accent-blue-100), var(--inkblot-color-accent-blue-300)); display: flex; align-items: center; justify-content: center; color: var(--inkblot-color-accent-blue-700); font-size: 11px; font-weight: 600; }
+    .aspect-box { border-radius: var(--inkblot-radius-lg); overflow: hidden; background: linear-gradient(135deg, var(--inkblot-color-accent-citron-100), var(--inkblot-color-accent-citron-300)); display: flex; align-items: center; justify-content: center; color: var(--inkblot-color-accent-citron-700); font-size: 11px; font-weight: 600; }
 
     /* MODAL DEMO */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 40; animation: fadeIn 250ms ease-out; }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(29,28,25,0.45); z-index: 40; animation: fadeIn var(--inkblot-duration-normal) var(--inkblot-easing-out); }
     .modal-overlay.open { display: flex; align-items: center; justify-content: center; }
-    .modal-dialog { background: var(--inkblot-semantic-color-background-primary); border-radius: var(--inkblot-radius-xl); padding: var(--inkblot-spacing-8); width: 480px; max-width: 90vw; box-shadow: var(--inkblot-shadow-xl); animation: scaleIn 250ms cubic-bezier(0,0,0.58,1); }
+    .modal-dialog { background: var(--inkblot-semantic-color-background-secondary); border-radius: var(--inkblot-radius-xl); padding: var(--inkblot-spacing-8); width: 480px; max-width: 90vw; box-shadow: var(--inkblot-shadow-xl); animation: scaleIn var(--inkblot-duration-normal) var(--inkblot-easing-out); }
     .modal-dialog h3 { font-size: var(--inkblot-typography-font-size-lg); font-weight: 600; margin-bottom: var(--inkblot-spacing-2); }
     .modal-dialog p { font-size: var(--inkblot-typography-font-size-sm); color: var(--inkblot-semantic-color-text-secondary); margin-bottom: var(--inkblot-spacing-6); }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -353,7 +355,7 @@
 </head>
 <body>
   <nav class="nav">
-    <a href="#" class="nav-brand" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Inkblot Studio</a>
+    <a href="#" class="nav-brand" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Citron</a>
     <button class="nav-hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu" id="nav-hamburger"><span></span></button>
     <div class="nav-menu" id="nav-menu">
     <ul class="nav-links">
@@ -375,8 +377,8 @@
   </nav>
 
   <header class="hero">
-    <h1>Design System</h1>
-    <p class="tagline">Tokens, components, motion, and rules crafted for precision. Built for AI agents and humans alike.</p>
+    <h1>Citron Design System</h1>
+    <p class="tagline">Warmly minimal. Quietly distinctive. Tokens, components, and rules crafted with restraint — built for AI agents and humans alike.</p>
     <div class="hero-actions">
       <button class="btn btn-primary btn-lg" onclick="document.getElementById('components').scrollIntoView({behavior:'smooth'})">Get started</button>
       <button class="btn btn-secondary btn-lg" onclick="document.getElementById('colors').scrollIntoView({behavior:'smooth'})">View tokens</button>
@@ -387,45 +389,45 @@
 
     <!-- COLORS -->
     <section class="section" id="colors">
-      <div class="section-header"><h2 class="section-title">Color</h2><p class="section-desc">Semantic palette &middot; Accent scale &middot; Status &middot; Click any swatch to copy token</p></div>
+      <div class="section-header"><h2 class="section-title">Color</h2><p class="section-desc">Warm neutrals &middot; Citron accent &middot; Status &middot; Click any swatch to copy token</p></div>
       <div class="two-col">
         <div>
-          <div class="card-title">Neutral</div>
+          <div class="card-title">Warm Neutrals</div>
           <div class="swatch-grid" id="neutral-swatches">
             <div class="swatch" data-hex="#ffffff" data-token="--inkblot-color-neutral-white"><div class="swatch-color" style="background:#fff;border:1px solid var(--inkblot-semantic-color-border-default)"></div><div class="swatch-meta">white</div></div>
-            <div class="swatch" data-hex="#fafafa" data-token="--inkblot-color-neutral-gray-50"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-50)"></div><div class="swatch-meta">50</div></div>
-            <div class="swatch" data-hex="#f5f5f5" data-token="--inkblot-color-neutral-gray-100"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-100)"></div><div class="swatch-meta">100</div></div>
-            <div class="swatch" data-hex="#ebebeb" data-token="--inkblot-color-neutral-gray-200"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-200)"></div><div class="swatch-meta">200</div></div>
-            <div class="swatch" data-hex="#d1d1d6" data-token="--inkblot-color-neutral-gray-300"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-300)"></div><div class="swatch-meta">300</div></div>
-            <div class="swatch" data-hex="#8e8e93" data-token="--inkblot-color-neutral-gray-400"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-400)"></div><div class="swatch-meta">400</div></div>
-            <div class="swatch" data-hex="#636366" data-token="--inkblot-color-neutral-gray-500"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-500)"></div><div class="swatch-meta">500</div></div>
-            <div class="swatch" data-hex="#48484a" data-token="--inkblot-color-neutral-gray-600"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-600)"></div><div class="swatch-meta">600</div></div>
-            <div class="swatch" data-hex="#3a3a3c" data-token="--inkblot-color-neutral-gray-700"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-700)"></div><div class="swatch-meta">700</div></div>
-            <div class="swatch" data-hex="#2c2c2e" data-token="--inkblot-color-neutral-gray-800"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-800)"></div><div class="swatch-meta">800</div></div>
-            <div class="swatch" data-hex="#1c1c1e" data-token="--inkblot-color-neutral-gray-900"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-900)"></div><div class="swatch-meta">900</div></div>
-            <div class="swatch" data-hex="#000000" data-token="--inkblot-color-neutral-gray-950"><div class="swatch-color" style="background:#000"></div><div class="swatch-meta">950</div></div>
+            <div class="swatch" data-hex="#fafaf7" data-token="--inkblot-color-neutral-gray-50"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-50)"></div><div class="swatch-meta">50</div></div>
+            <div class="swatch" data-hex="#f5f4f0" data-token="--inkblot-color-neutral-gray-100"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-100)"></div><div class="swatch-meta">100</div></div>
+            <div class="swatch" data-hex="#eae9e3" data-token="--inkblot-color-neutral-gray-200"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-200)"></div><div class="swatch-meta">200</div></div>
+            <div class="swatch" data-hex="#d4d3cb" data-token="--inkblot-color-neutral-gray-300"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-300)"></div><div class="swatch-meta">300</div></div>
+            <div class="swatch" data-hex="#93928a" data-token="--inkblot-color-neutral-gray-400"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-400)"></div><div class="swatch-meta">400</div></div>
+            <div class="swatch" data-hex="#6b6a63" data-token="--inkblot-color-neutral-gray-500"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-500)"></div><div class="swatch-meta">500</div></div>
+            <div class="swatch" data-hex="#4d4c47" data-token="--inkblot-color-neutral-gray-600"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-600)"></div><div class="swatch-meta">600</div></div>
+            <div class="swatch" data-hex="#3a3935" data-token="--inkblot-color-neutral-gray-700"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-700)"></div><div class="swatch-meta">700</div></div>
+            <div class="swatch" data-hex="#2d2c28" data-token="--inkblot-color-neutral-gray-800"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-800)"></div><div class="swatch-meta">800</div></div>
+            <div class="swatch" data-hex="#1d1c19" data-token="--inkblot-color-neutral-gray-900"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-900)"></div><div class="swatch-meta">900</div></div>
+            <div class="swatch" data-hex="#0f0e0c" data-token="--inkblot-color-neutral-gray-950"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-950)"></div><div class="swatch-meta">950</div></div>
           </div>
         </div>
         <div>
-          <div class="card-title">Accent Blue</div>
+          <div class="card-title">Citron Accent</div>
           <div class="swatch-grid">
-            <div class="swatch" data-hex="#e8f4ff" data-token="--inkblot-color-accent-blue-50"><div class="swatch-color" style="background:var(--inkblot-color-accent-blue-50)"></div><div class="swatch-meta">50</div></div>
-            <div class="swatch" data-hex="#c7e3ff" data-token="--inkblot-color-accent-blue-100"><div class="swatch-color" style="background:var(--inkblot-color-accent-blue-100)"></div><div class="swatch-meta">100</div></div>
-            <div class="swatch" data-hex="#a1d0ff" data-token="--inkblot-color-accent-blue-200"><div class="swatch-color" style="background:var(--inkblot-color-accent-blue-200)"></div><div class="swatch-meta">200</div></div>
-            <div class="swatch" data-hex="#6eb8ff" data-token="--inkblot-color-accent-blue-300"><div class="swatch-color" style="background:var(--inkblot-color-accent-blue-300)"></div><div class="swatch-meta">300</div></div>
-            <div class="swatch" data-hex="#3d9eff" data-token="--inkblot-color-accent-blue-400"><div class="swatch-color" style="background:var(--inkblot-color-accent-blue-400)"></div><div class="swatch-meta">400</div></div>
-            <div class="swatch" data-hex="#007aff" data-token="--inkblot-color-accent-blue-500"><div class="swatch-color" style="background:var(--inkblot-color-accent-blue-500)"></div><div class="swatch-meta">500</div></div>
-            <div class="swatch" data-hex="#0066d6" data-token="--inkblot-color-accent-blue-600"><div class="swatch-color" style="background:var(--inkblot-color-accent-blue-600)"></div><div class="swatch-meta">600</div></div>
-            <div class="swatch" data-hex="#0052ad" data-token="--inkblot-color-accent-blue-700"><div class="swatch-color" style="background:var(--inkblot-color-accent-blue-700)"></div><div class="swatch-meta">700</div></div>
-            <div class="swatch" data-hex="#003d84" data-token="--inkblot-color-accent-blue-800"><div class="swatch-color" style="background:var(--inkblot-color-accent-blue-800)"></div><div class="swatch-meta">800</div></div>
-            <div class="swatch" data-hex="#002952" data-token="--inkblot-color-accent-blue-900"><div class="swatch-color" style="background:var(--inkblot-color-accent-blue-900)"></div><div class="swatch-meta">900</div></div>
+            <div class="swatch" data-hex="#fdfbf3" data-token="--inkblot-color-accent-citron-50"><div class="swatch-color" style="background:var(--inkblot-color-accent-citron-50)"></div><div class="swatch-meta">50</div></div>
+            <div class="swatch" data-hex="#faf4df" data-token="--inkblot-color-accent-citron-100"><div class="swatch-color" style="background:var(--inkblot-color-accent-citron-100)"></div><div class="swatch-meta">100</div></div>
+            <div class="swatch" data-hex="#f3e6b8" data-token="--inkblot-color-accent-citron-200"><div class="swatch-color" style="background:var(--inkblot-color-accent-citron-200)"></div><div class="swatch-meta">200</div></div>
+            <div class="swatch" data-hex="#e8d38a" data-token="--inkblot-color-accent-citron-300"><div class="swatch-color" style="background:var(--inkblot-color-accent-citron-300)"></div><div class="swatch-meta">300</div></div>
+            <div class="swatch" data-hex="#d9bc58" data-token="--inkblot-color-accent-citron-400"><div class="swatch-color" style="background:var(--inkblot-color-accent-citron-400)"></div><div class="swatch-meta">400</div></div>
+            <div class="swatch" data-hex="#c4a030" data-token="--inkblot-color-accent-citron-500"><div class="swatch-color" style="background:var(--inkblot-color-accent-citron-500)"></div><div class="swatch-meta">500</div></div>
+            <div class="swatch" data-hex="#a38427" data-token="--inkblot-color-accent-citron-600"><div class="swatch-color" style="background:var(--inkblot-color-accent-citron-600)"></div><div class="swatch-meta">600</div></div>
+            <div class="swatch" data-hex="#7f671f" data-token="--inkblot-color-accent-citron-700"><div class="swatch-color" style="background:var(--inkblot-color-accent-citron-700)"></div><div class="swatch-meta">700</div></div>
+            <div class="swatch" data-hex="#5c4a18" data-token="--inkblot-color-accent-citron-800"><div class="swatch-color" style="background:var(--inkblot-color-accent-citron-800)"></div><div class="swatch-meta">800</div></div>
+            <div class="swatch" data-hex="#3d3111" data-token="--inkblot-color-accent-citron-900"><div class="swatch-color" style="background:var(--inkblot-color-accent-citron-900)"></div><div class="swatch-meta">900</div></div>
           </div>
           <div class="card-title" style="margin-top: var(--inkblot-spacing-6)">Status</div>
           <div class="swatch-grid" style="max-width: 260px">
-            <div class="swatch" data-hex="#30b350" data-token="--inkblot-semantic-color-status-success"><div class="swatch-color" style="background:var(--inkblot-semantic-color-status-success)"></div><div class="swatch-meta">success</div></div>
-            <div class="swatch" data-hex="#e68600" data-token="--inkblot-semantic-color-status-warning"><div class="swatch-color" style="background:var(--inkblot-semantic-color-status-warning)"></div><div class="swatch-meta">warning</div></div>
-            <div class="swatch" data-hex="#e6352b" data-token="--inkblot-semantic-color-status-error"><div class="swatch-color" style="background:var(--inkblot-semantic-color-status-error)"></div><div class="swatch-meta">error</div></div>
-            <div class="swatch" data-hex="#007aff" data-token="--inkblot-semantic-color-status-info"><div class="swatch-color" style="background:var(--inkblot-semantic-color-status-info)"></div><div class="swatch-meta">info</div></div>
+            <div class="swatch" data-hex="#358c46" data-token="--inkblot-semantic-color-status-success"><div class="swatch-color" style="background:var(--inkblot-semantic-color-status-success)"></div><div class="swatch-meta">success</div></div>
+            <div class="swatch" data-hex="#c48c1a" data-token="--inkblot-semantic-color-status-warning"><div class="swatch-color" style="background:var(--inkblot-semantic-color-status-warning)"></div><div class="swatch-meta">warning</div></div>
+            <div class="swatch" data-hex="#be3e35" data-token="--inkblot-semantic-color-status-error"><div class="swatch-color" style="background:var(--inkblot-semantic-color-status-error)"></div><div class="swatch-meta">error</div></div>
+            <div class="swatch" data-hex="#5790ad" data-token="--inkblot-semantic-color-status-info"><div class="swatch-color" style="background:var(--inkblot-semantic-color-status-info)"></div><div class="swatch-meta">info</div></div>
           </div>
           <div class="badges" style="margin-top: var(--inkblot-spacing-4)">
             <span class="badge badge-success">Success</span><span class="badge badge-warning">Warning</span><span class="badge badge-error">Error</span><span class="badge badge-info">Info</span>
@@ -436,12 +438,12 @@
 
     <!-- TYPOGRAPHY -->
     <section class="section" id="typography">
-      <div class="section-header"><h2 class="section-title">Typography</h2><p class="section-desc">Modular scale &middot; System font stack &middot; Semantic hierarchy</p></div>
-      <div class="type-row"><div class="meta">DISPLAY &middot; 60px</div><div style="font-size:var(--inkblot-typography-font-size-5xl);font-weight:700;letter-spacing:-0.035em;line-height:1.1">Inkblot</div></div>
-      <div class="type-row"><div class="meta">HEADING 1 &middot; 36px</div><div style="font:var(--inkblot-semantic-typography-heading-1)">Design with intention</div></div>
-      <div class="type-row"><div class="meta">HEADING 2 &middot; 30px</div><div style="font:var(--inkblot-semantic-typography-heading-2)">Every detail matters</div></div>
+      <div class="section-header"><h2 class="section-title">Typography</h2><p class="section-desc">Inter &middot; Humanist sans-serif &middot; Restrained scale &middot; Intentional hierarchy</p></div>
+      <div class="type-row"><div class="meta">DISPLAY &middot; 52px</div><div style="font-size:var(--inkblot-typography-font-size-5xl);font-weight:600;letter-spacing:-0.03em;line-height:1.15">Citron</div></div>
+      <div class="type-row"><div class="meta">HEADING 1 &middot; 34px</div><div style="font:var(--inkblot-semantic-typography-heading-1)">Designed with restraint</div></div>
+      <div class="type-row"><div class="meta">HEADING 2 &middot; 28px</div><div style="font:var(--inkblot-semantic-typography-heading-2)">Every detail considered</div></div>
       <div class="type-row"><div class="meta">HEADING 3 &middot; 24px</div><div style="font:var(--inkblot-semantic-typography-heading-3)">Components at scale</div></div>
-      <div class="type-row"><div class="meta">BODY &middot; 16px</div><div style="font:var(--inkblot-semantic-typography-body-default);max-width:600px">The quick brown fox jumps over the lazy dog. Clean typography creates hierarchy.</div></div>
+      <div class="type-row"><div class="meta">BODY &middot; 15px</div><div style="font:var(--inkblot-semantic-typography-body-default);max-width:600px">The quick brown fox jumps over the lazy dog. Warm, readable, human typography.</div></div>
       <div class="type-row"><div class="meta">SMALL &middot; 13px</div><div style="font:var(--inkblot-semantic-typography-body-small);color:var(--inkblot-semantic-color-text-secondary)">Caption text for metadata, timestamps, secondary information.</div></div>
       <div class="type-row"><div class="meta">LABEL &middot; 12px</div><div style="font:var(--inkblot-semantic-typography-label-default);text-transform:uppercase;color:var(--inkblot-semantic-color-text-tertiary)">Form label</div></div>
       <div class="type-row"><div class="meta">MONO</div><div style="font-family:var(--inkblot-typography-font-family-mono);font-size:var(--inkblot-typography-font-size-sm);color:var(--inkblot-semantic-color-text-secondary)">var(--inkblot-spacing-4)</div></div>
@@ -497,25 +499,24 @@
 
     <!-- MOTION -->
     <section class="section" id="motion">
-      <div class="section-header"><h2 class="section-title">Motion &amp; Easing</h2><p class="section-desc">Hover each box to see the transition &middot; Per-component timing &middot; 6 easing curves</p></div>
+      <div class="section-header"><h2 class="section-title">Motion &amp; Easing</h2><p class="section-desc">Physical, smooth, fast. No bounce. No overshoot. Light responding to touch.</p></div>
       <div class="card-title">Micro-interactions</div>
       <div class="motion-grid" style="margin-bottom:var(--inkblot-spacing-8)">
-        <div class="motion-item"><div class="motion-box hover-lift">Lift</div><div class="motion-label">150ms &middot; default</div></div>
-        <div class="motion-item"><div class="motion-box press">Press</div><div class="motion-label">100ms &middot; scale</div></div>
-        <div class="motion-item"><div class="motion-box scale-in">Scale</div><div class="motion-label">250ms &middot; ease-out</div></div>
-        <div class="motion-item"><div class="motion-box spring">Spring</div><div class="motion-label">300ms &middot; spring</div></div>
-        <div class="motion-item"><div class="motion-box bounce">Bounce</div><div class="motion-label">400ms &middot; bounce</div></div>
-        <div class="motion-item"><div class="motion-box fade">Fade</div><div class="motion-label">250ms &middot; opacity</div></div>
+        <div class="motion-item"><div class="motion-box hover-lift">Lift</div><div class="motion-label">120ms &middot; default</div></div>
+        <div class="motion-item"><div class="motion-box press">Press</div><div class="motion-label">80ms &middot; physical</div></div>
+        <div class="motion-item"><div class="motion-box scale-in">Scale</div><div class="motion-label">200ms &middot; ease-out</div></div>
+        <div class="motion-item"><div class="motion-box smooth">Smooth</div><div class="motion-label">200ms &middot; expressive</div></div>
+        <div class="motion-item"><div class="motion-box arrive">Arrive</div><div class="motion-label">320ms &middot; expressive</div></div>
+        <div class="motion-item"><div class="motion-box fade">Fade</div><div class="motion-label">200ms &middot; opacity</div></div>
       </div>
       <div class="card-title">Easing curves</div>
       <p style="font-size:var(--inkblot-typography-font-size-sm);color:var(--inkblot-semantic-color-text-secondary);margin-bottom:var(--inkblot-spacing-4)">Hover each to see the ball animate across the track.</p>
       <div class="easing-grid">
         <div class="easing-item"><div class="easing-name">default</div><div class="easing-value">cubic-bezier(0.25, 0.1, 0.25, 1)</div><div class="easing-track"><div class="easing-ball"></div></div></div>
-        <div class="easing-item"><div class="easing-name">ease-in</div><div class="easing-value">cubic-bezier(0.42, 0, 1, 1)</div><div class="easing-track"><div class="easing-ball"></div></div></div>
-        <div class="easing-item"><div class="easing-name">ease-out</div><div class="easing-value">cubic-bezier(0, 0, 0.58, 1)</div><div class="easing-track"><div class="easing-ball"></div></div></div>
-        <div class="easing-item"><div class="easing-name">ease-in-out</div><div class="easing-value">cubic-bezier(0.42, 0, 0.58, 1)</div><div class="easing-track"><div class="easing-ball"></div></div></div>
-        <div class="easing-item"><div class="easing-name">bounce</div><div class="easing-value">cubic-bezier(0.68, -0.55, 0.265, 1.55)</div><div class="easing-track"><div class="easing-ball"></div></div></div>
-        <div class="easing-item"><div class="easing-name">spring</div><div class="easing-value">cubic-bezier(0.175, 0.885, 0.32, 1.275)</div><div class="easing-track"><div class="easing-ball"></div></div></div>
+        <div class="easing-item"><div class="easing-name">ease-in</div><div class="easing-value">cubic-bezier(0.32, 0, 0.67, 0)</div><div class="easing-track"><div class="easing-ball"></div></div></div>
+        <div class="easing-item"><div class="easing-name">ease-out</div><div class="easing-value">cubic-bezier(0.33, 1, 0.68, 1)</div><div class="easing-track"><div class="easing-ball"></div></div></div>
+        <div class="easing-item"><div class="easing-name">ease-in-out</div><div class="easing-value">cubic-bezier(0.65, 0, 0.35, 1)</div><div class="easing-track"><div class="easing-ball"></div></div></div>
+        <div class="easing-item"><div class="easing-name">expressive</div><div class="easing-value">cubic-bezier(0.22, 1, 0.36, 1)</div><div class="easing-track"><div class="easing-ball"></div></div></div>
       </div>
     </section>
 
@@ -675,24 +676,24 @@
       <div class="three-col">
         <div class="card">
           <div class="card-title">Card grid</div>
-          <div class="responsive-vis"><div style="background:var(--inkblot-color-accent-blue-500);grid-column:span 4">1 col mobile</div></div>
-          <div class="responsive-vis" style="margin-top:var(--inkblot-spacing-2)"><div style="background:var(--inkblot-color-accent-blue-400);grid-column:span 2">2 col</div><div style="background:var(--inkblot-color-accent-blue-600);grid-column:span 2">tablet</div></div>
-          <div class="responsive-vis" style="margin-top:var(--inkblot-spacing-2)"><div style="background:var(--inkblot-color-accent-blue-300)">3</div><div style="background:var(--inkblot-color-accent-blue-500)">col</div><div style="background:var(--inkblot-color-accent-blue-700)">desk</div><div style="background:var(--inkblot-color-accent-blue-900)">top</div></div>
+          <div class="responsive-vis"><div style="background:var(--inkblot-color-accent-citron-600);grid-column:span 4">1 col mobile</div></div>
+          <div class="responsive-vis" style="margin-top:var(--inkblot-spacing-2)"><div style="background:var(--inkblot-color-accent-citron-500);grid-column:span 2;color:var(--inkblot-color-accent-citron-50)">2 col</div><div style="background:var(--inkblot-color-accent-citron-700);grid-column:span 2">tablet</div></div>
+          <div class="responsive-vis" style="margin-top:var(--inkblot-spacing-2)"><div style="background:var(--inkblot-color-accent-citron-300);color:var(--inkblot-color-accent-citron-800)">3</div><div style="background:var(--inkblot-color-accent-citron-500);color:var(--inkblot-color-accent-citron-50)">col</div><div style="background:var(--inkblot-color-accent-citron-700)">desk</div><div style="background:var(--inkblot-color-accent-citron-900)">top</div></div>
         </div>
         <div class="card">
           <div class="card-title">Sidebar</div>
           <div style="display:flex;gap:2px;height:120px;border-radius:var(--inkblot-radius-lg);overflow:hidden">
-            <div style="width:64px;background:var(--inkblot-color-accent-blue-700);display:flex;align-items:center;justify-content:center;color:white;font-size:10px;writing-mode:vertical-lr">sidebar</div>
-            <div style="flex:1;background:var(--inkblot-color-accent-blue-200);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--inkblot-color-accent-blue-800)">main content</div>
+            <div style="width:64px;background:var(--inkblot-color-accent-citron-700);display:flex;align-items:center;justify-content:center;color:white;font-size:10px;writing-mode:vertical-lr">sidebar</div>
+            <div style="flex:1;background:var(--inkblot-color-accent-citron-200);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--inkblot-color-accent-citron-800)">main content</div>
           </div>
           <div style="font-size:10px;color:var(--inkblot-semantic-color-text-tertiary);margin-top:var(--inkblot-spacing-2)">Mobile: drawer &middot; Tablet: 64px rail &middot; Desktop: 280px</div>
         </div>
         <div class="card">
           <div class="card-title">Modal</div>
           <div style="display:flex;gap:var(--inkblot-spacing-3);align-items:flex-end">
-            <div style="width:48px;height:80px;background:var(--inkblot-color-accent-blue-600);border-radius:var(--inkblot-radius-md);display:flex;align-items:flex-end;justify-content:center;color:white;font-size:9px;padding-bottom:4px">full</div>
-            <div style="width:64px;height:56px;background:var(--inkblot-color-accent-blue-500);border-radius:var(--inkblot-radius-lg);display:flex;align-items:center;justify-content:center;color:white;font-size:9px">centered</div>
-            <div style="width:80px;height:56px;background:var(--inkblot-color-accent-blue-400);border-radius:var(--inkblot-radius-lg);display:flex;align-items:center;justify-content:center;color:white;font-size:9px">desktop</div>
+            <div style="width:48px;height:80px;background:var(--inkblot-color-accent-citron-600);border-radius:var(--inkblot-radius-md);display:flex;align-items:flex-end;justify-content:center;color:white;font-size:9px;padding-bottom:4px">full</div>
+            <div style="width:64px;height:56px;background:var(--inkblot-color-accent-citron-500);border-radius:var(--inkblot-radius-lg);display:flex;align-items:center;justify-content:center;color:white;font-size:9px">centered</div>
+            <div style="width:80px;height:56px;background:var(--inkblot-color-accent-citron-400);border-radius:var(--inkblot-radius-lg);display:flex;align-items:center;justify-content:center;color:white;font-size:9px">desktop</div>
           </div>
           <div style="font-size:10px;color:var(--inkblot-semantic-color-text-tertiary);margin-top:var(--inkblot-spacing-2)">Mobile: full-screen &middot; Tablet: centered &middot; Desktop: sized</div>
         </div>
@@ -904,7 +905,7 @@
     </div>
   </div>
 
-  <footer class="footer">Inkblot Studio Design System v1.0 &middot; Tokens in <code>tokens/</code> &middot; Specs in <code>system/</code></footer>
+  <footer class="footer">Citron Design System v1.0 &middot; Tokens in <code>tokens/</code> &middot; Specs in <code>system/</code></footer>
 
   <script>
     (function() {

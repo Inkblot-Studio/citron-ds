@@ -6,50 +6,50 @@ $inkblot-breakpoint-md: 768px; // Tablets
 $inkblot-breakpoint-lg: 1024px; // Laptops
 $inkblot-breakpoint-xl: 1280px; // Desktops
 $inkblot-breakpoint-2xl: 1536px; // Large screens
-$inkblot-color-neutral-white: #ffffff; // Pure white, primary backgrounds
-$inkblot-color-neutral-gray-50: #fafafa; // Lightest gray, subtle backgrounds
-$inkblot-color-neutral-gray-100: #f5f5f5; // Very light gray
-$inkblot-color-neutral-gray-200: #ebebeb; // Light gray, borders
-$inkblot-color-neutral-gray-300: #d1d1d6; // Medium light gray
-$inkblot-color-neutral-gray-400: #8e8e93; // Medium gray, placeholder text
-$inkblot-color-neutral-gray-500: #636366; // Gray
-$inkblot-color-neutral-gray-600: #48484a; // Dark gray
-$inkblot-color-neutral-gray-700: #3a3a3c; // Darker gray
-$inkblot-color-neutral-gray-800: #2c2c2e; // Dark
-$inkblot-color-neutral-gray-900: #1c1c1e; // Darkest, primary text
-$inkblot-color-neutral-gray-950: #000000; // Pure black
-$inkblot-color-accent-blue-50: #e8f4ff; // Lightest blue tint
-$inkblot-color-accent-blue-100: #c7e3ff; // Very light blue
-$inkblot-color-accent-blue-200: #a1d0ff; // Light blue
-$inkblot-color-accent-blue-300: #6eb8ff; // Medium light blue
-$inkblot-color-accent-blue-400: #3d9eff; // Blue
-$inkblot-color-accent-blue-500: #007aff; // Primary accent - Apple system blue
-$inkblot-color-accent-blue-600: #0066d6; // Hover/pressed state
-$inkblot-color-accent-blue-700: #0052ad; // Active state
-$inkblot-color-accent-blue-800: #003d84; // Dark blue
-$inkblot-color-accent-blue-900: #002952; // Darkest blue
-$inkblot-color-semantic-success-light: #34c759; // Success green
-$inkblot-color-semantic-success-main: #30b350; // Primary success
-$inkblot-color-semantic-success-dark: #248a3d; // Success hover
-$inkblot-color-semantic-warning-light: #ff9500; // Warning orange
-$inkblot-color-semantic-warning-main: #e68600; // Primary warning
-$inkblot-color-semantic-warning-dark: #cc7700; // Warning hover
-$inkblot-color-semantic-error-light: #ff3b30; // Error red
-$inkblot-color-semantic-error-main: #e6352b; // Primary error
-$inkblot-color-semantic-error-dark: #cc2f26; // Error hover
-$inkblot-color-semantic-info-light: #5ac8fa; // Info cyan
-$inkblot-color-semantic-info-main: #007aff; // Primary info (matches accent)
-$inkblot-color-semantic-info-dark: #0066d6; // Info hover
+$inkblot-color-neutral-white: #ffffff; // Pure white, floating surfaces
+$inkblot-color-neutral-gray-50: #fafaf7; // Warm off-white, body background
+$inkblot-color-neutral-gray-100: #f5f4f0; // Warm surface, secondary bg
+$inkblot-color-neutral-gray-200: #eae9e3; // Subtle warm border, dividers
+$inkblot-color-neutral-gray-300: #d4d3cb; // Medium warm border
+$inkblot-color-neutral-gray-400: #93928a; // Placeholder text, muted
+$inkblot-color-neutral-gray-500: #6b6a63; // Secondary text
+$inkblot-color-neutral-gray-600: #4d4c47; // Emphasized secondary
+$inkblot-color-neutral-gray-700: #3a3935; // Strong text
+$inkblot-color-neutral-gray-800: #2d2c28; // Deep warm dark
+$inkblot-color-neutral-gray-900: #1d1c19; // Primary text — deep slate, never pure black
+$inkblot-color-neutral-gray-950: #0f0e0c; // Deepest warm black
+$inkblot-color-accent-citron-50: #fdfbf3; // Barely there citron wash
+$inkblot-color-accent-citron-100: #faf4df; // Soft cream tint
+$inkblot-color-accent-citron-200: #f3e6b8; // Warm wheat
+$inkblot-color-accent-citron-300: #e8d38a; // Light honey
+$inkblot-color-accent-citron-400: #d9bc58; // Citrus glow
+$inkblot-color-accent-citron-500: #c4a030; // Citron primary — the brand tone
+$inkblot-color-accent-citron-600: #a38427; // Deep citron, hover state
+$inkblot-color-accent-citron-700: #7f671f; // Rich amber
+$inkblot-color-accent-citron-800: #5c4a18; // Dark citron
+$inkblot-color-accent-citron-900: #3d3111; // Deepest citron
+$inkblot-color-semantic-success-light: #3d9e50; // Warm success green
+$inkblot-color-semantic-success-main: #358c46; // Primary success
+$inkblot-color-semantic-success-dark: #2a7538; // Success hover
+$inkblot-color-semantic-warning-light: #e0a020; // Warm amber warning
+$inkblot-color-semantic-warning-main: #c48c1a; // Primary warning — distinct from citron by saturation
+$inkblot-color-semantic-warning-dark: #a67515; // Warning hover
+$inkblot-color-semantic-error-light: #d14940; // Warm red
+$inkblot-color-semantic-error-main: #be3e35; // Primary error
+$inkblot-color-semantic-error-dark: #a3352d; // Error hover
+$inkblot-color-semantic-info-light: #6ba3c2; // Muted warm blue
+$inkblot-color-semantic-info-main: #5790ad; // Primary info — desaturated, warm
+$inkblot-color-semantic-info-dark: #497a94; // Info hover
 $inkblot-duration-instant: 0ms; // No animation
-$inkblot-duration-fast: 150ms; // Micro-interactions
-$inkblot-duration-normal: 250ms; // Standard transitions
-$inkblot-duration-slow: 400ms; // Complex animations
-$inkblot-duration-slower: 600ms; // Page transitions
-$inkblot-easing-default: cubic-bezier(0.25, 0.1, 0.25, 1); // Standard ease
-$inkblot-easing-in: cubic-bezier(0.42, 0, 1, 1); // Ease in
-$inkblot-easing-out: cubic-bezier(0, 0, 0.58, 1); // Ease out
-$inkblot-easing-in-out: cubic-bezier(0.42, 0, 0.58, 1); // Ease in-out
-$inkblot-easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55); // Bounce effect
+$inkblot-duration-fast: 120ms; // Micro-interactions, hovers — fast enough to feel physical
+$inkblot-duration-normal: 200ms; // Standard transitions
+$inkblot-duration-slow: 320ms; // Complex transitions, enter/exit
+$inkblot-duration-slower: 500ms; // Page-level transitions, long reveals
+$inkblot-easing-default: cubic-bezier(0.25, 0.1, 0.25, 1); // Standard ease — natural deceleration
+$inkblot-easing-in: cubic-bezier(0.32, 0, 0.67, 0); // Ease in — for exits, things leaving
+$inkblot-easing-out: cubic-bezier(0.33, 1, 0.68, 1); // Ease out — for entrances, things arriving
+$inkblot-easing-in-out: cubic-bezier(0.65, 0, 0.35, 1); // Ease in-out — for position changes, transforms
+$inkblot-easing-expressive: cubic-bezier(0.22, 1, 0.36, 1); // Expressive ease-out — smooth, confident arrival. Replaces bounce.
 $inkblot-grid-columns-mobile: 4rem; // 4-column grid for < 640px
 $inkblot-grid-columns-tablet: 8rem; // 8-column grid for 640–1023px
 $inkblot-grid-columns-desktop: 12rem; // 12-column grid for 1024–1535px
@@ -67,25 +67,25 @@ $inkblot-grid-max-width-content: 768px; // Max width for readable content
 $inkblot-grid-max-width-container: 1200px; // Max width for standard layouts
 $inkblot-grid-max-width-wide: 1440px; // Max width for wide layouts
 $inkblot-grid-max-width-full: 1920px; // Max width for full-bleed
-$inkblot-radius-none: 0; // Sharp corners
-$inkblot-radius-sm: 4px; // Subtle rounding
-$inkblot-radius-md: 8px; // Cards, inputs
-$inkblot-radius-lg: 12px; // Modals, panels
-$inkblot-radius-xl: 16px; // Large surfaces
-$inkblot-radius-2xl: 24px; // Hero sections
-$inkblot-radius-full: 9999px; // Pills, avatars
+$inkblot-radius-none: 0; // No rounding
+$inkblot-radius-sm: 6px; // Subtle rounding, chips
+$inkblot-radius-md: 10px; // Inputs, small cards
+$inkblot-radius-lg: 14px; // Buttons, interactive elements
+$inkblot-radius-xl: 18px; // Cards, modals
+$inkblot-radius-2xl: 24px; // Large surfaces, hero cards
+$inkblot-radius-full: 9999px; // Pills, avatars, toggles
 $inkblot-border-width-none: 0; // No border
-$inkblot-border-width-thin: 1px; // Subtle dividers
-$inkblot-border-width-medium: 2px; // Emphasized borders
-$inkblot-border-width-thick: 4px; // Focus rings
+$inkblot-border-width-thin: 1px; // Subtle dividers, the default
+$inkblot-border-width-medium: 2px; // Focus rings
+$inkblot-border-width-thick: 3px; // Strong emphasis, rarely used
 $inkblot-shadow-none: none; // No shadow
-$inkblot-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05); // Subtle lift
-$inkblot-shadow-sm: 0 2px 4px 0 rgba(0, 0, 0, 0.08); // Cards, dropdowns
-$inkblot-shadow-md: 0 4px 8px 0 rgba(0, 0, 0, 0.10); // Modals, popovers
-$inkblot-shadow-lg: 0 8px 16px 0 rgba(0, 0, 0, 0.12); // Overlays
-$inkblot-shadow-xl: 0 16px 24px 0 rgba(0, 0, 0, 0.16); // Maximum elevation
-$inkblot-opacity-disabled: 0.38; // Disabled elements
-$inkblot-opacity-overlay: 0.5; // Modal backdrops
+$inkblot-shadow-xs: 0 1px 2px 0 rgba(29, 28, 25, 0.04); // Barely there lift
+$inkblot-shadow-sm: 0 2px 8px -1px rgba(29, 28, 25, 0.06), 0 1px 3px -1px rgba(29, 28, 25, 0.04); // Cards — soft, warm, diffused
+$inkblot-shadow-md: 0 4px 16px -2px rgba(29, 28, 25, 0.08), 0 2px 6px -2px rgba(29, 28, 25, 0.04); // Elevated cards, dropdowns
+$inkblot-shadow-lg: 0 8px 24px -4px rgba(29, 28, 25, 0.10), 0 4px 10px -4px rgba(29, 28, 25, 0.04); // Modals, popovers
+$inkblot-shadow-xl: 0 16px 40px -8px rgba(29, 28, 25, 0.12), 0 8px 16px -8px rgba(29, 28, 25, 0.04); // Maximum elevation — ambient, not harsh
+$inkblot-opacity-disabled: 0.4; // Disabled elements
+$inkblot-opacity-overlay: 0.45; // Modal backdrops — not too heavy
 $inkblot-opacity-subtle: 0.6; // Secondary content
 $inkblot-opacity-default: 1; // Full opacity
 $inkblot-spacing-0: 0; // No spacing
@@ -109,33 +109,33 @@ $inkblot-size-icon-lg: 2rem; // 32px icon
 $inkblot-size-icon-xl: 2.5rem; // 40px icon
 $inkblot-size-touch-target-min: 44px; // Minimum touch target (WCAG)
 $inkblot-size-touch-target-comfortable: 48px; // Comfortable touch target
-$inkblot-typography-font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; // Primary UI font stack
-$inkblot-typography-font-family-mono: ui-monospace, 'SF Mono', 'SFMono-Regular', Menlo, Monaco, Consolas, monospace; // Code and data font stack
-$inkblot-typography-font-family-display: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; // Display/headline font
-$inkblot-typography-font-size-xs: 0.75rem; // 12px - captions, labels
-$inkblot-typography-font-size-sm: 0.8125rem; // 13px - secondary text
-$inkblot-typography-font-size-base: 1rem; // 16px - body text
-$inkblot-typography-font-size-md: 1.0625rem; // 17px - emphasized body
-$inkblot-typography-font-size-lg: 1.25rem; // 20px - subheadings
-$inkblot-typography-font-size-xl: 1.5rem; // 24px - section titles
-$inkblot-typography-font-size-2xl: 1.875rem; // 30px - page titles
-$inkblot-typography-font-size-3xl: 2.25rem; // 36px - hero
-$inkblot-typography-font-size-4xl: 3rem; // 48px - display
-$inkblot-typography-font-size-5xl: 3.75rem; // 60px - large display
+$inkblot-typography-font-family-sans: 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; // Primary UI font — humanist, modern, highly legible
+$inkblot-typography-font-family-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace; // Code and data
+$inkblot-typography-font-family-display: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; // Headlines — same family, optical size variant
+$inkblot-typography-font-size-xs: 0.75rem; // 12px — captions, meta
+$inkblot-typography-font-size-sm: 0.8125rem; // 13px — secondary text
+$inkblot-typography-font-size-base: 0.9375rem; // 15px — body text, slightly refined from 16
+$inkblot-typography-font-size-md: 1.0625rem; // 17px — emphasized body
+$inkblot-typography-font-size-lg: 1.25rem; // 20px — card titles, subheadings
+$inkblot-typography-font-size-xl: 1.5rem; // 24px — section titles
+$inkblot-typography-font-size-2xl: 1.75rem; // 28px — page titles
+$inkblot-typography-font-size-3xl: 2.125rem; // 34px — hero — composed, not shouting
+$inkblot-typography-font-size-4xl: 2.75rem; // 44px — display, rarely used
+$inkblot-typography-font-size-5xl: 3.25rem; // 52px — maximum display
 $inkblot-typography-font-weight-regular: 400; // Body text
-$inkblot-typography-font-weight-medium: 500; // Emphasis
-$inkblot-typography-font-weight-semibold: 600; // Headings
-$inkblot-typography-font-weight-bold: 700; // Strong emphasis
+$inkblot-typography-font-weight-medium: 500; // Emphasis, labels, card titles
+$inkblot-typography-font-weight-semibold: 600; // Headings, buttons
+$inkblot-typography-font-weight-bold: 700; // Strong emphasis, sparingly
 $inkblot-typography-line-height-tight: 1.2; // Headlines
 $inkblot-typography-line-height-snug: 1.375; // Subheadings
 $inkblot-typography-line-height-normal: 1.5; // Body text
-$inkblot-typography-line-height-relaxed: 1.625; // Long-form content
-$inkblot-typography-line-height-loose: 2; // Spacious layouts
-$inkblot-typography-letter-spacing-tighter: -0.05em; // Large headlines
-$inkblot-typography-letter-spacing-tight: -0.025em; // Headings
+$inkblot-typography-line-height-relaxed: 1.65; // Long-form, generous breathing room
+$inkblot-typography-line-height-loose: 1.8; // Very spacious
+$inkblot-typography-letter-spacing-tighter: -0.04em; // Large headlines
+$inkblot-typography-letter-spacing-tight: -0.02em; // Headings
 $inkblot-typography-letter-spacing-normal: 0; // Body
-$inkblot-typography-letter-spacing-wide: 0.025em; // Labels, caps
-$inkblot-typography-letter-spacing-wider: 0.05em; // Uppercase labels
+$inkblot-typography-letter-spacing-wide: 0.02em; // Labels
+$inkblot-typography-letter-spacing-wider: 0.06em; // Uppercase meta
 $inkblot-z-index-hide: -1; // Hidden below base layer
 $inkblot-z-index-base: 0; // Default document flow
 $inkblot-z-index-raised: 1; // Slightly above base (cards on hover)
@@ -146,54 +146,54 @@ $inkblot-z-index-modal: 40; // Modals, dialogs, sheets
 $inkblot-z-index-popover: 50; // Popovers, tooltips
 $inkblot-z-index-toast: 60; // Toast notifications
 $inkblot-z-index-max: 9999; // Emergency override (avoid)
-$inkblot-dark-color-background-primary: #000000; // True black for OLED and depth
-$inkblot-dark-color-background-secondary: #1c1c1e; // Elevated surface
-$inkblot-dark-color-background-tertiary: #2c2c2e; // Grouped content surface
-$inkblot-dark-color-background-inverse: #ffffff; // Inverted surface
-$inkblot-dark-color-text-primary: #f5f5f7; // Primary text on dark - 7:1 AAA on #000
-$inkblot-dark-color-text-secondary: #8e8e93; // Secondary text
-$inkblot-dark-color-text-tertiary: #636366; // Placeholder, hints
-$inkblot-dark-color-text-inverse: #1c1c1e; // Text on light surfaces
-$inkblot-dark-color-text-link: #409cff; // Link on dark - brighter for contrast
-$inkblot-dark-color-text-link-hover: #64b5ff; // Link hover on dark
-$inkblot-dark-color-border-default: #38383a; // Subtle border on dark
-$inkblot-dark-color-border-strong: #48484a; // Emphasized border on dark
-$inkblot-dark-color-border-focus: #409cff; // Focus ring on dark
-$inkblot-dark-color-interactive-primary: #0a84ff; // Primary action on dark
-$inkblot-dark-color-interactive-primary-hover: #409cff; // Primary hover on dark
-$inkblot-dark-color-interactive-primary-active: #0066d6; // Primary pressed on dark
-$inkblot-dark-color-interactive-secondary: #2c2c2e; // Secondary button on dark
-$inkblot-dark-color-interactive-secondary-hover: #3a3a3c; // Secondary hover on dark
-$inkblot-dark-color-status-success: #30d158; // Success on dark
-$inkblot-dark-color-status-warning: #ffd60a; // Warning on dark
-$inkblot-dark-color-status-error: #ff453a; // Error on dark
-$inkblot-dark-color-status-info: #64d2ff; // Info on dark
-$inkblot-semantic-color-background-primary: $inkblot-color-neutral-white; // Main app background
-$inkblot-semantic-color-background-secondary: $inkblot-color-neutral-gray-100; // Secondary surfaces
-$inkblot-semantic-color-background-tertiary: $inkblot-color-neutral-gray-200; // Tertiary, grouped content
-$inkblot-semantic-color-background-inverse: $inkblot-color-neutral-gray-900; // Dark mode / inverted
-$inkblot-semantic-color-text-primary: $inkblot-color-neutral-gray-900; // Primary text - 4.5:1 contrast minimum
+$inkblot-dark-color-background-primary: #12110e; // Deep warm black, not pure black
+$inkblot-dark-color-background-secondary: #1d1c18; // Elevated warm surface
+$inkblot-dark-color-background-tertiary: #2a2924; // Grouped content, inset
+$inkblot-dark-color-background-inverse: #fafaf7; // Inverted to warm off-white
+$inkblot-dark-color-text-primary: #f5f4f0; // Warm off-white text
+$inkblot-dark-color-text-secondary: #93928a; // Warm muted text
+$inkblot-dark-color-text-tertiary: #6b6a63; // Placeholder, hints
+$inkblot-dark-color-text-inverse: #1d1c19; // Dark text on light
+$inkblot-dark-color-text-link: #d9bc58; // Citron 400 — bright enough for dark bg
+$inkblot-dark-color-text-link-hover: #e8d38a; // Citron 300 — lighter on hover
+$inkblot-dark-color-border-default: #38372f; // Warm subtle border
+$inkblot-dark-color-border-strong: #4d4c44; // Emphasized warm border
+$inkblot-dark-color-border-focus: #d9bc58; // Focus ring — bright citron
+$inkblot-dark-color-interactive-primary: #d9bc58; // Citron 400 — lighter for dark mode contrast
+$inkblot-dark-color-interactive-primary-hover: #e8d38a; // Citron 300 — warm glow on hover
+$inkblot-dark-color-interactive-primary-active: #c4a030; // Citron 500 — anchor on press
+$inkblot-dark-color-interactive-secondary: #2a2924; // Warm dark secondary
+$inkblot-dark-color-interactive-secondary-hover: #38372f; // Warm dark hover
+$inkblot-dark-color-status-success: #4cb864; // Bright warm green on dark
+$inkblot-dark-color-status-warning: #e0a020; // Warm amber on dark
+$inkblot-dark-color-status-error: #e05a52; // Warm red on dark
+$inkblot-dark-color-status-info: #7ab8d6; // Soft warm blue on dark
+$inkblot-semantic-color-background-primary: $inkblot-color-neutral-gray-50; // Body background — warm off-white with barely perceptible beige
+$inkblot-semantic-color-background-secondary: $inkblot-color-neutral-white; // Elevated surfaces — clean white floating above base
+$inkblot-semantic-color-background-tertiary: $inkblot-color-neutral-gray-100; // Grouped content, inset areas
+$inkblot-semantic-color-background-inverse: $inkblot-color-neutral-gray-900; // Inverted surfaces
+$inkblot-semantic-color-text-primary: $inkblot-color-neutral-gray-900; // Primary text — deep warm slate, never pure black
 $inkblot-semantic-color-text-secondary: $inkblot-color-neutral-gray-500; // Secondary text
-$inkblot-semantic-color-text-tertiary: $inkblot-color-neutral-gray-400; // Placeholder, hints
-$inkblot-semantic-color-text-inverse: $inkblot-color-neutral-white; // Text on dark
-$inkblot-semantic-color-text-link: $inkblot-color-accent-blue-500; // Links
-$inkblot-semantic-color-text-link-hover: $inkblot-color-accent-blue-600; // Link hover state
-$inkblot-semantic-color-border-default: $inkblot-color-neutral-gray-200; // Default borders
+$inkblot-semantic-color-text-tertiary: $inkblot-color-neutral-gray-400; // Placeholder, hints, captions
+$inkblot-semantic-color-text-inverse: $inkblot-color-neutral-white; // Text on dark surfaces
+$inkblot-semantic-color-text-link: $inkblot-color-accent-citron-600; // Links — deep citron for readability
+$inkblot-semantic-color-text-link-hover: $inkblot-color-accent-citron-700; // Link hover
+$inkblot-semantic-color-border-default: $inkblot-color-neutral-gray-200; // Subtle warm dividers
 $inkblot-semantic-color-border-strong: $inkblot-color-neutral-gray-300; // Emphasized borders
-$inkblot-semantic-color-border-focus: $inkblot-color-accent-blue-500; // Focus ring
-$inkblot-semantic-color-interactive-primary: $inkblot-color-accent-blue-500; // Primary buttons, links
-$inkblot-semantic-color-interactive-primary-hover: $inkblot-color-accent-blue-600; // Primary hover
-$inkblot-semantic-color-interactive-primary-active: $inkblot-color-accent-blue-700; // Primary pressed
-$inkblot-semantic-color-interactive-secondary: $inkblot-color-neutral-gray-200; // Secondary buttons
-$inkblot-semantic-color-interactive-secondary-hover: $inkblot-color-neutral-gray-300; // Secondary hover
+$inkblot-semantic-color-border-focus: $inkblot-color-accent-citron-500; // Focus ring — citron accent
+$inkblot-semantic-color-interactive-primary: $inkblot-color-accent-citron-500; // Primary CTA — confident citron
+$inkblot-semantic-color-interactive-primary-hover: $inkblot-color-accent-citron-600; // Primary hover — deeper, subtle shift
+$inkblot-semantic-color-interactive-primary-active: $inkblot-color-accent-citron-700; // Primary pressed
+$inkblot-semantic-color-interactive-secondary: $inkblot-color-neutral-gray-100; // Secondary surfaces with subtle depth
+$inkblot-semantic-color-interactive-secondary-hover: $inkblot-color-neutral-gray-200; // Secondary hover
 $inkblot-semantic-color-status-success: $inkblot-color-semantic-success-main; // Success state
 $inkblot-semantic-color-status-warning: $inkblot-color-semantic-warning-main; // Warning state
 $inkblot-semantic-color-status-error: $inkblot-color-semantic-error-main; // Error state
 $inkblot-semantic-color-status-info: $inkblot-color-semantic-info-main; // Info state
-$inkblot-semantic-typography-heading-1: $inkblot-typography-font-weight-bold $inkblot-typography-font-size-3xl/$inkblot-typography-line-height-tight $inkblot-typography-font-family-display; // Page title
+$inkblot-semantic-typography-heading-1: $inkblot-typography-font-weight-semibold $inkblot-typography-font-size-3xl/$inkblot-typography-line-height-tight $inkblot-typography-font-family-display; // Page title — composed, not dramatic
 $inkblot-semantic-typography-heading-2: $inkblot-typography-font-weight-semibold $inkblot-typography-font-size-2xl/$inkblot-typography-line-height-tight $inkblot-typography-font-family-display; // Section title
-$inkblot-semantic-typography-heading-3: $inkblot-typography-font-weight-semibold $inkblot-typography-font-size-xl/$inkblot-typography-line-height-snug $inkblot-typography-font-family-sans; // Subsection title
-$inkblot-semantic-typography-heading-4: $inkblot-typography-font-weight-semibold $inkblot-typography-font-size-lg/$inkblot-typography-line-height-snug $inkblot-typography-font-family-sans; // Card title
+$inkblot-semantic-typography-heading-3: $inkblot-typography-font-weight-medium $inkblot-typography-font-size-xl/$inkblot-typography-line-height-snug $inkblot-typography-font-family-sans; // Subsection title
+$inkblot-semantic-typography-heading-4: $inkblot-typography-font-weight-medium $inkblot-typography-font-size-lg/$inkblot-typography-line-height-snug $inkblot-typography-font-family-sans; // Card title
 $inkblot-semantic-typography-body-default: $inkblot-typography-font-weight-regular $inkblot-typography-font-size-base/$inkblot-typography-line-height-normal $inkblot-typography-font-family-sans; // Body text
 $inkblot-semantic-typography-body-small: $inkblot-typography-font-weight-regular $inkblot-typography-font-size-sm/$inkblot-typography-line-height-normal $inkblot-typography-font-family-sans; // Small body, captions
 $inkblot-semantic-typography-body-large: $inkblot-typography-font-weight-regular $inkblot-typography-font-size-md/$inkblot-typography-line-height-relaxed $inkblot-typography-font-family-sans; // Emphasized body
