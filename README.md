@@ -1,77 +1,32 @@
-# Inkblot Studio Design System
+# @citron-systems/citron-ds
 
-The canonical design system for **Inkblot Studio**. Built for AI agents, autonomous workers, and humans collaborating with AI. Every rule is explicit, every constraint defined, every edge case handled.
+> Inkblot Studio design token system — Apple-inspired, accessible, AI-ready. The **Citron** design language: warmly minimal, quietly distinctive.
 
-## Principles
+[![npm version](https://img.shields.io/npm/v/@citron-systems/citron-ds.svg)](https://www.npmjs.com/package/@citron-systems/citron-ds)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-- **Radical Clarity** — One correct interpretation per rule. No ambiguity.
-- **Composable Independence** — Every component is self-contained and works in isolation.
-- **Universal Access** — WCAG AAA. 7:1 contrast. 44px touch targets. Full keyboard nav.
-- **AI-First** — Every token, component, and rule is machine-parseable JSON.
-- **Deliberate Restraint** — Minimum visual complexity. Every element earns its place.
+---
+
+## Install
+
+```bash
+npm install @citron-systems/citron-ds
+```
+
+### CDN (no build step)
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/@citron-systems/citron-ds/dist/css/inkblot-variables.css">
+```
+
+---
 
 ## Quick Start
 
-```bash
-npm install
-npm run build
-npm run dev        # Live preview at localhost:5173
-```
-
-## Architecture
-
-```
-inkblot-studio-design-tokens/
-├── tokens/                         # W3C DTCG format (source of truth)
-│   ├── primitive/                  # Raw design values
-│   │   ├── color.tokens.json       # Neutral + accent + semantic palettes
-│   │   ├── typography.tokens.json  # Font stacks, scale, weights
-│   │   ├── spacing.tokens.json     # 4pt grid, icon sizes, touch targets
-│   │   ├── radius.tokens.json      # Border radius + widths
-│   │   ├── shadow.tokens.json      # Elevation + opacity
-│   │   ├── duration.tokens.json    # Animation timing + easing curves
-│   │   ├── breakpoint.tokens.json  # Responsive breakpoints
-│   │   ├── grid.tokens.json        # Column counts, gutters, margins, max-widths
-│   │   └── zindex.tokens.json      # Layering hierarchy
-│   └── semantic/                   # Mapped meanings (use in components)
-│       ├── inkblot.semantic.tokens.json  # Light mode
-│       └── dark.tokens.json              # Dark mode overrides
-├── system/                         # Design system specification (JSON)
-│   ├── index.json                  # Master index — start here
-│   ├── foundations.json            # Principles, accessibility, tech stack
-│   ├── grid.json                   # Grid system, breakpoints, layout patterns
-│   ├── components.json             # Full component library spec
-│   ├── motion.json                 # Animation, transitions, micro-interactions
-│   ├── content.json                # Data display, states, iconography, imagery
-│   └── ai.json                     # AI agent consumption rules + examples
-├── dist/                           # Generated outputs
-│   ├── css/inkblot-variables.css
-│   ├── scss/_inkblot-variables.scss
-│   ├── js/inkblot-tokens.js
-│   └── ai/inkblot-tokens-resolved.json
-└── preview/                        # Live preview (Vite)
-```
-
-## For AI Agents
-
-**Primary reference** (include in context): `dist/ai/inkblot-ai-reference.json`
-- CSS variable map for all semantic tokens
-- Composite patterns (form, card, modal, table, list item)
-- Breakpoints, grid, easing (in CSS format)
-- Icon semantics, CSS snippets, component spacing
-- Validation and ARIA patterns
-
-**Supplemental**:
-- `system/ai.json` — rendering templates, layout assembly, edge cases
-- `system/components.json` — full component anatomy and states
-- `dist/ai/inkblot-tokens-resolved.json` — flat resolved values
-
-**Rule**: Always use semantic tokens (`var(--inkblot-semantic-color-*)`), never primitives
-
-## For Developers
+### CSS (recommended)
 
 ```css
-@import '@inkblot-studio/design-tokens/css';
+@import '@citron-systems/citron-ds/css';
 
 .button {
   background: var(--inkblot-semantic-color-interactive-primary);
@@ -84,20 +39,89 @@ inkblot-studio-design-tokens/
 }
 ```
 
-## System Specifications
+### SCSS
 
-| File | What it covers |
-|------|---------------|
-| `system/foundations.json` | Core principles, WCAG AAA rules, color modes, tech stack |
-| `system/grid.json` | 4–24 column grid, breakpoints, z-index, layout patterns |
-| `system/components.json` | Button, input, checkbox, toggle, select, modal, tooltip, card, chip, table, toast, slider, avatar, skeleton, empty state |
-| `system/motion.json` | Durations, easings, transition patterns, micro-interactions, reduced motion |
-| `system/content.json` | Tables, lists, cards, feeds, loading/empty/error states, iconography, imagery, truncation |
-| `system/ai.json` | Component rendering rules, layout assembly steps, edge cases, testing requirements |
+```scss
+@use '@citron-systems/citron-ds/scss' as *;
+
+.card {
+  background: var(--inkblot-semantic-color-background-secondary);
+  border: 1px solid var(--inkblot-semantic-color-border-default);
+  border-radius: var(--inkblot-radius-xl);
+  padding: var(--inkblot-spacing-6);
+}
+```
+
+### JavaScript / ESM
+
+```javascript
+import {
+  InkblotColorAccentCitron500,
+  InkblotSpacing4,
+  InkblotRadiusLg,
+} from '@citron-systems/citron-ds';
+
+// Use in JS-driven styling (e.g. React inline, Canvas, etc.)
+const styles = {
+  backgroundColor: InkblotColorAccentCitron500,
+  padding: InkblotSpacing4,
+  borderRadius: InkblotRadiusLg,
+};
+```
+
+### JSON (for tooling, build scripts, AI)
+
+```javascript
+import tokens from '@citron-systems/citron-ds/tokens';
+// Flat resolved values: { "inkblot.color.accent.citron.500": "#c4a030", ... }
+```
+
+---
+
+## Package Exports
+
+| Import path | Contents |
+|-------------|----------|
+| `@citron-systems/citron-ds` | ESM JS tokens (default) |
+| `@citron-systems/citron-ds/css` | CSS variables (`:root`) |
+| `@citron-systems/citron-ds/scss` | SCSS variables |
+| `@citron-systems/citron-ds/tokens` | Flat JSON (resolved values) |
+| `@citron-systems/citron-ds/ai-reference` | AI agent reference (token map, patterns, rules) |
+
+---
+
+## Principles
+
+- **Radical Clarity** — One correct interpretation per rule. No ambiguity.
+- **Composable Independence** — Every component is self-contained and works in isolation.
+- **Universal Access** — WCAG AAA. 7:1 contrast. 44px touch targets. Full keyboard nav.
+- **AI-First** — Every token, component, and rule is machine-parseable JSON.
+- **Deliberate Restraint** — Minimum visual complexity. Every element earns its place.
+
+---
 
 ## Color Modes
 
-Light mode is default. Dark mode activates via `[data-theme="dark"]` or `prefers-color-scheme: dark`.
+Light mode is default. Dark mode activates via:
+
+- `[data-theme="dark"]` on a parent element, or
+- `prefers-color-scheme: dark` (system preference)
+
+---
+
+## For AI Agents
+
+**Primary reference** (include in context): `@citron-systems/citron-ds/ai-reference`
+
+- CSS variable map for all semantic tokens
+- Composite patterns (form, card, modal, table, list item)
+- Breakpoints, grid, easing (in CSS format)
+- Icon semantics, CSS snippets, component spacing
+- Validation and ARIA patterns
+
+**Rule**: Always use semantic tokens (`var(--inkblot-semantic-color-*)`), never primitives.
+
+---
 
 ## Standards
 
@@ -106,6 +130,20 @@ Light mode is default. Dark mode activates via `[data-theme="dark"]` or `prefers
 - **Accessibility**: WCAG 2.2 AAA
 - **Contrast**: 7:1 normal text, 4.5:1 large text, 3:1 UI components
 
+---
+
+## Development
+
+```bash
+git clone https://github.com/GHDryanovski19/inkblot-studio-design-tokens.git
+cd inkblot-studio-design-tokens
+npm install
+npm run build
+npm run dev        # Live preview at localhost:5173
+```
+
+---
+
 ## License
 
-MIT - Inkblot Studio
+MIT © Inkblot Studio

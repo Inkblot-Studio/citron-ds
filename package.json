@@ -1,7 +1,7 @@
 {
-  "name": "@inkblot-studio/design-tokens",
+  "name": "@citron-systems/citron-ds",
   "version": "1.0.0",
-  "description": "Inkblot Studio design token system - Apple-inspired, accessible, AI-ready",
+  "description": "Inkblot Studio design token system — Apple-inspired, accessible, AI-ready. Citron design language.",
   "type": "module",
   "main": "dist/js/inkblot-tokens.js",
   "exports": {
@@ -28,11 +28,29 @@
     "design-tokens",
     "design-system",
     "inkblot-studio",
+    "citron",
     "style-dictionary",
-    "css-variables"
+    "css-variables",
+    "scss",
+    "wcag",
+    "accessibility",
+    "ai-ready"
   ],
   "author": "Inkblot Studio",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GHDryanovski19/inkblot-studio-design-tokens.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GHDryanovski19/inkblot-studio-design-tokens/issues"
+  },
+  "homepage": "https://github.com/GHDryanovski19/inkblot-studio-design-tokens#readme",
+  "engines": {
+    "node": ">=18"
+  },
+  "unpkg": "dist/css/inkblot-variables.css",
+  "jsdelivr": "dist/css/inkblot-variables.css",
   "devDependencies": {
     "chokidar-cli": "^3.0.0",
     "concurrently": "^8.2.2",

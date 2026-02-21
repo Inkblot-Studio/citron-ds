@@ -1,0 +1,19 @@
+# Development
+preview/
+system/
+node_modules/
+.git/
+.vscode/
+.cursor/
+
+# Build config (not needed by consumers)
+style-dictionary.config.js
+vite.config.*
+index.html
+
+# Misc
+*.log
+.DS_Store
+.env*
+coverage/
+.nyc_output/
