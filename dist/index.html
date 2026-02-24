@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Citron — Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/inkblot-variables.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--inkblot-typography-font-family-sans);
+      background: var(--inkblot-semantic-color-background-primary);
+      color: var(--inkblot-semantic-color-text-primary);
+      line-height: var(--inkblot-typography-line-height-normal);
+      min-height: 100vh;
+      transition: background var(--inkblot-duration-slow) var(--inkblot-easing-default),
+                  color var(--inkblot-duration-slow) var(--inkblot-easing-default);
+    }
+
+    [data-theme="dark"] {
+      --inkblot-semantic-color-background-primary: var(--inkblot-dark-color-background-primary);
+      --inkblot-semantic-color-background-secondary: var(--inkblot-dark-color-background-secondary);
+      --inkblot-semantic-color-background-tertiary: var(--inkblot-dark-color-background-tertiary);
+      --inkblot-semantic-color-background-inverse: var(--inkblot-dark-color-background-inverse);
+      --inkblot-semantic-color-text-primary: var(--inkblot-dark-color-text-primary);
+      --inkblot-semantic-color-text-secondary: var(--inkblot-dark-color-text-secondary);
+      --inkblot-semantic-color-text-tertiary: var(--inkblot-dark-color-text-tertiary);
+      --inkblot-semantic-color-text-inverse: var(--inkblot-dark-color-text-inverse);
+      --inkblot-semantic-color-text-link: var(--inkblot-dark-color-text-link);
+      --inkblot-semantic-color-text-link-hover: var(--inkblot-dark-color-text-link-hover);
+      --inkblot-semantic-color-border-default: var(--inkblot-dark-color-border-default);
+      --inkblot-semantic-color-border-strong: var(--inkblot-dark-color-border-strong);
+      --inkblot-semantic-color-border-focus: var(--inkblot-dark-color-border-focus);
+      --inkblot-semantic-color-interactive-primary: var(--inkblot-dark-color-interactive-primary);
+      --inkblot-semantic-color-interactive-primary-hover: var(--inkblot-dark-color-interactive-primary-hover);
+      --inkblot-semantic-color-interactive-primary-active: var(--inkblot-dark-color-interactive-primary-active);
+      --inkblot-semantic-color-interactive-secondary: var(--inkblot-dark-color-interactive-secondary);
+      --inkblot-semantic-color-interactive-secondary-hover: var(--inkblot-dark-color-interactive-secondary-hover);
+      --inkblot-semantic-color-status-success: var(--inkblot-dark-color-status-success);
+      --inkblot-semantic-color-status-warning: var(--inkblot-dark-color-status-warning);
+      --inkblot-semantic-color-status-error: var(--inkblot-dark-color-status-error);
+      --inkblot-semantic-color-status-info: var(--inkblot-dark-color-status-info);
+    }
+
+    /* NAV */
+    .nav { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(24px) saturate(1.2); -webkit-backdrop-filter: blur(24px) saturate(1.2); background: rgba(250,250,247,0.78); border-bottom: 1px solid var(--inkblot-semantic-color-border-default); padding: var(--inkblot-spacing-3) var(--inkblot-spacing-6); display: flex; align-items: center; justify-content: space-between; }
+    [data-theme="dark"] .nav { background: rgba(18,17,14,0.78); }
+    .nav-brand { font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; letter-spacing: -0.01em; color: var(--inkblot-semantic-color-text-primary); text-decoration: none; transition: opacity 150ms; }
+    .nav-brand:hover { opacity: 0.7; }
+    .nav-menu { display: contents; }
+    .nav-links { display: flex; gap: var(--inkblot-spacing-4); list-style: none; padding: 0; margin: 0; }
+    .nav-links a { font-size: var(--inkblot-typography-font-size-xs); color: var(--inkblot-semantic-color-text-secondary); text-decoration: none; white-space: nowrap; transition: color 150ms; padding: var(--inkblot-spacing-2) 0; }
+    .nav-links a:hover { color: var(--inkblot-semantic-color-text-primary); }
+    .nav-hamburger { display: none; width: 44px; height: 44px; padding: 0; border: none; background: transparent; cursor: pointer; align-items: center; justify-content: center; border-radius: var(--inkblot-radius-md); transition: background 150ms; position: relative; flex-shrink: 0; }
+    .nav-hamburger:hover { background: var(--inkblot-semantic-color-background-secondary); }
+    .nav-hamburger span, .nav-hamburger span::before, .nav-hamburger span::after { display: block; width: 20px; height: 2px; background: var(--inkblot-semantic-color-text-primary); border-radius: 1px; transition: transform 200ms, opacity 200ms; }
+    .nav-hamburger span { position: relative; }
+    .nav-hamburger span::before, .nav-hamburger span::after { content: ''; position: absolute; left: 0; top: 0; }
+    .nav-hamburger span::before { transform: translateY(-6px); }
+    .nav-hamburger span::after { transform: translateY(6px); }
+    .nav.open .nav-hamburger span { background: transparent; }
+    .nav.open .nav-hamburger span::before { transform: translateY(0) rotate(45deg); }
+    .nav.open .nav-hamburger span::after { transform: translateY(0) rotate(-45deg); }
+    .theme-toggle { width: 44px; height: 24px; background: var(--inkblot-semantic-color-border-default); border: none; border-radius: var(--inkblot-radius-full); cursor: pointer; position: relative; transition: background 150ms; flex-shrink: 0; }
+    .theme-toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: white; border-radius: 50%; box-shadow: 0 1px 3px rgba(29,28,25,0.12); transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-expressive); }
+    [data-theme="dark"] .theme-toggle { background: var(--inkblot-dark-color-interactive-primary); }
+    [data-theme="dark"] .theme-toggle::after { transform: translateX(20px); }
+    *:focus-visible { outline: 2px solid var(--inkblot-semantic-color-border-focus); outline-offset: 2px; }
+
+    /* HERO */
+    .hero { padding: clamp(64px,10vh,120px) var(--inkblot-spacing-8); text-align: center; max-width: 720px; margin: 0 auto; }
+    .hero h1 { font-size: clamp(2rem,5vw,2.75rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: var(--inkblot-spacing-4); }
+    .hero .tagline { font-size: var(--inkblot-typography-font-size-md); color: var(--inkblot-semantic-color-text-secondary); line-height: 1.65; margin-bottom: var(--inkblot-spacing-10); }
+    .hero-actions { display: flex; gap: var(--inkblot-spacing-3); justify-content: center; flex-wrap: wrap; }
+
+    /* LAYOUT */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--inkblot-spacing-8) var(--inkblot-spacing-24); }
+    .section { margin-bottom: var(--inkblot-spacing-20); }
+    .section-header { margin-bottom: var(--inkblot-spacing-8); padding-bottom: var(--inkblot-spacing-4); border-bottom: 1px solid var(--inkblot-semantic-color-border-default); }
+    .section-title { font-size: var(--inkblot-typography-font-size-xl); font-weight: 500; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .section-desc { font-size: var(--inkblot-typography-font-size-xs); color: var(--inkblot-semantic-color-text-tertiary); }
+    .card { background: var(--inkblot-semantic-color-background-secondary); border-radius: var(--inkblot-radius-xl); padding: var(--inkblot-spacing-6); box-shadow: var(--inkblot-shadow-sm); }
+    .card-title { font-size: var(--inkblot-typography-font-size-sm); font-weight: 500; margin-bottom: var(--inkblot-spacing-4); color: var(--inkblot-semantic-color-text-primary); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--inkblot-spacing-6); }
+    .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--inkblot-spacing-6); }
+    .four-col { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--inkblot-spacing-6); }
+    @media (max-width: 900px) { .three-col, .four-col { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px) { .two-col, .three-col, .four-col { grid-template-columns: 1fr; } }
+
+    /* BUTTONS */
+    .btn { padding: var(--inkblot-spacing-3) var(--inkblot-spacing-6); border: none; border-radius: var(--inkblot-radius-lg); font-family: inherit; font-size: var(--inkblot-typography-font-size-sm); font-weight: 500; cursor: pointer; transition: background var(--inkblot-duration-fast) var(--inkblot-easing-default), box-shadow var(--inkblot-duration-fast) var(--inkblot-easing-default), transform 80ms var(--inkblot-easing-default); min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: var(--inkblot-spacing-2); }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: var(--inkblot-semantic-color-interactive-primary); color: var(--inkblot-color-accent-citron-50); box-shadow: 0 1px 4px rgba(196,160,48,0.15); }
+    .btn-primary:hover { background: var(--inkblot-semantic-color-interactive-primary-hover); box-shadow: 0 2px 10px rgba(196,160,48,0.22); }
+    .btn-secondary { background: var(--inkblot-semantic-color-background-secondary); color: var(--inkblot-semantic-color-text-primary); border: 1px solid var(--inkblot-semantic-color-border-default); box-shadow: var(--inkblot-shadow-xs); }
+    .btn-secondary:hover { background: var(--inkblot-semantic-color-background-tertiary); border-color: var(--inkblot-semantic-color-border-strong); box-shadow: var(--inkblot-shadow-sm); }
+    .btn-ghost { background: transparent; color: var(--inkblot-semantic-color-text-link); }
+    .btn-ghost:hover { background: var(--inkblot-color-accent-citron-50); }
+    .btn-danger { background: var(--inkblot-semantic-color-status-error); color: white; }
+    .btn-sm { min-height: 32px; padding: var(--inkblot-spacing-1) var(--inkblot-spacing-3); font-size: var(--inkblot-typography-font-size-xs); }
+    .btn-lg { min-height: 48px; padding: var(--inkblot-spacing-3) var(--inkblot-spacing-8); font-size: var(--inkblot-typography-font-size-md); border-radius: var(--inkblot-radius-xl); }
+
+    /* BADGES */
+    .badges { display: flex; gap: var(--inkblot-spacing-3); flex-wrap: wrap; }
+    .badge { padding: var(--inkblot-spacing-1) var(--inkblot-spacing-3); border-radius: var(--inkblot-radius-full); font-size: var(--inkblot-typography-font-size-xs); font-weight: 500; color: white; }
+    .badge-success { background: var(--inkblot-semantic-color-status-success); }
+    .badge-warning { background: var(--inkblot-semantic-color-status-warning); color: var(--inkblot-color-accent-citron-50); }
+    .badge-error { background: var(--inkblot-semantic-color-status-error); }
+    .badge-info { background: var(--inkblot-semantic-color-status-info); }
+
+    /* SWATCHES */
+    .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: var(--inkblot-spacing-2); }
+    .swatch { border-radius: var(--inkblot-radius-lg); overflow: hidden; cursor: pointer; border: 1px solid transparent; transition: border-color 150ms, box-shadow 150ms; }
+    .swatch:hover { border-color: var(--inkblot-semantic-color-border-default); box-shadow: var(--inkblot-shadow-sm); }
+    .swatch.copied { border-color: var(--inkblot-semantic-color-status-success); }
+    .swatch-color { height: 56px; }
+    .swatch-meta { padding: 6px; font-size: 10px; font-weight: 500; color: var(--inkblot-semantic-color-text-secondary); background: var(--inkblot-semantic-color-background-secondary); }
+
+    /* TYPOGRAPHY */
+    .type-row { padding: var(--inkblot-spacing-3) var(--inkblot-spacing-3); border-bottom: 1px solid var(--inkblot-semantic-color-border-default); border-radius: var(--inkblot-radius-sm); transition: background 150ms; }
+    .type-row:hover { background: var(--inkblot-semantic-color-background-secondary); }
+    .type-row:last-child { border-bottom: none; }
+    .type-row .meta { font-size: 10px; font-weight: 500; color: var(--inkblot-semantic-color-text-tertiary); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: var(--inkblot-spacing-1); }
+
+    /* INPUTS */
+    .input-group { display: flex; flex-direction: column; gap: 4px; }
+    .input-label { font-size: var(--inkblot-typography-font-size-xs); font-weight: 500; color: var(--inkblot-semantic-color-text-secondary); }
+    .input { padding: var(--inkblot-spacing-2) var(--inkblot-spacing-3); border: 1px solid var(--inkblot-semantic-color-border-default); border-radius: var(--inkblot-radius-md); font-family: inherit; font-size: var(--inkblot-typography-font-size-base); background: var(--inkblot-semantic-color-background-primary); color: var(--inkblot-semantic-color-text-primary); min-height: 40px; transition: border-color 150ms, box-shadow 150ms; outline: none; }
+    .input:hover { border-color: var(--inkblot-semantic-color-border-strong); }
+    .input:focus { border-color: var(--inkblot-semantic-color-border-focus); box-shadow: 0 0 0 2px rgba(196,160,48,0.15); }
+    .input-error { border-color: var(--inkblot-semantic-color-status-error) !important; }
+    .input-error:focus { box-shadow: 0 0 0 2px rgba(190,62,53,0.15); }
+    .input-help { font-size: 11px; color: var(--inkblot-semantic-color-text-tertiary); }
+    .input-error-msg { font-size: 11px; color: var(--inkblot-semantic-color-status-error); }
+
+    /* TOGGLE */
+    .toggle-track { width: 44px; height: 24px; background: var(--inkblot-semantic-color-border-default); border-radius: var(--inkblot-radius-full); position: relative; cursor: pointer; border: none; transition: background 150ms; }
+    .toggle-track.on { background: var(--inkblot-semantic-color-interactive-primary); }
+    .toggle-thumb { width: 20px; height: 20px; background: white; border-radius: 50%; position: absolute; top: 2px; left: 2px; box-shadow: 0 1px 3px rgba(29,28,25,0.12); transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-expressive); }
+    .toggle-track.on .toggle-thumb { transform: translateX(20px); }
+
+    /* SHADOWS */
+    .shadow-row { display: flex; flex-wrap: wrap; gap: var(--inkblot-spacing-6); }
+    .shadow-box { width: 100px; height: 100px; background: var(--inkblot-semantic-color-background-primary); border-radius: var(--inkblot-radius-xl); display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--inkblot-semantic-color-text-tertiary); transition: transform 150ms; }
+    .shadow-box:hover { transform: translateY(-3px); }
+
+    /* SPACING */
+    .scale-row { display: flex; flex-wrap: wrap; gap: var(--inkblot-spacing-4); align-items: flex-end; }
+    .scale-box { background: var(--inkblot-semantic-color-interactive-primary); border-radius: var(--inkblot-radius-md); display: flex; align-items: center; justify-content: center; color: var(--inkblot-color-accent-citron-50); font-size: 10px; font-weight: 500; }
+    .radius-row { display: flex; flex-wrap: wrap; gap: var(--inkblot-spacing-4); }
+    .radius-box { width: 72px; height: 72px; background: linear-gradient(135deg, var(--inkblot-color-accent-citron-400), var(--inkblot-color-accent-citron-600)); display: flex; align-items: center; justify-content: center; color: var(--inkblot-color-accent-citron-50); font-size: 11px; font-weight: 500; }
+
+    /* SKELETON */
+    .skeleton { border-radius: var(--inkblot-radius-md); background: linear-gradient(90deg, var(--inkblot-semantic-color-background-secondary) 25%, var(--inkblot-semantic-color-background-tertiary) 50%, var(--inkblot-semantic-color-background-secondary) 75%); background-size: 200% 100%; animation: shimmer 1.5s ease-in-out infinite; }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+    /* TOASTS */
+    .toast { display: flex; align-items: center; gap: var(--inkblot-spacing-3); padding: var(--inkblot-spacing-3) var(--inkblot-spacing-4); border-radius: var(--inkblot-radius-lg); font-size: var(--inkblot-typography-font-size-sm); box-shadow: var(--inkblot-shadow-lg); }
+    .toast-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .toast-info { background: rgba(87,144,173,0.07); border: 1px solid rgba(87,144,173,0.18); }
+    .toast-info .toast-dot { background: var(--inkblot-semantic-color-status-info); }
+    .toast-success { background: rgba(53,140,70,0.07); border: 1px solid rgba(53,140,70,0.18); }
+    .toast-success .toast-dot { background: var(--inkblot-semantic-color-status-success); }
+    .toast-error { background: rgba(190,62,53,0.07); border: 1px solid rgba(190,62,53,0.18); }
+    .toast-error .toast-dot { background: var(--inkblot-semantic-color-status-error); }
+    .toast-warning { background: rgba(196,140,26,0.07); border: 1px solid rgba(196,140,26,0.18); }
+    .toast-warning .toast-dot { background: var(--inkblot-semantic-color-status-warning); }
+
+    /* ERROR / EMPTY */
+    .error-demo { background: rgba(190,62,53,0.06); border: 1px solid rgba(190,62,53,0.2); border-radius: var(--inkblot-radius-lg); padding: var(--inkblot-spacing-4); font-size: var(--inkblot-typography-font-size-sm); }
+    [data-theme="dark"] .error-demo { background: rgba(224,90,82,0.1); border-color: rgba(224,90,82,0.25); }
+    .empty-state { text-align: center; padding: var(--inkblot-spacing-10) var(--inkblot-spacing-4); }
+    .empty-state h3 { font-size: var(--inkblot-typography-font-size-lg); font-weight: 600; margin-bottom: var(--inkblot-spacing-2); }
+    .empty-state p { font-size: var(--inkblot-typography-font-size-sm); color: var(--inkblot-semantic-color-text-secondary); margin-bottom: var(--inkblot-spacing-4); }
+
+    /* MOTION DEMO */
+    .motion-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: var(--inkblot-spacing-4); }
+    .motion-item { text-align: center; }
+    .motion-box { width: 100%; aspect-ratio: 1; background: var(--inkblot-semantic-color-interactive-primary); border-radius: var(--inkblot-radius-lg); display: flex; align-items: center; justify-content: center; color: var(--inkblot-color-accent-citron-50); font-size: 11px; font-weight: 500; margin-bottom: var(--inkblot-spacing-2); cursor: pointer; position: relative; overflow: hidden; }
+    .motion-label { font-size: 10px; color: var(--inkblot-semantic-color-text-tertiary); font-weight: 500; }
+    .motion-box.hover-lift { transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-default), box-shadow var(--inkblot-duration-fast) var(--inkblot-easing-default); }
+    .motion-box.hover-lift:hover { transform: translateY(-3px); box-shadow: var(--inkblot-shadow-md); }
+    .motion-box.press { transition: transform 80ms var(--inkblot-easing-default); }
+    .motion-box.press:active { transform: scale(0.96); }
+    .motion-box.scale-in { transition: transform var(--inkblot-duration-normal) var(--inkblot-easing-out), opacity var(--inkblot-duration-normal) var(--inkblot-easing-out); }
+    .motion-box.scale-in:hover { transform: scale(1.03); }
+    .motion-box.smooth { transition: transform var(--inkblot-duration-normal) var(--inkblot-easing-expressive); }
+    .motion-box.smooth:hover { transform: scale(1.04); }
+    .motion-box.arrive { transition: transform var(--inkblot-duration-slow) var(--inkblot-easing-expressive); }
+    .motion-box.arrive:hover { transform: translateY(-4px); }
+    .motion-box.fade { transition: opacity var(--inkblot-duration-normal) var(--inkblot-easing-out); opacity: 0.5; }
+    .motion-box.fade:hover { opacity: 1; }
+
+    /* EASING VIS */
+    .easing-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--inkblot-spacing-4); }
+    .easing-item { padding: var(--inkblot-spacing-4); background: var(--inkblot-semantic-color-background-secondary); border-radius: var(--inkblot-radius-lg); }
+    .easing-name { font-size: 11px; font-weight: 600; margin-bottom: var(--inkblot-spacing-2); }
+    .easing-value { font-family: var(--inkblot-typography-font-family-mono); font-size: 10px; color: var(--inkblot-semantic-color-text-tertiary); margin-bottom: var(--inkblot-spacing-3); word-break: break-all; }
+    .easing-track { height: 4px; background: var(--inkblot-semantic-color-border-default); border-radius: 2px; position: relative; overflow: hidden; }
+    .easing-ball { width: 12px; height: 12px; border-radius: 50%; background: var(--inkblot-semantic-color-interactive-primary); position: absolute; top: -4px; left: 0; }
+    .easing-item:hover .easing-ball { animation: easingSlide 800ms forwards; }
+    @keyframes easingSlide { to { left: calc(100% - 12px); } }
+    .easing-item:nth-child(1):hover .easing-ball { animation-timing-function: cubic-bezier(0.25,0.1,0.25,1); }
+    .easing-item:nth-child(2):hover .easing-ball { animation-timing-function: cubic-bezier(0.32,0,0.67,0); }
+    .easing-item:nth-child(3):hover .easing-ball { animation-timing-function: cubic-bezier(0.33,1,0.68,1); }
+    .easing-item:nth-child(4):hover .easing-ball { animation-timing-function: cubic-bezier(0.65,0,0.35,1); }
+    .easing-item:nth-child(5):hover .easing-ball { animation-timing-function: cubic-bezier(0.22,1,0.36,1); }
+
+    /* RESPONSIVE */
+    .responsive-vis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; height: 120px; border-radius: var(--inkblot-radius-lg); overflow: hidden; }
+    .responsive-vis div { display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 500; color: white; }
+
+    /* STATE PRIORITY */
+    .state-table { width: 100%; border-collapse: collapse; font-size: var(--inkblot-typography-font-size-sm); }
+    .state-table th { text-align: left; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--inkblot-semantic-color-text-tertiary); padding: var(--inkblot-spacing-2) var(--inkblot-spacing-3); border-bottom: 1px solid var(--inkblot-semantic-color-border-default); }
+    .state-table td { padding: var(--inkblot-spacing-2) var(--inkblot-spacing-3); border-bottom: 1px solid var(--inkblot-semantic-color-border-default); }
+    .state-table tr:last-child td { border-bottom: none; }
+    .state-table code { font-family: var(--inkblot-typography-font-family-mono); font-size: 11px; background: var(--inkblot-semantic-color-background-tertiary); padding: 2px 6px; border-radius: var(--inkblot-radius-sm); }
+    .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    /* INTERACTION FLOW */
+    .flow-steps { display: flex; flex-direction: column; gap: var(--inkblot-spacing-2); counter-reset: step; }
+    .flow-step { display: flex; gap: var(--inkblot-spacing-3); align-items: flex-start; font-size: var(--inkblot-typography-font-size-sm); counter-increment: step; }
+    .flow-step::before { content: counter(step); flex-shrink: 0; width: 24px; height: 24px; background: var(--inkblot-semantic-color-interactive-primary); color: var(--inkblot-color-accent-citron-50); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; }
+    .flow-step span { padding-top: 2px; }
+
+    /* CONTENT RULES */
+    .truncate-1 { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .truncate-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .aspect-box { border-radius: var(--inkblot-radius-lg); overflow: hidden; background: linear-gradient(135deg, var(--inkblot-color-accent-citron-100), var(--inkblot-color-accent-citron-300)); display: flex; align-items: center; justify-content: center; color: var(--inkblot-color-accent-citron-700); font-size: 11px; font-weight: 600; }
+
+    /* MODAL DEMO */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(29,28,25,0.45); z-index: 40; animation: fadeIn var(--inkblot-duration-normal) var(--inkblot-easing-out); }
+    .modal-overlay.open { display: flex; align-items: center; justify-content: center; }
+    .modal-dialog { background: var(--inkblot-semantic-color-background-secondary); border-radius: var(--inkblot-radius-xl); padding: var(--inkblot-spacing-8); width: 480px; max-width: 90vw; box-shadow: var(--inkblot-shadow-xl); animation: scaleIn var(--inkblot-duration-normal) var(--inkblot-easing-out); }
+    .modal-dialog h3 { font-size: var(--inkblot-typography-font-size-lg); font-weight: 600; margin-bottom: var(--inkblot-spacing-2); }
+    .modal-dialog p { font-size: var(--inkblot-typography-font-size-sm); color: var(--inkblot-semantic-color-text-secondary); margin-bottom: var(--inkblot-spacing-6); }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* TOOLTIP DEMO */
+    .tooltip-trigger { position: relative; display: inline-flex; }
+    .tooltip-trigger .tooltip-bubble { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%) scale(0.96); background: var(--inkblot-semantic-color-background-inverse); color: var(--inkblot-semantic-color-text-inverse); padding: var(--inkblot-spacing-2) var(--inkblot-spacing-3); border-radius: var(--inkblot-radius-md); font-size: 12px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 150ms, transform 150ms; }
+    .tooltip-trigger:hover .tooltip-bubble, .tooltip-trigger:focus-within .tooltip-bubble { opacity: 1; transform: translateX(-50%) scale(1); }
+
+    /* PERF */
+    .perf-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--inkblot-spacing-4); }
+    .perf-item { padding: var(--inkblot-spacing-4); background: var(--inkblot-semantic-color-background-secondary); border-radius: var(--inkblot-radius-lg); }
+    .perf-item h4 { font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; margin-bottom: var(--inkblot-spacing-2); }
+    .perf-item p { font-size: 12px; color: var(--inkblot-semantic-color-text-secondary); line-height: 1.5; }
+
+    /* ICON SEMANTICS */
+    .icon-table { width: 100%; border-collapse: collapse; font-size: var(--inkblot-typography-font-size-sm); }
+    .icon-table th { text-align: left; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--inkblot-semantic-color-text-tertiary); padding: var(--inkblot-spacing-2) var(--inkblot-spacing-3); border-bottom: 1px solid var(--inkblot-semantic-color-border-default); }
+    .icon-table td { padding: var(--inkblot-spacing-2) var(--inkblot-spacing-3); border-bottom: 1px solid var(--inkblot-semantic-color-border-default); font-size: 13px; }
+    .icon-table tr:last-child td { border-bottom: none; }
+    .icon-table code { font-family: var(--inkblot-typography-font-family-mono); font-size: 11px; background: var(--inkblot-semantic-color-background-tertiary); padding: 2px 6px; border-radius: var(--inkblot-radius-sm); }
+    .icon-table .icon-preview { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: var(--inkblot-radius-md); background: var(--inkblot-semantic-color-background-secondary); }
+    .icon-table .icon-preview svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .icon-size-demos { display: flex; align-items: end; gap: var(--inkblot-spacing-6); flex-wrap: wrap; }
+    .icon-size-demo { display: flex; flex-direction: column; align-items: center; gap: var(--inkblot-spacing-2); }
+    .icon-size-demo .icon-box { display: flex; align-items: center; justify-content: center; background: var(--inkblot-semantic-color-background-secondary); border-radius: var(--inkblot-radius-lg); }
+    .icon-size-demo .icon-box svg { stroke: var(--inkblot-semantic-color-interactive-primary); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .icon-size-demo span { font-size: 10px; color: var(--inkblot-semantic-color-text-tertiary); font-weight: 500; }
+    .icon-pos-demos { display: flex; flex-wrap: wrap; gap: var(--inkblot-spacing-4); }
+    .icon-pos-demo { display: inline-flex; align-items: center; gap: var(--inkblot-spacing-2); padding: var(--inkblot-spacing-2) var(--inkblot-spacing-4); background: var(--inkblot-semantic-color-background-secondary); border-radius: var(--inkblot-radius-lg); font-size: var(--inkblot-typography-font-size-sm); }
+    .icon-pos-demo svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .icon-lib-badge { display: inline-flex; align-items: center; gap: var(--inkblot-spacing-2); padding: var(--inkblot-spacing-2) var(--inkblot-spacing-4); background: var(--inkblot-semantic-color-background-secondary); border-radius: var(--inkblot-radius-full); font-size: var(--inkblot-typography-font-size-sm); font-weight: 500; margin-bottom: var(--inkblot-spacing-6); }
+    @media (max-width: 768px) {
+      .icon-table td, .icon-table th { padding: var(--inkblot-spacing-2); font-size: 12px; }
+      .icon-table code { font-size: 10px; }
+      .icon-size-demos { gap: var(--inkblot-spacing-4); }
+    }
+
+    .footer { text-align: center; padding: var(--inkblot-spacing-12) var(--inkblot-spacing-8); color: var(--inkblot-semantic-color-text-tertiary); font-size: var(--inkblot-typography-font-size-xs); border-top: 1px solid var(--inkblot-semantic-color-border-default); }
+    .footer code { background: var(--inkblot-semantic-color-background-secondary); padding: 2px 6px; border-radius: var(--inkblot-radius-sm); font-family: var(--inkblot-typography-font-family-mono); font-size: 11px; }
+
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      .nav { padding: var(--inkblot-spacing-3) var(--inkblot-spacing-4); flex-wrap: nowrap; position: relative; }
+      .nav-hamburger { display: flex; margin-left: auto; margin-right: var(--inkblot-spacing-2); }
+      .nav-menu { display: block; position: absolute; top: 100%; left: 0; right: 0; background: var(--inkblot-semantic-color-background-primary); border-bottom: 1px solid var(--inkblot-semantic-color-border-default); box-shadow: var(--inkblot-shadow-lg); max-height: 0; overflow: hidden; opacity: 0; transition: max-height 250ms cubic-bezier(0.25,0.1,0.25,1), opacity 200ms ease; z-index: 10; }
+      .nav.open .nav-menu { max-height: 80vh; overflow-y: auto; opacity: 1; }
+      .nav-links { flex-direction: column; gap: 0; padding: var(--inkblot-spacing-2) var(--inkblot-spacing-4) var(--inkblot-spacing-4); }
+      .nav-links a { display: block; font-size: var(--inkblot-typography-font-size-sm); padding: var(--inkblot-spacing-3) var(--inkblot-spacing-2); min-height: 44px; line-height: 1.4; white-space: normal; border-radius: var(--inkblot-radius-md); }
+      .nav-links a:hover { background: var(--inkblot-semantic-color-background-secondary); }
+      .container { padding: 0 var(--inkblot-spacing-4) var(--inkblot-spacing-16); }
+      .hero { padding: clamp(48px, 8vh, 96px) var(--inkblot-spacing-4); }
+      .hero h1 { font-size: clamp(2rem, 8vw, 2.5rem); }
+      .hero .tagline { font-size: var(--inkblot-typography-font-size-base); }
+      .hero-actions { gap: var(--inkblot-spacing-2); }
+      .hero-actions .btn { width: 100%; max-width: 280px; }
+      .card { padding: var(--inkblot-spacing-4); }
+      .section-header { margin-bottom: var(--inkblot-spacing-4); }
+      .section-title { font-size: var(--inkblot-typography-font-size-lg); }
+      .swatch-grid { grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: var(--inkblot-spacing-1); }
+      .swatch-color { height: 48px; }
+      .swatch-meta { padding: 4px; font-size: 9px; }
+      .motion-grid { grid-template-columns: repeat(2, 1fr); gap: var(--inkblot-spacing-3); }
+      .motion-box { font-size: 10px; }
+      .easing-grid { grid-template-columns: 1fr 1fr; gap: var(--inkblot-spacing-3); }
+      .easing-value { font-size: 9px; }
+      .responsive-vis { grid-template-columns: 1fr; height: 80px; }
+      .responsive-vis div:not(:first-child) { display: none; }
+      .state-table { font-size: 12px; }
+      .state-table th, .state-table td { padding: var(--inkblot-spacing-2); }
+      .state-table code { font-size: 10px; padding: 1px 4px; }
+      .perf-grid { grid-template-columns: 1fr; }
+      .perf-item p { font-size: 11px; }
+      .modal-overlay.open { align-items: stretch; }
+      .modal-dialog { width: 100%; max-width: none; height: 100%; max-height: 100vh; margin: 0; padding: var(--inkblot-spacing-6); border-radius: 0; }
+      .footer { padding: var(--inkblot-spacing-8) var(--inkblot-spacing-4); }
+    }
+
+    @media (max-width: 480px) {
+      .nav { padding: var(--inkblot-spacing-2) var(--inkblot-spacing-3); }
+      .nav-brand { font-size: var(--inkblot-typography-font-size-xs); }
+      .container { padding: 0 var(--inkblot-spacing-3) var(--inkblot-spacing-12); }
+      .section { margin-bottom: var(--inkblot-spacing-12); }
+      .section-title { font-size: var(--inkblot-typography-font-size-md); }
+      .card { padding: var(--inkblot-spacing-3); border-radius: var(--inkblot-radius-lg); }
+      .btn { padding: var(--inkblot-spacing-2) var(--inkblot-spacing-4); min-height: 44px; }
+      .btn-lg { padding: var(--inkblot-spacing-3) var(--inkblot-spacing-6); }
+      .swatch-grid { grid-template-columns: repeat(3, 1fr); }
+      .swatch-color { height: 44px; }
+      .motion-grid { grid-template-columns: repeat(2, 1fr); gap: var(--inkblot-spacing-2); }
+      .easing-grid { grid-template-columns: 1fr; }
+      .flow-step { font-size: 12px; }
+      .flow-step::before { width: 20px; height: 20px; font-size: 10px; }
+      .radius-box { width: 56px; height: 56px; font-size: 10px; }
+      .shadow-box { width: 72px; height: 72px; font-size: 10px; }
+      .scale-box { font-size: 9px; }
+      .empty-state { padding: var(--inkblot-spacing-8) var(--inkblot-spacing-3); }
+      .empty-state h3 { font-size: var(--inkblot-typography-font-size-md); }
+      .truncate-3 { max-width: 100% !important; }
+      .aspect-box { font-size: 10px; }
+    }
+
+    @media (max-width: 375px) {
+      .swatch-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-actions .btn { font-size: var(--inkblot-typography-font-size-sm); }
+    }
+
+    /* Prevent horizontal overflow */
+    html, body { overflow-x: hidden; }
+    .container, .card, .section-header, .nav { max-width: 100%; }
+
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="#" class="nav-brand" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Citron</a>
+    <button class="nav-hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu" id="nav-hamburger"><span></span></button>
+    <div class="nav-menu" id="nav-menu">
+    <ul class="nav-links">
+      <li><a href="#colors">Colors</a></li>
+      <li><a href="#typography">Type</a></li>
+      <li><a href="#components">Components</a></li>
+      <li><a href="#motion">Motion</a></li>
+      <li><a href="#icons">Icons</a></li>
+      <li><a href="#responsive">Responsive</a></li>
+      <li><a href="#states-multi">States</a></li>
+      <li><a href="#interactions">Flows</a></li>
+      <li><a href="#content">Content</a></li>
+      <li><a href="#performance">Perf</a></li>
+      <li><a href="#spacing">Spacing</a></li>
+      <li><a href="#elevation">Elevation</a></li>
+    </ul>
+    </div>
+    <button class="theme-toggle" aria-label="Toggle dark mode" id="theme-toggle"></button>
+  </nav>
+
+  <header class="hero">
+    <h1>Citron Design System</h1>
+    <p class="tagline">Warmly minimal. Quietly distinctive. Tokens, components, and rules crafted with restraint — built for AI agents and humans alike.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary btn-lg" onclick="document.getElementById('components').scrollIntoView({behavior:'smooth'})">Get started</button>
+      <button class="btn btn-secondary btn-lg" onclick="document.getElementById('colors').scrollIntoView({behavior:'smooth'})">View tokens</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- COLORS -->
+    <section class="section" id="colors">
+      <div class="section-header"><h2 class="section-title">Color</h2><p class="section-desc">Warm neutrals &middot; Citron accent &middot; Status &middot; Click any swatch to copy token</p></div>
+      <div class="two-col">
+        <div>
+          <div class="card-title">Warm Neutrals</div>
+          <div class="swatch-grid" id="neutral-swatches">
+            <div class="swatch" data-hex="#ffffff" data-token="--inkblot-color-neutral-white"><div class="swatch-color" style="background:#fff;border:1px solid var(--inkblot-semantic-color-border-default)"></div><div class="swatch-meta">white</div></div>
+            <div class="swatch" data-hex="#fafaf7" data-token="--inkblot-color-neutral-gray-50"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-50)"></div><div class="swatch-meta">50</div></div>
+            <div class="swatch" data-hex="#f5f4f0" data-token="--inkblot-color-neutral-gray-100"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-100)"></div><div class="swatch-meta">100</div></div>
+            <div class="swatch" data-hex="#eae9e3" data-token="--inkblot-color-neutral-gray-200"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-200)"></div><div class="swatch-meta">200</div></div>
+            <div class="swatch" data-hex="#d4d3cb" data-token="--inkblot-color-neutral-gray-300"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-300)"></div><div class="swatch-meta">300</div></div>
+            <div class="swatch" data-hex="#93928a" data-token="--inkblot-color-neutral-gray-400"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-400)"></div><div class="swatch-meta">400</div></div>
+            <div class="swatch" data-hex="#6b6a63" data-token="--inkblot-color-neutral-gray-500"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-500)"></div><div class="swatch-meta">500</div></div>
+            <div class="swatch" data-hex="#4d4c47" data-token="--inkblot-color-neutral-gray-600"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-600)"></div><div class="swatch-meta">600</div></div>
+            <div class="swatch" data-hex="#3a3935" data-token="--inkblot-color-neutral-gray-700"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-700)"></div><div class="swatch-meta">700</div></div>
+            <div class="swatch" data-hex="#2d2c28" data-token="--inkblot-color-neutral-gray-800"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-800)"></div><div class="swatch-meta">800</div></div>
+            <div class="swatch" data-hex="#1d1c19" data-token="--inkblot-color-neutral-gray-900"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-900)"></div><div class="swatch-meta">900</div></div>
+            <div class="swatch" data-hex="#0f0e0c" data-token="--inkblot-color-neutral-gray-950"><div class="swatch-color" style="background:var(--inkblot-color-neutral-gray-950)"></div><div class="swatch-meta">950</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="card-title">Citron Accent</div>
+          <div class="swatch-grid">
+            <div class="swatch" data-hex="#fdfbf3" data-token="--inkblot-color-accent-citron-50"><div class="swatch-color" style="background:var(--inkblot-color-accent-citron-50)"></div><div class="swatch-meta">50</div></div>
+            <div class="swatch" data-hex="#faf4df" data-token="--inkblot-color-accent-citron-100"><div class="swatch-color" style="background:var(--inkblot-color-accent-citron-100)"></div><div class="swatch-meta">100</div></div>
+            <div class="swatch" data-hex="#f3e6b8" data-token="--inkblot-color-accent-citron-200"><div class="swatch-color" style="background:var(--inkblot-color-accent-citron-200)"></div><div class="swatch-meta">200</div></div>
+            <div class="swatch" data-hex="#e8d38a" data-token="--inkblot-color-accent-citron-300"><div class="swatch-color" style="background:var(--inkblot-color-accent-citron-300)"></div><div class="swatch-meta">300</div></div>
+            <div class="swatch" data-hex="#d9bc58" data-token="--inkblot-color-accent-citron-400"><div class="swatch-color" style="background:var(--inkblot-color-accent-citron-400)"></div><div class="swatch-meta">400</div></div>
+            <div class="swatch" data-hex="#c4a030" data-token="--inkblot-color-accent-citron-500"><div class="swatch-color" style="background:var(--inkblot-color-accent-citron-500)"></div><div class="swatch-meta">500</div></div>
+            <div class="swatch" data-hex="#a38427" data-token="--inkblot-color-accent-citron-600"><div class="swatch-color" style="background:var(--inkblot-color-accent-citron-600)"></div><div class="swatch-meta">600</div></div>
+            <div class="swatch" data-hex="#7f671f" data-token="--inkblot-color-accent-citron-700"><div class="swatch-color" style="background:var(--inkblot-color-accent-citron-700)"></div><div class="swatch-meta">700</div></div>
+            <div class="swatch" data-hex="#5c4a18" data-token="--inkblot-color-accent-citron-800"><div class="swatch-color" style="background:var(--inkblot-color-accent-citron-800)"></div><div class="swatch-meta">800</div></div>
+            <div class="swatch" data-hex="#3d3111" data-token="--inkblot-color-accent-citron-900"><div class="swatch-color" style="background:var(--inkblot-color-accent-citron-900)"></div><div class="swatch-meta">900</div></div>
+          </div>
+          <div class="card-title" style="margin-top: var(--inkblot-spacing-6)">Status</div>
+          <div class="swatch-grid" style="max-width: 260px">
+            <div class="swatch" data-hex="#358c46" data-token="--inkblot-semantic-color-status-success"><div class="swatch-color" style="background:var(--inkblot-semantic-color-status-success)"></div><div class="swatch-meta">success</div></div>
+            <div class="swatch" data-hex="#c48c1a" data-token="--inkblot-semantic-color-status-warning"><div class="swatch-color" style="background:var(--inkblot-semantic-color-status-warning)"></div><div class="swatch-meta">warning</div></div>
+            <div class="swatch" data-hex="#be3e35" data-token="--inkblot-semantic-color-status-error"><div class="swatch-color" style="background:var(--inkblot-semantic-color-status-error)"></div><div class="swatch-meta">error</div></div>
+            <div class="swatch" data-hex="#5790ad" data-token="--inkblot-semantic-color-status-info"><div class="swatch-color" style="background:var(--inkblot-semantic-color-status-info)"></div><div class="swatch-meta">info</div></div>
+          </div>
+          <div class="badges" style="margin-top: var(--inkblot-spacing-4)">
+            <span class="badge badge-success">Success</span><span class="badge badge-warning">Warning</span><span class="badge badge-error">Error</span><span class="badge badge-info">Info</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section class="section" id="typography">
+      <div class="section-header"><h2 class="section-title">Typography</h2><p class="section-desc">Inter &middot; Humanist sans-serif &middot; Restrained scale &middot; Intentional hierarchy</p></div>
+      <div class="type-row"><div class="meta">DISPLAY &middot; 52px</div><div style="font-size:var(--inkblot-typography-font-size-5xl);font-weight:600;letter-spacing:-0.03em;line-height:1.15">Citron</div></div>
+      <div class="type-row"><div class="meta">HEADING 1 &middot; 34px</div><div style="font:var(--inkblot-semantic-typography-heading-1)">Designed with restraint</div></div>
+      <div class="type-row"><div class="meta">HEADING 2 &middot; 28px</div><div style="font:var(--inkblot-semantic-typography-heading-2)">Every detail considered</div></div>
+      <div class="type-row"><div class="meta">HEADING 3 &middot; 24px</div><div style="font:var(--inkblot-semantic-typography-heading-3)">Components at scale</div></div>
+      <div class="type-row"><div class="meta">BODY &middot; 15px</div><div style="font:var(--inkblot-semantic-typography-body-default);max-width:600px">The quick brown fox jumps over the lazy dog. Warm, readable, human typography.</div></div>
+      <div class="type-row"><div class="meta">SMALL &middot; 13px</div><div style="font:var(--inkblot-semantic-typography-body-small);color:var(--inkblot-semantic-color-text-secondary)">Caption text for metadata, timestamps, secondary information.</div></div>
+      <div class="type-row"><div class="meta">LABEL &middot; 12px</div><div style="font:var(--inkblot-semantic-typography-label-default);text-transform:uppercase;color:var(--inkblot-semantic-color-text-tertiary)">Form label</div></div>
+      <div class="type-row"><div class="meta">MONO</div><div style="font-family:var(--inkblot-typography-font-family-mono);font-size:var(--inkblot-typography-font-size-sm);color:var(--inkblot-semantic-color-text-secondary)">var(--inkblot-spacing-4)</div></div>
+    </section>
+
+    <!-- COMPONENTS -->
+    <section class="section" id="components">
+      <div class="section-header"><h2 class="section-title">Components</h2><p class="section-desc">Buttons &middot; Inputs &middot; Toggles &middot; Toasts &middot; Modal &middot; Tooltip</p></div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Buttons</div>
+          <div style="display:flex;flex-direction:column;gap:var(--inkblot-spacing-4)">
+            <div style="display:flex;gap:var(--inkblot-spacing-3);flex-wrap:wrap;align-items:center"><button class="btn btn-primary btn-sm">Small</button><button class="btn btn-primary">Default</button><button class="btn btn-primary btn-lg">Large</button></div>
+            <div style="display:flex;gap:var(--inkblot-spacing-3);flex-wrap:wrap"><button class="btn btn-primary">Primary</button><button class="btn btn-secondary">Secondary</button><button class="btn btn-ghost">Ghost</button><button class="btn btn-danger">Danger</button></div>
+            <div style="display:flex;gap:var(--inkblot-spacing-3);align-items:center">
+              <button class="btn btn-primary" disabled style="opacity:var(--inkblot-opacity-disabled)">Disabled</button>
+              <span class="tooltip-trigger"><button class="btn btn-secondary">Hover me</button><span class="tooltip-bubble">Tooltip appears on hover</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Form inputs</div>
+          <div style="display:flex;flex-direction:column;gap:var(--inkblot-spacing-4)">
+            <div class="input-group"><label class="input-label">Email address</label><input class="input" type="email" placeholder="you@example.com" /><span class="input-help">We'll never share your email.</span></div>
+            <div class="input-group"><label class="input-label">Password</label><input class="input input-error" type="password" value="short" /><span class="input-error-msg">Password must be at least 8 characters.</span></div>
+            <div style="display:flex;align-items:center;gap:var(--inkblot-spacing-3)">
+              <button class="toggle-track on" role="switch" aria-checked="true" onclick="this.classList.toggle('on');this.setAttribute('aria-checked',this.classList.contains('on'))"><span class="toggle-thumb"></span></button>
+              <span style="font-size:var(--inkblot-typography-font-size-sm)">Enable notifications</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="two-col" style="margin-top:var(--inkblot-spacing-6)">
+        <div class="card">
+          <div class="card-title">Toast notifications</div>
+          <div style="display:flex;flex-direction:column;gap:var(--inkblot-spacing-3)">
+            <div class="toast toast-success"><span class="toast-dot"></span>Account created successfully.</div>
+            <div class="toast toast-info"><span class="toast-dot"></span>Your changes have been saved.</div>
+            <div class="toast toast-warning"><span class="toast-dot"></span>Storage is almost full.</div>
+            <div class="toast toast-error"><span class="toast-dot"></span>Unable to connect. Check your network.</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Modal &amp; Tooltip</div>
+          <p style="font-size:var(--inkblot-typography-font-size-sm);color:var(--inkblot-semantic-color-text-secondary);margin-bottom:var(--inkblot-spacing-4)">Interactive demos of focus-trapping modal and hover tooltip.</p>
+          <div style="display:flex;gap:var(--inkblot-spacing-3);flex-wrap:wrap">
+            <button class="btn btn-primary" id="open-modal">Open modal</button>
+            <span class="tooltip-trigger"><button class="btn btn-secondary" tabindex="0">Tooltip demo</button><span class="tooltip-bubble">I appear after 0ms (CSS)</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOTION -->
+    <section class="section" id="motion">
+      <div class="section-header"><h2 class="section-title">Motion &amp; Easing</h2><p class="section-desc">Physical, smooth, fast. No bounce. No overshoot. Light responding to touch.</p></div>
+      <div class="card-title">Micro-interactions</div>
+      <div class="motion-grid" style="margin-bottom:var(--inkblot-spacing-8)">
+        <div class="motion-item"><div class="motion-box hover-lift">Lift</div><div class="motion-label">120ms &middot; default</div></div>
+        <div class="motion-item"><div class="motion-box press">Press</div><div class="motion-label">80ms &middot; physical</div></div>
+        <div class="motion-item"><div class="motion-box scale-in">Scale</div><div class="motion-label">200ms &middot; ease-out</div></div>
+        <div class="motion-item"><div class="motion-box smooth">Smooth</div><div class="motion-label">200ms &middot; expressive</div></div>
+        <div class="motion-item"><div class="motion-box arrive">Arrive</div><div class="motion-label">320ms &middot; expressive</div></div>
+        <div class="motion-item"><div class="motion-box fade">Fade</div><div class="motion-label">200ms &middot; opacity</div></div>
+      </div>
+      <div class="card-title">Easing curves</div>
+      <p style="font-size:var(--inkblot-typography-font-size-sm);color:var(--inkblot-semantic-color-text-secondary);margin-bottom:var(--inkblot-spacing-4)">Hover each to see the ball animate across the track.</p>
+      <div class="easing-grid">
+        <div class="easing-item"><div class="easing-name">default</div><div class="easing-value">cubic-bezier(0.25, 0.1, 0.25, 1)</div><div class="easing-track"><div class="easing-ball"></div></div></div>
+        <div class="easing-item"><div class="easing-name">ease-in</div><div class="easing-value">cubic-bezier(0.32, 0, 0.67, 0)</div><div class="easing-track"><div class="easing-ball"></div></div></div>
+        <div class="easing-item"><div class="easing-name">ease-out</div><div class="easing-value">cubic-bezier(0.33, 1, 0.68, 1)</div><div class="easing-track"><div class="easing-ball"></div></div></div>
+        <div class="easing-item"><div class="easing-name">ease-in-out</div><div class="easing-value">cubic-bezier(0.65, 0, 0.35, 1)</div><div class="easing-track"><div class="easing-ball"></div></div></div>
+        <div class="easing-item"><div class="easing-name">expressive</div><div class="easing-value">cubic-bezier(0.22, 1, 0.36, 1)</div><div class="easing-track"><div class="easing-ball"></div></div></div>
+      </div>
+    </section>
+
+    <!-- ICON SEMANTICS -->
+    <section class="section" id="icons">
+      <div class="section-header"><h2 class="section-title">Icon Semantics</h2><p class="section-desc">Lucide icons &middot; Semantic mapping &middot; Component-specific &middot; Sizes &middot; Positioning</p></div>
+      <div class="icon-lib-badge">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        Library: <strong>Lucide</strong> &mdash; free, ISC license, 1500+ icons
+      </div>
+
+      <div class="two-col" style="margin-bottom:var(--inkblot-spacing-8)">
+        <div class="card">
+          <div class="card-title">Status icons</div>
+          <div class="table-scroll">
+          <table class="icon-table">
+            <thead><tr><th>Meaning</th><th>Icon</th><th>Lucide name</th></tr></thead>
+            <tbody>
+              <tr><td>Success</td><td><span class="icon-preview" style="color:var(--inkblot-semantic-color-status-success)"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span></td><td><code>check-circle</code></td></tr>
+              <tr><td>Error</td><td><span class="icon-preview" style="color:var(--inkblot-semantic-color-status-error)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></span></td><td><code>x-circle</code></td></tr>
+              <tr><td>Warning</td><td><span class="icon-preview" style="color:var(--inkblot-semantic-color-status-warning)"><svg viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span></td><td><code>alert-triangle</code></td></tr>
+              <tr><td>Info</td><td><span class="icon-preview" style="color:var(--inkblot-semantic-color-status-info)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span></td><td><code>info</code></td></tr>
+              <tr><td>Loading</td><td><span class="icon-preview"><svg viewBox="0 0 24 24" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></span></td><td><code>loader-2</code></td></tr>
+              <tr><td>Pending</td><td><span class="icon-preview" style="color:var(--inkblot-semantic-color-text-tertiary)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span></td><td><code>clock</code></td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Action icons</div>
+          <div class="table-scroll">
+          <table class="icon-table">
+            <thead><tr><th>Action</th><th>Icon</th><th>Lucide name</th></tr></thead>
+            <tbody>
+              <tr><td>Close</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span></td><td><code>x</code></td></tr>
+              <tr><td>Add</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></td><td><code>plus</code></td></tr>
+              <tr><td>Delete</td><td><span class="icon-preview" style="color:var(--inkblot-semantic-color-status-error)"><svg viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg></span></td><td><code>trash-2</code></td></tr>
+              <tr><td>Edit</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg></span></td><td><code>pencil</code></td></tr>
+              <tr><td>Save</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></span></td><td><code>save</code></td></tr>
+              <tr><td>Search</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span></td><td><code>search</code></td></tr>
+              <tr><td>Share</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg></span></td><td><code>share-2</code></td></tr>
+              <tr><td>Download</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></span></td><td><code>download</code></td></tr>
+              <tr><td>Settings</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></span></td><td><code>settings</code></td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="two-col" style="margin-bottom:var(--inkblot-spacing-8)">
+        <div class="card">
+          <div class="card-title">Entity icons</div>
+          <div class="table-scroll">
+          <table class="icon-table">
+            <thead><tr><th>Entity</th><th>Icon</th><th>Lucide name</th></tr></thead>
+            <tbody>
+              <tr><td>User</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span></td><td><code>user</code></td></tr>
+              <tr><td>Notification</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span></td><td><code>bell</code></td></tr>
+              <tr><td>Email</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span></td><td><code>mail</code></td></tr>
+              <tr><td>File</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg></span></td><td><code>file</code></td></tr>
+              <tr><td>Folder</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg></span></td><td><code>folder</code></td></tr>
+              <tr><td>Calendar</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg></span></td><td><code>calendar</code></td></tr>
+              <tr><td>Location</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span></td><td><code>map-pin</code></td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Navigation icons</div>
+          <div class="table-scroll">
+          <table class="icon-table">
+            <thead><tr><th>Purpose</th><th>Icon</th><th>Lucide name</th></tr></thead>
+            <tbody>
+              <tr><td>Menu</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></span></td><td><code>menu</code></td></tr>
+              <tr><td>Back</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg></span></td><td><code>arrow-left</code></td></tr>
+              <tr><td>Forward</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></td><td><code>arrow-right</code></td></tr>
+              <tr><td>Home</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span></td><td><code>home</code></td></tr>
+              <tr><td>Expand</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></td><td><code>chevron-down</code></td></tr>
+              <tr><td>Disclosure</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span></td><td><code>chevron-right</code></td></tr>
+              <tr><td>External link</td><td><span class="icon-preview"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg></span></td><td><code>external-link</code></td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-title">Sizes</div>
+      <p style="font-size:var(--inkblot-typography-font-size-sm);color:var(--inkblot-semantic-color-text-secondary);margin-bottom:var(--inkblot-spacing-4)">6 standard sizes mapped to design tokens. AI agents: always use the token, never hard-code pixels.</p>
+      <div class="icon-size-demos" style="margin-bottom:var(--inkblot-spacing-8)">
+        <div class="icon-size-demo"><div class="icon-box" style="width:28px;height:28px"><svg width="12" height="12" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><span>xs &middot; 12px</span></div>
+        <div class="icon-size-demo"><div class="icon-box" style="width:36px;height:36px"><svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><span>sm &middot; 16px</span></div>
+        <div class="icon-size-demo"><div class="icon-box" style="width:40px;height:40px"><svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><span>md &middot; 20px</span></div>
+        <div class="icon-size-demo"><div class="icon-box" style="width:48px;height:48px"><svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><span>lg &middot; 24px</span></div>
+        <div class="icon-size-demo"><div class="icon-box" style="width:56px;height:56px"><svg width="32" height="32" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><span>xl &middot; 32px</span></div>
+        <div class="icon-size-demo"><div class="icon-box" style="width:72px;height:72px"><svg width="48" height="48" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><span>2xl &middot; 48px</span></div>
+      </div>
+
+      <div class="card-title">Positioning</div>
+      <p style="font-size:var(--inkblot-typography-font-size-sm);color:var(--inkblot-semantic-color-text-secondary);margin-bottom:var(--inkblot-spacing-4)">4 standard positions. Leading = before text (default). Trailing = after text. Standalone = no text (needs aria-label). Inset = inside form fields.</p>
+      <div class="icon-pos-demos" style="margin-bottom:var(--inkblot-spacing-8)">
+        <div class="icon-pos-demo"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Leading</div>
+        <div class="icon-pos-demo">Trailing <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></div>
+        <div class="icon-pos-demo" style="padding:var(--inkblot-spacing-2);width:44px;height:44px;justify-content:center"><svg viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></div>
+        <div class="icon-pos-demo"><svg viewBox="0 0 24 24" style="color:var(--inkblot-semantic-color-text-tertiary)"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span style="color:var(--inkblot-semantic-color-text-tertiary)">Inset in field</span></div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Component-specific icons</div>
+          <div class="table-scroll">
+          <table class="icon-table">
+            <thead><tr><th>Component</th><th>Context</th><th>Icon</th></tr></thead>
+            <tbody>
+              <tr><td>Button</td><td>Submit</td><td><code>check</code> (leading)</td></tr>
+              <tr><td>Button</td><td>Cancel</td><td><code>x</code> (leading)</td></tr>
+              <tr><td>Button</td><td>Loading</td><td><code>loader-2</code> (spin)</td></tr>
+              <tr><td>Input</td><td>Email</td><td><code>mail</code> (inset-leading)</td></tr>
+              <tr><td>Input</td><td>Password</td><td><code>lock</code> + <code>eye</code>/<code>eye-off</code></td></tr>
+              <tr><td>Input</td><td>Search</td><td><code>search</code> + <code>x</code> (clear)</td></tr>
+              <tr><td>Select</td><td>Trigger</td><td><code>chevron-down</code> (rotate 180&deg;)</td></tr>
+              <tr><td>Modal</td><td>Close</td><td><code>x</code> (standalone, top-right)</td></tr>
+              <tr><td>Toast</td><td>Dismiss</td><td><code>x</code> (sm, trailing)</td></tr>
+              <tr><td>Table</td><td>Sort</td><td><code>arrow-up-down</code> / <code>arrow-up</code> / <code>arrow-down</code></td></tr>
+              <tr><td>List item</td><td>Disclosure</td><td><code>chevron-right</code> (trailing)</td></tr>
+              <tr><td>Chip</td><td>Remove</td><td><code>x</code> (sm, trailing)</td></tr>
+              <tr><td>Empty state</td><td>No data</td><td><code>inbox</code> (2xl)</td></tr>
+              <tr><td>Empty state</td><td>No results</td><td><code>search-x</code> (2xl)</td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Toggle pairs</div>
+          <p style="font-size:12px;color:var(--inkblot-semantic-color-text-secondary);margin-bottom:var(--inkblot-spacing-3)">Binary state icons. Swap on toggle. Update <code>aria-label</code> to reflect the new action.</p>
+          <div class="table-scroll">
+          <table class="icon-table">
+            <thead><tr><th>State A</th><th>State B</th><th>Use case</th></tr></thead>
+            <tbody>
+              <tr><td><code>eye</code></td><td><code>eye-off</code></td><td>Password visibility</td></tr>
+              <tr><td><code>bell</code></td><td><code>bell-off</code></td><td>Notifications</td></tr>
+              <tr><td><code>volume-2</code></td><td><code>volume-x</code></td><td>Sound</td></tr>
+              <tr><td><code>lock</code></td><td><code>unlock</code></td><td>Lock state</td></tr>
+              <tr><td><code>moon</code></td><td><code>sun</code></td><td>Dark mode</td></tr>
+              <tr><td><code>star</code> (filled)</td><td><code>star</code> (stroke)</td><td>Favorite</td></tr>
+              <tr><td><code>heart</code> (filled)</td><td><code>heart</code> (stroke)</td><td>Like</td></tr>
+              <tr><td><code>layout-grid</code></td><td><code>list</code></td><td>View mode</td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESPONSIVE -->
+    <section class="section" id="responsive">
+      <div class="section-header"><h2 class="section-title">Responsive behavior</h2><p class="section-desc">How components adapt across breakpoints</p></div>
+      <div class="three-col">
+        <div class="card">
+          <div class="card-title">Card grid</div>
+          <div class="responsive-vis"><div style="background:var(--inkblot-color-accent-citron-600);grid-column:span 4">1 col mobile</div></div>
+          <div class="responsive-vis" style="margin-top:var(--inkblot-spacing-2)"><div style="background:var(--inkblot-color-accent-citron-500);grid-column:span 2;color:var(--inkblot-color-accent-citron-50)">2 col</div><div style="background:var(--inkblot-color-accent-citron-700);grid-column:span 2">tablet</div></div>
+          <div class="responsive-vis" style="margin-top:var(--inkblot-spacing-2)"><div style="background:var(--inkblot-color-accent-citron-300);color:var(--inkblot-color-accent-citron-800)">3</div><div style="background:var(--inkblot-color-accent-citron-500);color:var(--inkblot-color-accent-citron-50)">col</div><div style="background:var(--inkblot-color-accent-citron-700)">desk</div><div style="background:var(--inkblot-color-accent-citron-900)">top</div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Sidebar</div>
+          <div style="display:flex;gap:2px;height:120px;border-radius:var(--inkblot-radius-lg);overflow:hidden">
+            <div style="width:64px;background:var(--inkblot-color-accent-citron-700);display:flex;align-items:center;justify-content:center;color:white;font-size:10px;writing-mode:vertical-lr">sidebar</div>
+            <div style="flex:1;background:var(--inkblot-color-accent-citron-200);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--inkblot-color-accent-citron-800)">main content</div>
+          </div>
+          <div style="font-size:10px;color:var(--inkblot-semantic-color-text-tertiary);margin-top:var(--inkblot-spacing-2)">Mobile: drawer &middot; Tablet: 64px rail &middot; Desktop: 280px</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Modal</div>
+          <div style="display:flex;gap:var(--inkblot-spacing-3);align-items:flex-end">
+            <div style="width:48px;height:80px;background:var(--inkblot-color-accent-citron-600);border-radius:var(--inkblot-radius-md);display:flex;align-items:flex-end;justify-content:center;color:white;font-size:9px;padding-bottom:4px">full</div>
+            <div style="width:64px;height:56px;background:var(--inkblot-color-accent-citron-500);border-radius:var(--inkblot-radius-lg);display:flex;align-items:center;justify-content:center;color:white;font-size:9px">centered</div>
+            <div style="width:80px;height:56px;background:var(--inkblot-color-accent-citron-400);border-radius:var(--inkblot-radius-lg);display:flex;align-items:center;justify-content:center;color:white;font-size:9px">desktop</div>
+          </div>
+          <div style="font-size:10px;color:var(--inkblot-semantic-color-text-tertiary);margin-top:var(--inkblot-spacing-2)">Mobile: full-screen &middot; Tablet: centered &middot; Desktop: sized</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATE COMBINATIONS -->
+    <section class="section" id="states-multi">
+      <div class="section-header"><h2 class="section-title">State combinations</h2><p class="section-desc">Priority: disabled &gt; loading &gt; error &gt; active &gt; focus &gt; hover &gt; default</p></div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Priority table</div>
+          <div class="table-scroll">
+          <table class="state-table">
+            <thead><tr><th>Combination</th><th>Result</th></tr></thead>
+            <tbody>
+              <tr><td><code>disabled</code> + <code>hover</code></td><td>Disabled wins. No hover. <code>cursor: not-allowed</code></td></tr>
+              <tr><td><code>disabled</code> + <code>focus</code></td><td>Disabled visual, but focus ring stays (a11y)</td></tr>
+              <tr><td><code>error</code> + <code>focus</code></td><td>Both: error border + focus ring via box-shadow</td></tr>
+              <tr><td><code>loading</code> + <code>hover</code></td><td>Loading wins. <code>cursor: wait</code></td></tr>
+              <tr><td><code>error</code> + <code>hover</code></td><td>Error border stays. Subtle hover bg allowed</td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Live examples</div>
+          <div style="display:flex;flex-direction:column;gap:var(--inkblot-spacing-3)">
+            <div class="input-group"><label class="input-label">Error + Focus</label><input class="input input-error" value="Click to see both states" style="box-shadow:none" onfocus="this.style.boxShadow='0 0 0 2px rgba(230,53,43,0.15)'" onblur="this.style.boxShadow='none'" /></div>
+            <div class="input-group"><label class="input-label">Disabled</label><input class="input" value="Cannot interact" disabled style="opacity:var(--inkblot-opacity-disabled)" /></div>
+            <div style="display:flex;gap:var(--inkblot-spacing-3)">
+              <button class="btn btn-primary" disabled style="opacity:var(--inkblot-opacity-disabled);cursor:not-allowed">Disabled btn</button>
+              <button class="btn btn-primary" style="cursor:wait;position:relative"><span style="opacity:0.5">Loading...</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTION FLOWS -->
+    <section class="section" id="interactions">
+      <div class="section-header"><h2 class="section-title">Interaction flows</h2><p class="section-desc">Deterministic event chains for AI agents</p></div>
+      <div class="three-col">
+        <div class="card">
+          <div class="card-title">Form submission</div>
+          <div class="flow-steps">
+            <div class="flow-step"><span>Validate all required fields</span></div>
+            <div class="flow-step"><span>If errors: scroll to first, set focus, announce</span></div>
+            <div class="flow-step"><span>If valid: button → loading state</span></div>
+            <div class="flow-step"><span>Send data. Success → toast + redirect</span></div>
+            <div class="flow-step"><span>Failure → error toast, restore button</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Modal lifecycle</div>
+          <div class="flow-steps">
+            <div class="flow-step"><span>Record trigger element</span></div>
+            <div class="flow-step"><span>Render + animate in (250ms)</span></div>
+            <div class="flow-step"><span>Lock scroll, trap focus</span></div>
+            <div class="flow-step"><span>Close: Escape / overlay / X</span></div>
+            <div class="flow-step"><span>Return focus to trigger</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Dropdown</div>
+          <div class="flow-steps">
+            <div class="flow-step"><span>Click/Enter → aria-expanded="true"</span></div>
+            <div class="flow-step"><span>Animate in (slideDown 200ms)</span></div>
+            <div class="flow-step"><span>Arrow keys navigate options</span></div>
+            <div class="flow-step"><span>Enter selects, Escape closes</span></div>
+            <div class="flow-step"><span>Return focus to trigger</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT RULES -->
+    <section class="section" id="content">
+      <div class="section-header"><h2 class="section-title">Content rules</h2><p class="section-desc">Truncation &middot; Aspect ratios &middot; Empty values &middot; Image fallbacks</p></div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Truncation</div>
+          <div style="margin-bottom:var(--inkblot-spacing-4)">
+            <div style="font-size:10px;font-weight:500;color:var(--inkblot-semantic-color-text-tertiary);margin-bottom:4px">SINGLE LINE</div>
+            <div class="truncate-1" style="font-size:var(--inkblot-typography-font-size-sm);max-width:240px;background:var(--inkblot-semantic-color-background-tertiary);padding:var(--inkblot-spacing-2) var(--inkblot-spacing-3);border-radius:var(--inkblot-radius-md)">This is a very long piece of text that will be truncated with an ellipsis at the end</div>
+          </div>
+          <div style="margin-bottom:var(--inkblot-spacing-4)">
+            <div style="font-size:10px;font-weight:500;color:var(--inkblot-semantic-color-text-tertiary);margin-bottom:4px">MULTI LINE (3)</div>
+            <div class="truncate-3" style="font-size:var(--inkblot-typography-font-size-sm);max-width:280px;background:var(--inkblot-semantic-color-background-tertiary);padding:var(--inkblot-spacing-2) var(--inkblot-spacing-3);border-radius:var(--inkblot-radius-md)">This is a longer piece of text that spans multiple lines. It will be clamped to exactly three lines using -webkit-line-clamp. Any content beyond the third line is hidden with an ellipsis.</div>
+          </div>
+          <div>
+            <div style="font-size:10px;font-weight:500;color:var(--inkblot-semantic-color-text-tertiary);margin-bottom:4px">EMPTY VALUES</div>
+            <div style="font-size:var(--inkblot-typography-font-size-sm);display:flex;gap:var(--inkblot-spacing-4)">
+              <span>Name: <strong>—</strong></span>
+              <span>Date: <strong>—</strong></span>
+              <span>Count: <strong>—</strong></span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Aspect ratios</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--inkblot-spacing-3)">
+            <div><div class="aspect-box" style="aspect-ratio:16/9">16:9</div><div style="font-size:10px;color:var(--inkblot-semantic-color-text-tertiary);margin-top:4px">landscape</div></div>
+            <div><div class="aspect-box" style="aspect-ratio:1/1">1:1</div><div style="font-size:10px;color:var(--inkblot-semantic-color-text-tertiary);margin-top:4px">square</div></div>
+            <div><div class="aspect-box" style="aspect-ratio:3/4">3:4</div><div style="font-size:10px;color:var(--inkblot-semantic-color-text-tertiary);margin-top:4px">portrait</div></div>
+          </div>
+          <div style="margin-top:var(--inkblot-spacing-4)">
+            <div style="font-size:10px;font-weight:500;color:var(--inkblot-semantic-color-text-tertiary);margin-bottom:4px">IMAGE FALLBACK</div>
+            <div style="background:var(--inkblot-semantic-color-background-tertiary);border-radius:var(--inkblot-radius-lg);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;color:var(--inkblot-semantic-color-text-tertiary);font-size:var(--inkblot-typography-font-size-sm)">Image failed to load</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERFORMANCE -->
+    <section class="section" id="performance">
+      <div class="section-header"><h2 class="section-title">Performance hints</h2><p class="section-desc">Optimization flags for AI-generated code</p></div>
+      <div class="perf-grid">
+        <div class="perf-item"><h4>Lazy loading</h4><p>Images below fold: <code style="font-size:10px;background:var(--inkblot-semantic-color-background-tertiary);padding:1px 4px;border-radius:3px">loading="lazy"</code>. Components: React.lazy + Suspense.</p></div>
+        <div class="perf-item"><h4>Virtualization</h4><p>Lists &gt; 50 items: react-window. Tables &gt; 100 rows: virtualize. &gt; 500: paginate.</p></div>
+        <div class="perf-item"><h4>CSS animations</h4><p>Prefer transform + opacity. Never animate width/height/margin. Use will-change sparingly.</p></div>
+        <div class="perf-item"><h4>Rendering</h4><p>SSR for content/SEO. CSR for dashboards. React.memo on list items and table rows.</p></div>
+        <div class="perf-item"><h4>Assets</h4><p>WebP/AVIF images. System font stack. Inline SVG for interactive icons.</p></div>
+        <div class="perf-item"><h4>Code splitting</h4><p>Route-level splits. Dynamic import() for modals, heavy charts, settings panels.</p></div>
+      </div>
+    </section>
+
+    <!-- SPACING & RADIUS -->
+    <section class="section" id="spacing">
+      <div class="section-header"><h2 class="section-title">Spacing &amp; Radius</h2><p class="section-desc">4pt grid &middot; Consistent rhythm &middot; Corner treatment</p></div>
+      <div class="two-col">
+        <div>
+          <div class="card-title">Spacing scale</div>
+          <div class="scale-row">
+            <div class="scale-box" style="width:var(--inkblot-spacing-1);height:var(--inkblot-spacing-1)"></div>
+            <div class="scale-box" style="width:var(--inkblot-spacing-2);height:var(--inkblot-spacing-2)">2</div>
+            <div class="scale-box" style="width:var(--inkblot-spacing-3);height:var(--inkblot-spacing-3)">3</div>
+            <div class="scale-box" style="width:var(--inkblot-spacing-4);height:var(--inkblot-spacing-4)">4</div>
+            <div class="scale-box" style="width:var(--inkblot-spacing-6);height:var(--inkblot-spacing-6)">6</div>
+            <div class="scale-box" style="width:var(--inkblot-spacing-8);height:var(--inkblot-spacing-8)">8</div>
+            <div class="scale-box" style="width:var(--inkblot-spacing-12);height:var(--inkblot-spacing-12)">12</div>
+          </div>
+        </div>
+        <div>
+          <div class="card-title">Border radius</div>
+          <div class="radius-row">
+            <div class="radius-box" style="border-radius:var(--inkblot-radius-none)">none</div>
+            <div class="radius-box" style="border-radius:var(--inkblot-radius-sm)">sm</div>
+            <div class="radius-box" style="border-radius:var(--inkblot-radius-md)">md</div>
+            <div class="radius-box" style="border-radius:var(--inkblot-radius-lg)">lg</div>
+            <div class="radius-box" style="border-radius:var(--inkblot-radius-xl)">xl</div>
+            <div class="radius-box" style="border-radius:var(--inkblot-radius-full)">full</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ELEVATION -->
+    <section class="section" id="elevation">
+      <div class="section-header"><h2 class="section-title">Elevation</h2><p class="section-desc">Shadow depth &middot; Visual hierarchy</p></div>
+      <div class="shadow-row">
+        <div class="shadow-box" style="box-shadow:none">none</div>
+        <div class="shadow-box" style="box-shadow:var(--inkblot-shadow-xs)">xs</div>
+        <div class="shadow-box" style="box-shadow:var(--inkblot-shadow-sm)">sm</div>
+        <div class="shadow-box" style="box-shadow:var(--inkblot-shadow-md)">md</div>
+        <div class="shadow-box" style="box-shadow:var(--inkblot-shadow-lg)">lg</div>
+        <div class="shadow-box" style="box-shadow:var(--inkblot-shadow-xl)">xl</div>
+      </div>
+    </section>
+
+    <!-- CONTENT STATES -->
+    <section class="section" id="states">
+      <div class="section-header"><h2 class="section-title">Content states</h2><p class="section-desc">Loading &middot; Empty &middot; Error</p></div>
+      <div class="three-col">
+        <div class="card">
+          <div class="card-title">Loading skeleton</div>
+          <div style="display:flex;flex-direction:column;gap:var(--inkblot-spacing-3)">
+            <div class="skeleton" style="width:40%;height:24px"></div>
+            <div class="skeleton" style="width:100%;height:14px"></div>
+            <div class="skeleton" style="width:80%;height:14px"></div>
+            <div class="skeleton" style="width:30%;height:32px;margin-top:var(--inkblot-spacing-2)"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Empty state</div>
+          <div class="empty-state"><h3>No results</h3><p>Try adjusting your search or filters.</p><button class="btn btn-primary btn-sm">Clear filters</button></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Error banner</div>
+          <div class="error-demo">
+            <div style="font-weight:600;color:var(--inkblot-semantic-color-status-error);margin-bottom:4px">Connection failed</div>
+            <div style="color:var(--inkblot-semantic-color-text-secondary)">Unable to reach the server. Please check your connection and try again.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h3 id="modal-title">Confirm action</h3>
+      <p>This modal demonstrates focus trapping, overlay click to close, and Escape key dismissal.</p>
+      <div style="display:flex;gap:var(--inkblot-spacing-3);justify-content:flex-end">
+        <button class="btn btn-secondary" id="modal-cancel">Cancel</button>
+        <button class="btn btn-primary" id="modal-confirm">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">Citron Design System v1.0 &middot; Tokens in <code>tokens/</code> &middot; Specs in <code>system/</code></footer>
+
+  <script>
+    (function() {
+      var nav = document.querySelector('.nav');
+      var hamburger = document.getElementById('nav-hamburger');
+      var menu = document.getElementById('nav-menu');
+      if (!hamburger || !menu) return;
+      function openMenu() { nav.classList.add('open'); hamburger.setAttribute('aria-expanded', 'true'); hamburger.setAttribute('aria-label', 'Close menu'); document.body.style.overflow = 'hidden'; }
+      function closeMenu() { nav.classList.remove('open'); hamburger.setAttribute('aria-expanded', 'false'); hamburger.setAttribute('aria-label', 'Open menu'); document.body.style.overflow = ''; }
+      function toggleMenu() { nav.classList.contains('open') ? closeMenu() : openMenu(); }
+      hamburger.addEventListener('click', function(e) { e.stopPropagation(); toggleMenu(); });
+      menu.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeMenu); });
+      document.addEventListener('click', function(e) { if (nav.classList.contains('open') && !nav.contains(e.target)) closeMenu(); });
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && nav.classList.contains('open')) closeMenu(); });
+    })();
+
+    document.getElementById('theme-toggle').addEventListener('click', function() {
+      var h = document.documentElement;
+      h.setAttribute('data-theme', h.getAttribute('data-theme') === 'dark' ? '' : 'dark');
+    });
+
+    document.querySelectorAll('.swatch[data-hex]').forEach(function(s) {
+      s.setAttribute('tabindex', '0');
+      s.addEventListener('click', function() {
+        var t = this.getAttribute('data-token');
+        navigator.clipboard.writeText('var(' + t + ')').then(function() {
+          var m = s.querySelector('.swatch-meta'), l = m.textContent;
+          m.textContent = 'Copied!'; s.classList.add('copied');
+          setTimeout(function() { m.textContent = l; s.classList.remove('copied'); }, 1200);
+        });
+      });
+      s.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); } });
+    });
+
+    var overlay = document.getElementById('modal-overlay');
+    document.getElementById('open-modal').addEventListener('click', function() {
+      overlay.classList.add('open');
+      overlay.querySelector('.btn-secondary').focus();
+      document.body.style.overflow = 'hidden';
+    });
+    function closeModal() { overlay.classList.remove('open'); document.body.style.overflow = ''; document.getElementById('open-modal').focus(); }
+    document.getElementById('modal-cancel').addEventListener('click', closeModal);
+    document.getElementById('modal-confirm').addEventListener('click', closeModal);
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal(); });
+  </script>
+</body>
+</html>

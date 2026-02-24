@@ -22,6 +22,8 @@
     "dev": "concurrently \"npm run build:watch\" \"vite\"",
     "build:watch": "chokidar \"tokens/**/*.json\" -c \"npm run build\"",
     "preview": "vite preview",
+    "build:preview": "vite build",
+    "build:deploy": "npm run build && npm run build:preview",
     "prepublishOnly": "npm run build"
   },
   "keywords": [

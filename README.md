@@ -142,6 +142,20 @@ npm run build
 npm run dev        # Live preview at localhost:5173
 ```
 
+## Deploy preview to Vercel
+
+1. Push to GitHub and [import the repo](https://vercel.com/new) in Vercel.
+2. Vercel will auto-detect the build from `vercel.json`.
+3. Deploy — the preview site will be live.
+
+Or deploy from the CLI:
+
+```bash
+npm install -g vercel
+npm run build:deploy
+vercel --prod
+```
+
 ---
 
 ## License
