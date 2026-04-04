@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/js/inkblot-tokens.js",
   "bin": {
-    "citron-mascot": "./cli/citron-mascot.mjs"
+    "citron-mascot": "cli/citron-mascot.mjs"
   },
   "exports": {
     ".": "./dist/js/inkblot-tokens.js",
@@ -52,12 +52,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GHDryanovski19/inkblot-studio-design-tokens.git"
+    "url": "git+https://github.com/Inkblot-Studio/citron-ds.git"
   },
   "bugs": {
-    "url": "https://github.com/GHDryanovski19/inkblot-studio-design-tokens/issues"
+    "url": "https://github.com/Inkblot-Studio/citron-ds/issues"
   },
-  "homepage": "https://github.com/GHDryanovski19/inkblot-studio-design-tokens#readme",
+  "homepage": "https://github.com/Inkblot-Studio/citron-ds#readme",
   "engines": {
     "node": ">=18"
   },
