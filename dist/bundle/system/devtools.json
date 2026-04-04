@@ -1,0 +1,95 @@
+{
+  "$schema": "https://inkblot.studio/system/v1/devtools.schema.json",
+  "name": "Citron Developer Tooling Visual System",
+  "version": "1.0.0",
+  "description": "A dedicated cool-blue slate palette for development surfaces. Visually separate from warm Citron product UI so engineers immediately know they are in debug, admin, or tooling context.",
+
+  "rationale": {
+    "productVsDev": {
+      "product": "Citron consumer app uses warm neutrals + citron (#c4a030) accent per tokens/primitive/color.tokens.json and semantic inkblot tokens.",
+      "devtools": "Internal and dev-only UI uses blue primary (#2563EB) on dark slate (#020617 / #0B1220). Emerald (#10B981) marks positive dev signals only — it is not the product citron accent.",
+      "rule": "If a user paying for the product could see it without a debug flag, do not use devtools tokens."
+    }
+  },
+
+  "paletteReference": {
+    "dominant": "#2563EB",
+    "support": "#60A5FA",
+    "accent": "#10B981",
+    "primary": "#2563EB",
+    "primaryHover": "#60A5FA",
+    "background": "#020617",
+    "surface": "#0B1220",
+    "textPrimary": "#F8FAFC",
+    "textMuted": "#CBD5E1",
+    "border": "#1E293B"
+  },
+
+  "tokenUsage": {
+    "primitivesPath": "tokens/primitive/devtools.palette.tokens.json",
+    "semanticPath": "tokens/semantic/devtools.semantic.tokens.json",
+    "cssVariables": {
+      "description": "After npm run build, use semantic variables in dev-only CSS layers.",
+      "examples": [
+        "var(--inkblot-semantic-devtools-color-background-app)",
+        "var(--inkblot-semantic-devtools-color-background-surface)",
+        "var(--inkblot-semantic-devtools-color-text-primary)",
+        "var(--inkblot-semantic-devtools-color-text-muted)",
+        "var(--inkblot-semantic-devtools-color-border-default)",
+        "var(--inkblot-semantic-devtools-color-interactive-primary)",
+        "var(--inkblot-semantic-devtools-color-interactive-primary-hover)",
+        "var(--inkblot-semantic-devtools-color-accent-positive)"
+      ]
+    },
+    "primitiveFallback": {
+      "description": "If you must reference primitives directly (e.g. codegen), use inkblot.color.devtools.* keys from dist/ai/inkblot-tokens-resolved.json"
+    }
+  },
+
+  "whereToApply": {
+    "recommended": [
+      "Vite / webpack dev-server overlay custom theme",
+      "Storybook theme (sidebar, preview chrome when wrapped)",
+      "React/Vue/Svelte devtools custom panels",
+      "Internal admin dashboards and feature-flag consoles",
+      "Local-only debug HUDs and FPS/profiler widgets",
+      "CLI dev subcommands when a distinct mode is desired (see system/cli.json truecolor devtools roles)",
+      "Design-token playground / token inspector pages"
+    ],
+    "forbidden": [
+      "Marketing site, onboarding, checkout, settings visible to all customers",
+      "Email templates, PDFs, customer exports",
+      "Any surface gated only by URL obscurity — use product tokens if auth is weak"
+    ]
+  },
+
+  "implementation": {
+    "cssScoping": {
+      "rule": "Scope devtool styles under [data-inkblot-devtools='true'] on html or body, or a root class .inkblot-devtools, so product tokens remain default elsewhere.",
+      "example": "[data-inkblot-devtools='true'] { background: var(--inkblot-semantic-devtools-color-background-app); color: var(--inkblot-semantic-devtools-color-text-primary); }"
+    },
+    "focusAndStates": {
+      "focus": "Use var(--inkblot-semantic-devtools-color-interactive-focus); outline 2px solid; offset 2px.",
+      "disabled": "Text at 45% opacity of text.primary; no primary blue on disabled buttons — use surface + muted text."
+    },
+    "contrast": {
+      "rule": "text.primary on background.app and surface meets WCAG AA for large and normal text; verify if you change hex.",
+      "pairings": {
+        "primaryButton": "primary (#2563EB) with text.onPrimary (#F8FAFC)",
+        "mutedOnSurface": "text.muted on surface is for secondary only — not long body"
+      }
+    }
+  },
+
+  "improvingThePalette": {
+    "rule": "Adjust only in tokens/primitive/devtools.palette.tokens.json; semantic layer follows automatically after build.",
+    "citronHarmony": {
+      "description": "This palette is complementary contrast to citron: cool vs warm. If unifying slightly, nudge blues toward slightly teal (#2563EB → #1D4ED8) rather than borrowing citron amber into dev chrome — keeps cognitive separation.",
+      "doNot": "Do not replace dev primary with #c4a030 — that collapses dev vs product distinction."
+    }
+  },
+
+  "aiAgents": {
+    "rule": "When generating dev-only UI, load system/devtools.json and use devtools semantic CSS variables. When generating product UI, ignore devtools tokens and use standard semantic tokens."
+  }
+}

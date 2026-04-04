@@ -4,6 +4,18 @@
   "identity": "Citron — warmly minimal, quietly distinctive. Citrus interpreted through restraint, intelligence, and taste.",
   "purpose": "Single-file reference for AI agents to produce complex components and systems without ambiguity. Include this file in your AI context.",
 
+  "cliDesignSystem": {
+    "path": "system/cli.json",
+    "description": "Full CLI/TUI and AI chat terminal UX spec (color roles, prompts, inputs, tables, streaming, tool output, NO_COLOR, quality bar). Mandatory for terminal apps alongside this file."
+  },
+
+  "devtoolsDesignSystem": {
+    "path": "system/devtools.json",
+    "primitiveTokens": "tokens/primitive/devtools.palette.tokens.json",
+    "semanticTokens": "tokens/semantic/devtools.semantic.tokens.json",
+    "description": "Cool blue slate palette for dev-only surfaces (debug menus, Storybook, admin, Vite overlay). CSS after build: var(--inkblot-semantic-devtools-color-*). Product Citron UI must use standard semantic tokens, not devtools."
+  },
+
   "tokenMap": {
     "description": "CSS variable names mapped to categories. AI: prefer semantic tokens. Brand accent is citron (warm amber-citrus, not blue).",
     "cssVariables": {

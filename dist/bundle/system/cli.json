@@ -1,0 +1,340 @@
+{
+  "$schema": "https://inkblot.studio/system/v1/cli.schema.json",
+  "name": "Citron CLI & TUI Design System",
+  "version": "1.0.0",
+  "description": "Deterministic rules for terminal apps, TUIs, and AI chat CLIs. Aligned with Citron visual language: warm restraint, impeccable hierarchy, and parity with web semantics. Agents and humans implement the same spec — no guesswork.",
+
+  "alignment": {
+    "webSystem": "system/components.json, system/content.json, system/ai.json",
+    "tokensResolved": "dist/ai/inkblot-tokens-resolved.json",
+    "brandAccentHex": "#c4a030",
+    "neutralTextHex": "#1d1c19",
+    "mutedHex": "#6b6a63",
+    "surfaceHex": "#fafaf7",
+    "rule": "CLI is not a second-class UI. Reuse semantic meaning from web tokens; map to ANSI only at the render layer."
+  },
+
+  "principles": [
+    {
+      "id": "calm-density",
+      "name": "Calm density",
+      "rule": "Prefer whitespace and alignment over borders. One strong accent (citron) per viewport; everything else is neutral or semantic status."
+    },
+    {
+      "id": "tty-truth",
+      "name": "TTY truth",
+      "rule": "Detect capabilities: isTTY, columns, color support (16 / 256 / truecolor), unicode width, emoji support. Degrade gracefully; never crash on dumb terminals."
+    },
+    {
+      "id": "no-color-sacred",
+      "name": "NO_COLOR is sacred",
+      "rule": "Honor NO_COLOR and CLICOLOR=0. When color is off, rely on weight, spacing, labels, and Unicode box drawing — never color as the only differentiator."
+    },
+    {
+      "id": "one-thing-per-line",
+      "name": "One decision per beat",
+      "rule": "Do not stack unrelated questions. Finish one thought before the next. AI prompts: separate system context from user task visually and in copy."
+    },
+    {
+      "id": "immutable-audit",
+      "name": "Immutable audit trail",
+      "rule": "For AI sessions, never mutate prior transcript styling retroactively. Append-only feel; corrections are new lines with clear attribution."
+    }
+  ],
+
+  "environment": {
+    "minimumColumns": 40,
+    "comfortableColumns": 72,
+    "maxProseWidth": 72,
+    "rule": "Hard-wrap prose at maxProseWidth for readability. Below minimumColumns: collapse side padding, hide non-essential chrome, prefer vertical lists over tables.",
+    "unicode": {
+      "rule": "Assume UTF-8. Test with Windows Terminal, iTerm2, Linux console. Provide ASCII fallbacks for box-drawing when unicode is unsupported.",
+      "preferredBoxDrawing": "light single (┌─┐│└┘) for panels; heavy only for modal emphasis"
+    },
+    "stdoutStderr": {
+      "rule": "Human-facing frames, prompts, and branded output → stdout. Diagnostics, logs, machine-readable errors → stderr. Never interleave both in one logical block without a delimiter."
+    }
+  },
+
+  "color": {
+    "truecolor": {
+      "sequenceTemplate": "\\x1b[38;2;{R};{G};{B}m",
+      "roles": {
+        "brand": { "hex": "#c4a030", "usage": "Headings, primary actions, key affordances, logo line" },
+        "brandDim": { "hex": "#a38427", "usage": "Secondary emphasis, dividers tinted to brand" },
+        "text": { "hex": "#1d1c19", "usage": "Default foreground on light terminal bg — if terminal is dark, invert via background detection or theme flag" },
+        "muted": { "hex": "#6b6a63", "usage": "Hints, timestamps, metadata, disabled copy" },
+        "success": { "hex": "#358c46", "usage": "Positive completion — always pair with ✓ or OK label" },
+        "warning": { "hex": "#c48c1a", "usage": "Recoverable issues" },
+        "error": { "hex": "#be3e35", "usage": "Failures, validation — pair with short imperative fix" },
+        "info": { "hex": "#5790ad", "usage": "Neutral informational" },
+        "inverse": { "hex": "#ffffff", "on": "#1d1c19", "usage": "Inverted pills, high-contrast badges on supported themes" }
+      }
+    },
+    "darkTerminalAdaptation": {
+      "rule": "When background is detected or forced dark, swap text to #fafaf7 and muted to #93928a; keep brand at #d9bc58 or #e8d38a for contrast.",
+      "never": "Do not use #c4a030 on #1d1c19 without checking contrast; prefer citron-300/400 from tokens for dark-on-dark."
+    },
+    "ansi256Fallback": {
+      "rule": "If truecolor unsupported, map to nearest xterm-256; if only 16 colors, map brand to yellow/bright-yellow, error to red, success to green, info to cyan, muted to bright black/gray."
+    },
+    "stripMarkers": {
+      "rule": "Offer --no-color and respect env. Strip OSC sequences for logging to files."
+    },
+    "devtoolsMode": {
+      "description": "Optional terminal palette when the CLI is explicitly in development or internal-tooling context. Matches web devtools tokens (cool blue slate). Not the product citron brand.",
+      "spec": "system/devtools.json",
+      "activateWhen": "Explicit flag (e.g. INKBLOT_DEVTOOLS_CLI=1) or dev subcommand — never default for customer-facing binaries.",
+      "truecolor": {
+        "dominant": "#2563EB",
+        "support": "#60A5FA",
+        "accentPositive": "#10B981",
+        "primary": "#2563EB",
+        "primaryHover": "#60A5FA",
+        "background": "#020617",
+        "surface": "#0B1220",
+        "text": "#F8FAFC",
+        "muted": "#CBD5E1",
+        "border": "#1E293B"
+      }
+    }
+  },
+
+  "typography": {
+    "hierarchy": [
+      { "level": "title", "rule": "Single H1 equivalent per screen: bold + brand color + 1 blank line below" },
+      { "level": "section", "rule": "Section headers: bold default color; optional brand left rule (│) in muted" },
+      { "level": "body", "rule": "Regular weight; 4–8 char left indent for nested explanations" },
+      { "level": "label", "rule": "Muted caps or small-caps sentence case; never shout" },
+      { "level": "code", "rule": "Monospace; pad inline code with single space; blocks: indented 2 + subtle left border character" }
+    ],
+    "wrapping": {
+      "rule": "Break at word boundaries; preserve leading indent on wrap; URLs may break with zero-width hints only if library supports",
+      "lists": "Hanging indent: marker column 2 chars + gap + body wraps aligned to body column"
+    },
+    "truncation": {
+      "rule": "Ellipsis … only at end; never truncate filenames mid-character without showing start and end (…foo.ts)",
+      "tables": "Truncate cells with padEnd visible width; full value in footer line on narrow terminals"
+    }
+  },
+
+  "layout": {
+    "margins": {
+      "screenHorizontal": 2,
+      "sectionVertical": 1,
+      "blockVertical": 1,
+      "rule": "Consistent left margin for entire session; AI chat: same gutter for user and assistant"
+    },
+    "dividers": {
+      "weak": "──────────────── (muted, full width of content area)",
+      "strong": "══════════════ (brand dim, only between major phases)",
+      "rule": "No more than one strong divider per viewport height"
+    },
+    "alignment": {
+      "tables": "Header row separator mandatory; numeric columns right-align; text left; booleans center on ·/×",
+      "banners": "Center only for splash / version; never center error text"
+    }
+  },
+
+  "frames": {
+    "panel": {
+      "rule": "Use box drawing for grouped settings, AI tool output, forms. Inner padding 1 line vertical, 2 chars horizontal minimum.",
+      "title": "Top border with optional centered title in muted; never empty top rule without label"
+    },
+    "callout": {
+      "variants": ["info", "success", "warning", "error"],
+      "rule": "Prefix line with variant tag [info] in semantic color; body indented; max 5 lines before fold with \"… (+N lines)\""
+    }
+  },
+
+  "components": {
+    "banner": {
+      "anatomy": ["optional mascot ascii line", "app name + version (muted)", "one-line value prop (optional)", "blank"],
+      "rule": "No animation on banner except optional one-shot fade via clear — avoid flicker"
+    },
+    "statusLine": {
+      "anatomy": ["context left", "spacer", "mode or latency right"],
+      "rule": "Dim; update in place only with full-width clear pattern to avoid jitter"
+    },
+    "prompt": {
+      "primary": {
+        "pattern": "{brand}▸ {label}",
+        "rule": "Trailing space after chevron; label is short verb phrase: \"Ask\", \"Command\", \"Path\""
+      },
+      "secondary": {
+        "pattern": "{muted}? {question} {defaultHint}",
+        "defaultHint": "(y/N) or (/path/to/default)",
+        "rule": "Defaults in parentheses; capital letter shows default Enter behavior"
+      },
+      "password": {
+        "rule": "Echo mask • or nothing; never echo plaintext; on error re-prompt with reason only once before abort count"
+      },
+      "multiline": {
+        "rule": "Show delimiter line (e.g. CTRL+D to finish) in muted; preserve blank lines; strip trailing CR"
+      },
+      "validation": {
+        "inline": "Error on new line under field with ├─ prefix; success never noisy — optional single ✓ muted"
+      }
+    },
+    "textField": {
+      "anatomy": ["label row", "hint row optional", "input line with cursor", "error row optional"],
+      "rule": "Label ends with colon; required * in brand; screen reader: announce errors with role text if TUI lib supports"
+    },
+    "selectMenu": {
+      "rule": "Numbers or letters for options; current selection inverted or brand arrow ▸; show scroll hint if > 7 items",
+      "search": "Filter line above list; no results state explicit"
+    },
+    "table": {
+      "rule": "Zebra optional; never required for clarity — alignment + header rule sufficient",
+      "sort": "Indicator in header ▲▼ muted; default sort documented in footer"
+    },
+    "progress": {
+      "determinate": "Bar width = min(40, cols-4); use █ and ░ or smooth unicode blocks",
+      "indeterminate": "Spinner (see motion) or single-line cycling dots — not both",
+      "eta": "Show only when stable; hide if jitter > 20%"
+    },
+    "spinner": {
+      "frames": ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"],
+      "intervalMs": 80,
+      "asciiFallback": ["|", "/", "-", "\\"],
+      "rule": "One spinner per viewport; stop cleanly with space clear"
+    },
+    "toastInline": {
+      "rule": "Single line; prefix emoji only if unicode allowed; prefer text tag [ok]"
+    },
+    "confirmation": {
+      "safe": "Question + (y/N)",
+      "destructive": "Red/error color word DELETE/RESET in message + require typed phrase or Y capital twice",
+      "rule": "Never default Yes on destructive"
+    },
+    "wizard": {
+      "rule": "Step x of y in muted right or below title; allow back command consistent (:back)"
+    },
+    "emptyState": {
+      "anatomy": ["short headline", "one sentence guidance", "primary command example"],
+      "rule": "Never blank screen with only cursor"
+    },
+    "errorPanel": {
+      "anatomy": ["error title", "one human sentence", "optional code in monospace", "suggested fix as bullet", "support hint muted"],
+      "rule": "No stack traces in primary panel — stderr only"
+    },
+    "logStream": {
+      "rule": "Levels: DEBUG muted, INFO default, WARN warning color, ERROR error color; timestamps aligned column"
+    },
+    "keyLegend": {
+      "rule": "Footer: ^Q quit · ^S save · ? help; align keys; use · separator"
+    }
+  },
+
+  "aiAssistantUx": {
+    "goals": [
+      "Surpass default Claude/OpenClaw terminal clutter: fewer ornaments, stronger hierarchy, faster scan",
+      "Make tool boundaries obvious without comic-book chrome",
+      "Preserve user focus: input area always visually anchored"
+    ],
+    "sessionChrome": {
+      "header": "App name · model (muted) · context % or tokens optional right",
+      "inputDock": "Blank line + rule + prompt; never place user typing above transcript without scroll lock",
+      "rule": "On resize, reflow transcript; keep last user message and prompt visible"
+    },
+    "roles": {
+      "user": {
+        "prefix": "You",
+        "style": "Bold label + indent body; brand chevron on continuation lines optional",
+        "rule": "Never collapse user messages into assistant color"
+      },
+      "assistant": {
+        "prefix": "Citron",
+        "style": "Default text; section subheadings muted; lists tight",
+        "rule": "No fake personality filler; lead with answer"
+      },
+      "system": {
+        "prefix": "System",
+        "style": "Muted frame; collapsible one-line summary + expand",
+        "rule": "System prompts not shown by default in consumer mode"
+      },
+      "tool": {
+        "prefix": "Tool",
+        "collapsed": "{muted}▸ {toolName}({shortArgs}) … done in {ms}ms",
+        "expanded": "Monospace panel; JSON pretty-print 2 spaces; max height with scroll",
+        "rule": "Green/red only for success/failure + text label"
+      }
+    },
+    "streaming": {
+      "cursor": "Dim block ▌ at end; remove on complete",
+      "partialMarkdown": "Render incrementally where safe; code fence only when closing fence seen",
+      "stall": "After 6s no token, show muted \"Still thinking…\" on same line once"
+    },
+    "composer": {
+      "rule": "Multi-line composer: delimiter visible; send shortcut in legend; show character soft limit warn at 80% in muted",
+      "paste": "Detect large paste; confirm before send if > threshold"
+    },
+    "markdownInTerminal": {
+      "headings": "H1 = bold + blank; H2 = bold; H3 = bold muted",
+      "lists": "• or - consistent; numbered for sequences",
+      "code": "Fenced blocks: full width panel; line numbers optional muted",
+      "links": "OSC 8 hyperlinks if supported; else full URL on own line",
+      "blockquotes": "│ prefix muted"
+    },
+    "citations": {
+      "rule": "Superscript numbers or bracket [1] in muted; sources listed compactly after message with dividers"
+    },
+    "safety": {
+      "rule": "When refusing, use neutral info color + clear reason + one alternative; never taunt or joke"
+    }
+  },
+
+  "copyTone": {
+    "voice": "Warm, precise, concise. Apple-adjacent calm, Citron-specific courtesy.",
+    "rules": [
+      "Imperative for actions (\"Run deploy\"), sentence case for descriptions",
+      "Error copy: what broke + how to fix + optional why",
+      "No exclamation marks in system messages except genuine success milestone",
+      "Avoid \"Something went wrong\" — name the subsystem"
+    ],
+    "forbidden": ["LOL", "Oops", "Hmm", "As an AI", "magic", "just"]
+  },
+
+  "keyboardAndShortcuts": {
+    "rule": "Document all global shortcuts in ? help; single-letter must not shadow readline without warning",
+    "accessibility": "Provide long-form commands mirroring shortcuts (/help vs ?)"
+  },
+
+  "accessibility": {
+    "contrast": "Treat terminal background as unknown; test on black, white, and solarized; ensure brand not sole focus indicator",
+    "colorBlind": "Pair success/error with shape and words",
+    "motion": "CLIMOTION=0 or global flag disables spinner and progress animations",
+    "screenReaders": "When using a TUI library, expose labels; plain CLI: structured text is easier than canvas hacks"
+  },
+
+  "performance": {
+    "rule": "Batch redraws; throttle resize; avoid clearing entire screen each keypress",
+    "aiStreaming": "Chunk render max 60fps equivalent; coalesce tiny deltas"
+  },
+
+  "securityDisplay": {
+    "secrets": "Mask API keys, tokens, cookies in all output; never repeat full secret in confirm",
+    "spoofing": "Show remote host and identity on first connect in frame"
+  },
+
+  "qualityBar": {
+    "versusDefaults": [
+      "Fewer decorative Unicode characters than typical chat CLIs",
+      "Stronger alignment and padding than default inquirer",
+      "Clearer tool boundaries than unstructured log interleaving",
+      "Calmer color palette than rainbow debug modes"
+    ],
+    "definitionOfDone": [
+      "Works at 40 cols in monochrome",
+      "NO_COLOR identical hierarchy to color",
+      "Every interactive flow has escape + help",
+      "AI session: roles visually distinct without garish borders"
+    ]
+  },
+
+  "implementationNotes": {
+    "libraries": "Ink/blessed/react-ink/orchard — map this spec to component props; keep theme object as single source",
+    "testing": "Snapshot tests at 40, 72, 120 cols; golden files for NO_COLOR",
+    "referenceCli": "cli/citron-mascot.mjs follows NO_COLOR and truecolor for brand line"
+  }
+}

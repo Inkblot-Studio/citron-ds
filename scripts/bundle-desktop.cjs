@@ -49,6 +49,10 @@ copyFileIfExists(
 copyDirIfExists(path.join(root, 'tokens'), path.join(bundleRoot, 'tokens'));
 copyDirIfExists(path.join(root, 'system'), path.join(bundleRoot, 'system'));
 copyDirIfExists(path.join(root, 'dist', 'brand'), path.join(bundleRoot, 'brand'));
+copyFileIfExists(
+  path.join(root, 'dist', 'preview', 'mascot.html'),
+  path.join(bundleRoot, 'preview', 'mascot.html'),
+);
 
 const readme = `# Citron design bundle (desktop / Rust / native)
 
@@ -65,8 +69,9 @@ Single folder with design tokens, system metadata, and brand assets. Generated o
 | \`ai-reference.json\` | Inkblot / Citron AI and product reference. |
 | \`tokens-schema.json\` | Present when Style Dictionary emits it. |
 | \`tokens/\` | Authoritative DTCG-style source JSON (primitive + semantic). |
-| \`system/\` | Extra system JSON (foundations, motion, icons, etc.). |
+| \`system/\` | Extra system JSON (foundations, motion, icons, \`cli.json\` for terminal/TUI/AI CLIs, etc.). |
 | \`brand/\` | SVG logos / mascot. |
+| \`preview/mascot.html\` | Double-click mascot preview in a browser (no server). |
 
 ## Rust / Tauri / egui
 

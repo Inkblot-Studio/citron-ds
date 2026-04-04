@@ -42,14 +42,16 @@
       "components": { "path": "system/components.json", "description": "Full component library: anatomy, states, behavior, accessibility" },
       "motion": { "path": "system/motion.json", "description": "Animation durations, easings, transitions, micro-interactions" },
       "content": { "path": "system/content.json", "description": "Data display, loading/empty/error states, iconography, imagery" },
+      "devtools": { "path": "system/devtools.json", "description": "Cool blue dev-tool palette vs Citron product UI; scoping, CSS vars, where to use" },
       "ai": { "path": "system/ai.json", "description": "AI agent rules: rendering, layout assembly, edge cases, testing" },
+      "cli": { "path": "system/cli.json", "description": "CLI & TUI design system: terminal color, prompts, AI chat UX, tables, accessibility, quality bar" },
       "aiReference": { "path": "system/inkblot-ai-reference.json", "description": "Single-file AI reference: token map, composite patterns, CSS snippets, icon semantics" }
     }
   },
 
   "usage": {
-    "forAI": "Read system/ai.json first, then system/components.json for component specs. Reference tokens via dist/ai/inkblot-tokens-resolved.json.",
-    "forDevelopers": "Import dist/css/inkblot-variables.css for tokens. Reference system/components.json for implementation specs.",
+    "forAI": "Read system/ai.json first, then system/components.json for component specs. For terminal apps, chat CLIs, and TUIs, read system/cli.json. Reference tokens via dist/ai/inkblot-tokens-resolved.json.",
+    "forDevelopers": "Import dist/css/inkblot-variables.css for tokens. Reference system/components.json for implementation specs. For dev-only menus and tooling chrome, use devtools tokens (see system/devtools.json) — never mix with customer-facing surfaces.",
     "forDesigners": "Use tokens/primitive/ as source for Figma variables. Reference system/foundations.json for principles."
   }
 }

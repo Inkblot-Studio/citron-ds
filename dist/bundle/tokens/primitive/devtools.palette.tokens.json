@@ -1,0 +1,55 @@
+{
+  "$description": "Developer tooling palette — cool blue on slate. Intentionally distinct from warm Citron consumer UI so dev surfaces, debug menus, and internal tools are instantly recognizable.",
+  "inkblot": {
+    "color": {
+      "devtools": {
+        "$type": "color",
+        "$description": "Primitives for dev-only chrome. Do not use in customer-facing product surfaces.",
+        "dominant": {
+          "$value": "#2563EB",
+          "$description": "Dominant blue — headers, key metrics, active nav in dev shell"
+        },
+        "support": {
+          "$value": "#60A5FA",
+          "$description": "Support blue — secondary emphasis, icons, dividers tint, hover text"
+        },
+        "accent": {
+          "$value": "#10B981",
+          "$description": "Emerald accent — success in dev context, pass states, OK badges (not product brand citron)"
+        },
+        "primary": {
+          "$value": "#2563EB",
+          "$description": "Primary action — same as dominant; use semantic interactive.primary in components"
+        },
+        "primaryHover": {
+          "$value": "#60A5FA",
+          "$description": "Primary hover — lighter blue lift on dark ground"
+        },
+        "background": {
+          "$value": "#020617",
+          "$description": "App background — near-slate-950, OLED-friendly"
+        },
+        "surface": {
+          "$value": "#0B1220",
+          "$description": "Raised panels, cards, drawers — one step above background"
+        },
+        "textPrimary": {
+          "$value": "#F8FAFC",
+          "$description": "Primary text on dev dark UI"
+        },
+        "textMuted": {
+          "$value": "#CBD5E1",
+          "$description": "Secondary labels, timestamps, hints"
+        },
+        "border": {
+          "$value": "#1E293B",
+          "$description": "Default borders and hairlines — slate-800"
+        },
+        "focus": {
+          "$value": "#60A5FA",
+          "$description": "Focus ring on dev controls — matches support for visibility"
+        }
+      }
+    }
+  }
+}

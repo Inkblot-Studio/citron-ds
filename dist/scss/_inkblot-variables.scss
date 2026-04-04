@@ -40,6 +40,17 @@ $inkblot-color-semantic-error-dark: #a3352d; // Error hover
 $inkblot-color-semantic-info-light: #6ba3c2; // Muted warm blue
 $inkblot-color-semantic-info-main: #5790ad; // Primary info — desaturated, warm
 $inkblot-color-semantic-info-dark: #497a94; // Info hover
+$inkblot-color-devtools-dominant: #2563eb; // Dominant blue — headers, key metrics, active nav in dev shell
+$inkblot-color-devtools-support: #60a5fa; // Support blue — secondary emphasis, icons, dividers tint, hover text
+$inkblot-color-devtools-accent: #10b981; // Emerald accent — success in dev context, pass states, OK badges (not product brand citron)
+$inkblot-color-devtools-primary: #2563eb; // Primary action — same as dominant; use semantic interactive.primary in components
+$inkblot-color-devtools-primary-hover: #60a5fa; // Primary hover — lighter blue lift on dark ground
+$inkblot-color-devtools-background: #020617; // App background — near-slate-950, OLED-friendly
+$inkblot-color-devtools-surface: #0b1220; // Raised panels, cards, drawers — one step above background
+$inkblot-color-devtools-text-primary: #f8fafc; // Primary text on dev dark UI
+$inkblot-color-devtools-text-muted: #cbd5e1; // Secondary labels, timestamps, hints
+$inkblot-color-devtools-border: #1e293b; // Default borders and hairlines — slate-800
+$inkblot-color-devtools-focus: #60a5fa; // Focus ring on dev controls — matches support for visibility
 $inkblot-duration-instant: 0ms; // No animation
 $inkblot-duration-fast: 120ms; // Micro-interactions, hovers — fast enough to feel physical
 $inkblot-duration-normal: 200ms; // Standard transitions
@@ -168,6 +179,20 @@ $inkblot-dark-color-status-success: #4cb864; // Bright warm green on dark
 $inkblot-dark-color-status-warning: #e0a020; // Warm amber on dark
 $inkblot-dark-color-status-error: #e05a52; // Warm red on dark
 $inkblot-dark-color-status-info: #7ab8d6; // Soft warm blue on dark
+$inkblot-semantic-devtools-color-background-app: $inkblot-color-devtools-background; // Full dev shell background
+$inkblot-semantic-devtools-color-background-surface: $inkblot-color-devtools-surface; // Panels, modals, dropdowns
+$inkblot-semantic-devtools-color-background-surface-elevated: $inkblot-color-devtools-surface; // Optional second elevation — same token until a lighter step is needed
+$inkblot-semantic-devtools-color-text-primary: $inkblot-color-devtools-text-primary; // Body and titles in dev UI
+$inkblot-semantic-devtools-color-text-muted: $inkblot-color-devtools-text-muted; // Meta, captions, disabled-adjacent copy
+$inkblot-semantic-devtools-color-text-on-primary: $inkblot-color-devtools-text-primary; // Text on primary/dominant buttons
+$inkblot-semantic-devtools-color-border-default: $inkblot-color-devtools-border; // Dividers and field outlines
+$inkblot-semantic-devtools-color-border-strong: $inkblot-color-devtools-support; // Drag handles, resize accents — use at low opacity if needed
+$inkblot-semantic-devtools-color-accent-brand: $inkblot-color-devtools-dominant; // Dev chrome brand strip — blue, not citron
+$inkblot-semantic-devtools-color-accent-positive: $inkblot-color-devtools-accent; // Build passed, tests green, healthy status
+$inkblot-semantic-devtools-color-interactive-primary: $inkblot-color-devtools-primary; // Primary buttons, submit, run
+$inkblot-semantic-devtools-color-interactive-primary-hover: $inkblot-color-devtools-primary-hover; // Hover state for primary
+$inkblot-semantic-devtools-color-interactive-ghost: $inkblot-color-devtools-text-muted; // Low-emphasis controls — pair with transparent or surface bg
+$inkblot-semantic-devtools-color-interactive-focus: $inkblot-color-devtools-focus; // Focus ring color
 $inkblot-semantic-color-background-primary: $inkblot-color-neutral-gray-50; // Body background — warm off-white with barely perceptible beige
 $inkblot-semantic-color-background-secondary: $inkblot-color-neutral-white; // Elevated surfaces — clean white floating above base
 $inkblot-semantic-color-background-tertiary: $inkblot-color-neutral-gray-100; // Grouped content, inset areas

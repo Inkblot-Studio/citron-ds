@@ -1,0 +1,79 @@
+{
+  "$description": "Semantic tokens for developer tooling UI. Compose from inkblot.color.devtools primitives.",
+  "inkblot": {
+    "semantic": {
+      "devtools": {
+        "color": {
+          "$type": "color",
+          "$description": "Use var(--inkblot-semantic-devtools-color-*) in dev menus, Storybook, Vite overlay, admin shells",
+          "background": {
+            "app": {
+              "$value": "{inkblot.color.devtools.background}",
+              "$description": "Full dev shell background"
+            },
+            "surface": {
+              "$value": "{inkblot.color.devtools.surface}",
+              "$description": "Panels, modals, dropdowns"
+            },
+            "surfaceElevated": {
+              "$value": "{inkblot.color.devtools.surface}",
+              "$description": "Optional second elevation — same token until a lighter step is needed"
+            }
+          },
+          "text": {
+            "primary": {
+              "$value": "{inkblot.color.devtools.textPrimary}",
+              "$description": "Body and titles in dev UI"
+            },
+            "muted": {
+              "$value": "{inkblot.color.devtools.textMuted}",
+              "$description": "Meta, captions, disabled-adjacent copy"
+            },
+            "onPrimary": {
+              "$value": "{inkblot.color.devtools.textPrimary}",
+              "$description": "Text on primary/dominant buttons"
+            }
+          },
+          "border": {
+            "default": {
+              "$value": "{inkblot.color.devtools.border}",
+              "$description": "Dividers and field outlines"
+            },
+            "strong": {
+              "$value": "{inkblot.color.devtools.support}",
+              "$description": "Drag handles, resize accents — use at low opacity if needed"
+            }
+          },
+          "accent": {
+            "brand": {
+              "$value": "{inkblot.color.devtools.dominant}",
+              "$description": "Dev chrome brand strip — blue, not citron"
+            },
+            "positive": {
+              "$value": "{inkblot.color.devtools.accent}",
+              "$description": "Build passed, tests green, healthy status"
+            }
+          },
+          "interactive": {
+            "primary": {
+              "$value": "{inkblot.color.devtools.primary}",
+              "$description": "Primary buttons, submit, run"
+            },
+            "primaryHover": {
+              "$value": "{inkblot.color.devtools.primaryHover}",
+              "$description": "Hover state for primary"
+            },
+            "ghost": {
+              "$value": "{inkblot.color.devtools.textMuted}",
+              "$description": "Low-emphasis controls — pair with transparent or surface bg"
+            },
+            "focus": {
+              "$value": "{inkblot.color.devtools.focus}",
+              "$description": "Focus ring color"
+            }
+          }
+        }
+      }
+    }
+  }
+}

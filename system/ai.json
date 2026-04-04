@@ -4,6 +4,11 @@
   "version": "1.0.0",
   "description": "Deterministic rules for AI agents to consume, interpret, and render Inkblot Studio components. No guessing. Every rule has one correct interpretation.",
 
+  "cliAndTui": {
+    "rule": "All terminal, TUI, and AI-prompt CLI experiences must follow system/cli.json — color roles, prompts, transcript layout, tool panels, NO_COLOR, and quality bar.",
+    "path": "system/cli.json"
+  },
+
   "consumption": {
     "tokenResolution": {
       "rule": "Always resolve tokens through the semantic layer. Never use primitive tokens directly in component code.",

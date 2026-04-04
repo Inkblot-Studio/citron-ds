@@ -4,6 +4,9 @@
   "description": "Inkblot Studio design token system — Apple-inspired, accessible, AI-ready. Citron design language.",
   "type": "module",
   "main": "dist/js/inkblot-tokens.js",
+  "bin": {
+    "citron-mascot": "./cli/citron-mascot.mjs"
+  },
   "exports": {
     ".": "./dist/js/inkblot-tokens.js",
     "./css": "./dist/css/inkblot-variables.css",
@@ -13,22 +16,25 @@
     "./brand/citron-mascot.svg": "./dist/brand/citron-mascot.svg",
     "./brand/citron-mascot-mono.svg": "./dist/brand/citron-mascot-mono.svg",
     "./bundle": "./dist/bundle/README.md",
-    "./bundle/*": "./dist/bundle/*"
+    "./bundle/*": "./dist/bundle/*",
+    "./preview/mascot.html": "./dist/preview/mascot.html"
   },
   "files": [
     "dist",
     "tokens",
+    "cli",
     "README.md"
   ],
   "scripts": {
-    "build": "style-dictionary build --config style-dictionary.config.js && node -e \"require('fs').copyFileSync('system/inkblot-ai-reference.json', 'dist/ai/inkblot-ai-reference.json')\" && node scripts/copy-brand-assets.cjs && node scripts/bundle-desktop.cjs",
+    "build": "style-dictionary build --config style-dictionary.config.js && node -e \"require('fs').copyFileSync('system/inkblot-ai-reference.json', 'dist/ai/inkblot-ai-reference.json')\" && node scripts/copy-brand-assets.cjs && node scripts/copy-mascot-preview.cjs && node scripts/bundle-desktop.cjs",
     "build:tokens": "style-dictionary build --config style-dictionary.config.js",
     "dev": "concurrently \"npm run build:watch\" \"vite\"",
     "build:watch": "chokidar \"tokens/**/*.json\" -c \"npm run build\"",
     "preview": "vite preview",
     "build:preview": "vite build",
     "build:deploy": "npm run build && npm run build:preview",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "mascot": "node ./cli/citron-mascot.mjs"
   },
   "keywords": [
     "design-tokens",
