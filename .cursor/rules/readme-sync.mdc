@@ -8,7 +8,7 @@ alwaysApply: true
 When you change anything that affects **consumers or contributors**, update **README.md in the same change** (or immediately after in the same task). Examples:
 
 - `package.json`: `exports`, `main`, `bin`, `files`, scripts, repository URLs, version strategy
-- New or removed **import paths**, **CDN paths**, **CLI** behavior, **brand assets** (README uses **`readme-hero.png`** on GitHub; update **`readme-hero.svg`** and re-export PNG when the banner or citron palette changes)
+- New or removed **import paths**, **CDN paths**, **CLI** behavior, **brand assets**
 - **Build / publish** steps, CI, or **npm provenance** requirements
 - Token layout, Style Dictionary outputs, or **AI reference** location
 

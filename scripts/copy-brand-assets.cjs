@@ -11,7 +11,7 @@ if (!fs.existsSync(src)) {
 fs.mkdirSync(dest, { recursive: true });
 
 for (const name of fs.readdirSync(src)) {
-  if (name.endsWith('.svg') || name.endsWith('.png')) {
+  if (name.endsWith('.svg')) {
     fs.copyFileSync(path.join(src, name), path.join(dest, name));
   }
 }

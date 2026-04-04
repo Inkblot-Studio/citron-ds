@@ -1,18 +1,16 @@
-<div align="center">
+# Citron Design System
 
-<img src="assets/brand/readme-hero.png" width="100%" alt="Citron Design System — mascot and wordmark on citron-toned dark background" />
+**Package:** `@citron-systems/citron-ds` · **Studio:** Inkblot Studio
 
-<br />
+Design tokens — Apple-inspired, accessible, AI-ready. Warmly minimal, quietly distinctive.
+
+Brand accent (Citron **500**): `#c4a030`. Mascot and lockups ship as SVG under `brand/` (see [Brand assets](#brand-assets)).
 
 [![npm](https://img.shields.io/npm/v/@citron-systems/citron-ds?style=flat-square&logo=npm&logoColor=white&color=c4a030)](https://www.npmjs.com/package/@citron-systems/citron-ds)
 [![License: MIT](https://img.shields.io/badge/License-MIT-c4a030?style=flat-square)](https://opensource.org/licenses/MIT)
 [![GitHub](https://img.shields.io/badge/repo-Inkblot--Studio%2Fcitron--ds-1a1814?style=flat-square&logo=github&logoColor=f5f0e6)](https://github.com/Inkblot-Studio/citron-ds)
 
-**Citron** — Apple-inspired, accessible, AI-ready design tokens. Warmly minimal, quietly distinctive.
-
-[Repository](https://github.com/Inkblot-Studio/citron-ds) · [npm package](https://www.npmjs.com/package/@citron-systems/citron-ds)
-
-</div>
+[Repository](https://github.com/Inkblot-Studio/citron-ds) · [npm](https://www.npmjs.com/package/@citron-systems/citron-ds)
 
 ---
 
@@ -112,10 +110,8 @@ Source SVGs live in `assets/brand/`; `npm run build` copies them into `dist/bran
 |------|-----|
 | `citron-mascot.svg` | Full-color mark (`#c4a030` citron **500**) |
 | `citron-mascot-mono.svg` | Single-color / `currentColor` lockups |
-| `readme-hero.svg` | Vector source for the README banner (export to PNG when refreshing art) |
-| `readme-hero.png` | **GitHub README** header (GitHub does not reliably render SVG in `<img>`) |
 
-**GitHub (maintainers):** Set **Social preview** (Settings → General) to **`readme-hero.png`** or a **1280×640** crop of the same art. Use `citron-mascot-mono.svg` for the repo or org avatar so the mark stays clear at small sizes.
+**GitHub (maintainers):** For **Social preview** (Settings → General), use any **1280×640** image you export yourself (PNG) from the mascot or your own layout — GitHub does not reliably show SVG in README `<img>` tags. For the repo or org **avatar**, `citron-mascot-mono.svg` stays readable at small sizes.
 
 ---
 
