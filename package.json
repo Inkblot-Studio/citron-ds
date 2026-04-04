@@ -1,6 +1,6 @@
 {
   "name": "@citron-systems/citron-ds",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Inkblot Studio design token system — Apple-inspired, accessible, AI-ready. Citron design language.",
   "type": "module",
   "main": "dist/js/inkblot-tokens.js",
