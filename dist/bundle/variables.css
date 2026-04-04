@@ -1,0 +1,203 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --inkblot-breakpoint-sm: 640px; /** Small devices */
+  --inkblot-breakpoint-md: 768px; /** Tablets */
+  --inkblot-breakpoint-lg: 1024px; /** Laptops */
+  --inkblot-breakpoint-xl: 1280px; /** Desktops */
+  --inkblot-breakpoint-2xl: 1536px; /** Large screens */
+  --inkblot-color-neutral-white: #ffffff; /** Pure white, floating surfaces */
+  --inkblot-color-neutral-gray-50: #fafaf7; /** Warm off-white, body background */
+  --inkblot-color-neutral-gray-100: #f5f4f0; /** Warm surface, secondary bg */
+  --inkblot-color-neutral-gray-200: #eae9e3; /** Subtle warm border, dividers */
+  --inkblot-color-neutral-gray-300: #d4d3cb; /** Medium warm border */
+  --inkblot-color-neutral-gray-400: #93928a; /** Placeholder text, muted */
+  --inkblot-color-neutral-gray-500: #6b6a63; /** Secondary text */
+  --inkblot-color-neutral-gray-600: #4d4c47; /** Emphasized secondary */
+  --inkblot-color-neutral-gray-700: #3a3935; /** Strong text */
+  --inkblot-color-neutral-gray-800: #2d2c28; /** Deep warm dark */
+  --inkblot-color-neutral-gray-900: #1d1c19; /** Primary text — deep slate, never pure black */
+  --inkblot-color-neutral-gray-950: #0f0e0c; /** Deepest warm black */
+  --inkblot-color-accent-citron-50: #fdfbf3; /** Barely there citron wash */
+  --inkblot-color-accent-citron-100: #faf4df; /** Soft cream tint */
+  --inkblot-color-accent-citron-200: #f3e6b8; /** Warm wheat */
+  --inkblot-color-accent-citron-300: #e8d38a; /** Light honey */
+  --inkblot-color-accent-citron-400: #d9bc58; /** Citrus glow */
+  --inkblot-color-accent-citron-500: #c4a030; /** Citron primary — the brand tone */
+  --inkblot-color-accent-citron-600: #a38427; /** Deep citron, hover state */
+  --inkblot-color-accent-citron-700: #7f671f; /** Rich amber */
+  --inkblot-color-accent-citron-800: #5c4a18; /** Dark citron */
+  --inkblot-color-accent-citron-900: #3d3111; /** Deepest citron */
+  --inkblot-color-semantic-success-light: #3d9e50; /** Warm success green */
+  --inkblot-color-semantic-success-main: #358c46; /** Primary success */
+  --inkblot-color-semantic-success-dark: #2a7538; /** Success hover */
+  --inkblot-color-semantic-warning-light: #e0a020; /** Warm amber warning */
+  --inkblot-color-semantic-warning-main: #c48c1a; /** Primary warning — distinct from citron by saturation */
+  --inkblot-color-semantic-warning-dark: #a67515; /** Warning hover */
+  --inkblot-color-semantic-error-light: #d14940; /** Warm red */
+  --inkblot-color-semantic-error-main: #be3e35; /** Primary error */
+  --inkblot-color-semantic-error-dark: #a3352d; /** Error hover */
+  --inkblot-color-semantic-info-light: #6ba3c2; /** Muted warm blue */
+  --inkblot-color-semantic-info-main: #5790ad; /** Primary info — desaturated, warm */
+  --inkblot-color-semantic-info-dark: #497a94; /** Info hover */
+  --inkblot-duration-instant: 0ms; /** No animation */
+  --inkblot-duration-fast: 120ms; /** Micro-interactions, hovers — fast enough to feel physical */
+  --inkblot-duration-normal: 200ms; /** Standard transitions */
+  --inkblot-duration-slow: 320ms; /** Complex transitions, enter/exit */
+  --inkblot-duration-slower: 500ms; /** Page-level transitions, long reveals */
+  --inkblot-easing-default: cubic-bezier(0.25, 0.1, 0.25, 1); /** Standard ease — natural deceleration */
+  --inkblot-easing-in: cubic-bezier(0.32, 0, 0.67, 0); /** Ease in — for exits, things leaving */
+  --inkblot-easing-out: cubic-bezier(0.33, 1, 0.68, 1); /** Ease out — for entrances, things arriving */
+  --inkblot-easing-in-out: cubic-bezier(0.65, 0, 0.35, 1); /** Ease in-out — for position changes, transforms */
+  --inkblot-easing-expressive: cubic-bezier(0.22, 1, 0.36, 1); /** Expressive ease-out — smooth, confident arrival. Replaces bounce. */
+  --inkblot-grid-columns-mobile: 4rem; /** 4-column grid for < 640px */
+  --inkblot-grid-columns-tablet: 8rem; /** 8-column grid for 640–1023px */
+  --inkblot-grid-columns-desktop: 12rem; /** 12-column grid for 1024–1535px */
+  --inkblot-grid-columns-wide: 16rem; /** 16-column grid for 1536px+ */
+  --inkblot-grid-columns-max: 24rem; /** 24-column grid for complex dashboards */
+  --inkblot-grid-gutter-sm: 0.5rem; /** 8px - compact mobile gutter */
+  --inkblot-grid-gutter-md: 1rem; /** 16px - standard gutter */
+  --inkblot-grid-gutter-lg: 1.5rem; /** 24px - spacious desktop gutter */
+  --inkblot-grid-gutter-xl: 2rem; /** 32px - wide layout gutter */
+  --inkblot-grid-margin-mobile: 1rem; /** 16px page margin on mobile */
+  --inkblot-grid-margin-tablet: 2rem; /** 32px page margin on tablet */
+  --inkblot-grid-margin-desktop: 4rem; /** 64px page margin on desktop */
+  --inkblot-grid-margin-wide: auto; /** Auto-center on wide screens */
+  --inkblot-grid-max-width-content: 768px; /** Max width for readable content */
+  --inkblot-grid-max-width-container: 1200px; /** Max width for standard layouts */
+  --inkblot-grid-max-width-wide: 1440px; /** Max width for wide layouts */
+  --inkblot-grid-max-width-full: 1920px; /** Max width for full-bleed */
+  --inkblot-radius-none: 0; /** No rounding */
+  --inkblot-radius-sm: 6px; /** Subtle rounding, chips */
+  --inkblot-radius-md: 10px; /** Inputs, small cards */
+  --inkblot-radius-lg: 14px; /** Buttons, interactive elements */
+  --inkblot-radius-xl: 18px; /** Cards, modals */
+  --inkblot-radius-2xl: 24px; /** Large surfaces, hero cards */
+  --inkblot-radius-full: 9999px; /** Pills, avatars, toggles */
+  --inkblot-border-width-none: 0; /** No border */
+  --inkblot-border-width-thin: 1px; /** Subtle dividers, the default */
+  --inkblot-border-width-medium: 2px; /** Focus rings */
+  --inkblot-border-width-thick: 3px; /** Strong emphasis, rarely used */
+  --inkblot-shadow-none: none; /** No shadow */
+  --inkblot-shadow-xs: 0 1px 2px 0 rgba(29, 28, 25, 0.04); /** Barely there lift */
+  --inkblot-shadow-sm: 0 2px 8px -1px rgba(29, 28, 25, 0.06), 0 1px 3px -1px rgba(29, 28, 25, 0.04); /** Cards — soft, warm, diffused */
+  --inkblot-shadow-md: 0 4px 16px -2px rgba(29, 28, 25, 0.08), 0 2px 6px -2px rgba(29, 28, 25, 0.04); /** Elevated cards, dropdowns */
+  --inkblot-shadow-lg: 0 8px 24px -4px rgba(29, 28, 25, 0.10), 0 4px 10px -4px rgba(29, 28, 25, 0.04); /** Modals, popovers */
+  --inkblot-shadow-xl: 0 16px 40px -8px rgba(29, 28, 25, 0.12), 0 8px 16px -8px rgba(29, 28, 25, 0.04); /** Maximum elevation — ambient, not harsh */
+  --inkblot-opacity-disabled: 0.4; /** Disabled elements */
+  --inkblot-opacity-overlay: 0.45; /** Modal backdrops — not too heavy */
+  --inkblot-opacity-subtle: 0.6; /** Secondary content */
+  --inkblot-opacity-default: 1; /** Full opacity */
+  --inkblot-spacing-0: 0; /** No spacing */
+  --inkblot-spacing-1: 0.25rem; /** 4px */
+  --inkblot-spacing-2: 0.5rem; /** 8px */
+  --inkblot-spacing-3: 0.75rem; /** 12px */
+  --inkblot-spacing-4: 1rem; /** 16px */
+  --inkblot-spacing-5: 1.25rem; /** 20px */
+  --inkblot-spacing-6: 1.5rem; /** 24px */
+  --inkblot-spacing-8: 2rem; /** 32px */
+  --inkblot-spacing-10: 2.5rem; /** 40px */
+  --inkblot-spacing-12: 3rem; /** 48px */
+  --inkblot-spacing-16: 4rem; /** 64px */
+  --inkblot-spacing-20: 5rem; /** 80px */
+  --inkblot-spacing-24: 6rem; /** 96px */
+  --inkblot-spacing-32: 8rem; /** 128px */
+  --inkblot-size-icon-xs: 1rem; /** 16px icon */
+  --inkblot-size-icon-sm: 1.25rem; /** 20px icon */
+  --inkblot-size-icon-md: 1.5rem; /** 24px icon */
+  --inkblot-size-icon-lg: 2rem; /** 32px icon */
+  --inkblot-size-icon-xl: 2.5rem; /** 40px icon */
+  --inkblot-size-touch-target-min: 44px; /** Minimum touch target (WCAG) */
+  --inkblot-size-touch-target-comfortable: 48px; /** Comfortable touch target */
+  --inkblot-typography-font-family-sans: 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; /** Primary UI font — humanist, modern, highly legible */
+  --inkblot-typography-font-family-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace; /** Code and data */
+  --inkblot-typography-font-family-display: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; /** Headlines — same family, optical size variant */
+  --inkblot-typography-font-size-xs: 0.75rem; /** 12px — captions, meta */
+  --inkblot-typography-font-size-sm: 0.8125rem; /** 13px — secondary text */
+  --inkblot-typography-font-size-base: 0.9375rem; /** 15px — body text, slightly refined from 16 */
+  --inkblot-typography-font-size-md: 1.0625rem; /** 17px — emphasized body */
+  --inkblot-typography-font-size-lg: 1.25rem; /** 20px — card titles, subheadings */
+  --inkblot-typography-font-size-xl: 1.5rem; /** 24px — section titles */
+  --inkblot-typography-font-size-2xl: 1.75rem; /** 28px — page titles */
+  --inkblot-typography-font-size-3xl: 2.125rem; /** 34px — hero — composed, not shouting */
+  --inkblot-typography-font-size-4xl: 2.75rem; /** 44px — display, rarely used */
+  --inkblot-typography-font-size-5xl: 3.25rem; /** 52px — maximum display */
+  --inkblot-typography-font-weight-regular: 400; /** Body text */
+  --inkblot-typography-font-weight-medium: 500; /** Emphasis, labels, card titles */
+  --inkblot-typography-font-weight-semibold: 600; /** Headings, buttons */
+  --inkblot-typography-font-weight-bold: 700; /** Strong emphasis, sparingly */
+  --inkblot-typography-line-height-tight: 1.2; /** Headlines */
+  --inkblot-typography-line-height-snug: 1.375; /** Subheadings */
+  --inkblot-typography-line-height-normal: 1.5; /** Body text */
+  --inkblot-typography-line-height-relaxed: 1.65; /** Long-form, generous breathing room */
+  --inkblot-typography-line-height-loose: 1.8; /** Very spacious */
+  --inkblot-typography-letter-spacing-tighter: -0.04em; /** Large headlines */
+  --inkblot-typography-letter-spacing-tight: -0.02em; /** Headings */
+  --inkblot-typography-letter-spacing-normal: 0; /** Body */
+  --inkblot-typography-letter-spacing-wide: 0.02em; /** Labels */
+  --inkblot-typography-letter-spacing-wider: 0.06em; /** Uppercase meta */
+  --inkblot-z-index-hide: -1; /** Hidden below base layer */
+  --inkblot-z-index-base: 0; /** Default document flow */
+  --inkblot-z-index-raised: 1; /** Slightly above base (cards on hover) */
+  --inkblot-z-index-dropdown: 10; /** Dropdowns, select menus */
+  --inkblot-z-index-sticky: 20; /** Sticky headers, nav bars */
+  --inkblot-z-index-overlay: 30; /** Backdrop overlays */
+  --inkblot-z-index-modal: 40; /** Modals, dialogs, sheets */
+  --inkblot-z-index-popover: 50; /** Popovers, tooltips */
+  --inkblot-z-index-toast: 60; /** Toast notifications */
+  --inkblot-z-index-max: 9999; /** Emergency override (avoid) */
+  --inkblot-dark-color-background-primary: #12110e; /** Deep warm black, not pure black */
+  --inkblot-dark-color-background-secondary: #1d1c18; /** Elevated warm surface */
+  --inkblot-dark-color-background-tertiary: #2a2924; /** Grouped content, inset */
+  --inkblot-dark-color-background-inverse: #fafaf7; /** Inverted to warm off-white */
+  --inkblot-dark-color-text-primary: #f5f4f0; /** Warm off-white text */
+  --inkblot-dark-color-text-secondary: #93928a; /** Warm muted text */
+  --inkblot-dark-color-text-tertiary: #6b6a63; /** Placeholder, hints */
+  --inkblot-dark-color-text-inverse: #1d1c19; /** Dark text on light */
+  --inkblot-dark-color-text-link: #d9bc58; /** Citron 400 — bright enough for dark bg */
+  --inkblot-dark-color-text-link-hover: #e8d38a; /** Citron 300 — lighter on hover */
+  --inkblot-dark-color-border-default: #38372f; /** Warm subtle border */
+  --inkblot-dark-color-border-strong: #4d4c44; /** Emphasized warm border */
+  --inkblot-dark-color-border-focus: #d9bc58; /** Focus ring — bright citron */
+  --inkblot-dark-color-interactive-primary: #d9bc58; /** Citron 400 — lighter for dark mode contrast */
+  --inkblot-dark-color-interactive-primary-hover: #e8d38a; /** Citron 300 — warm glow on hover */
+  --inkblot-dark-color-interactive-primary-active: #c4a030; /** Citron 500 — anchor on press */
+  --inkblot-dark-color-interactive-secondary: #2a2924; /** Warm dark secondary */
+  --inkblot-dark-color-interactive-secondary-hover: #38372f; /** Warm dark hover */
+  --inkblot-dark-color-status-success: #4cb864; /** Bright warm green on dark */
+  --inkblot-dark-color-status-warning: #e0a020; /** Warm amber on dark */
+  --inkblot-dark-color-status-error: #e05a52; /** Warm red on dark */
+  --inkblot-dark-color-status-info: #7ab8d6; /** Soft warm blue on dark */
+  --inkblot-semantic-color-background-primary: var(--inkblot-color-neutral-gray-50); /** Body background — warm off-white with barely perceptible beige */
+  --inkblot-semantic-color-background-secondary: var(--inkblot-color-neutral-white); /** Elevated surfaces — clean white floating above base */
+  --inkblot-semantic-color-background-tertiary: var(--inkblot-color-neutral-gray-100); /** Grouped content, inset areas */
+  --inkblot-semantic-color-background-inverse: var(--inkblot-color-neutral-gray-900); /** Inverted surfaces */
+  --inkblot-semantic-color-text-primary: var(--inkblot-color-neutral-gray-900); /** Primary text — deep warm slate, never pure black */
+  --inkblot-semantic-color-text-secondary: var(--inkblot-color-neutral-gray-500); /** Secondary text */
+  --inkblot-semantic-color-text-tertiary: var(--inkblot-color-neutral-gray-400); /** Placeholder, hints, captions */
+  --inkblot-semantic-color-text-inverse: var(--inkblot-color-neutral-white); /** Text on dark surfaces */
+  --inkblot-semantic-color-text-link: var(--inkblot-color-accent-citron-600); /** Links — deep citron for readability */
+  --inkblot-semantic-color-text-link-hover: var(--inkblot-color-accent-citron-700); /** Link hover */
+  --inkblot-semantic-color-border-default: var(--inkblot-color-neutral-gray-200); /** Subtle warm dividers */
+  --inkblot-semantic-color-border-strong: var(--inkblot-color-neutral-gray-300); /** Emphasized borders */
+  --inkblot-semantic-color-border-focus: var(--inkblot-color-accent-citron-500); /** Focus ring — citron accent */
+  --inkblot-semantic-color-interactive-primary: var(--inkblot-color-accent-citron-500); /** Primary CTA — confident citron */
+  --inkblot-semantic-color-interactive-primary-hover: var(--inkblot-color-accent-citron-600); /** Primary hover — deeper, subtle shift */
+  --inkblot-semantic-color-interactive-primary-active: var(--inkblot-color-accent-citron-700); /** Primary pressed */
+  --inkblot-semantic-color-interactive-secondary: var(--inkblot-color-neutral-gray-100); /** Secondary surfaces with subtle depth */
+  --inkblot-semantic-color-interactive-secondary-hover: var(--inkblot-color-neutral-gray-200); /** Secondary hover */
+  --inkblot-semantic-color-status-success: var(--inkblot-color-semantic-success-main); /** Success state */
+  --inkblot-semantic-color-status-warning: var(--inkblot-color-semantic-warning-main); /** Warning state */
+  --inkblot-semantic-color-status-error: var(--inkblot-color-semantic-error-main); /** Error state */
+  --inkblot-semantic-color-status-info: var(--inkblot-color-semantic-info-main); /** Info state */
+  --inkblot-semantic-typography-heading-1: var(--inkblot-typography-font-weight-semibold) var(--inkblot-typography-font-size-3xl)/var(--inkblot-typography-line-height-tight) var(--inkblot-typography-font-family-display); /** Page title — composed, not dramatic */
+  --inkblot-semantic-typography-heading-2: var(--inkblot-typography-font-weight-semibold) var(--inkblot-typography-font-size-2xl)/var(--inkblot-typography-line-height-tight) var(--inkblot-typography-font-family-display); /** Section title */
+  --inkblot-semantic-typography-heading-3: var(--inkblot-typography-font-weight-medium) var(--inkblot-typography-font-size-xl)/var(--inkblot-typography-line-height-snug) var(--inkblot-typography-font-family-sans); /** Subsection title */
+  --inkblot-semantic-typography-heading-4: var(--inkblot-typography-font-weight-medium) var(--inkblot-typography-font-size-lg)/var(--inkblot-typography-line-height-snug) var(--inkblot-typography-font-family-sans); /** Card title */
+  --inkblot-semantic-typography-body-default: var(--inkblot-typography-font-weight-regular) var(--inkblot-typography-font-size-base)/var(--inkblot-typography-line-height-normal) var(--inkblot-typography-font-family-sans); /** Body text */
+  --inkblot-semantic-typography-body-small: var(--inkblot-typography-font-weight-regular) var(--inkblot-typography-font-size-sm)/var(--inkblot-typography-line-height-normal) var(--inkblot-typography-font-family-sans); /** Small body, captions */
+  --inkblot-semantic-typography-body-large: var(--inkblot-typography-font-weight-regular) var(--inkblot-typography-font-size-md)/var(--inkblot-typography-line-height-relaxed) var(--inkblot-typography-font-family-sans); /** Emphasized body */
+  --inkblot-semantic-typography-label-default: var(--inkblot-typography-font-weight-medium) var(--inkblot-typography-font-size-xs)/var(--inkblot-typography-line-height-normal) var(--inkblot-typography-font-family-sans); /** Form labels, badges */
+}

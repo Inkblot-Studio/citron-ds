@@ -1,0 +1,163 @@
+{
+  "$schema": "https://inkblot.studio/system/v1/ai.schema.json",
+  "name": "AI Agent Consumption Rules",
+  "version": "1.0.0",
+  "description": "Deterministic rules for AI agents to consume, interpret, and render Inkblot Studio components. No guessing. Every rule has one correct interpretation.",
+
+  "consumption": {
+    "tokenResolution": {
+      "rule": "Always resolve tokens through the semantic layer. Never use primitive tokens directly in component code.",
+      "correct": "var(--inkblot-semantic-color-text-primary)",
+      "incorrect": "var(--inkblot-color-neutral-gray-900)",
+      "exception": "Primitive tokens are acceptable only when creating new semantic mappings or in token definition files."
+    },
+    "colorMode": {
+      "rule": "All components must work in both light and dark mode. Use semantic tokens which auto-switch.",
+      "implementation": "Apply [data-theme='dark'] to <html> or <body>. Override CSS variables for dark values."
+    },
+    "spacing": {
+      "rule": "Use spacing tokens from the 4pt grid. Never use arbitrary pixel values.",
+      "scale": "0(0) 1(4px) 2(8px) 3(12px) 4(16px) 5(20px) 6(24px) 8(32px) 10(40px) 12(48px) 16(64px) 20(80px) 24(96px) 32(128px)"
+    }
+  },
+
+  "componentRendering": {
+    "description": "Step-by-step instructions for AI agents assembling UI components",
+
+    "button": {
+      "input": { "variant": "primary | secondary | ghost | danger", "size": "sm | md | lg", "label": "string (required)", "icon": "string | null", "iconPosition": "leading | trailing", "disabled": "boolean", "loading": "boolean", "onClick": "function" },
+      "output": "<button class='btn btn-{variant} btn-{size}' {disabled ? 'aria-disabled=\"true\"' : ''} {loading ? 'aria-live=\"polite\"' : ''}>{icon && iconPosition === 'leading' ? <Icon /> : null}<span>{label}</span>{icon && iconPosition === 'trailing' ? <Icon /> : null}{loading ? <Spinner size='sm' /> : null}</button>",
+      "validation": [
+        "label must be non-empty string",
+        "if icon-only: aria-label is required",
+        "if loading: disable click handler, show spinner",
+        "if disabled: set aria-disabled, not disabled attribute (keeps in tab order)"
+      ]
+    },
+
+    "input": {
+      "input": { "type": "text | email | password | number | tel | url | search", "label": "string (required)", "name": "string (required)", "placeholder": "string | null", "value": "string", "error": "string | null", "helpText": "string | null", "required": "boolean", "disabled": "boolean", "size": "sm | md | lg" },
+      "output": "<div class='field'><label for='{name}'>{label}{required ? <span aria-hidden='true'>*</span> : null}</label><input id='{name}' name='{name}' type='{type}' placeholder='{placeholder}' value='{value}' aria-required='{required}' aria-invalid='{!!error}' aria-describedby='{error ? name + \"-error\" : helpText ? name + \"-help\" : undefined}' {disabled ? 'aria-disabled=\"true\"' : ''} />{error ? <p id='{name}-error' class='field-error' role='alert'>{error}</p> : null}{helpText && !error ? <p id='{name}-help' class='field-help'>{helpText}</p> : null}</div>",
+      "validation": [
+        "label is always required — never rely on placeholder alone",
+        "error message replaces help text when present",
+        "aria-describedby points to error or help text element"
+      ]
+    },
+
+    "card": {
+      "input": { "variant": "elevated | outlined | filled", "interactive": "boolean", "href": "string | null", "image": "{ src, alt, aspectRatio } | null", "title": "string", "description": "string | null", "metadata": "string | null", "actions": "ButtonProps[] | null" },
+      "output": "<{interactive ? 'a href=\"{href}\"' : 'div'} class='card card-{variant}' {interactive ? '' : ''}>{image ? <img src='{image.src}' alt='{image.alt}' style='aspect-ratio: {image.aspectRatio}' loading='lazy' /> : null}<div class='card-body'><h3 class='card-title'>{title}</h3>{description ? <p class='card-desc'>{description}</p> : null}{metadata ? <span class='card-meta'>{metadata}</span> : null}</div>{actions ? <div class='card-actions'>{actions.map(a => <Button {...a} />)}</div> : null}</{interactive ? 'a' : 'div'}>",
+      "validation": [
+        "interactive cards must be wrapped in <a> or have role='link'",
+        "images must have alt text",
+        "truncate description to 3 lines, title to 2 lines"
+      ]
+    },
+
+    "modal": {
+      "input": { "title": "string (required)", "size": "sm | md | lg | full", "children": "ReactNode", "onClose": "function (required)", "footer": "ReactNode | null" },
+      "output": "<div class='modal-overlay' onClick='{onClose}' aria-hidden='true'></div><div class='modal modal-{size}' role='dialog' aria-modal='true' aria-labelledby='modal-title'><div class='modal-header'><h2 id='modal-title'>{title}</h2><button class='modal-close' onClick='{onClose}' aria-label='Close'>×</button></div><div class='modal-body'>{children}</div>{footer ? <div class='modal-footer'>{footer}</div> : null}</div>",
+      "validation": [
+        "title is required",
+        "onClose is required — user must always be able to dismiss",
+        "trap focus inside modal",
+        "lock body scroll",
+        "return focus to trigger on close"
+      ]
+    },
+
+    "toast": {
+      "input": { "variant": "info | success | warning | error", "message": "string (required)", "action": "{ label: string, onClick: function } | null", "autoDismiss": "boolean (default: true)", "duration": "number (default: 5000)" },
+      "validation": [
+        "error toasts: never auto-dismiss",
+        "message must be concise — 1-2 sentences max",
+        "max 3 visible toasts at once"
+      ]
+    }
+  },
+
+  "layoutAssembly": {
+    "description": "How AI agents should assemble page layouts",
+    "steps": [
+      "1. Determine page type: content page, dashboard, form, listing, detail, auth",
+      "2. Select layout pattern from system/grid.json: singleColumn, sidebarLayout, cardGrid, splitScreen, masonry",
+      "3. Apply container: standard (1200px) for most pages, content (768px) for text-heavy, wide (1440px) for dashboards",
+      "4. Place components on grid using span rules from breakpoint table",
+      "5. Apply spacing: var(--inkblot-spacing-8) between major sections, var(--inkblot-spacing-4) between related items",
+      "6. Add page-level elements: header (sticky, z-index: sticky), main content, footer",
+      "7. Ensure color mode support: test with both light and dark tokens",
+      "8. Validate accessibility: contrast ratios, focus order, screen reader flow"
+    ],
+    "examples": {
+      "dashboardPage": {
+        "layout": "sidebarLayout",
+        "container": "wide (1440px)",
+        "sidebar": { "width": "280px", "content": "nav links, user avatar, settings" },
+        "main": { "content": "cardGrid for metrics (span 3 each), table below for data" },
+        "header": "sticky, z-index: sticky, contains breadcrumb + page title + actions"
+      },
+      "articlePage": {
+        "layout": "singleColumn",
+        "container": "content (768px)",
+        "content": "heading-1 title, body-large intro, body-default paragraphs, images (16:9)",
+        "spacing": "var(--inkblot-spacing-8) between sections"
+      },
+      "authPage": {
+        "layout": "splitScreen",
+        "left": "Brand illustration or gradient, centered logo",
+        "right": "Form: heading-2, inputs, primary button, link to alternative auth"
+      }
+    }
+  },
+
+  "edgeCases": {
+    "missingData": {
+      "rule": "Never show undefined, null, NaN, or empty strings in the UI.",
+      "strings": "Show em-dash (—) for missing text values",
+      "numbers": "Show em-dash (—) for missing numeric values",
+      "images": "Show skeleton or neutral placeholder",
+      "lists": "Show empty state with action",
+      "dates": "Show em-dash (—)"
+    },
+    "longContent": {
+      "rule": "Truncate with ellipsis. Provide full content via tooltip or expand.",
+      "headings": "Never truncate. Allow wrapping.",
+      "descriptions": "Max 3 lines then truncate.",
+      "tableCells": "Single line truncate with tooltip.",
+      "userNames": "Max 20 characters then truncate."
+    },
+    "overflowingContainers": {
+      "rule": "Content must never break layout. Use overflow-hidden on containers.",
+      "horizontal": "overflow-x: hidden on page. Scroll on specific containers (tables, carousels).",
+      "vertical": "Modals, dropdowns: max-height with overflow-y: auto."
+    },
+    "dynamicContent": {
+      "rule": "All containers must handle variable content lengths without breaking.",
+      "minHeight": "Set min-height on cards, list items to prevent collapse when empty.",
+      "maxHeight": "Set max-height + overflow on expandable content to prevent page jump."
+    },
+    "errorRecovery": {
+      "networkError": "Show inline error with retry button. Preserve user input.",
+      "validationError": "Highlight invalid fields. Scroll to first error. Announce via aria-live.",
+      "notFound": "Show 404 page with search bar and navigation links.",
+      "unauthorized": "Redirect to login. Preserve intended destination for post-auth redirect."
+    }
+  },
+
+  "testing": {
+    "accessibility": {
+      "automated": "Run axe-core on every component. Zero violations for critical and serious.",
+      "manual": "Tab through every page. Verify focus order. Test with screen reader.",
+      "contrast": "Verify all text meets 7:1 (AAA). Use Chrome DevTools contrast checker."
+    },
+    "visual": {
+      "tool": "Chromatic or Percy for visual regression",
+      "coverage": "Screenshot every component in: default, hover, focus, active, disabled, error, loading, dark mode"
+    },
+    "responsive": {
+      "breakpoints": "Test at: 375px (iPhone), 768px (iPad), 1024px (laptop), 1440px (desktop), 1920px (wide)",
+      "rule": "No horizontal scroll at any breakpoint. No overlapping elements."
+    }
+  }
+}

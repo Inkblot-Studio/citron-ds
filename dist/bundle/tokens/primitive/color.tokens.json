@@ -1,0 +1,71 @@
+{
+  "$description": "Citron primitive color palette. Warm, restrained, premium. Citrus interpreted through restraint and taste — never literal, never loud.",
+  "inkblot": {
+    "$description": "Inkblot Studio — Citron product line",
+    "color": {
+      "$type": "color",
+      "$description": "Base color primitives — use semantic tokens in components, never raw primitives",
+      "neutral": {
+        "$type": "color",
+        "$description": "Warm neutrals with barely perceptible beige undertone. No blue-tinted greys.",
+        "white": {
+          "$value": "#ffffff",
+          "$description": "Pure white, floating surfaces"
+        },
+        "gray": {
+          "50":  { "$value": "#fafaf7", "$description": "Warm off-white, body background" },
+          "100": { "$value": "#f5f4f0", "$description": "Warm surface, secondary bg" },
+          "200": { "$value": "#eae9e3", "$description": "Subtle warm border, dividers" },
+          "300": { "$value": "#d4d3cb", "$description": "Medium warm border" },
+          "400": { "$value": "#93928a", "$description": "Placeholder text, muted" },
+          "500": { "$value": "#6b6a63", "$description": "Secondary text" },
+          "600": { "$value": "#4d4c47", "$description": "Emphasized secondary" },
+          "700": { "$value": "#3a3935", "$description": "Strong text" },
+          "800": { "$value": "#2d2c28", "$description": "Deep warm dark" },
+          "900": { "$value": "#1d1c19", "$description": "Primary text — deep slate, never pure black" },
+          "950": { "$value": "#0f0e0c", "$description": "Deepest warm black" }
+        }
+      },
+      "accent": {
+        "$type": "color",
+        "$description": "Citron brand accent — refined citrus-amber, used sparingly for emphasis. Warm light through citrus peel.",
+        "citron": {
+          "50":  { "$value": "#fdfbf3", "$description": "Barely there citron wash" },
+          "100": { "$value": "#faf4df", "$description": "Soft cream tint" },
+          "200": { "$value": "#f3e6b8", "$description": "Warm wheat" },
+          "300": { "$value": "#e8d38a", "$description": "Light honey" },
+          "400": { "$value": "#d9bc58", "$description": "Citrus glow" },
+          "500": { "$value": "#c4a030", "$description": "Citron primary — the brand tone" },
+          "600": { "$value": "#a38427", "$description": "Deep citron, hover state" },
+          "700": { "$value": "#7f671f", "$description": "Rich amber" },
+          "800": { "$value": "#5c4a18", "$description": "Dark citron" },
+          "900": { "$value": "#3d3111", "$description": "Deepest citron" }
+        }
+      },
+      "semantic": {
+        "$type": "color",
+        "$description": "Status colors — warm-shifted for cohesion, fully accessible",
+        "success": {
+          "light": { "$value": "#3d9e50", "$description": "Warm success green" },
+          "main":  { "$value": "#358c46", "$description": "Primary success" },
+          "dark":  { "$value": "#2a7538", "$description": "Success hover" }
+        },
+        "warning": {
+          "light": { "$value": "#e0a020", "$description": "Warm amber warning" },
+          "main":  { "$value": "#c48c1a", "$description": "Primary warning — distinct from citron by saturation" },
+          "dark":  { "$value": "#a67515", "$description": "Warning hover" }
+        },
+        "error": {
+          "light": { "$value": "#d14940", "$description": "Warm red" },
+          "main":  { "$value": "#be3e35", "$description": "Primary error" },
+          "dark":  { "$value": "#a3352d", "$description": "Error hover" }
+        },
+        "info": {
+          "light": { "$value": "#6ba3c2", "$description": "Muted warm blue" },
+          "main":  { "$value": "#5790ad", "$description": "Primary info — desaturated, warm" },
+          "dark":  { "$value": "#497a94", "$description": "Info hover" }
+        }
+      }
+    }
+  }
+}

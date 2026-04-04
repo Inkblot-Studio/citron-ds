@@ -1,0 +1,38 @@
+{
+  "$description": "Citron motion. Fast, smooth, physical. No bounce, no overshoot. Transitions feel like light responding to touch.",
+  "inkblot": {
+    "duration": {
+      "$type": "duration",
+      "$description": "Animation durations — snappy, never playful",
+      "instant": { "$value": "0ms",   "$description": "No animation" },
+      "fast":    { "$value": "120ms", "$description": "Micro-interactions, hovers — fast enough to feel physical" },
+      "normal":  { "$value": "200ms", "$description": "Standard transitions" },
+      "slow":    { "$value": "320ms", "$description": "Complex transitions, enter/exit" },
+      "slower":  { "$value": "500ms", "$description": "Page-level transitions, long reveals" }
+    },
+    "easing": {
+      "$type": "cubicBezier",
+      "$description": "Easing curves — smooth, physical, never bouncy",
+      "default": {
+        "$value": [0.25, 0.1, 0.25, 1],
+        "$description": "Standard ease — natural deceleration"
+      },
+      "in": {
+        "$value": [0.32, 0, 0.67, 0],
+        "$description": "Ease in — for exits, things leaving"
+      },
+      "out": {
+        "$value": [0.33, 1, 0.68, 1],
+        "$description": "Ease out — for entrances, things arriving"
+      },
+      "inOut": {
+        "$value": [0.65, 0, 0.35, 1],
+        "$description": "Ease in-out — for position changes, transforms"
+      },
+      "expressive": {
+        "$value": [0.22, 1, 0.36, 1],
+        "$description": "Expressive ease-out — smooth, confident arrival. Replaces bounce."
+      }
+    }
+  }
+}

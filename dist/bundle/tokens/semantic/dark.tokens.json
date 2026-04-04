@@ -1,0 +1,43 @@
+{
+  "$description": "Citron dark mode overrides. Warm dark surfaces — never cold blue-black. Apply via [data-theme='dark'].",
+  "inkblot": {
+    "dark": {
+      "color": {
+        "$type": "color",
+        "$description": "Dark mode — warm-tinted blacks, elevated citron accent for contrast",
+        "background": {
+          "primary":   { "$value": "#12110e", "$description": "Deep warm black, not pure black" },
+          "secondary": { "$value": "#1d1c18", "$description": "Elevated warm surface" },
+          "tertiary":  { "$value": "#2a2924", "$description": "Grouped content, inset" },
+          "inverse":   { "$value": "#fafaf7", "$description": "Inverted to warm off-white" }
+        },
+        "text": {
+          "primary":   { "$value": "#f5f4f0", "$description": "Warm off-white text" },
+          "secondary": { "$value": "#93928a", "$description": "Warm muted text" },
+          "tertiary":  { "$value": "#6b6a63", "$description": "Placeholder, hints" },
+          "inverse":   { "$value": "#1d1c19", "$description": "Dark text on light" },
+          "link":      { "$value": "#d9bc58", "$description": "Citron 400 — bright enough for dark bg" },
+          "linkHover": { "$value": "#e8d38a", "$description": "Citron 300 — lighter on hover" }
+        },
+        "border": {
+          "default": { "$value": "#38372f", "$description": "Warm subtle border" },
+          "strong":  { "$value": "#4d4c44", "$description": "Emphasized warm border" },
+          "focus":   { "$value": "#d9bc58", "$description": "Focus ring — bright citron" }
+        },
+        "interactive": {
+          "primary":       { "$value": "#d9bc58", "$description": "Citron 400 — lighter for dark mode contrast" },
+          "primaryHover":  { "$value": "#e8d38a", "$description": "Citron 300 — warm glow on hover" },
+          "primaryActive": { "$value": "#c4a030", "$description": "Citron 500 — anchor on press" },
+          "secondary":     { "$value": "#2a2924", "$description": "Warm dark secondary" },
+          "secondaryHover":{ "$value": "#38372f", "$description": "Warm dark hover" }
+        },
+        "status": {
+          "success": { "$value": "#4cb864", "$description": "Bright warm green on dark" },
+          "warning": { "$value": "#e0a020", "$description": "Warm amber on dark" },
+          "error":   { "$value": "#e05a52", "$description": "Warm red on dark" },
+          "info":    { "$value": "#7ab8d6", "$description": "Soft warm blue on dark" }
+        }
+      }
+    }
+  }
+}

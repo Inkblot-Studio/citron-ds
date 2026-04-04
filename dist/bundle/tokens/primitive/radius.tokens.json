@@ -1,0 +1,26 @@
+{
+  "$description": "Citron border radius. Soft, premium — 14-16px for interactive elements, generously rounded surfaces.",
+  "inkblot": {
+    "radius": {
+      "$type": "dimension",
+      "$description": "Border radius scale — smooth, never sharp",
+      "none": { "$value": "0",      "$description": "No rounding" },
+      "sm":   { "$value": "6px",    "$description": "Subtle rounding, chips" },
+      "md":   { "$value": "10px",   "$description": "Inputs, small cards" },
+      "lg":   { "$value": "14px",   "$description": "Buttons, interactive elements" },
+      "xl":   { "$value": "18px",   "$description": "Cards, modals" },
+      "2xl":  { "$value": "24px",   "$description": "Large surfaces, hero cards" },
+      "full": { "$value": "9999px", "$description": "Pills, avatars, toggles" }
+    },
+    "border": {
+      "$type": "dimension",
+      "$description": "Border widths — minimal, no heavy borders",
+      "width": {
+        "none":   { "$value": "0",   "$description": "No border" },
+        "thin":   { "$value": "1px", "$description": "Subtle dividers, the default" },
+        "medium": { "$value": "2px", "$description": "Focus rings" },
+        "thick":  { "$value": "3px", "$description": "Strong emphasis, rarely used" }
+      }
+    }
+  }
+}

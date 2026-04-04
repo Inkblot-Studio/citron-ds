@@ -1,0 +1,168 @@
+{
+  "$schema": "https://inkblot.studio/system/v1/content.schema.json",
+  "name": "Content, Data & State Patterns",
+  "version": "1.0.0",
+  "description": "Rules for data display, content patterns, loading states, empty states, error handling, and iconography. AI agents: use these rules to correctly render any content scenario.",
+
+  "dataDisplay": {
+    "tables": {
+      "headerStyle": "Uppercase, label typography, secondary text color, wide letter-spacing",
+      "cellPadding": "var(--inkblot-spacing-3) var(--inkblot-spacing-4)",
+      "rowDivider": "1px solid var(--inkblot-semantic-color-border-default)",
+      "hoverRow": "var(--inkblot-semantic-color-background-secondary)",
+      "selectedRow": "var(--inkblot-color-accent-citron-50)",
+      "stripedRows": "Alternate rows use var(--inkblot-semantic-color-background-secondary)",
+      "sorting": { "icon": "Arrow up/down next to sortable header", "ariaSort": "ascending | descending | none" },
+      "pagination": { "position": "Below table", "itemsPerPage": [10, 25, 50, 100], "default": 25 },
+      "emptyState": "Center message in table body: 'No data to display' with optional action",
+      "responsive": "Below md: convert to card layout or horizontal scroll with sticky first column"
+    },
+    "lists": {
+      "types": ["ordered", "unordered", "description", "nav", "feed"],
+      "spacing": { "itemGap": "var(--inkblot-spacing-2)", "nestedIndent": "var(--inkblot-spacing-6)" },
+      "dividers": "Optional. Use 1px border-bottom between items in dense lists.",
+      "interactive": { "hover": "background: var(--inkblot-semantic-color-background-secondary)", "selected": "background: var(--inkblot-color-accent-citron-50), font-weight: medium" }
+    },
+    "cards": {
+      "layout": "Use cardGrid layout pattern. Min card width: 280px.",
+      "contentHierarchy": ["media (image/video)", "category/tag", "title", "description", "metadata", "actions"],
+      "imageAspectRatios": { "landscape": "16:9", "square": "1:1", "portrait": "3:4" },
+      "truncation": { "title": "2 lines max", "description": "3 lines max", "method": "-webkit-line-clamp" }
+    },
+    "feeds": {
+      "layout": "Single column, max-width: content container (768px)",
+      "itemSpacing": "var(--inkblot-spacing-6) between items",
+      "newIndicator": "Blue dot (8px, accent-500) for unread items",
+      "infiniteScroll": "Load next page when 200px from bottom. Show spinner at bottom during load."
+    }
+  },
+
+  "contentStates": {
+    "loading": {
+      "skeleton": {
+        "description": "Show skeleton that matches the shape of the content being loaded",
+        "animation": "shimmer — gradient sweep 1.5s ease-in-out infinite",
+        "rules": [
+          "Match skeleton shapes to actual content layout",
+          "Show immediately — no delay before showing skeleton",
+          "Minimum display time: 300ms to prevent flash",
+          "Replace skeleton with content using a fade transition (150ms)"
+        ]
+      },
+      "spinner": {
+        "usage": "Inline loading for buttons, small areas. Not for full-page loads.",
+        "sizes": { "sm": "16px", "md": "24px", "lg": "40px" },
+        "color": "Inherit text color or use interactive-primary",
+        "animation": "rotate 360deg 0.8s linear infinite"
+      },
+      "progressBar": {
+        "usage": "Known-duration operations: file uploads, multi-step forms",
+        "height": "4px",
+        "track": "var(--inkblot-semantic-color-background-tertiary)",
+        "fill": "var(--inkblot-semantic-color-interactive-primary)",
+        "animation": "Width transitions with var(--inkblot-easing-out)",
+        "indeterminate": "Sliding gradient animation when progress is unknown"
+      }
+    },
+    "empty": {
+      "description": "When a view has no content to display",
+      "anatomy": ["illustration (optional, 120px max)", "title (heading-4)", "description (body-default, secondary color)", "action (primary button)"],
+      "rules": [
+        "Always explain why it's empty and what the user can do",
+        "Center vertically and horizontally in the available space",
+        "Max width: 420px",
+        "Examples: 'No messages yet — Start a conversation', 'No results found — Try a different search'"
+      ],
+      "style": { "padding": "var(--inkblot-spacing-16) var(--inkblot-spacing-8)", "textAlign": "center" }
+    },
+    "error": {
+      "inline": {
+        "description": "Field-level errors below form inputs",
+        "color": "var(--inkblot-semantic-color-status-error)",
+        "fontSize": "var(--inkblot-typography-font-size-sm)",
+        "icon": "Alert circle, 16px, leading",
+        "spacing": "var(--inkblot-spacing-1) above error text"
+      },
+      "banner": {
+        "description": "Page-level or section-level error messages",
+        "background": "rgba(230, 53, 43, 0.08)",
+        "border": "1px solid rgba(230, 53, 43, 0.3)",
+        "borderRadius": "var(--inkblot-radius-lg)",
+        "padding": "var(--inkblot-spacing-4)",
+        "icon": "Alert circle, error color"
+      },
+      "fullPage": {
+        "description": "Unrecoverable errors, 404, 500",
+        "layout": "Centered in viewport",
+        "anatomy": ["error code (heading-1, tertiary color)", "title (heading-2)", "description (body-default)", "action (primary button: 'Go home' or 'Try again')"]
+      },
+      "rules": [
+        "Never show raw error codes or stack traces to users",
+        "Always provide a recovery action",
+        "Use human language: 'Something went wrong' not 'Error 500'",
+        "Log technical details to console/monitoring, not to UI"
+      ]
+    }
+  },
+
+  "iconography": {
+    "system": "Use a consistent icon set. Recommended: Lucide, Heroicons, or Phosphor.",
+    "style": "Outlined (1.5px stroke) for UI. Filled for active/selected states.",
+    "sizes": {
+      "xs": { "size": "16px", "strokeWidth": "1.5px", "usage": "Inline with small text, badges" },
+      "sm": { "size": "20px", "strokeWidth": "1.5px", "usage": "Buttons, form fields, list items" },
+      "md": { "size": "24px", "strokeWidth": "2px", "usage": "Navigation, standalone icons" },
+      "lg": { "size": "32px", "strokeWidth": "2px", "usage": "Feature icons, cards" },
+      "xl": { "size": "40px", "strokeWidth": "2px", "usage": "Empty states, hero sections" }
+    },
+    "color": {
+      "default": "currentColor (inherits text color)",
+      "interactive": "var(--inkblot-semantic-color-interactive-primary)",
+      "status": "Match status color tokens",
+      "rule": "Icons always inherit their parent's text color unless they carry semantic meaning (status icons)"
+    },
+    "padding": "Icons inside buttons/chips: 2px padding from edges. Standalone: 4px clickable padding for touch targets.",
+    "accessibility": {
+      "decorative": "aria-hidden='true' — icon is next to text that conveys the same meaning",
+      "informative": "aria-label='description' or role='img' with aria-label",
+      "rule": "If removing the icon would lose information, it needs an accessible label"
+    },
+    "placement": {
+      "buttons": "Leading (before label) for actions. Trailing (after label) for navigation (arrows, external links).",
+      "inputs": "Leading for semantic (search, email). Trailing for actions (clear, toggle visibility).",
+      "rule": "Never use more than one icon per side of a component"
+    }
+  },
+
+  "imagery": {
+    "aspectRatios": {
+      "hero": "21:9",
+      "landscape": "16:9",
+      "standard": "4:3",
+      "square": "1:1",
+      "portrait": "3:4"
+    },
+    "loading": "Show skeleton placeholder with correct aspect ratio. Load image with fade-in (150ms).",
+    "fallback": "If image fails to load: show neutral gray background with a subtle image icon.",
+    "objectFit": "cover for photos, contain for logos/illustrations",
+    "lazy": "All images below the fold use loading='lazy'. Above fold: loading='eager'.",
+    "alt": {
+      "photos": "Describe the content: 'Woman using laptop in a cafe'",
+      "decorative": "alt='' (empty string)",
+      "charts": "Describe the trend: 'Bar chart showing revenue growth from $1M to $3M'",
+      "rule": "Every img must have an alt attribute. No exceptions."
+    }
+  },
+
+  "truncation": {
+    "singleLine": {
+      "css": "overflow: hidden; text-overflow: ellipsis; white-space: nowrap;",
+      "usage": "Table cells, navigation items, breadcrumbs"
+    },
+    "multiLine": {
+      "css": "display: -webkit-box; -webkit-line-clamp: var(--lines); -webkit-box-orient: vertical; overflow: hidden;",
+      "usage": "Card descriptions (3 lines), list previews (2 lines)"
+    },
+    "rule": "Always show full content on hover (via tooltip) or via expand action. Never truncate headings."
+  }
+}

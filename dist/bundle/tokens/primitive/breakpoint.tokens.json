@@ -1,0 +1,14 @@
+{
+  "$description": "Inkblot Studio breakpoints. Mobile-first responsive design.",
+  "inkblot": {
+    "breakpoint": {
+      "$type": "dimension",
+      "$description": "Viewport breakpoints for responsive layouts",
+      "sm": { "$value": "640px", "$description": "Small devices" },
+      "md": { "$value": "768px", "$description": "Tablets" },
+      "lg": { "$value": "1024px", "$description": "Laptops" },
+      "xl": { "$value": "1280px", "$description": "Desktops" },
+      "2xl": { "$value": "1536px", "$description": "Large screens" }
+    }
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "$schema": "https://inkblot.studio/system/v1/foundations.schema.json",
+  "name": "Inkblot Studio Design System",
+  "version": "1.0.0",
+  "description": "The canonical design specification for Inkblot Studio. Every rule is explicit, every constraint defined, every edge case handled. Built for AI agents, autonomous workers, and humans collaborating with AI.",
+
+  "principles": [
+    {
+      "id": "clarity",
+      "name": "Radical Clarity",
+      "rule": "Every design decision must have one correct interpretation. No ambiguity. If a rule can be misread, rewrite it."
+    },
+    {
+      "id": "modularity",
+      "name": "Composable Independence",
+      "rule": "Every component is self-contained. It declares its own spacing, sizing, and states. It works in isolation and in composition."
+    },
+    {
+      "id": "accessibility",
+      "name": "Universal Access",
+      "rule": "WCAG AAA compliance. 7:1 contrast for normal text. 4.5:1 for large text. 44px minimum touch targets. Full keyboard navigation. Reduced motion support. Screen reader semantics."
+    },
+    {
+      "id": "performance",
+      "name": "Imperceptible Speed",
+      "rule": "First paint under 1s. No layout shifts. Lazy-load below fold. CSS-only animations where possible. No render-blocking resources."
+    },
+    {
+      "id": "ai-native",
+      "name": "AI-First Consumption",
+      "rule": "Every token, component, and rule is machine-parseable JSON. AI agents never guess — they read a deterministic spec."
+    },
+    {
+      "id": "restraint",
+      "name": "Deliberate Restraint",
+      "rule": "Use the minimum visual complexity needed. Every shadow, gradient, and animation must earn its place."
+    }
+  ],
+
+  "accessibility": {
+    "standard": "WCAG 2.2 AAA",
+    "contrast": {
+      "normalText": { "ratio": "7:1", "note": "Body text, labels, captions against their background" },
+      "largeText": { "ratio": "4.5:1", "note": "Text >= 24px regular or >= 18.66px bold" },
+      "uiComponents": { "ratio": "3:1", "note": "Borders, icons, focus rings against adjacent colors" },
+      "decorative": { "ratio": "none", "note": "Purely decorative elements have no contrast requirement" }
+    },
+    "touchTargets": {
+      "minimum": "44px",
+      "comfortable": "48px",
+      "rule": "Every interactive element must be at least 44x44px. Preferred: 48x48px."
+    },
+    "keyboard": {
+      "rule": "Every interactive element must be reachable via Tab. Activation via Enter or Space. Escape closes modals/popovers. Arrow keys navigate within composite widgets.",
+      "focusIndicator": "2px solid focus ring with 2px offset. Color: semantic.color.border.focus. Never suppressed."
+    },
+    "motion": {
+      "rule": "Respect prefers-reduced-motion. When reduced: disable all animations, transitions complete instantly, no parallax, no auto-play.",
+      "implementation": "@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }"
+    },
+    "screenReader": {
+      "rule": "All images have alt text. All icons have aria-label or are aria-hidden. All form inputs have associated labels. Live regions for dynamic content."
+    },
+    "colorBlindness": {
+      "rule": "Never use color as the sole indicator. Always pair with shape, icon, text label, or pattern."
+    }
+  },
+
+  "colorModes": {
+    "light": {
+      "selector": ":root, [data-theme='light']",
+      "description": "Default. White backgrounds, dark text. Apple-inspired neutrality."
+    },
+    "dark": {
+      "selector": "[data-theme='dark']",
+      "autoDetect": "@media (prefers-color-scheme: dark)",
+      "description": "True black backgrounds for OLED. Elevated surfaces use gray-900. Brighter accent colors for contrast."
+    }
+  },
+
+  "typography": {
+    "system": "System font stack for native rendering. -apple-system on Apple, Segoe UI on Windows, Roboto on Android.",
+    "scale": "1.25 modular scale (Major Third) from 16px base",
+    "semanticRules": [
+      { "element": "h1", "token": "semantic.typography.heading.1", "usage": "One per page. Page title." },
+      { "element": "h2", "token": "semantic.typography.heading.2", "usage": "Section titles. Multiple per page." },
+      { "element": "h3", "token": "semantic.typography.heading.3", "usage": "Subsections within h2 blocks." },
+      { "element": "h4", "token": "semantic.typography.heading.4", "usage": "Card titles, minor groupings." },
+      { "element": "p", "token": "semantic.typography.body.default", "usage": "All body text." },
+      { "element": "small", "token": "semantic.typography.body.small", "usage": "Captions, footnotes, timestamps." },
+      { "element": "label", "token": "semantic.typography.label.default", "usage": "Form labels, badges, metadata." }
+    ],
+    "truncation": {
+      "singleLine": "overflow: hidden; text-overflow: ellipsis; white-space: nowrap;",
+      "multiLine": "-webkit-line-clamp: {n}; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;",
+      "rule": "Always truncate rather than overflow. Show full text in tooltip on hover/focus."
+    }
+  },
+
+  "techStack": {
+    "recommended": {
+      "framework": "React 18+ or Next.js 14+ (App Router)",
+      "language": "TypeScript (strict mode)",
+      "styling": "CSS Modules or Tailwind CSS v4 with design tokens as CSS variables",
+      "animation": "CSS transitions/animations preferred. Framer Motion for complex orchestration.",
+      "testing": "Vitest + Testing Library + Axe-core for accessibility audits",
+      "storybook": "Storybook 8+ for component documentation and visual regression",
+      "bundler": "Vite 5+"
+    },
+    "rendering": {
+      "ssr": "Server-side render all critical content. Hydrate interactivity client-side.",
+      "csr": "Client-side only for authenticated dashboards, real-time data.",
+      "rule": "Default to SSR. Use CSR only when server rendering is impossible."
+    },
+    "performance": {
+      "lazyLoading": "Lazy-load all images, components below fold, and routes.",
+      "caching": "Immutable hashes on all static assets. Cache-Control: max-age=31536000.",
+      "codeSpitting": "Route-level code splitting. Dynamic imports for modals, popovers, heavy components."
+    }
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "$description": "Citron semantic tokens. Map primitives to component-ready meanings. Use these in components — never raw primitives.",
+  "inkblot": {
+    "semantic": {
+      "color": {
+        "$type": "color",
+        "$description": "Semantic color mappings — Citron identity: warm, restrained, premium",
+        "background": {
+          "primary":   { "$value": "{inkblot.color.neutral.gray.50}", "$description": "Body background — warm off-white with barely perceptible beige" },
+          "secondary": { "$value": "{inkblot.color.neutral.white}", "$description": "Elevated surfaces — clean white floating above base" },
+          "tertiary":  { "$value": "{inkblot.color.neutral.gray.100}", "$description": "Grouped content, inset areas" },
+          "inverse":   { "$value": "{inkblot.color.neutral.gray.900}", "$description": "Inverted surfaces" }
+        },
+        "text": {
+          "primary":   { "$value": "{inkblot.color.neutral.gray.900}", "$description": "Primary text — deep warm slate, never pure black" },
+          "secondary": { "$value": "{inkblot.color.neutral.gray.500}", "$description": "Secondary text" },
+          "tertiary":  { "$value": "{inkblot.color.neutral.gray.400}", "$description": "Placeholder, hints, captions" },
+          "inverse":   { "$value": "{inkblot.color.neutral.white}", "$description": "Text on dark surfaces" },
+          "link":      { "$value": "{inkblot.color.accent.citron.600}", "$description": "Links — deep citron for readability" },
+          "linkHover": { "$value": "{inkblot.color.accent.citron.700}", "$description": "Link hover" }
+        },
+        "border": {
+          "default": { "$value": "{inkblot.color.neutral.gray.200}", "$description": "Subtle warm dividers" },
+          "strong":  { "$value": "{inkblot.color.neutral.gray.300}", "$description": "Emphasized borders" },
+          "focus":   { "$value": "{inkblot.color.accent.citron.500}", "$description": "Focus ring — citron accent" }
+        },
+        "interactive": {
+          "primary":       { "$value": "{inkblot.color.accent.citron.500}", "$description": "Primary CTA — confident citron" },
+          "primaryHover":  { "$value": "{inkblot.color.accent.citron.600}", "$description": "Primary hover — deeper, subtle shift" },
+          "primaryActive": { "$value": "{inkblot.color.accent.citron.700}", "$description": "Primary pressed" },
+          "secondary":     { "$value": "{inkblot.color.neutral.gray.100}", "$description": "Secondary surfaces with subtle depth" },
+          "secondaryHover":{ "$value": "{inkblot.color.neutral.gray.200}", "$description": "Secondary hover" }
+        },
+        "status": {
+          "success": { "$value": "{inkblot.color.semantic.success.main}", "$description": "Success state" },
+          "warning": { "$value": "{inkblot.color.semantic.warning.main}", "$description": "Warning state" },
+          "error":   { "$value": "{inkblot.color.semantic.error.main}", "$description": "Error state" },
+          "info":    { "$value": "{inkblot.color.semantic.info.main}", "$description": "Info state" }
+        }
+      },
+      "typography": {
+        "$description": "Semantic type styles — composed, intentional hierarchy through spacing and weight",
+        "heading": {
+          "1": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{inkblot.typography.fontFamily.display}",
+              "fontSize": "{inkblot.typography.fontSize.3xl}",
+              "fontWeight": "{inkblot.typography.fontWeight.semibold}",
+              "lineHeight": "{inkblot.typography.lineHeight.tight}",
+              "letterSpacing": "{inkblot.typography.letterSpacing.tight}"
+            },
+            "$description": "Page title — composed, not dramatic"
+          },
+          "2": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{inkblot.typography.fontFamily.display}",
+              "fontSize": "{inkblot.typography.fontSize.2xl}",
+              "fontWeight": "{inkblot.typography.fontWeight.semibold}",
+              "lineHeight": "{inkblot.typography.lineHeight.tight}",
+              "letterSpacing": "{inkblot.typography.letterSpacing.tight}"
+            },
+            "$description": "Section title"
+          },
+          "3": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{inkblot.typography.fontFamily.sans}",
+              "fontSize": "{inkblot.typography.fontSize.xl}",
+              "fontWeight": "{inkblot.typography.fontWeight.medium}",
+              "lineHeight": "{inkblot.typography.lineHeight.snug}",
+              "letterSpacing": "{inkblot.typography.letterSpacing.normal}"
+            },
+            "$description": "Subsection title"
+          },
+          "4": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{inkblot.typography.fontFamily.sans}",
+              "fontSize": "{inkblot.typography.fontSize.lg}",
+              "fontWeight": "{inkblot.typography.fontWeight.medium}",
+              "lineHeight": "{inkblot.typography.lineHeight.snug}",
+              "letterSpacing": "{inkblot.typography.letterSpacing.normal}"
+            },
+            "$description": "Card title"
+          }
+        },
+        "body": {
+          "default": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{inkblot.typography.fontFamily.sans}",
+              "fontSize": "{inkblot.typography.fontSize.base}",
+              "fontWeight": "{inkblot.typography.fontWeight.regular}",
+              "lineHeight": "{inkblot.typography.lineHeight.normal}",
+              "letterSpacing": "{inkblot.typography.letterSpacing.normal}"
+            },
+            "$description": "Body text"
+          },
+          "small": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{inkblot.typography.fontFamily.sans}",
+              "fontSize": "{inkblot.typography.fontSize.sm}",
+              "fontWeight": "{inkblot.typography.fontWeight.regular}",
+              "lineHeight": "{inkblot.typography.lineHeight.normal}",
+              "letterSpacing": "{inkblot.typography.letterSpacing.normal}"
+            },
+            "$description": "Small body, captions"
+          },
+          "large": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{inkblot.typography.fontFamily.sans}",
+              "fontSize": "{inkblot.typography.fontSize.md}",
+              "fontWeight": "{inkblot.typography.fontWeight.regular}",
+              "lineHeight": "{inkblot.typography.lineHeight.relaxed}",
+              "letterSpacing": "{inkblot.typography.letterSpacing.normal}"
+            },
+            "$description": "Emphasized body"
+          }
+        },
+        "label": {
+          "default": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{inkblot.typography.fontFamily.sans}",
+              "fontSize": "{inkblot.typography.fontSize.xs}",
+              "fontWeight": "{inkblot.typography.fontWeight.medium}",
+              "lineHeight": "{inkblot.typography.lineHeight.normal}",
+              "letterSpacing": "{inkblot.typography.letterSpacing.wide}"
+            },
+            "$description": "Form labels, badges"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,507 @@
+{
+  "$schema": "https://inkblot.studio/system/v1/icons.schema.json",
+  "name": "Icon Semantics",
+  "version": "1.0.0",
+  "description": "Comprehensive icon-to-meaning mapping for every component, state, and interaction. AI agents: use this to select the exact icon for any UI element without ambiguity.",
+
+  "library": {
+    "primary": "Lucide",
+    "license": "ISC (free, open-source)",
+    "website": "https://lucide.dev",
+    "reasoning": "Consistent 24×24 stroke-based icons. Clean aesthetic matching Apple-style design. 1500+ icons. Available as SVG, React, Vue, Svelte, Web Components. Active maintenance. Fork of Feather with broader coverage.",
+    "installation": {
+      "npm": "npm install lucide-react (or lucide-vue-next, lucide-svelte, lucide)",
+      "cdn": "<script src=\"https://unpkg.com/lucide@latest\"></script>",
+      "svg": "Download individual SVGs from https://lucide.dev/icons/"
+    },
+    "naming": {
+      "svg": "kebab-case (e.g. check-circle, arrow-left)",
+      "react": "PascalCase (e.g. CheckCircle, ArrowLeft)",
+      "convention": "This file uses kebab-case as canonical. PascalCase provided in 'react' field."
+    },
+    "defaults": {
+      "strokeWidth": 2,
+      "size": 24,
+      "fill": "none",
+      "stroke": "currentColor"
+    }
+  },
+
+  "sizes": {
+    "description": "Standard icon sizes mapped to design tokens. AI: always use the token, never hard-code px.",
+    "xs": { "px": 12, "use": "Inline badges, status dots, compact indicators" },
+    "sm": { "px": 16, "token": "var(--inkblot-size-icon-sm)", "use": "Form field icons, chip icons, small buttons, table actions, breadcrumb separators" },
+    "md": { "px": 20, "token": "var(--inkblot-size-icon-md)", "use": "Default for buttons, nav items, list item icons, toast icons, input adornments" },
+    "lg": { "px": 24, "token": "var(--inkblot-size-icon-lg)", "use": "Section headers, card header icons, empty state icons (primary), standalone actions" },
+    "xl": { "px": 32, "use": "Hero illustrations, feature highlights, large empty states" },
+    "2xl": { "px": 48, "use": "Empty state primary illustration, onboarding, error pages" },
+    "componentSizeMap": {
+      "description": "Which icon size to use per component size.",
+      "button":    { "sm": "sm", "md": "md", "lg": "lg" },
+      "input":     { "sm": "sm", "md": "md", "lg": "lg" },
+      "chip":      { "default": "sm" },
+      "toast":     { "default": "md" },
+      "modal":     { "closeButton": "md" },
+      "listItem":  { "default": "md" },
+      "nav":       { "default": "md" },
+      "table":     { "actions": "sm", "sortIndicator": "sm" },
+      "emptyState": { "default": "2xl" },
+      "avatar":    { "statusBadge": "xs" }
+    }
+  },
+
+  "spacing": {
+    "description": "Gap between icon and adjacent text/content. AI: use these tokens consistently.",
+    "iconToText": {
+      "default": "var(--inkblot-spacing-2)",
+      "compact": "var(--inkblot-spacing-1)",
+      "relaxed": "var(--inkblot-spacing-3)"
+    },
+    "iconToTextByComponent": {
+      "button": "var(--inkblot-spacing-2)",
+      "input": "var(--inkblot-spacing-2)",
+      "chip": "var(--inkblot-spacing-1)",
+      "listItem": "var(--inkblot-spacing-3)",
+      "toast": "var(--inkblot-spacing-3)",
+      "nav": "var(--inkblot-spacing-2)",
+      "breadcrumb": "var(--inkblot-spacing-1)",
+      "tab": "var(--inkblot-spacing-2)"
+    },
+    "standaloneButton": {
+      "padding": "var(--inkblot-spacing-2)",
+      "minTouchTarget": "var(--inkblot-size-touch-target-min)"
+    },
+    "responsive": {
+      "mobile": "Same spacing tokens. Icon sizes may drop one tier (lg→md) in very tight layouts.",
+      "rule": "Never reduce icon below sm (16px) — legibility floor."
+    }
+  },
+
+  "positioning": {
+    "leading": {
+      "description": "Icon before text. Most common for status, entity, and navigation icons.",
+      "css": "display: inline-flex; align-items: center; gap: var(--inkblot-spacing-2); flex-direction: row;",
+      "rule": "Default position. Use for: status icons, entity icons, nav links, form field prefix icons."
+    },
+    "trailing": {
+      "description": "Icon after text. For actions, indicators, and disclosure.",
+      "css": "display: inline-flex; align-items: center; gap: var(--inkblot-spacing-2); flex-direction: row;",
+      "rule": "Use for: external link indicators, dropdown chevrons, sort arrows, remove/delete actions, forward navigation."
+    },
+    "standalone": {
+      "description": "Icon without visible text. Must have aria-label.",
+      "css": "display: inline-flex; align-items: center; justify-content: center; padding: var(--inkblot-spacing-2); min-width: var(--inkblot-size-touch-target-min); min-height: var(--inkblot-size-touch-target-min);",
+      "rule": "Use for: icon-only buttons (close, menu, search toggle), toolbar actions. Always provide aria-label."
+    },
+    "inset": {
+      "description": "Icon inside a form field, positioned absolutely.",
+      "css": "position: absolute; top: 50%; transform: translateY(-50%); pointer-events: none;",
+      "leading": "left: var(--inkblot-spacing-3); + pad input-left by calc(icon-size + var(--inkblot-spacing-3) + var(--inkblot-spacing-2))",
+      "trailing": "right: var(--inkblot-spacing-3); + pad input-right by calc(icon-size + var(--inkblot-spacing-3) + var(--inkblot-spacing-2))",
+      "rule": "Use for: search fields, email fields, password visibility toggle. Trailing inset icons can be interactive (pointer-events: auto)."
+    },
+    "stacked": {
+      "description": "Icon above text, centered.",
+      "css": "display: flex; flex-direction: column; align-items: center; gap: var(--inkblot-spacing-2);",
+      "rule": "Use for: bottom tab bar items, feature cards, empty states."
+    }
+  },
+
+  "semantics": {
+    "status": {
+      "description": "Feedback and state indicators. AI: always pair with semantic color.",
+      "success":  { "icon": "check-circle",       "react": "CheckCircle",      "size": "md", "position": "leading", "color": "var(--inkblot-semantic-color-status-success)",  "aria": "Success" },
+      "error":    { "icon": "x-circle",            "react": "XCircle",          "size": "md", "position": "leading", "color": "var(--inkblot-semantic-color-status-error)",    "aria": "Error" },
+      "warning":  { "icon": "alert-triangle",      "react": "AlertTriangle",    "size": "md", "position": "leading", "color": "var(--inkblot-semantic-color-status-warning)",  "aria": "Warning" },
+      "info":     { "icon": "info",                 "react": "Info",             "size": "md", "position": "leading", "color": "var(--inkblot-semantic-color-status-info)",     "aria": "Information" },
+      "loading":  { "icon": "loader-2",             "react": "Loader2",          "size": "md", "position": "leading", "color": "currentColor", "animation": "animate-spin (CSS: animation: spin 1s linear infinite)", "aria": "Loading" },
+      "pending":  { "icon": "clock",                "react": "Clock",            "size": "md", "position": "leading", "color": "var(--inkblot-semantic-color-text-tertiary)",   "aria": "Pending" },
+      "verified": { "icon": "badge-check",          "react": "BadgeCheck",       "size": "md", "position": "trailing","color": "var(--inkblot-semantic-color-status-success)",  "aria": "Verified" },
+      "offline":  { "icon": "wifi-off",             "react": "WifiOff",          "size": "md", "position": "leading", "color": "var(--inkblot-semantic-color-text-tertiary)",   "aria": "Offline" },
+      "online":   { "icon": "wifi",                 "react": "Wifi",             "size": "md", "position": "leading", "color": "var(--inkblot-semantic-color-status-success)",  "aria": "Online" }
+    },
+
+    "actions": {
+      "description": "Interactive operations. AI: these are the canonical icons for common user actions.",
+      "close":    { "icon": "x",                    "react": "X",                "size": "md", "position": "standalone", "aria": "Close" },
+      "add":      { "icon": "plus",                 "react": "Plus",             "size": "md", "position": "leading",    "aria": "Add" },
+      "addCircle":{ "icon": "plus-circle",           "react": "PlusCircle",       "size": "md", "position": "leading",    "aria": "Add" },
+      "remove":   { "icon": "minus",                "react": "Minus",            "size": "md", "position": "leading",    "aria": "Remove" },
+      "delete":   { "icon": "trash-2",              "react": "Trash2",           "size": "md", "position": "trailing",   "aria": "Delete", "color": "var(--inkblot-semantic-color-status-error)" },
+      "edit":     { "icon": "pencil",               "react": "Pencil",           "size": "md", "position": "trailing",   "aria": "Edit" },
+      "save":     { "icon": "save",                 "react": "Save",             "size": "md", "position": "leading",    "aria": "Save" },
+      "copy":     { "icon": "copy",                 "react": "Copy",             "size": "md", "position": "trailing",   "aria": "Copy" },
+      "paste":    { "icon": "clipboard-paste",      "react": "ClipboardPaste",   "size": "md", "position": "trailing",   "aria": "Paste" },
+      "undo":     { "icon": "undo-2",               "react": "Undo2",            "size": "md", "position": "leading",    "aria": "Undo" },
+      "redo":     { "icon": "redo-2",               "react": "Redo2",            "size": "md", "position": "leading",    "aria": "Redo" },
+      "share":    { "icon": "share-2",              "react": "Share2",           "size": "md", "position": "trailing",   "aria": "Share" },
+      "download": { "icon": "download",             "react": "Download",         "size": "md", "position": "trailing",   "aria": "Download" },
+      "upload":   { "icon": "upload",               "react": "Upload",           "size": "md", "position": "leading",    "aria": "Upload" },
+      "print":    { "icon": "printer",              "react": "Printer",          "size": "md", "position": "trailing",   "aria": "Print" },
+      "search":   { "icon": "search",               "react": "Search",           "size": "md", "position": "leading",    "aria": "Search" },
+      "filter":   { "icon": "sliders-horizontal",   "react": "SlidersHorizontal","size": "md", "position": "leading",    "aria": "Filter" },
+      "sort":     { "icon": "arrow-up-down",         "react": "ArrowUpDown",      "size": "sm", "position": "trailing",   "aria": "Sort" },
+      "refresh":  { "icon": "refresh-cw",            "react": "RefreshCw",        "size": "md", "position": "leading",    "aria": "Refresh" },
+      "more":     { "icon": "more-horizontal",       "react": "MoreHorizontal",   "size": "md", "position": "standalone", "aria": "More options" },
+      "moreVert": { "icon": "more-vertical",         "react": "MoreVertical",     "size": "md", "position": "standalone", "aria": "More options" },
+      "settings": { "icon": "settings",              "react": "Settings",         "size": "md", "position": "leading",    "aria": "Settings" },
+      "logout":   { "icon": "log-out",               "react": "LogOut",           "size": "md", "position": "leading",    "aria": "Log out" },
+      "login":    { "icon": "log-in",                "react": "LogIn",            "size": "md", "position": "leading",    "aria": "Log in" },
+      "link":     { "icon": "link",                  "react": "Link",             "size": "sm", "position": "trailing",   "aria": "Link" },
+      "externalLink": { "icon": "external-link",     "react": "ExternalLink",     "size": "sm", "position": "trailing",   "aria": "Opens in new tab" },
+      "lock":     { "icon": "lock",                  "react": "Lock",             "size": "md", "position": "leading",    "aria": "Locked" },
+      "unlock":   { "icon": "unlock",                "react": "Unlock",           "size": "md", "position": "leading",    "aria": "Unlocked" },
+      "pin":      { "icon": "pin",                   "react": "Pin",              "size": "md", "position": "trailing",   "aria": "Pin" },
+      "archive":  { "icon": "archive",               "react": "Archive",          "size": "md", "position": "trailing",   "aria": "Archive" },
+      "bookmark": { "icon": "bookmark",              "react": "Bookmark",         "size": "md", "position": "trailing",   "aria": "Bookmark" },
+      "like":     { "icon": "heart",                 "react": "Heart",            "size": "md", "position": "trailing",   "aria": "Like" },
+      "dislike":  { "icon": "thumbs-down",           "react": "ThumbsDown",       "size": "md", "position": "trailing",   "aria": "Dislike" },
+      "flag":     { "icon": "flag",                  "react": "Flag",             "size": "md", "position": "trailing",   "aria": "Flag" },
+      "maximize": { "icon": "maximize-2",            "react": "Maximize2",        "size": "md", "position": "standalone", "aria": "Maximize" },
+      "minimize": { "icon": "minimize-2",            "react": "Minimize2",        "size": "md", "position": "standalone", "aria": "Minimize" }
+    },
+
+    "navigation": {
+      "description": "Wayfinding and menu icons.",
+      "menu":           { "icon": "menu",            "react": "Menu",            "size": "md", "position": "standalone", "aria": "Open menu" },
+      "back":           { "icon": "arrow-left",      "react": "ArrowLeft",       "size": "md", "position": "leading",    "aria": "Go back" },
+      "forward":        { "icon": "arrow-right",     "react": "ArrowRight",      "size": "md", "position": "trailing",   "aria": "Go forward" },
+      "up":             { "icon": "arrow-up",        "react": "ArrowUp",         "size": "md", "position": "leading",    "aria": "Go up" },
+      "down":           { "icon": "arrow-down",      "react": "ArrowDown",       "size": "md", "position": "leading",    "aria": "Go down" },
+      "chevronLeft":    { "icon": "chevron-left",    "react": "ChevronLeft",     "size": "md", "position": "leading",    "aria": "Previous" },
+      "chevronRight":   { "icon": "chevron-right",   "react": "ChevronRight",    "size": "md", "position": "trailing",   "aria": "Next" },
+      "chevronUp":      { "icon": "chevron-up",      "react": "ChevronUp",       "size": "sm", "position": "trailing",   "aria": "Collapse" },
+      "chevronDown":    { "icon": "chevron-down",    "react": "ChevronDown",     "size": "sm", "position": "trailing",   "aria": "Expand" },
+      "chevronsLeft":   { "icon": "chevrons-left",   "react": "ChevronsLeft",    "size": "md", "position": "leading",    "aria": "First page" },
+      "chevronsRight":  { "icon": "chevrons-right",  "react": "ChevronsRight",   "size": "md", "position": "trailing",   "aria": "Last page" },
+      "home":           { "icon": "home",            "react": "Home",            "size": "md", "position": "leading",    "aria": "Home" },
+      "breadcrumbSep":  { "icon": "chevron-right",   "react": "ChevronRight",    "size": "sm", "position": "trailing",   "aria": "", "ariaHidden": true },
+      "externalNav":    { "icon": "external-link",   "react": "ExternalLink",    "size": "sm", "position": "trailing",   "aria": "Opens in new tab" }
+    },
+
+    "entities": {
+      "description": "Objects, concepts, and domain items.",
+      "user":          { "icon": "user",              "react": "User",              "size": "md", "position": "leading", "aria": "User" },
+      "userCircle":    { "icon": "circle-user",       "react": "CircleUser",        "size": "lg", "position": "leading", "aria": "User profile" },
+      "users":         { "icon": "users",             "react": "Users",             "size": "md", "position": "leading", "aria": "Team" },
+      "userPlus":      { "icon": "user-plus",         "react": "UserPlus",          "size": "md", "position": "leading", "aria": "Add user" },
+      "settings":      { "icon": "settings",          "react": "Settings",          "size": "md", "position": "leading", "aria": "Settings" },
+      "notification":  { "icon": "bell",              "react": "Bell",              "size": "md", "position": "standalone", "aria": "Notifications" },
+      "notificationOff": { "icon": "bell-off",        "react": "BellOff",           "size": "md", "position": "standalone", "aria": "Notifications off" },
+      "chat":          { "icon": "message-circle",    "react": "MessageCircle",     "size": "md", "position": "leading", "aria": "Chat" },
+      "mail":          { "icon": "mail",              "react": "Mail",              "size": "md", "position": "leading", "aria": "Email" },
+      "phone":         { "icon": "phone",             "react": "Phone",             "size": "md", "position": "leading", "aria": "Phone" },
+      "file":          { "icon": "file",              "react": "File",              "size": "md", "position": "leading", "aria": "File" },
+      "fileText":      { "icon": "file-text",         "react": "FileText",          "size": "md", "position": "leading", "aria": "Document" },
+      "folder":        { "icon": "folder",            "react": "Folder",            "size": "md", "position": "leading", "aria": "Folder" },
+      "folderOpen":    { "icon": "folder-open",       "react": "FolderOpen",        "size": "md", "position": "leading", "aria": "Open folder" },
+      "image":         { "icon": "image",             "react": "Image",             "size": "md", "position": "leading", "aria": "Image" },
+      "video":         { "icon": "video",             "react": "Video",             "size": "md", "position": "leading", "aria": "Video" },
+      "music":         { "icon": "music",             "react": "Music",             "size": "md", "position": "leading", "aria": "Audio" },
+      "calendar":      { "icon": "calendar",          "react": "Calendar",          "size": "md", "position": "leading", "aria": "Calendar" },
+      "clock":         { "icon": "clock",             "react": "Clock",             "size": "md", "position": "leading", "aria": "Time" },
+      "tag":           { "icon": "tag",               "react": "Tag",               "size": "sm", "position": "leading", "aria": "Tag" },
+      "mapPin":        { "icon": "map-pin",           "react": "MapPin",            "size": "md", "position": "leading", "aria": "Location" },
+      "globe":         { "icon": "globe",             "react": "Globe",             "size": "md", "position": "leading", "aria": "Website" },
+      "database":      { "icon": "database",          "react": "Database",          "size": "md", "position": "leading", "aria": "Database" },
+      "server":        { "icon": "server",            "react": "Server",            "size": "md", "position": "leading", "aria": "Server" },
+      "code":          { "icon": "code",              "react": "Code",              "size": "md", "position": "leading", "aria": "Code" },
+      "terminal":      { "icon": "terminal",          "react": "Terminal",          "size": "md", "position": "leading", "aria": "Terminal" },
+      "key":           { "icon": "key",               "react": "Key",               "size": "md", "position": "leading", "aria": "API key" },
+      "shield":        { "icon": "shield",            "react": "Shield",            "size": "md", "position": "leading", "aria": "Security" },
+      "creditCard":    { "icon": "credit-card",       "react": "CreditCard",        "size": "md", "position": "leading", "aria": "Payment" },
+      "receipt":       { "icon": "receipt",            "react": "Receipt",           "size": "md", "position": "leading", "aria": "Receipt" },
+      "package":       { "icon": "package",            "react": "Package",           "size": "md", "position": "leading", "aria": "Package" },
+      "shoppingCart":  { "icon": "shopping-cart",      "react": "ShoppingCart",      "size": "md", "position": "leading", "aria": "Cart" },
+      "barChart":      { "icon": "bar-chart-3",       "react": "BarChart3",         "size": "md", "position": "leading", "aria": "Analytics" },
+      "pieChart":      { "icon": "pie-chart",         "react": "PieChart",          "size": "md", "position": "leading", "aria": "Chart" },
+      "activity":      { "icon": "activity",          "react": "Activity",          "size": "md", "position": "leading", "aria": "Activity" },
+      "zap":           { "icon": "zap",               "react": "Zap",               "size": "md", "position": "leading", "aria": "Quick action" },
+      "star":          { "icon": "star",              "react": "Star",              "size": "md", "position": "trailing", "aria": "Favorite" },
+      "helpCircle":    { "icon": "help-circle",       "react": "HelpCircle",        "size": "md", "position": "trailing", "aria": "Help" }
+    },
+
+    "visibility": {
+      "description": "Show/hide and view-related icons.",
+      "show":   { "icon": "eye",        "react": "Eye",      "size": "md", "position": "trailing", "aria": "Show" },
+      "hide":   { "icon": "eye-off",    "react": "EyeOff",   "size": "md", "position": "trailing", "aria": "Hide" },
+      "expand": { "icon": "maximize-2", "react": "Maximize2", "size": "md", "position": "trailing", "aria": "Expand" },
+      "collapse": { "icon": "minimize-2", "react": "Minimize2", "size": "md", "position": "trailing", "aria": "Collapse" },
+      "fullscreen": { "icon": "maximize",  "react": "Maximize",  "size": "md", "position": "standalone", "aria": "Enter fullscreen" },
+      "exitFullscreen": { "icon": "minimize", "react": "Minimize", "size": "md", "position": "standalone", "aria": "Exit fullscreen" }
+    },
+
+    "toggleStates": {
+      "description": "Paired icons for binary toggles. AI: swap between these based on state.",
+      "pairs": {
+        "visibility":    { "on": "eye",         "off": "eye-off" },
+        "notification":  { "on": "bell",        "off": "bell-off" },
+        "sound":         { "on": "volume-2",    "off": "volume-x" },
+        "lock":          { "on": "lock",        "off": "unlock" },
+        "favorite":      { "on": "star",        "off": "star" , "onFill": true, "offFill": false },
+        "like":          { "on": "heart",       "off": "heart", "onFill": true, "offFill": false },
+        "bookmark":      { "on": "bookmark",    "off": "bookmark", "onFill": true, "offFill": false },
+        "pin":           { "on": "pin",         "off": "pin-off" },
+        "sidebar":       { "on": "panel-left",  "off": "panel-left-close" },
+        "darkMode":      { "on": "moon",        "off": "sun" },
+        "gridList":      { "grid": "layout-grid","list": "list" }
+      },
+      "rule": "For fill-toggle pairs, use stroke on 'off' and fill on 'on'. For icon-swap pairs, swap the icon entirely."
+    }
+  },
+
+  "componentIcons": {
+    "description": "Exact icon assignments per component type. AI: use these directly when rendering components.",
+
+    "button": {
+      "submit":    { "icon": "check",           "react": "Check",         "position": "leading",  "size": "md" },
+      "cancel":    { "icon": "x",               "react": "X",             "position": "leading",  "size": "md" },
+      "save":      { "icon": "save",            "react": "Save",          "position": "leading",  "size": "md" },
+      "delete":    { "icon": "trash-2",         "react": "Trash2",        "position": "leading",  "size": "md", "variant": "danger" },
+      "add":       { "icon": "plus",            "react": "Plus",          "position": "leading",  "size": "md" },
+      "edit":      { "icon": "pencil",          "react": "Pencil",        "position": "leading",  "size": "md" },
+      "share":     { "icon": "share-2",         "react": "Share2",        "position": "leading",  "size": "md" },
+      "download":  { "icon": "download",        "react": "Download",      "position": "leading",  "size": "md" },
+      "upload":    { "icon": "upload",          "react": "Upload",        "position": "leading",  "size": "md" },
+      "refresh":   { "icon": "refresh-cw",      "react": "RefreshCw",     "position": "leading",  "size": "md" },
+      "back":      { "icon": "arrow-left",      "react": "ArrowLeft",     "position": "leading",  "size": "md" },
+      "next":      { "icon": "arrow-right",     "react": "ArrowRight",    "position": "trailing", "size": "md" },
+      "loading":   { "icon": "loader-2",        "react": "Loader2",       "position": "leading",  "size": "md", "animation": "spin", "note": "Replaces the normal icon or label when button is in loading state" },
+      "iconOnly":  { "rule": "For icon-only buttons: always set aria-label. Use 'standalone' position. Ensure min-height and min-width meet touch target (44px)." }
+    },
+
+    "input": {
+      "description": "Icons for form field adornments based on input type.",
+      "email":       { "icon": "mail",          "react": "Mail",          "position": "inset-leading",  "size": "md" },
+      "password":    { "icon": "lock",          "react": "Lock",          "position": "inset-leading",  "size": "md", "trailing": { "icon": "eye", "react": "Eye", "toggle": "eye-off", "action": "Toggle password visibility" } },
+      "search":      { "icon": "search",        "react": "Search",        "position": "inset-leading",  "size": "md", "trailing": { "icon": "x", "react": "X", "action": "Clear search", "showWhen": "input has value" } },
+      "url":         { "icon": "globe",         "react": "Globe",         "position": "inset-leading",  "size": "md" },
+      "phone":       { "icon": "phone",         "react": "Phone",         "position": "inset-leading",  "size": "md" },
+      "date":        { "icon": "calendar",      "react": "Calendar",      "position": "inset-trailing", "size": "md" },
+      "time":        { "icon": "clock",          "react": "Clock",         "position": "inset-trailing", "size": "md" },
+      "number":      { "icon": "hash",          "react": "Hash",          "position": "inset-leading",  "size": "md" },
+      "currency":    { "icon": "dollar-sign",   "react": "DollarSign",    "position": "inset-leading",  "size": "md" },
+      "location":    { "icon": "map-pin",       "react": "MapPin",        "position": "inset-leading",  "size": "md" },
+      "user":        { "icon": "user",          "react": "User",          "position": "inset-leading",  "size": "md" },
+      "tag":         { "icon": "tag",           "react": "Tag",           "position": "inset-leading",  "size": "sm" },
+      "file":        { "icon": "paperclip",     "react": "Paperclip",     "position": "inset-trailing", "size": "md" },
+      "validation": {
+        "valid":   { "icon": "check-circle",  "react": "CheckCircle", "position": "inset-trailing", "size": "sm", "color": "var(--inkblot-semantic-color-status-success)" },
+        "invalid": { "icon": "alert-circle",  "react": "AlertCircle", "position": "inset-trailing", "size": "sm", "color": "var(--inkblot-semantic-color-status-error)" }
+      }
+    },
+
+    "select": {
+      "trigger":       { "icon": "chevron-down",  "react": "ChevronDown",  "position": "trailing", "size": "sm", "note": "Rotates 180deg when open" },
+      "check":         { "icon": "check",         "react": "Check",        "position": "trailing", "size": "sm", "note": "Shown on selected option" },
+      "search":        { "icon": "search",        "react": "Search",       "position": "leading",  "size": "sm", "note": "In searchable selects, inside dropdown" },
+      "clear":         { "icon": "x",             "react": "X",            "position": "trailing", "size": "sm", "note": "Clearable selects only" },
+      "groupExpander": { "icon": "chevron-right", "react": "ChevronRight", "position": "trailing", "size": "sm", "note": "For grouped/nested options" }
+    },
+
+    "modal": {
+      "close":   { "icon": "x",               "react": "X",             "position": "standalone", "size": "md", "placement": "top-right of header" },
+      "info":    { "icon": "info",             "react": "Info",          "position": "leading",    "size": "lg", "color": "var(--inkblot-semantic-color-status-info)" },
+      "warning": { "icon": "alert-triangle",   "react": "AlertTriangle", "position": "leading",    "size": "lg", "color": "var(--inkblot-semantic-color-status-warning)" },
+      "error":   { "icon": "x-circle",         "react": "XCircle",       "position": "leading",    "size": "lg", "color": "var(--inkblot-semantic-color-status-error)" },
+      "success": { "icon": "check-circle",     "react": "CheckCircle",   "position": "leading",    "size": "lg", "color": "var(--inkblot-semantic-color-status-success)" },
+      "confirm": { "icon": "alert-triangle",   "react": "AlertTriangle", "position": "leading",    "size": "lg", "note": "For destructive confirmation dialogs" }
+    },
+
+    "toast": {
+      "info":    { "icon": "info",             "react": "Info",          "size": "md", "color": "var(--inkblot-semantic-color-status-info)" },
+      "success": { "icon": "check-circle",     "react": "CheckCircle",   "size": "md", "color": "var(--inkblot-semantic-color-status-success)" },
+      "warning": { "icon": "alert-triangle",   "react": "AlertTriangle", "size": "md", "color": "var(--inkblot-semantic-color-status-warning)" },
+      "error":   { "icon": "x-circle",         "react": "XCircle",       "size": "md", "color": "var(--inkblot-semantic-color-status-error)" },
+      "dismiss": { "icon": "x",               "react": "X",             "size": "sm", "position": "trailing", "aria": "Dismiss" }
+    },
+
+    "card": {
+      "headerIcons": {
+        "description": "Category icons for card headers. Match to content domain.",
+        "article":   { "icon": "file-text",      "react": "FileText" },
+        "product":   { "icon": "package",          "react": "Package" },
+        "user":      { "icon": "circle-user",     "react": "CircleUser" },
+        "settings":  { "icon": "settings",         "react": "Settings" },
+        "analytics": { "icon": "bar-chart-3",     "react": "BarChart3" },
+        "media":     { "icon": "image",            "react": "Image" },
+        "event":     { "icon": "calendar",         "react": "Calendar" },
+        "location":  { "icon": "map-pin",          "react": "MapPin" }
+      },
+      "footerActions": {
+        "like":     { "icon": "heart",       "react": "Heart",       "position": "trailing" },
+        "share":    { "icon": "share-2",     "react": "Share2",      "position": "trailing" },
+        "bookmark": { "icon": "bookmark",    "react": "Bookmark",    "position": "trailing" },
+        "more":     { "icon": "more-horizontal", "react": "MoreHorizontal", "position": "trailing" },
+        "comment":  { "icon": "message-circle", "react": "MessageCircle", "position": "trailing" }
+      },
+      "expandable":  { "icon": "chevron-down", "react": "ChevronDown", "position": "trailing", "note": "Rotates 180deg when expanded" }
+    },
+
+    "listItem": {
+      "leadingAvatar": { "rule": "Use avatar component for user lists. See entities for domain icons." },
+      "leadingIcon": {
+        "file":     { "icon": "file",           "react": "File" },
+        "folder":   { "icon": "folder",         "react": "Folder" },
+        "user":     { "icon": "circle-user",    "react": "CircleUser" },
+        "message":  { "icon": "message-circle", "react": "MessageCircle" },
+        "task":     { "icon": "check-square",   "react": "CheckSquare" },
+        "event":    { "icon": "calendar",       "react": "Calendar" }
+      },
+      "trailingActions": {
+        "edit":     { "icon": "pencil",       "react": "Pencil",      "size": "sm" },
+        "delete":   { "icon": "trash-2",      "react": "Trash2",      "size": "sm" },
+        "more":     { "icon": "more-vertical","react": "MoreVertical","size": "sm" },
+        "chevron":  { "icon": "chevron-right","react": "ChevronRight","size": "sm" },
+        "drag":     { "icon": "grip-vertical","react": "GripVertical","size": "sm", "aria": "Reorder" }
+      },
+      "disclosure": { "icon": "chevron-right", "react": "ChevronRight", "size": "sm", "position": "trailing", "note": "Indicates navigable item" }
+    },
+
+    "table": {
+      "sortAsc":     { "icon": "arrow-up",       "react": "ArrowUp",       "size": "sm", "position": "trailing" },
+      "sortDesc":    { "icon": "arrow-down",      "react": "ArrowDown",     "size": "sm", "position": "trailing" },
+      "sortNeutral": { "icon": "arrow-up-down",    "react": "ArrowUpDown",   "size": "sm", "position": "trailing", "color": "var(--inkblot-semantic-color-text-tertiary)" },
+      "filter":      { "icon": "filter",           "react": "Filter",        "size": "sm", "position": "trailing" },
+      "rowExpand":   { "icon": "chevron-right",    "react": "ChevronRight",  "size": "sm", "position": "leading", "note": "Rotates 90deg when row expanded" },
+      "rowSelect":   { "rule": "Use checkbox component, not an icon" },
+      "rowActions":  { "icon": "more-horizontal",  "react": "MoreHorizontal","size": "sm", "position": "trailing" }
+    },
+
+    "chip": {
+      "remove":  { "icon": "x",    "react": "X",    "size": "sm", "position": "trailing", "aria": "Remove {chipLabel}" },
+      "leading": {
+        "description": "Optional leading icon inside chip. Use sm size.",
+        "status": { "icon": "circle", "react": "Circle", "size": "xs", "note": "Filled with status color" },
+        "tag":    { "icon": "tag",    "react": "Tag",    "size": "sm" },
+        "user":   { "icon": "user",   "react": "User",   "size": "sm" }
+      }
+    },
+
+    "emptyState": {
+      "noData":       { "icon": "inbox",          "react": "Inbox",         "size": "2xl", "color": "var(--inkblot-semantic-color-text-tertiary)" },
+      "noResults":    { "icon": "search-x",       "react": "SearchX",       "size": "2xl", "color": "var(--inkblot-semantic-color-text-tertiary)" },
+      "noConnection": { "icon": "wifi-off",        "react": "WifiOff",       "size": "2xl", "color": "var(--inkblot-semantic-color-text-tertiary)" },
+      "error":        { "icon": "alert-circle",    "react": "AlertCircle",   "size": "2xl", "color": "var(--inkblot-semantic-color-status-error)" },
+      "noPermission": { "icon": "shield-off",      "react": "ShieldOff",     "size": "2xl", "color": "var(--inkblot-semantic-color-text-tertiary)" },
+      "emptyFolder":  { "icon": "folder-open",     "react": "FolderOpen",    "size": "2xl", "color": "var(--inkblot-semantic-color-text-tertiary)" },
+      "emptyCart":    { "icon": "shopping-cart",    "react": "ShoppingCart",  "size": "2xl", "color": "var(--inkblot-semantic-color-text-tertiary)" },
+      "noMessages":   { "icon": "message-circle",  "react": "MessageCircle", "size": "2xl", "color": "var(--inkblot-semantic-color-text-tertiary)" },
+      "noNotifications": { "icon": "bell-off",     "react": "BellOff",       "size": "2xl", "color": "var(--inkblot-semantic-color-text-tertiary)" },
+      "construction": { "icon": "construction",    "react": "Construction",  "size": "2xl", "color": "var(--inkblot-semantic-color-text-tertiary)", "note": "Feature coming soon" },
+      "rule": "Always pair empty state icon with a title, description, and primary action button."
+    },
+
+    "navigation": {
+      "hamburger":  { "icon": "menu",           "react": "Menu",          "position": "standalone", "aria": "Open navigation menu" },
+      "closeMenu":  { "icon": "x",              "react": "X",             "position": "standalone", "aria": "Close navigation menu" },
+      "tabBar": {
+        "home":          { "icon": "home",            "react": "Home" },
+        "search":        { "icon": "search",          "react": "Search" },
+        "notifications": { "icon": "bell",            "react": "Bell" },
+        "profile":       { "icon": "circle-user",     "react": "CircleUser" },
+        "messages":      { "icon": "message-circle",  "react": "MessageCircle" },
+        "settings":      { "icon": "settings",        "react": "Settings" },
+        "favorites":     { "icon": "heart",           "react": "Heart" },
+        "cart":          { "icon": "shopping-cart",    "react": "ShoppingCart" }
+      },
+      "pagination": {
+        "first":    { "icon": "chevrons-left",  "react": "ChevronsLeft",  "aria": "First page" },
+        "previous": { "icon": "chevron-left",   "react": "ChevronLeft",   "aria": "Previous page" },
+        "next":     { "icon": "chevron-right",  "react": "ChevronRight",  "aria": "Next page" },
+        "last":     { "icon": "chevrons-right", "react": "ChevronsRight", "aria": "Last page" }
+      }
+    },
+
+    "tooltip": {
+      "trigger": { "icon": "help-circle", "react": "HelpCircle", "size": "sm", "position": "trailing", "aria": "More information" }
+    }
+  },
+
+  "stateIcons": {
+    "description": "Icons that change per component state. AI: swap icon based on current state.",
+    "loading": {
+      "spinner":     { "icon": "loader-2",  "react": "Loader2",  "animation": "spin 1s linear infinite", "css": "@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }" },
+      "dots":        { "description": "Alternative: three-dot pulse animation. Prefer for inline text loading." },
+      "skeleton":    { "description": "Prefer skeleton component for content-area loading." },
+      "rule": "Use spinner for actions (button, refresh). Use skeleton for content areas (cards, lists, pages)."
+    },
+    "sort": {
+      "ascending":  { "icon": "arrow-up",      "react": "ArrowUp" },
+      "descending": { "icon": "arrow-down",     "react": "ArrowDown" },
+      "unsorted":   { "icon": "arrow-up-down",  "react": "ArrowUpDown", "color": "var(--inkblot-semantic-color-text-tertiary)" }
+    },
+    "expandCollapse": {
+      "collapsed": { "icon": "chevron-right", "react": "ChevronRight" },
+      "expanded":  { "icon": "chevron-down",  "react": "ChevronDown" },
+      "animation": "rotate 150ms var(--inkblot-easing-default)"
+    },
+    "checkbox": {
+      "unchecked":     { "icon": "square",             "react": "Square" },
+      "checked":       { "icon": "check-square",       "react": "CheckSquare" },
+      "indeterminate": { "icon": "minus-square",       "react": "MinusSquare" }
+    },
+    "radio": {
+      "unselected": { "icon": "circle",       "react": "Circle" },
+      "selected":   { "icon": "circle-dot",   "react": "CircleDot" }
+    },
+    "accordion": {
+      "collapsed": { "icon": "chevron-down", "react": "ChevronDown", "rotation": "0deg" },
+      "expanded":  { "icon": "chevron-down", "react": "ChevronDown", "rotation": "180deg" },
+      "note": "Same icon, rotated. Use transform: rotate() with transition."
+    },
+    "passwordField": {
+      "hidden":  { "icon": "eye",     "react": "Eye",    "aria": "Show password" },
+      "visible": { "icon": "eye-off", "react": "EyeOff", "aria": "Hide password" }
+    }
+  },
+
+  "accessibility": {
+    "description": "Rules for accessible icon usage. AI: always follow these.",
+    "decorativeIcons": {
+      "rule": "Icons next to visible text are decorative. Set aria-hidden='true' on the SVG/icon element.",
+      "example": "<button><CheckIcon aria-hidden='true' /> Save</button>"
+    },
+    "interactiveIcons": {
+      "rule": "Icon-only buttons and links MUST have an aria-label describing the action.",
+      "example": "<button aria-label='Close dialog'><XIcon aria-hidden='true' /></button>"
+    },
+    "statusIcons": {
+      "rule": "Status icons should be paired with visually hidden text for screen readers, or use aria-label on the parent.",
+      "example": "<span role='img' aria-label='Error'><AlertCircle aria-hidden='true' /></span>"
+    },
+    "toggleIcons": {
+      "rule": "When icon swaps on toggle, update aria-label to reflect the NEW action (what clicking will do).",
+      "example": "If eye icon is shown (password hidden), aria-label='Show password'. After toggle to eye-off, aria-label='Hide password'."
+    },
+    "loadingIcons": {
+      "rule": "Spinning loaders must have aria-label='Loading' or be inside an aria-busy='true' container.",
+      "reducedMotion": "Respect prefers-reduced-motion. Replace spinner with static 'Loading...' text or a pulsing dot."
+    },
+    "focusManagement": {
+      "iconButtons": "Include in tab order (tabindex='0' or native <button>). Never use <div> or <span> for interactive icons.",
+      "minTouchTarget": "44×44px minimum. If icon is smaller, expand clickable area with padding."
+    },
+    "colorIndependence": {
+      "rule": "Never rely on color alone to convey meaning. Always pair colored status icons with a text label or distinct shape.",
+      "example": "Error uses x-circle (unique shape) + red color + 'Error' text. Warning uses alert-triangle (unique shape) + amber color."
+    }
+  },
+
+  "cssUtilities": {
+    "description": "Ready-to-use CSS for icon integration. AI: include these in generated stylesheets.",
+    "iconBase": ".icon { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: var(--inkblot-size-icon-md); height: var(--inkblot-size-icon-md); }",
+    "iconSizes": {
+      "xs": ".icon-xs { width: 12px; height: 12px; }",
+      "sm": ".icon-sm { width: var(--inkblot-size-icon-sm); height: var(--inkblot-size-icon-sm); }",
+      "md": ".icon-md { width: var(--inkblot-size-icon-md); height: var(--inkblot-size-icon-md); }",
+      "lg": ".icon-lg { width: var(--inkblot-size-icon-lg); height: var(--inkblot-size-icon-lg); }",
+      "xl": ".icon-xl { width: 32px; height: 32px; }",
+      "2xl": ".icon-2xl { width: 48px; height: 48px; }"
+    },
+    "iconButton": ".icon-button { display: inline-flex; align-items: center; justify-content: center; padding: var(--inkblot-spacing-2); border: none; background: transparent; border-radius: var(--inkblot-radius-md); cursor: pointer; min-width: var(--inkblot-size-touch-target-min); min-height: var(--inkblot-size-touch-target-min); transition: background var(--inkblot-duration-fast) var(--inkblot-easing-default); color: var(--inkblot-semantic-color-text-secondary); } .icon-button:hover { background: var(--inkblot-semantic-color-background-secondary); color: var(--inkblot-semantic-color-text-primary); } .icon-button:focus-visible { outline: 2px solid var(--inkblot-semantic-color-border-focus); outline-offset: 2px; }",
+    "iconWithText": ".icon-text { display: inline-flex; align-items: center; gap: var(--inkblot-spacing-2); }",
+    "iconSpin": ".icon-spin { animation: icon-spin 1s linear infinite; } @keyframes icon-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }",
+    "inputWithIcon": ".input-icon-wrapper { position: relative; } .input-icon-wrapper .input-icon { position: absolute; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--inkblot-semantic-color-text-tertiary); } .input-icon-wrapper .input-icon-leading { left: var(--inkblot-spacing-3); } .input-icon-wrapper .input-icon-trailing { right: var(--inkblot-spacing-3); pointer-events: auto; cursor: pointer; } .input-icon-wrapper input.has-icon-leading { padding-left: calc(var(--inkblot-size-icon-md) + var(--inkblot-spacing-3) + var(--inkblot-spacing-2)); } .input-icon-wrapper input.has-icon-trailing { padding-right: calc(var(--inkblot-size-icon-md) + var(--inkblot-spacing-3) + var(--inkblot-spacing-2)); }"
+  }
+}

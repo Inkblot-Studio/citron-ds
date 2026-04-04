@@ -1,0 +1,34 @@
+{
+  "$description": "Inkblot Studio grid and layout tokens. Modular column system scaling 4–24 columns.",
+  "inkblot": {
+    "grid": {
+      "$type": "dimension",
+      "$description": "Grid system tokens for responsive, adaptive layouts",
+      "columns": {
+        "mobile": { "$value": "4", "$description": "4-column grid for < 640px" },
+        "tablet": { "$value": "8", "$description": "8-column grid for 640–1023px" },
+        "desktop": { "$value": "12", "$description": "12-column grid for 1024–1535px" },
+        "wide": { "$value": "16", "$description": "16-column grid for 1536px+" },
+        "max": { "$value": "24", "$description": "24-column grid for complex dashboards" }
+      },
+      "gutter": {
+        "sm": { "$value": "0.5rem", "$description": "8px - compact mobile gutter" },
+        "md": { "$value": "1rem", "$description": "16px - standard gutter" },
+        "lg": { "$value": "1.5rem", "$description": "24px - spacious desktop gutter" },
+        "xl": { "$value": "2rem", "$description": "32px - wide layout gutter" }
+      },
+      "margin": {
+        "mobile": { "$value": "1rem", "$description": "16px page margin on mobile" },
+        "tablet": { "$value": "2rem", "$description": "32px page margin on tablet" },
+        "desktop": { "$value": "4rem", "$description": "64px page margin on desktop" },
+        "wide": { "$value": "auto", "$description": "Auto-center on wide screens" }
+      },
+      "maxWidth": {
+        "content": { "$value": "768px", "$description": "Max width for readable content" },
+        "container": { "$value": "1200px", "$description": "Max width for standard layouts" },
+        "wide": { "$value": "1440px", "$description": "Max width for wide layouts" },
+        "full": { "$value": "1920px", "$description": "Max width for full-bleed" }
+      }
+    }
+  }
+}

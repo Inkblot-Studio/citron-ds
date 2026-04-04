@@ -9,7 +9,11 @@
     "./css": "./dist/css/inkblot-variables.css",
     "./scss": "./dist/scss/_inkblot-variables.scss",
     "./tokens": "./dist/ai/inkblot-tokens-resolved.json",
-    "./ai-reference": "./dist/ai/inkblot-ai-reference.json"
+    "./ai-reference": "./dist/ai/inkblot-ai-reference.json",
+    "./brand/citron-mascot.svg": "./dist/brand/citron-mascot.svg",
+    "./brand/citron-mascot-mono.svg": "./dist/brand/citron-mascot-mono.svg",
+    "./bundle": "./dist/bundle/README.md",
+    "./bundle/*": "./dist/bundle/*"
   },
   "files": [
     "dist",
@@ -17,7 +21,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "style-dictionary build --config style-dictionary.config.js && node -e \"require('fs').copyFileSync('system/inkblot-ai-reference.json', 'dist/ai/inkblot-ai-reference.json')\"",
+    "build": "style-dictionary build --config style-dictionary.config.js && node -e \"require('fs').copyFileSync('system/inkblot-ai-reference.json', 'dist/ai/inkblot-ai-reference.json')\" && node scripts/copy-brand-assets.cjs && node scripts/bundle-desktop.cjs",
     "build:tokens": "style-dictionary build --config style-dictionary.config.js",
     "dev": "concurrently \"npm run build:watch\" \"vite\"",
     "build:watch": "chokidar \"tokens/**/*.json\" -c \"npm run build\"",
