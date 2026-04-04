@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/brand/readme-hero.svg" width="100%" alt="Citron Design System — mascot and wordmark on citron-toned dark background" />
+<img src="assets/brand/readme-hero.png" width="100%" alt="Citron Design System — mascot and wordmark on citron-toned dark background" />
 
 <br />
 
@@ -112,9 +112,10 @@ Source SVGs live in `assets/brand/`; `npm run build` copies them into `dist/bran
 |------|-----|
 | `citron-mascot.svg` | Full-color mark (`#c4a030` citron **500**) |
 | `citron-mascot-mono.svg` | Single-color / `currentColor` lockups |
-| `readme-hero.svg` | README banner (warm dark + citron accent **900→950**) |
+| `readme-hero.svg` | Vector source for the README banner (export to PNG when refreshing art) |
+| `readme-hero.png` | **GitHub README** header (GitHub does not reliably render SVG in `<img>`) |
 
-**GitHub (maintainers):** Set the repository **Social preview** (Settings → General) to a **1280×640** image exported from `readme-hero.svg` (or a wider crop). Use `citron-mascot-mono.svg` for the repo or org avatar so the mark stays clear at small sizes.
+**GitHub (maintainers):** Set **Social preview** (Settings → General) to **`readme-hero.png`** or a **1280×640** crop of the same art. Use `citron-mascot-mono.svg` for the repo or org avatar so the mark stays clear at small sizes.
 
 ---
 
