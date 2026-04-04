@@ -1,0 +1,15 @@
+---
+description: Keep README.md in sync when the package or docs surface changes
+alwaysApply: true
+---
+
+# README maintenance
+
+When you change anything that affects **consumers or contributors**, update **README.md in the same change** (or immediately after in the same task). Examples:
+
+- `package.json`: `exports`, `main`, `bin`, `files`, scripts, repository URLs, version strategy
+- New or removed **import paths**, **CDN paths**, **CLI** behavior, **brand assets** (including `assets/brand/readme-hero.svg` when the README banner or citron palette changes)
+- **Build / publish** steps, CI, or **npm provenance** requirements
+- Token layout, Style Dictionary outputs, or **AI reference** location
+
+Prefer a short, accurate table or section over duplicating npm fields verbatim; links should match `repository` / `homepage` in `package.json`.

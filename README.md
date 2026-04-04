@@ -1,9 +1,18 @@
-# @citron-systems/citron-ds
+<div align="center">
 
-> Inkblot Studio design token system — Apple-inspired, accessible, AI-ready. The **Citron** design language: warmly minimal, quietly distinctive.
+<img src="assets/brand/readme-hero.svg" width="100%" alt="Citron Design System — mascot and wordmark on citron-toned dark background" />
 
-[![npm version](https://img.shields.io/npm/v/@citron-systems/citron-ds.svg)](https://www.npmjs.com/package/@citron-systems/citron-ds)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<br />
+
+[![npm](https://img.shields.io/npm/v/@citron-systems/citron-ds?style=flat-square&logo=npm&logoColor=white&color=c4a030)](https://www.npmjs.com/package/@citron-systems/citron-ds)
+[![License: MIT](https://img.shields.io/badge/License-MIT-c4a030?style=flat-square)](https://opensource.org/licenses/MIT)
+[![GitHub](https://img.shields.io/badge/repo-Inkblot--Studio%2Fcitron--ds-1a1814?style=flat-square&logo=github&logoColor=f5f0e6)](https://github.com/Inkblot-Studio/citron-ds)
+
+**Citron** — Apple-inspired, accessible, AI-ready design tokens. Warmly minimal, quietly distinctive.
+
+[Repository](https://github.com/Inkblot-Studio/citron-ds) · [npm package](https://www.npmjs.com/package/@citron-systems/citron-ds)
+
+</div>
 
 ---
 
@@ -78,7 +87,7 @@ import tokens from '@citron-systems/citron-ds/tokens';
 
 ---
 
-## Package Exports
+## Package exports
 
 | Import path | Contents |
 |-------------|----------|
@@ -87,6 +96,43 @@ import tokens from '@citron-systems/citron-ds/tokens';
 | `@citron-systems/citron-ds/scss` | SCSS variables |
 | `@citron-systems/citron-ds/tokens` | Flat JSON (resolved values) |
 | `@citron-systems/citron-ds/ai-reference` | AI agent reference (token map, patterns, rules) |
+| `@citron-systems/citron-ds/brand/citron-mascot.svg` | Citron mascot (full color; optional `--citron-mascot-fill`) |
+| `@citron-systems/citron-ds/brand/citron-mascot-mono.svg` | Mascot lockup (`currentColor`) |
+| `@citron-systems/citron-ds/bundle` | Bundle entry (`dist/bundle/README.md`) |
+| `@citron-systems/citron-ds/bundle/*` | Resolved tokens, CSS/SCSS bundles, system JSON, etc. |
+| `@citron-systems/citron-ds/preview/mascot.html` | Static mascot preview page |
+
+---
+
+## Brand assets
+
+Source SVGs live in `assets/brand/`; `npm run build` copies them into `dist/brand/` for publishing. Import from the package as in the table above, or copy from `dist/brand/` in a checkout.
+
+| File | Use |
+|------|-----|
+| `citron-mascot.svg` | Full-color mark (`#c4a030` citron **500**) |
+| `citron-mascot-mono.svg` | Single-color / `currentColor` lockups |
+| `readme-hero.svg` | README banner (warm dark + citron accent **900→950**) |
+
+**GitHub (maintainers):** Set the repository **Social preview** (Settings → General) to a **1280×640** image exported from `readme-hero.svg` (or a wider crop). Use `citron-mascot-mono.svg` for the repo or org avatar so the mark stays clear at small sizes.
+
+---
+
+## CLI
+
+The **citron-mascot** binary prints the ASCII Citron mascot (with a short color animation in supported terminals).
+
+From a project that already depends on this package:
+
+```bash
+npx citron-mascot
+```
+
+One-off without adding a dependency:
+
+```bash
+npx --package=@citron-systems/citron-ds citron-mascot
+```
 
 ---
 
@@ -100,7 +146,7 @@ import tokens from '@citron-systems/citron-ds/tokens';
 
 ---
 
-## Color Modes
+## Color modes
 
 Light mode is default. Dark mode activates via:
 
@@ -109,7 +155,7 @@ Light mode is default. Dark mode activates via:
 
 ---
 
-## For AI Agents
+## For AI agents
 
 **Primary reference** (include in context): `@citron-systems/citron-ds/ai-reference`
 
@@ -135,12 +181,21 @@ Light mode is default. Dark mode activates via:
 ## Development
 
 ```bash
-git clone https://github.com/GHDryanovski19/inkblot-studio-design-tokens.git
-cd inkblot-studio-design-tokens
+git clone https://github.com/Inkblot-Studio/citron-ds.git
+cd citron-ds
 npm install
 npm run build
 npm run dev        # Live preview at localhost:5173
 ```
+
+- **`npm run build`** — Style Dictionary outputs plus copy steps for brand assets, mascot preview, and desktop bundle (`dist/`).
+- **`prepublishOnly`** runs `npm run build` before `npm publish`.
+
+### Publish note (maintainers)
+
+If you publish with **npm provenance** from GitHub Actions, `package.json` **`repository.url`** must point at the **same** GitHub repository as the workflow (otherwise the registry returns `422` provenance validation errors). Run `npm pkg fix` if npm warns about normalized fields during publish.
+
+---
 
 ## Deploy preview to Vercel
 

@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Citron — Design System</title>
+  <link rel="icon" href="/brand/citron-mascot.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -50,8 +51,9 @@
     /* NAV */
     .nav { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(24px) saturate(1.2); -webkit-backdrop-filter: blur(24px) saturate(1.2); background: rgba(250,250,247,0.78); border-bottom: 1px solid var(--inkblot-semantic-color-border-default); padding: var(--inkblot-spacing-3) var(--inkblot-spacing-6); display: flex; align-items: center; justify-content: space-between; }
     [data-theme="dark"] .nav { background: rgba(18,17,14,0.78); }
-    .nav-brand { font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; letter-spacing: -0.01em; color: var(--inkblot-semantic-color-text-primary); text-decoration: none; transition: opacity 150ms; }
+    .nav-brand { display: inline-flex; align-items: center; gap: var(--inkblot-spacing-2); font-size: var(--inkblot-typography-font-size-sm); font-weight: 600; letter-spacing: -0.01em; color: var(--inkblot-semantic-color-text-primary); text-decoration: none; transition: opacity 150ms; }
     .nav-brand:hover { opacity: 0.7; }
+    .nav-brand-mark { width: 28px; height: 28px; flex-shrink: 0; border-radius: var(--inkblot-radius-sm); }
     .nav-menu { display: contents; }
     .nav-links { display: flex; gap: var(--inkblot-spacing-4); list-style: none; padding: 0; margin: 0; }
     .nav-links a { font-size: var(--inkblot-typography-font-size-xs); color: var(--inkblot-semantic-color-text-secondary); text-decoration: none; white-space: nowrap; transition: color 150ms; padding: var(--inkblot-spacing-2) 0; }
@@ -73,7 +75,8 @@
     *:focus-visible { outline: 2px solid var(--inkblot-semantic-color-border-focus); outline-offset: 2px; }
 
     /* HERO */
-    .hero { padding: clamp(64px,10vh,120px) var(--inkblot-spacing-8); text-align: center; max-width: 720px; margin: 0 auto; }
+    .hero { padding: clamp(48px,8vh,96px) var(--inkblot-spacing-8) clamp(64px,10vh,120px); text-align: center; max-width: 720px; margin: 0 auto; }
+    .hero-mark { width: min(112px, 28vw); height: min(112px, 28vw); margin: 0 auto var(--inkblot-spacing-6); display: block; border-radius: var(--inkblot-radius-lg); filter: drop-shadow(0 8px 24px rgba(196, 160, 48, 0.18)); }
     .hero h1 { font-size: clamp(2rem,5vw,2.75rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: var(--inkblot-spacing-4); }
     .hero .tagline { font-size: var(--inkblot-typography-font-size-md); color: var(--inkblot-semantic-color-text-secondary); line-height: 1.65; margin-bottom: var(--inkblot-spacing-10); }
     .hero-actions { display: flex; gap: var(--inkblot-spacing-3); justify-content: center; flex-wrap: wrap; }
@@ -355,7 +358,7 @@
 </head>
 <body>
   <nav class="nav">
-    <a href="#" class="nav-brand" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Citron</a>
+    <a href="#" class="nav-brand" onclick="window.scrollTo({top:0,behavior:'smooth'});return false"><img class="nav-brand-mark" src="/brand/citron-mascot.svg" width="28" height="28" alt="" aria-hidden="true" />Citron</a>
     <button class="nav-hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu" id="nav-hamburger"><span></span></button>
     <div class="nav-menu" id="nav-menu">
     <ul class="nav-links">
@@ -377,6 +380,7 @@
   </nav>
 
   <header class="hero">
+    <img class="hero-mark" src="/brand/citron-mascot.svg" width="112" height="112" alt="Citron mascot" />
     <h1>Citron Design System</h1>
     <p class="tagline">Warmly minimal. Quietly distinctive. Tokens, components, and rules crafted with restraint — built for AI agents and humans alike.</p>
     <div class="hero-actions">
