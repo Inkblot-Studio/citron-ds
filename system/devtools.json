@@ -6,7 +6,7 @@
 
   "rationale": {
     "productVsDev": {
-      "product": "Citron consumer app uses warm neutrals + citron (#c4a030) accent per tokens/primitive/color.tokens.json and semantic inkblot tokens.",
+      "product": "Citron consumer app uses warm neutrals + citron (#c9a227) accent per tokens/primitive/color.tokens.json and semantic inkblot tokens.",
       "devtools": "Internal and dev-only UI uses blue primary (#2563EB) on dark slate (#020617 / #0B1220). Emerald (#10B981) marks positive dev signals only — it is not the product citron accent.",
       "rule": "If a user paying for the product could see it without a debug flag, do not use devtools tokens."
     }
@@ -85,7 +85,7 @@
     "rule": "Adjust only in tokens/primitive/devtools.palette.tokens.json; semantic layer follows automatically after build.",
     "citronHarmony": {
       "description": "This palette is complementary contrast to citron: cool vs warm. If unifying slightly, nudge blues toward slightly teal (#2563EB → #1D4ED8) rather than borrowing citron amber into dev chrome — keeps cognitive separation.",
-      "doNot": "Do not replace dev primary with #c4a030 — that collapses dev vs product distinction."
+      "doNot": "Do not replace dev primary with #c9a227 — that collapses dev vs product distinction."
     }
   },
 

@@ -1,0 +1,415 @@
+/**
+ * Citron component layer v2 — ready-to-use, token-driven components.
+ *
+ * Usage:
+ *   @import '@citron-systems/citron-ds/fonts';
+ *   @import '@citron-systems/citron-ds/css';         (token variables)
+ *   @import '@citron-systems/citron-ds/components';  (this file)
+ *
+ * Theming: components read the --c-* alias layer below. Set
+ * [data-theme='dark'] on <html> for the cinematic ink register.
+ * Everything respects prefers-reduced-motion.
+ */
+
+/* ============================================================ theme alias */
+
+:root {
+  --c-bg: var(--inkblot-semantic-color-background-primary);
+  --c-surface: var(--inkblot-semantic-color-background-secondary);
+  --c-inset: var(--inkblot-semantic-color-background-tertiary);
+  --c-canvas: var(--inkblot-semantic-color-background-canvas);
+  --c-text: var(--inkblot-semantic-color-text-primary);
+  --c-text-2: var(--inkblot-semantic-color-text-secondary);
+  --c-text-3: var(--inkblot-semantic-color-text-tertiary);
+  --c-border: var(--inkblot-semantic-color-border-default);
+  --c-border-strong: var(--inkblot-semantic-color-border-strong);
+  --c-focus: var(--inkblot-semantic-color-border-focus);
+  --c-primary: var(--inkblot-semantic-color-interactive-primary);
+  --c-primary-hover: var(--inkblot-semantic-color-interactive-primary-hover);
+  --c-primary-active: var(--inkblot-semantic-color-interactive-primary-active);
+  --c-secondary: var(--inkblot-semantic-color-interactive-secondary);
+  --c-secondary-hover: var(--inkblot-semantic-color-interactive-secondary-hover);
+  --c-accent: var(--inkblot-semantic-color-accent-default);
+  --c-accent-subtle: var(--inkblot-semantic-color-accent-subtle);
+  --c-leaf: var(--inkblot-semantic-color-accent-leaf);
+  --c-leaf-subtle: var(--inkblot-semantic-color-accent-leaf-subtle);
+  --c-on-primary: var(--inkblot-color-neutral-gray-900);
+  --c-glow: none;
+  --c-glow-subtle: none;
+}
+
+[data-theme='dark'] {
+  --c-bg: var(--inkblot-dark-color-background-primary);
+  --c-surface: var(--inkblot-dark-color-background-secondary);
+  --c-inset: var(--inkblot-dark-color-background-tertiary);
+  --c-canvas: var(--inkblot-dark-color-background-canvas);
+  --c-text: var(--inkblot-dark-color-text-primary);
+  --c-text-2: var(--inkblot-dark-color-text-secondary);
+  --c-text-3: var(--inkblot-dark-color-text-tertiary);
+  --c-border: var(--inkblot-dark-color-border-default);
+  --c-border-strong: var(--inkblot-dark-color-border-strong);
+  --c-focus: var(--inkblot-dark-color-border-focus);
+  --c-primary: var(--inkblot-dark-color-interactive-primary);
+  --c-primary-hover: var(--inkblot-dark-color-interactive-primary-hover);
+  --c-primary-active: var(--inkblot-dark-color-interactive-primary-active);
+  --c-secondary: var(--inkblot-dark-color-interactive-secondary);
+  --c-secondary-hover: var(--inkblot-dark-color-interactive-secondary-hover);
+  --c-accent: var(--inkblot-dark-color-accent-default);
+  --c-accent-subtle: var(--inkblot-dark-color-accent-subtle);
+  --c-leaf: var(--inkblot-dark-color-accent-leaf);
+  --c-leaf-subtle: var(--inkblot-dark-color-accent-leaf-subtle);
+  --c-on-primary: var(--inkblot-color-neutral-ink);
+  --c-glow: var(--inkblot-shadow-glow);
+  --c-glow-subtle: var(--inkblot-shadow-glow-subtle);
+}
+
+/* ================================================================== base */
+
+.citron-root,
+.citron-body {
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--inkblot-typography-font-family-sans);
+  font-size: var(--inkblot-typography-font-size-base);
+  line-height: var(--inkblot-typography-line-height-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ============================================================ typography */
+
+.citron-display {
+  font-family: var(--inkblot-typography-font-family-display);
+  font-size: var(--inkblot-typography-font-size-6xl);
+  font-weight: var(--inkblot-typography-font-weight-light);
+  line-height: var(--inkblot-typography-line-height-display);
+  letter-spacing: var(--inkblot-typography-letter-spacing-tighter);
+}
+
+.citron-hero {
+  font-family: var(--inkblot-typography-font-family-display);
+  font-size: var(--inkblot-typography-font-size-4xl);
+  font-weight: var(--inkblot-typography-font-weight-medium);
+  line-height: var(--inkblot-typography-line-height-display);
+  letter-spacing: var(--inkblot-typography-letter-spacing-tighter);
+}
+
+.citron-h1,
+.citron-h2,
+.citron-h3 {
+  font-family: var(--inkblot-typography-font-family-display);
+  letter-spacing: var(--inkblot-typography-letter-spacing-tight);
+  line-height: var(--inkblot-typography-line-height-tight);
+}
+
+.citron-h1 { font-size: var(--inkblot-typography-font-size-3xl); font-weight: var(--inkblot-typography-font-weight-semibold); }
+.citron-h2 { font-size: var(--inkblot-typography-font-size-2xl); font-weight: var(--inkblot-typography-font-weight-semibold); }
+.citron-h3 { font-size: var(--inkblot-typography-font-size-xl); font-weight: var(--inkblot-typography-font-weight-medium); line-height: var(--inkblot-typography-line-height-snug); }
+
+.citron-eyebrow {
+  font-family: var(--inkblot-typography-font-family-mono);
+  font-size: var(--inkblot-typography-font-size-xs);
+  font-weight: var(--inkblot-typography-font-weight-medium);
+  letter-spacing: var(--inkblot-typography-letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--c-accent);
+}
+
+.citron-code,
+.citron-kbd {
+  font-family: var(--inkblot-typography-font-family-mono);
+  font-size: var(--inkblot-typography-font-size-sm);
+  font-feature-settings: 'zero' 1;
+}
+
+.citron-kbd {
+  display: inline-block;
+  padding: 0.125rem 0.4375rem;
+  border: 1px solid var(--c-border-strong);
+  border-bottom-width: 2px;
+  border-radius: var(--inkblot-radius-sm);
+  background: var(--c-inset);
+  font-size: var(--inkblot-typography-font-size-xs);
+  line-height: 1.4;
+}
+
+.citron-numeric {
+  font-feature-settings: 'tnum' 1, 'zero' 1;
+}
+
+/* =============================================================== buttons */
+
+.citron-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0 var(--inkblot-spacing-5, 1.25rem);
+  border: 1px solid transparent;
+  border-radius: var(--inkblot-radius-md);
+  font-family: var(--inkblot-typography-font-family-sans);
+  font-size: var(--inkblot-typography-font-size-sm);
+  font-weight: var(--inkblot-typography-font-weight-semibold);
+  letter-spacing: var(--inkblot-typography-letter-spacing-wide);
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--inkblot-duration-fast) var(--inkblot-easing-default),
+    border-color var(--inkblot-duration-fast) var(--inkblot-easing-default),
+    box-shadow var(--inkblot-duration-normal) var(--inkblot-easing-out),
+    transform var(--inkblot-duration-fast) var(--inkblot-easing-expressive);
+}
+
+.citron-btn:active { transform: scale(0.98); }
+.citron-btn:disabled { opacity: var(--inkblot-opacity-disabled, 0.4); pointer-events: none; }
+
+.citron-btn--primary {
+  background: var(--c-primary);
+  color: var(--c-on-primary);
+}
+.citron-btn--primary:hover {
+  background: var(--c-primary-hover);
+  box-shadow: var(--c-glow);
+}
+.citron-btn--primary:active { background: var(--c-primary-active); }
+
+.citron-btn--secondary {
+  background: var(--c-secondary);
+  border-color: var(--c-border);
+  color: var(--c-text);
+}
+.citron-btn--secondary:hover {
+  background: var(--c-secondary-hover);
+  border-color: var(--c-border-strong);
+}
+
+.citron-btn--ghost {
+  background: transparent;
+  color: var(--c-text-2);
+}
+.citron-btn--ghost:hover {
+  background: var(--c-secondary);
+  color: var(--c-text);
+}
+
+.citron-btn--sm { min-height: 34px; padding: 0 0.875rem; font-size: var(--inkblot-typography-font-size-xs); }
+.citron-btn--lg { min-height: 52px; padding: 0 1.75rem; font-size: var(--inkblot-typography-font-size-base); border-radius: var(--inkblot-radius-lg); }
+
+/* ================================================================= forms */
+
+.citron-label {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-size: var(--inkblot-typography-font-size-xs);
+  font-weight: var(--inkblot-typography-font-weight-medium);
+  letter-spacing: var(--inkblot-typography-letter-spacing-wide);
+  color: var(--c-text-2);
+}
+
+.citron-input,
+.citron-select,
+.citron-textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--c-border);
+  border-radius: var(--inkblot-radius-md);
+  background: var(--c-surface);
+  color: var(--c-text);
+  font-family: var(--inkblot-typography-font-family-sans);
+  font-size: var(--inkblot-typography-font-size-base);
+  line-height: var(--inkblot-typography-line-height-normal);
+  transition:
+    border-color var(--inkblot-duration-fast) var(--inkblot-easing-default),
+    box-shadow var(--inkblot-duration-fast) var(--inkblot-easing-default);
+}
+
+.citron-input::placeholder,
+.citron-textarea::placeholder { color: var(--c-text-3); }
+
+.citron-input:hover,
+.citron-select:hover,
+.citron-textarea:hover { border-color: var(--c-border-strong); }
+
+.citron-input:focus,
+.citron-select:focus,
+.citron-textarea:focus {
+  outline: none;
+  border-color: var(--c-focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--c-focus) 25%, transparent);
+}
+
+.citron-textarea { min-height: 96px; resize: vertical; }
+
+/* ================================================================= cards */
+
+.citron-card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--inkblot-radius-lg);
+  padding: var(--inkblot-spacing-6, 1.5rem);
+  box-shadow: var(--inkblot-shadow-sm);
+  transition:
+    transform var(--inkblot-duration-fast) var(--inkblot-easing-default),
+    box-shadow var(--inkblot-duration-fast) var(--inkblot-easing-default),
+    border-color var(--inkblot-duration-fast) var(--inkblot-easing-default);
+}
+
+.citron-card--interactive { cursor: pointer; }
+.citron-card--interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--inkblot-shadow-md), var(--c-glow-subtle);
+  border-color: var(--c-border-strong);
+}
+
+.citron-card--canvas {
+  background: var(--c-canvas);
+  border-color: color-mix(in srgb, var(--c-accent) 18%, transparent);
+  color: var(--inkblot-dark-color-text-primary);
+}
+
+/* ================================================================ badges */
+
+.citron-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.1875rem 0.625rem;
+  border-radius: var(--inkblot-radius-full, 9999px);
+  font-family: var(--inkblot-typography-font-family-mono);
+  font-size: var(--inkblot-typography-font-size-xs);
+  font-weight: var(--inkblot-typography-font-weight-medium);
+  letter-spacing: var(--inkblot-typography-letter-spacing-wide);
+  background: var(--c-inset);
+  color: var(--c-text-2);
+}
+
+.citron-badge--citron { background: var(--c-accent-subtle); color: var(--inkblot-color-accent-citron-700); }
+[data-theme='dark'] .citron-badge--citron { color: var(--inkblot-color-accent-citron-300); }
+
+.citron-badge--leaf { background: var(--c-leaf-subtle); color: var(--inkblot-color-accent-leaf-700); }
+[data-theme='dark'] .citron-badge--leaf { color: var(--inkblot-color-accent-leaf-300); }
+
+.citron-badge--success { background: color-mix(in srgb, var(--inkblot-color-semantic-success-main) 12%, transparent); color: var(--inkblot-color-semantic-success-dark); }
+.citron-badge--warning { background: color-mix(in srgb, var(--inkblot-color-semantic-warning-main) 12%, transparent); color: var(--inkblot-color-semantic-warning-dark); }
+.citron-badge--error   { background: color-mix(in srgb, var(--inkblot-color-semantic-error-main) 12%, transparent);   color: var(--inkblot-color-semantic-error-dark); }
+
+/* ================================================================ switch */
+
+.citron-switch {
+  appearance: none;
+  position: relative;
+  width: 44px;
+  height: 26px;
+  border-radius: 13px;
+  background: var(--c-border-strong);
+  cursor: pointer;
+  transition: background-color var(--inkblot-duration-fast) var(--inkblot-easing-default);
+}
+
+.citron-switch::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--inkblot-color-neutral-white);
+  box-shadow: var(--inkblot-shadow-xs);
+  transition: transform var(--inkblot-duration-fast) var(--inkblot-easing-swift);
+}
+
+.citron-switch:checked { background: var(--c-primary); }
+.citron-switch:checked::after { transform: translateX(18px); }
+
+/* ================================================================ tables */
+
+.citron-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--inkblot-typography-font-size-sm);
+}
+
+.citron-table th {
+  text-align: left;
+  padding: 0.625rem 0.875rem;
+  font-family: var(--inkblot-typography-font-family-mono);
+  font-size: var(--inkblot-typography-font-size-xs);
+  font-weight: var(--inkblot-typography-font-weight-medium);
+  letter-spacing: var(--inkblot-typography-letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--c-text-3);
+  border-bottom: 1px solid var(--c-border-strong);
+}
+
+.citron-table td {
+  padding: 0.75rem 0.875rem;
+  border-bottom: 1px solid var(--c-border);
+  font-feature-settings: 'tnum' 1, 'zero' 1;
+}
+
+.citron-table tbody tr {
+  transition: background-color var(--inkblot-duration-fast) var(--inkblot-easing-default);
+}
+.citron-table tbody tr:hover { background: var(--c-inset); }
+
+/* ================================================================= misc */
+
+.citron-divider {
+  border: none;
+  height: 1px;
+  background: var(--c-border);
+  margin: var(--inkblot-spacing-8, 2rem) 0;
+}
+
+/* ======================================================== focus & motion */
+
+.citron-btn:focus-visible,
+.citron-switch:focus-visible,
+.citron-card--interactive:focus-visible,
+a.citron-link:focus-visible {
+  outline: 2px solid var(--c-focus);
+  outline-offset: 2px;
+}
+
+/* Signature reveal — the Citron entrance. Add .citron-reveal to any element;
+   wrap siblings in .citron-reveal-group and set --i per child for stagger. */
+
+.citron-reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: citron-reveal var(--inkblot-duration-slower) var(--inkblot-easing-signature) forwards;
+}
+
+.citron-reveal-group > * {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: citron-reveal var(--inkblot-duration-slower) var(--inkblot-easing-signature) forwards;
+  animation-delay: calc(var(--i, 0) * var(--inkblot-duration-stagger));
+}
+
+@keyframes citron-reveal {
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .citron-reveal,
+  .citron-reveal-group > * {
+    animation-duration: 0.01ms;
+    animation-delay: 0ms;
+  }
+  .citron-btn,
+  .citron-card,
+  .citron-switch,
+  .citron-switch::after,
+  .citron-input,
+  .citron-select,
+  .citron-textarea {
+    transition-duration: 0.01ms;
+  }
+}

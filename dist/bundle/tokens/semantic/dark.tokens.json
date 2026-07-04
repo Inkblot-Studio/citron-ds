@@ -1,41 +1,49 @@
 {
-  "$description": "Citron dark mode overrides. Warm dark surfaces — never cold blue-black. Apply via [data-theme='dark'].",
+  "$description": "Citron dark mode v2 — cinematic ink-first. The primary brand register: warm ink blacks with luminous citron glow, like studio light on dark matte. Never cold, never blue. Apply via [data-theme='dark'].",
   "inkblot": {
     "dark": {
       "color": {
         "$type": "color",
-        "$description": "Dark mode — warm-tinted blacks, elevated citron accent for contrast",
+        "$description": "Dark mode — cinematic warm ink, elevated surfaces, citron as light source",
         "background": {
-          "primary":   { "$value": "#12110e", "$description": "Deep warm black, not pure black" },
-          "secondary": { "$value": "#1d1c18", "$description": "Elevated warm surface" },
-          "tertiary":  { "$value": "#2a2924", "$description": "Grouped content, inset" },
-          "inverse":   { "$value": "#fafaf7", "$description": "Inverted to warm off-white" }
+          "primary":   { "$value": "#0a0908", "$description": "Citron ink — deepest warm black, OLED-true canvas" },
+          "secondary": { "$value": "#161512", "$description": "Elevated warm surface — one stop of light above ink" },
+          "tertiary":  { "$value": "#221f1a", "$description": "Grouped content, inset — two stops" },
+          "inverse":   { "$value": "#fafaf7", "$description": "Inverted to warm off-white" },
+          "canvas":    { "$value": "#0a0908", "$description": "Cinematic backdrop — same as primary in dark mode" }
         },
         "text": {
-          "primary":   { "$value": "#f5f4f0", "$description": "Warm off-white text" },
-          "secondary": { "$value": "#93928a", "$description": "Warm muted text" },
-          "tertiary":  { "$value": "#6b6a63", "$description": "Placeholder, hints" },
+          "primary":   { "$value": "#f5f2ea", "$description": "Warm parchment white — softer than pure white on ink" },
+          "secondary": { "$value": "#9a968a", "$description": "Warm muted text" },
+          "tertiary":  { "$value": "#6b675c", "$description": "Placeholder, hints" },
           "inverse":   { "$value": "#1d1c19", "$description": "Dark text on light" },
-          "link":      { "$value": "#d9bc58", "$description": "Citron 400 — bright enough for dark bg" },
-          "linkHover": { "$value": "#e8d38a", "$description": "Citron 300 — lighter on hover" }
+          "link":      { "$value": "#e3c052", "$description": "Citron 400 — the luminous voice on ink" },
+          "linkHover": { "$value": "#edd682", "$description": "Citron 300 — brighter on hover" }
         },
         "border": {
-          "default": { "$value": "#38372f", "$description": "Warm subtle border" },
-          "strong":  { "$value": "#4d4c44", "$description": "Emphasized warm border" },
-          "focus":   { "$value": "#d9bc58", "$description": "Focus ring — bright citron" }
+          "default": { "$value": "#2b2822", "$description": "Warm subtle border — reads as shadow edge, not line" },
+          "strong":  { "$value": "#413d33", "$description": "Emphasized warm border" },
+          "focus":   { "$value": "#e3c052", "$description": "Focus ring — luminous citron" }
         },
         "interactive": {
-          "primary":       { "$value": "#d9bc58", "$description": "Citron 400 — lighter for dark mode contrast" },
-          "primaryHover":  { "$value": "#e8d38a", "$description": "Citron 300 — warm glow on hover" },
-          "primaryActive": { "$value": "#c4a030", "$description": "Citron 500 — anchor on press" },
-          "secondary":     { "$value": "#2a2924", "$description": "Warm dark secondary" },
-          "secondaryHover":{ "$value": "#38372f", "$description": "Warm dark hover" }
+          "primary":       { "$value": "#e3c052", "$description": "Citron glow — the light source of the dark UI" },
+          "primaryHover":  { "$value": "#edd682", "$description": "Brighter glow on hover" },
+          "primaryActive": { "$value": "#c9a227", "$description": "Citron 500 — anchors on press" },
+          "secondary":     { "$value": "#221f1a", "$description": "Warm dark secondary" },
+          "secondaryHover":{ "$value": "#2b2822", "$description": "Warm dark hover" }
+        },
+        "accent": {
+          "default":     { "$value": "#e3c052", "$description": "Citron glow on ink" },
+          "emphasis":    { "$value": "#edd682", "$description": "Brighter citron" },
+          "subtle":      { "$value": "#2b2510", "$description": "Citron-tinted dark surface" },
+          "leaf":        { "$value": "#67a257", "$description": "Leaf 400 — botanical counterpoint on ink" },
+          "leafSubtle":  { "$value": "#18220f", "$description": "Leaf-tinted dark surface" }
         },
         "status": {
-          "success": { "$value": "#4cb864", "$description": "Bright warm green on dark" },
-          "warning": { "$value": "#e0a020", "$description": "Warm amber on dark" },
-          "error":   { "$value": "#e05a52", "$description": "Warm red on dark" },
-          "info":    { "$value": "#7ab8d6", "$description": "Soft warm blue on dark" }
+          "success": { "$value": "#4cb864", "$description": "Bright warm green on ink" },
+          "warning": { "$value": "#e0a020", "$description": "Warm amber on ink" },
+          "error":   { "$value": "#e05a52", "$description": "Warm red on ink" },
+          "info":    { "$value": "#7ab8d6", "$description": "Soft warm blue on ink" }
         }
       }
     }

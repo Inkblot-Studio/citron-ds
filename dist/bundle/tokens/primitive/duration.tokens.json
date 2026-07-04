@@ -1,18 +1,20 @@
 {
-  "$description": "Citron motion. Fast, smooth, physical. No bounce, no overshoot. Transitions feel like light responding to touch.",
+  "$description": "Citron motion v2 — fast, smooth, physical, with a signature. Motion behaves like light responding to touch: instant attack, long graceful decay. No bounce, no overshoot in UI; reserved springs for brand moments only.",
   "inkblot": {
     "duration": {
       "$type": "duration",
-      "$description": "Animation durations — snappy, never playful",
+      "$description": "Animation durations — snappy interaction register plus a choreography register for reveals",
       "instant": { "$value": "0ms",   "$description": "No animation" },
       "fast":    { "$value": "120ms", "$description": "Micro-interactions, hovers — fast enough to feel physical" },
       "normal":  { "$value": "200ms", "$description": "Standard transitions" },
       "slow":    { "$value": "320ms", "$description": "Complex transitions, enter/exit" },
-      "slower":  { "$value": "500ms", "$description": "Page-level transitions, long reveals" }
+      "slower":  { "$value": "500ms", "$description": "Page-level transitions, long reveals" },
+      "cinematic": { "$value": "800ms", "$description": "Brand-moment reveals — hero entrances, specimen choreography. Never for interaction feedback." },
+      "stagger":   { "$value": "40ms",  "$description": "Per-item offset for staggered list/grid entrances. Cap total stagger at 400ms." }
     },
     "easing": {
       "$type": "cubicBezier",
-      "$description": "Easing curves — smooth, physical, never bouncy",
+      "$description": "Easing curves — the Citron motion signature: fast attack, long luminous decay",
       "default": {
         "$value": [0.25, 0.1, 0.25, 1],
         "$description": "Standard ease — natural deceleration"
@@ -32,6 +34,30 @@
       "expressive": {
         "$value": [0.22, 1, 0.36, 1],
         "$description": "Expressive ease-out — smooth, confident arrival. Replaces bounce."
+      },
+      "signature": {
+        "$value": [0.16, 1, 0.3, 1],
+        "$description": "The Citron curve — near-instant attack, very long decay. Reveals, hero entrances, anything that should feel like light blooming. The brand's motion fingerprint."
+      },
+      "swift": {
+        "$value": [0.55, 0, 0.1, 1],
+        "$description": "Swift in-out — assertive position changes, shared-element moves, tab indicator slides"
+      }
+    },
+    "spring": {
+      "$type": "string",
+      "$description": "Spring presets for JS animation libraries (Framer Motion / Motion One format: stiffness, damping, mass). CSS fallback: use easing.signature.",
+      "responsive": {
+        "$value": "stiffness: 420, damping: 34, mass: 1",
+        "$description": "Interaction feedback — toggles, drags, snappy and critically damped"
+      },
+      "gentle": {
+        "$value": "stiffness: 180, damping: 26, mass: 1",
+        "$description": "Panels, sheets, popovers — settled and calm"
+      },
+      "bloom": {
+        "$value": "stiffness: 120, damping: 20, mass: 1.2",
+        "$description": "Brand moments — mascot, hero elements. The only spring allowed a hint of overshoot."
       }
     }
   }

@@ -18,17 +18,28 @@ export const InkblotColorNeutralGray600 = "#4d4c47"; // Emphasized secondary
 export const InkblotColorNeutralGray700 = "#3a3935"; // Strong text
 export const InkblotColorNeutralGray800 = "#2d2c28"; // Deep warm dark
 export const InkblotColorNeutralGray900 = "#1d1c19"; // Primary text — deep slate, never pure black
-export const InkblotColorNeutralGray950 = "#0f0e0c"; // Deepest warm black
+export const InkblotColorNeutralGray950 = "#12110e"; // Deep warm black — dark mode canvas
+export const InkblotColorNeutralInk = "#0a0908"; // Citron ink — the deepest brand black. Cinematic backdrops, specimen pages, OLED surfaces. Warm to the last bit.
 export const InkblotColorAccentCitron50 = "#fdfbf3"; // Barely there citron wash
-export const InkblotColorAccentCitron100 = "#faf4df"; // Soft cream tint
-export const InkblotColorAccentCitron200 = "#f3e6b8"; // Warm wheat
-export const InkblotColorAccentCitron300 = "#e8d38a"; // Light honey
-export const InkblotColorAccentCitron400 = "#d9bc58"; // Citrus glow
-export const InkblotColorAccentCitron500 = "#c4a030"; // Citron primary — the brand tone
-export const InkblotColorAccentCitron600 = "#a38427"; // Deep citron, hover state
-export const InkblotColorAccentCitron700 = "#7f671f"; // Rich amber
-export const InkblotColorAccentCitron800 = "#5c4a18"; // Dark citron
-export const InkblotColorAccentCitron900 = "#3d3111"; // Deepest citron
+export const InkblotColorAccentCitron100 = "#faf4dc"; // Soft cream tint
+export const InkblotColorAccentCitron200 = "#f5e7b4"; // Warm wheat
+export const InkblotColorAccentCitron300 = "#edd682"; // Light honey
+export const InkblotColorAccentCitron400 = "#e3c052"; // Citrus glow — the luminous dark-mode voice
+export const InkblotColorAccentCitron500 = "#c9a227"; // Citron primary — the brand tone, deepened for presence
+export const InkblotColorAccentCitron600 = "#a5841f"; // Deep citron, hover state
+export const InkblotColorAccentCitron700 = "#806618"; // Rich amber
+export const InkblotColorAccentCitron800 = "#5c4a12"; // Dark citron
+export const InkblotColorAccentCitron900 = "#3b300c"; // Deepest citron
+export const InkblotColorAccentLeaf50 = "#f4f8f2"; // Barely there leaf wash
+export const InkblotColorAccentLeaf100 = "#e4efe0"; // Soft leaf tint
+export const InkblotColorAccentLeaf200 = "#c3dcba"; // Light foliage
+export const InkblotColorAccentLeaf300 = "#96c188"; // Fresh leaf
+export const InkblotColorAccentLeaf400 = "#67a257"; // Vivid botanical
+export const InkblotColorAccentLeaf500 = "#478239"; // Leaf primary — deep botanical green
+export const InkblotColorAccentLeaf600 = "#3a6b2f"; // Deep leaf, hover state
+export const InkblotColorAccentLeaf700 = "#2f5427"; // Forest depth
+export const InkblotColorAccentLeaf800 = "#233d1e"; // Dark canopy
+export const InkblotColorAccentLeaf900 = "#172913"; // Deepest leaf
 export const InkblotColorSemanticSuccessLight = "#3d9e50"; // Warm success green
 export const InkblotColorSemanticSuccessMain = "#358c46"; // Primary success
 export const InkblotColorSemanticSuccessDark = "#2a7538"; // Success hover
@@ -57,11 +68,18 @@ export const InkblotDurationFast = "120ms"; // Micro-interactions, hovers — fa
 export const InkblotDurationNormal = "200ms"; // Standard transitions
 export const InkblotDurationSlow = "320ms"; // Complex transitions, enter/exit
 export const InkblotDurationSlower = "500ms"; // Page-level transitions, long reveals
+export const InkblotDurationCinematic = "800ms"; // Brand-moment reveals — hero entrances, specimen choreography. Never for interaction feedback.
+export const InkblotDurationStagger = "40ms"; // Per-item offset for staggered list/grid entrances. Cap total stagger at 400ms.
 export const InkblotEasingDefault = [0.25, 0.1, 0.25, 1]; // Standard ease — natural deceleration
 export const InkblotEasingIn = [0.32, 0, 0.67, 0]; // Ease in — for exits, things leaving
 export const InkblotEasingOut = [0.33, 1, 0.68, 1]; // Ease out — for entrances, things arriving
 export const InkblotEasingInOut = [0.65, 0, 0.35, 1]; // Ease in-out — for position changes, transforms
 export const InkblotEasingExpressive = [0.22, 1, 0.36, 1]; // Expressive ease-out — smooth, confident arrival. Replaces bounce.
+export const InkblotEasingSignature = [0.16, 1, 0.3, 1]; // The Citron curve — near-instant attack, very long decay. Reveals, hero entrances, anything that should feel like light blooming. The brand's motion fingerprint.
+export const InkblotEasingSwift = [0.55, 0, 0.1, 1]; // Swift in-out — assertive position changes, shared-element moves, tab indicator slides
+export const InkblotSpringResponsive = "stiffness: 420, damping: 34, mass: 1"; // Interaction feedback — toggles, drags, snappy and critically damped
+export const InkblotSpringGentle = "stiffness: 180, damping: 26, mass: 1"; // Panels, sheets, popovers — settled and calm
+export const InkblotSpringBloom = "stiffness: 120, damping: 20, mass: 1.2"; // Brand moments — mascot, hero elements. The only spring allowed a hint of overshoot.
 export const InkblotGridColumnsMobile = "4rem"; // 4-column grid for < 640px
 export const InkblotGridColumnsTablet = "8rem"; // 8-column grid for 640–1023px
 export const InkblotGridColumnsDesktop = "12rem"; // 12-column grid for 1024–1535px
@@ -100,6 +118,9 @@ export const InkblotShadowLg =
   "0 8px 24px -4px rgba(29, 28, 25, 0.10), 0 4px 10px -4px rgba(29, 28, 25, 0.04)"; // Modals, popovers
 export const InkblotShadowXl =
   "0 16px 40px -8px rgba(29, 28, 25, 0.12), 0 8px 16px -8px rgba(29, 28, 25, 0.04)"; // Maximum elevation — ambient, not harsh
+export const InkblotShadowGlow =
+  "0 0 0 1px rgba(201, 162, 39, 0.25), 0 0 24px -4px rgba(201, 162, 39, 0.35)"; // Citron glow — luminous emphasis on dark surfaces. Primary CTAs, focus moments, brand highlights. Use on ink backgrounds only.
+export const InkblotShadowGlowSubtle = "0 0 16px -6px rgba(201, 162, 39, 0.25)"; // Faint citron halo — hover states on dark surfaces
 export const InkblotOpacityDisabled = 0.4; // Disabled elements
 export const InkblotOpacityOverlay = 0.45; // Modal backdrops — not too heavy
 export const InkblotOpacitySubtle = 0.6; // Secondary content
@@ -126,35 +147,41 @@ export const InkblotSizeIconXl = "2.5rem"; // 40px icon
 export const InkblotSizeTouchTargetMin = "44px"; // Minimum touch target (WCAG)
 export const InkblotSizeTouchTargetComfortable = "48px"; // Comfortable touch target
 export const InkblotTypographyFontFamilySans =
-  "'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"; // Primary UI font — humanist, modern, highly legible
+  "'IBM Plex Sans', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"; // UI and body — IBM Plex Sans, rational and warm. Self-hosted variable font (wght 100–700)
 export const InkblotTypographyFontFamilyMono =
-  "'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace"; // Code and data
+  "'IBM Plex Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace"; // Code, data, tabular numerals — IBM Plex Mono, same superfamily as body
 export const InkblotTypographyFontFamilyDisplay =
-  "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"; // Headlines — same family, optical size variant
-export const InkblotTypographyFontSizeXs = "0.75rem"; // 12px — captions, meta
+  "'Space Grotesk', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"; // Headlines and brand moments — Space Grotesk, engineered geometry with personality. Self-hosted variable font (wght 300–700)
+export const InkblotTypographyFontSizeXs = "0.75rem"; // 12px — captions, meta, labels
 export const InkblotTypographyFontSizeSm = "0.8125rem"; // 13px — secondary text
-export const InkblotTypographyFontSizeBase = "0.9375rem"; // 15px — body text, slightly refined from 16
+export const InkblotTypographyFontSizeBase = "0.9375rem"; // 15px — body text, refined from 16
 export const InkblotTypographyFontSizeMd = "1.0625rem"; // 17px — emphasized body
 export const InkblotTypographyFontSizeLg = "1.25rem"; // 20px — card titles, subheadings
 export const InkblotTypographyFontSizeXl = "1.5rem"; // 24px — section titles
-export const InkblotTypographyFontSize2xl = "1.75rem"; // 28px — page titles
-export const InkblotTypographyFontSize3xl = "2.125rem"; // 34px — hero — composed, not shouting
-export const InkblotTypographyFontSize4xl = "2.75rem"; // 44px — display, rarely used
-export const InkblotTypographyFontSize5xl = "3.25rem"; // 52px — maximum display
+export const InkblotTypographyFontSize2xl = "1.875rem"; // 30px — page titles
+export const InkblotTypographyFontSize3xl = "2.5rem"; // 40px — display entry point, Space Grotesk territory
+export const InkblotTypographyFontSize4xl = "3.25rem"; // 52px — hero headlines
+export const InkblotTypographyFontSize5xl = "4.25rem"; // 68px — statement display
+export const InkblotTypographyFontSize6xl = "5.5rem"; // 88px — maximum display, specimen and brand moments only
+export const InkblotTypographyFontWeightLight = "300"; // Display-only — large Space Grotesk statements
 export const InkblotTypographyFontWeightRegular = "400"; // Body text
 export const InkblotTypographyFontWeightMedium = "500"; // Emphasis, labels, card titles
 export const InkblotTypographyFontWeightSemibold = "600"; // Headings, buttons
-export const InkblotTypographyFontWeightBold = "700"; // Strong emphasis, sparingly
-export const InkblotTypographyLineHeightTight = 1.2; // Headlines
+export const InkblotTypographyFontWeightBold = "700"; // Strong emphasis, display headlines
+export const InkblotTypographyLineHeightDisplay = 1.05; // Statement display — tight, sculptural
+export const InkblotTypographyLineHeightTight = 1.15; // Headlines
 export const InkblotTypographyLineHeightSnug = 1.375; // Subheadings
 export const InkblotTypographyLineHeightNormal = 1.5; // Body text
 export const InkblotTypographyLineHeightRelaxed = 1.65; // Long-form, generous breathing room
 export const InkblotTypographyLineHeightLoose = 1.8; // Very spacious
-export const InkblotTypographyLetterSpacingTighter = "-0.04em"; // Large headlines
-export const InkblotTypographyLetterSpacingTight = "-0.02em"; // Headings
+export const InkblotTypographyLetterSpacingTighter = "-0.03em"; // Statement display — Space Grotesk needs less negative tracking than Inter did
+export const InkblotTypographyLetterSpacingTight = "-0.015em"; // Headings
 export const InkblotTypographyLetterSpacingNormal = "0"; // Body
 export const InkblotTypographyLetterSpacingWide = "0.02em"; // Labels
-export const InkblotTypographyLetterSpacingWider = "0.06em"; // Uppercase meta
+export const InkblotTypographyLetterSpacingWider = "0.08em"; // Uppercase meta, eyebrow labels — the Citron editorial signature
+export const InkblotTypographyFontFeaturesDisplay = "'ss01' 1, 'ss03' 1"; // Space Grotesk alternates — single-storey a, simplified forms at display sizes
+export const InkblotTypographyFontFeaturesNumeric = "'tnum' 1, 'zero' 1"; // Tabular figures + slashed zero for data, tables, and metrics
+export const InkblotTypographyFontFeaturesDefault = "normal"; // Body text — default features
 export const InkblotZIndexHide = -1; // Hidden below base layer
 export const InkblotZIndexBase = 0; // Default document flow
 export const InkblotZIndexRaised = 1; // Slightly above base (cards on hover)
@@ -165,28 +192,34 @@ export const InkblotZIndexModal = 40; // Modals, dialogs, sheets
 export const InkblotZIndexPopover = 50; // Popovers, tooltips
 export const InkblotZIndexToast = 60; // Toast notifications
 export const InkblotZIndexMax = 9999; // Emergency override (avoid)
-export const InkblotDarkColorBackgroundPrimary = "#12110e"; // Deep warm black, not pure black
-export const InkblotDarkColorBackgroundSecondary = "#1d1c18"; // Elevated warm surface
-export const InkblotDarkColorBackgroundTertiary = "#2a2924"; // Grouped content, inset
+export const InkblotDarkColorBackgroundPrimary = "#0a0908"; // Citron ink — deepest warm black, OLED-true canvas
+export const InkblotDarkColorBackgroundSecondary = "#161512"; // Elevated warm surface — one stop of light above ink
+export const InkblotDarkColorBackgroundTertiary = "#221f1a"; // Grouped content, inset — two stops
 export const InkblotDarkColorBackgroundInverse = "#fafaf7"; // Inverted to warm off-white
-export const InkblotDarkColorTextPrimary = "#f5f4f0"; // Warm off-white text
-export const InkblotDarkColorTextSecondary = "#93928a"; // Warm muted text
-export const InkblotDarkColorTextTertiary = "#6b6a63"; // Placeholder, hints
+export const InkblotDarkColorBackgroundCanvas = "#0a0908"; // Cinematic backdrop — same as primary in dark mode
+export const InkblotDarkColorTextPrimary = "#f5f2ea"; // Warm parchment white — softer than pure white on ink
+export const InkblotDarkColorTextSecondary = "#9a968a"; // Warm muted text
+export const InkblotDarkColorTextTertiary = "#6b675c"; // Placeholder, hints
 export const InkblotDarkColorTextInverse = "#1d1c19"; // Dark text on light
-export const InkblotDarkColorTextLink = "#d9bc58"; // Citron 400 — bright enough for dark bg
-export const InkblotDarkColorTextLinkHover = "#e8d38a"; // Citron 300 — lighter on hover
-export const InkblotDarkColorBorderDefault = "#38372f"; // Warm subtle border
-export const InkblotDarkColorBorderStrong = "#4d4c44"; // Emphasized warm border
-export const InkblotDarkColorBorderFocus = "#d9bc58"; // Focus ring — bright citron
-export const InkblotDarkColorInteractivePrimary = "#d9bc58"; // Citron 400 — lighter for dark mode contrast
-export const InkblotDarkColorInteractivePrimaryHover = "#e8d38a"; // Citron 300 — warm glow on hover
-export const InkblotDarkColorInteractivePrimaryActive = "#c4a030"; // Citron 500 — anchor on press
-export const InkblotDarkColorInteractiveSecondary = "#2a2924"; // Warm dark secondary
-export const InkblotDarkColorInteractiveSecondaryHover = "#38372f"; // Warm dark hover
-export const InkblotDarkColorStatusSuccess = "#4cb864"; // Bright warm green on dark
-export const InkblotDarkColorStatusWarning = "#e0a020"; // Warm amber on dark
-export const InkblotDarkColorStatusError = "#e05a52"; // Warm red on dark
-export const InkblotDarkColorStatusInfo = "#7ab8d6"; // Soft warm blue on dark
+export const InkblotDarkColorTextLink = "#e3c052"; // Citron 400 — the luminous voice on ink
+export const InkblotDarkColorTextLinkHover = "#edd682"; // Citron 300 — brighter on hover
+export const InkblotDarkColorBorderDefault = "#2b2822"; // Warm subtle border — reads as shadow edge, not line
+export const InkblotDarkColorBorderStrong = "#413d33"; // Emphasized warm border
+export const InkblotDarkColorBorderFocus = "#e3c052"; // Focus ring — luminous citron
+export const InkblotDarkColorInteractivePrimary = "#e3c052"; // Citron glow — the light source of the dark UI
+export const InkblotDarkColorInteractivePrimaryHover = "#edd682"; // Brighter glow on hover
+export const InkblotDarkColorInteractivePrimaryActive = "#c9a227"; // Citron 500 — anchors on press
+export const InkblotDarkColorInteractiveSecondary = "#221f1a"; // Warm dark secondary
+export const InkblotDarkColorInteractiveSecondaryHover = "#2b2822"; // Warm dark hover
+export const InkblotDarkColorAccentDefault = "#e3c052"; // Citron glow on ink
+export const InkblotDarkColorAccentEmphasis = "#edd682"; // Brighter citron
+export const InkblotDarkColorAccentSubtle = "#2b2510"; // Citron-tinted dark surface
+export const InkblotDarkColorAccentLeaf = "#67a257"; // Leaf 400 — botanical counterpoint on ink
+export const InkblotDarkColorAccentLeafSubtle = "#18220f"; // Leaf-tinted dark surface
+export const InkblotDarkColorStatusSuccess = "#4cb864"; // Bright warm green on ink
+export const InkblotDarkColorStatusWarning = "#e0a020"; // Warm amber on ink
+export const InkblotDarkColorStatusError = "#e05a52"; // Warm red on ink
+export const InkblotDarkColorStatusInfo = "#7ab8d6"; // Soft warm blue on ink
 export const InkblotSemanticDevtoolsColorBackgroundApp = "#020617"; // Full dev shell background
 export const InkblotSemanticDevtoolsColorBackgroundSurface = "#0b1220"; // Panels, modals, dropdowns
 export const InkblotSemanticDevtoolsColorBackgroundSurfaceElevated = "#0b1220"; // Optional second elevation — same token until a lighter step is needed
@@ -205,67 +238,97 @@ export const InkblotSemanticColorBackgroundPrimary = "#fafaf7"; // Body backgrou
 export const InkblotSemanticColorBackgroundSecondary = "#ffffff"; // Elevated surfaces — clean white floating above base
 export const InkblotSemanticColorBackgroundTertiary = "#f5f4f0"; // Grouped content, inset areas
 export const InkblotSemanticColorBackgroundInverse = "#1d1c19"; // Inverted surfaces
+export const InkblotSemanticColorBackgroundCanvas = "#0a0908"; // Cinematic backdrop — hero sections, specimen pages, brand moments
 export const InkblotSemanticColorTextPrimary = "#1d1c19"; // Primary text — deep warm slate, never pure black
 export const InkblotSemanticColorTextSecondary = "#6b6a63"; // Secondary text
 export const InkblotSemanticColorTextTertiary = "#93928a"; // Placeholder, hints, captions
 export const InkblotSemanticColorTextInverse = "#ffffff"; // Text on dark surfaces
-export const InkblotSemanticColorTextLink = "#a38427"; // Links — deep citron for readability
-export const InkblotSemanticColorTextLinkHover = "#7f671f"; // Link hover
+export const InkblotSemanticColorTextLink = "#a5841f"; // Links — deep citron for readability
+export const InkblotSemanticColorTextLinkHover = "#806618"; // Link hover
 export const InkblotSemanticColorBorderDefault = "#eae9e3"; // Subtle warm dividers
 export const InkblotSemanticColorBorderStrong = "#d4d3cb"; // Emphasized borders
-export const InkblotSemanticColorBorderFocus = "#c4a030"; // Focus ring — citron accent
-export const InkblotSemanticColorInteractivePrimary = "#c4a030"; // Primary CTA — confident citron
-export const InkblotSemanticColorInteractivePrimaryHover = "#a38427"; // Primary hover — deeper, subtle shift
-export const InkblotSemanticColorInteractivePrimaryActive = "#7f671f"; // Primary pressed
+export const InkblotSemanticColorBorderFocus = "#c9a227"; // Focus ring — citron accent
+export const InkblotSemanticColorInteractivePrimary = "#c9a227"; // Primary CTA — confident citron
+export const InkblotSemanticColorInteractivePrimaryHover = "#a5841f"; // Primary hover — deeper, subtle shift
+export const InkblotSemanticColorInteractivePrimaryActive = "#806618"; // Primary pressed
 export const InkblotSemanticColorInteractiveSecondary = "#f5f4f0"; // Secondary surfaces with subtle depth
 export const InkblotSemanticColorInteractiveSecondaryHover = "#eae9e3"; // Secondary hover
+export const InkblotSemanticColorAccentDefault = "#c9a227"; // The citron signature
+export const InkblotSemanticColorAccentEmphasis = "#a5841f"; // Citron with more weight
+export const InkblotSemanticColorAccentSubtle = "#faf4dc"; // Citron wash — tinted surfaces, highlights
+export const InkblotSemanticColorAccentLeaf = "#478239"; // Botanical counterpoint — data viz, secondary highlights
+export const InkblotSemanticColorAccentLeafSubtle = "#e4efe0"; // Leaf wash — tinted surfaces
 export const InkblotSemanticColorStatusSuccess = "#358c46"; // Success state
 export const InkblotSemanticColorStatusWarning = "#c48c1a"; // Warning state
 export const InkblotSemanticColorStatusError = "#be3e35"; // Error state
 export const InkblotSemanticColorStatusInfo = "#5790ad"; // Info state
+export const InkblotSemanticTypographyDisplayStatement = {
+  fontFamily:
+    "'Space Grotesk', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+  fontSize: "5.5rem",
+  fontWeight: "300",
+  lineHeight: 1.05,
+  letterSpacing: "-0.03em",
+}; // Maximum display — brand moments, specimen pages. Space Grotesk light, sculptural.
+export const InkblotSemanticTypographyDisplayHero = {
+  fontFamily:
+    "'Space Grotesk', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+  fontSize: "3.25rem",
+  fontWeight: "500",
+  lineHeight: 1.05,
+  letterSpacing: "-0.03em",
+}; // Hero headlines — landing pages, marketing surfaces
+export const InkblotSemanticTypographyDisplayEyebrow = {
+  fontFamily:
+    "'IBM Plex Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace",
+  fontSize: "0.75rem",
+  fontWeight: "500",
+  lineHeight: 1.5,
+  letterSpacing: "0.08em",
+}; // Uppercase mono eyebrow above headlines — the Citron editorial signature. Pair with citron accent color.
 export const InkblotSemanticTypographyHeading1 = {
   fontFamily:
-    "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-  fontSize: "2.125rem",
+    "'Space Grotesk', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+  fontSize: "2.5rem",
   fontWeight: "600",
-  lineHeight: 1.2,
-  letterSpacing: "-0.02em",
-}; // Page title — composed, not dramatic
+  lineHeight: 1.15,
+  letterSpacing: "-0.015em",
+}; // Page title — Space Grotesk, composed confidence
 export const InkblotSemanticTypographyHeading2 = {
   fontFamily:
-    "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-  fontSize: "1.75rem",
+    "'Space Grotesk', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+  fontSize: "1.875rem",
   fontWeight: "600",
-  lineHeight: 1.2,
-  letterSpacing: "-0.02em",
+  lineHeight: 1.15,
+  letterSpacing: "-0.015em",
 }; // Section title
 export const InkblotSemanticTypographyHeading3 = {
   fontFamily:
-    "'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    "'Space Grotesk', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   fontSize: "1.5rem",
   fontWeight: "500",
   lineHeight: 1.375,
   letterSpacing: "0",
-}; // Subsection title
+}; // Subsection title — display face carries down to h3
 export const InkblotSemanticTypographyHeading4 = {
   fontFamily:
-    "'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    "'IBM Plex Sans', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
   fontSize: "1.25rem",
   fontWeight: "500",
   lineHeight: 1.375,
   letterSpacing: "0",
-}; // Card title
+}; // Card title — hands off to the body face
 export const InkblotSemanticTypographyBodyDefault = {
   fontFamily:
-    "'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    "'IBM Plex Sans', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
   fontSize: "0.9375rem",
   fontWeight: "400",
   lineHeight: 1.5,
   letterSpacing: "0",
-}; // Body text
+}; // Body text — IBM Plex Sans
 export const InkblotSemanticTypographyBodySmall = {
   fontFamily:
-    "'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    "'IBM Plex Sans', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
   fontSize: "0.8125rem",
   fontWeight: "400",
   lineHeight: 1.5,
@@ -273,17 +336,25 @@ export const InkblotSemanticTypographyBodySmall = {
 }; // Small body, captions
 export const InkblotSemanticTypographyBodyLarge = {
   fontFamily:
-    "'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    "'IBM Plex Sans', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
   fontSize: "1.0625rem",
   fontWeight: "400",
   lineHeight: 1.65,
   letterSpacing: "0",
-}; // Emphasized body
+}; // Emphasized body, lede paragraphs
 export const InkblotSemanticTypographyLabelDefault = {
   fontFamily:
-    "'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    "'IBM Plex Sans', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
   fontSize: "0.75rem",
   fontWeight: "500",
   lineHeight: 1.5,
   letterSpacing: "0.02em",
 }; // Form labels, badges
+export const InkblotSemanticTypographyCodeDefault = {
+  fontFamily:
+    "'IBM Plex Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace",
+  fontSize: "0.8125rem",
+  fontWeight: "400",
+  lineHeight: 1.5,
+  letterSpacing: "0",
+}; // Inline code, code blocks — IBM Plex Mono

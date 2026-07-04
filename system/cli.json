@@ -7,7 +7,7 @@
   "alignment": {
     "webSystem": "system/components.json, system/content.json, system/ai.json",
     "tokensResolved": "dist/ai/inkblot-tokens-resolved.json",
-    "brandAccentHex": "#c4a030",
+    "brandAccentHex": "#c9a227",
     "neutralTextHex": "#1d1c19",
     "mutedHex": "#6b6a63",
     "surfaceHex": "#fafaf7",
@@ -60,7 +60,7 @@
     "truecolor": {
       "sequenceTemplate": "\\x1b[38;2;{R};{G};{B}m",
       "roles": {
-        "brand": { "hex": "#c4a030", "usage": "Headings, primary actions, key affordances, logo line" },
+        "brand": { "hex": "#c9a227", "usage": "Headings, primary actions, key affordances, logo line" },
         "brandDim": { "hex": "#a38427", "usage": "Secondary emphasis, dividers tinted to brand" },
         "text": { "hex": "#1d1c19", "usage": "Default foreground on light terminal bg — if terminal is dark, invert via background detection or theme flag" },
         "muted": { "hex": "#6b6a63", "usage": "Hints, timestamps, metadata, disabled copy" },
@@ -72,8 +72,8 @@
       }
     },
     "darkTerminalAdaptation": {
-      "rule": "When background is detected or forced dark, swap text to #fafaf7 and muted to #93928a; keep brand at #d9bc58 or #e8d38a for contrast.",
-      "never": "Do not use #c4a030 on #1d1c19 without checking contrast; prefer citron-300/400 from tokens for dark-on-dark."
+      "rule": "When background is detected or forced dark, swap text to #fafaf7 and muted to #93928a; keep brand at #e3c052 or #edd682 for contrast.",
+      "never": "Do not use #c9a227 on #1d1c19 without checking contrast; prefer citron-300/400 from tokens for dark-on-dark."
     },
     "ansi256Fallback": {
       "rule": "If truecolor unsupported, map to nearest xterm-256; if only 16 colors, map brand to yellow/bright-yellow, error to red, success to green, info to cyan, muted to bright black/gray."

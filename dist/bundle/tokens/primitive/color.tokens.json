@@ -1,5 +1,5 @@
 {
-  "$description": "Citron primitive color palette. Warm, restrained, premium. Citrus interpreted through restraint and taste — never literal, never loud.",
+  "$description": "Citron primitive color palette v2. Cinematic and warm — ink blacks, luminous citron, botanical leaf counterpoint. Citrus interpreted through restraint and light, never literal, never loud.",
   "inkblot": {
     "$description": "Inkblot Studio — Citron product line",
     "color": {
@@ -7,7 +7,7 @@
       "$description": "Base color primitives — use semantic tokens in components, never raw primitives",
       "neutral": {
         "$type": "color",
-        "$description": "Warm neutrals with barely perceptible beige undertone. No blue-tinted greys.",
+        "$description": "Warm neutrals with barely perceptible beige undertone, now extended into true ink territory for cinematic dark surfaces. No blue-tinted greys.",
         "white": {
           "$value": "#ffffff",
           "$description": "Pure white, floating surfaces"
@@ -23,23 +23,41 @@
           "700": { "$value": "#3a3935", "$description": "Strong text" },
           "800": { "$value": "#2d2c28", "$description": "Deep warm dark" },
           "900": { "$value": "#1d1c19", "$description": "Primary text — deep slate, never pure black" },
-          "950": { "$value": "#0f0e0c", "$description": "Deepest warm black" }
+          "950": { "$value": "#12110e", "$description": "Deep warm black — dark mode canvas" }
+        },
+        "ink": {
+          "$value": "#0a0908",
+          "$description": "Citron ink — the deepest brand black. Cinematic backdrops, specimen pages, OLED surfaces. Warm to the last bit."
         }
       },
       "accent": {
         "$type": "color",
-        "$description": "Citron brand accent — refined citrus-amber, used sparingly for emphasis. Warm light through citrus peel.",
+        "$description": "Citron brand accents — luminous citrus-gold as the signature, botanical leaf as the counterpoint. Both used sparingly; light against ink.",
         "citron": {
+          "$description": "The signature — warm light through citrus peel. v2 deepens the ramp: more luminosity in the glow range (300–400), more depth at the anchor (500–700).",
           "50":  { "$value": "#fdfbf3", "$description": "Barely there citron wash" },
-          "100": { "$value": "#faf4df", "$description": "Soft cream tint" },
-          "200": { "$value": "#f3e6b8", "$description": "Warm wheat" },
-          "300": { "$value": "#e8d38a", "$description": "Light honey" },
-          "400": { "$value": "#d9bc58", "$description": "Citrus glow" },
-          "500": { "$value": "#c4a030", "$description": "Citron primary — the brand tone" },
-          "600": { "$value": "#a38427", "$description": "Deep citron, hover state" },
-          "700": { "$value": "#7f671f", "$description": "Rich amber" },
-          "800": { "$value": "#5c4a18", "$description": "Dark citron" },
-          "900": { "$value": "#3d3111", "$description": "Deepest citron" }
+          "100": { "$value": "#faf4dc", "$description": "Soft cream tint" },
+          "200": { "$value": "#f5e7b4", "$description": "Warm wheat" },
+          "300": { "$value": "#edd682", "$description": "Light honey" },
+          "400": { "$value": "#e3c052", "$description": "Citrus glow — the luminous dark-mode voice" },
+          "500": { "$value": "#c9a227", "$description": "Citron primary — the brand tone, deepened for presence" },
+          "600": { "$value": "#a5841f", "$description": "Deep citron, hover state" },
+          "700": { "$value": "#806618", "$description": "Rich amber" },
+          "800": { "$value": "#5c4a12", "$description": "Dark citron" },
+          "900": { "$value": "#3b300c", "$description": "Deepest citron" }
+        },
+        "leaf": {
+          "$description": "New exploration palette — deep botanical green from the citron tree. Secondary accent for data viz, highlights, and product-line differentiation. Warm-shifted, never minty.",
+          "50":  { "$value": "#f4f8f2", "$description": "Barely there leaf wash" },
+          "100": { "$value": "#e4efe0", "$description": "Soft leaf tint" },
+          "200": { "$value": "#c3dcba", "$description": "Light foliage" },
+          "300": { "$value": "#96c188", "$description": "Fresh leaf" },
+          "400": { "$value": "#67a257", "$description": "Vivid botanical" },
+          "500": { "$value": "#478239", "$description": "Leaf primary — deep botanical green" },
+          "600": { "$value": "#3a6b2f", "$description": "Deep leaf, hover state" },
+          "700": { "$value": "#2f5427", "$description": "Forest depth" },
+          "800": { "$value": "#233d1e", "$description": "Dark canopy" },
+          "900": { "$value": "#172913", "$description": "Deepest leaf" }
         }
       },
       "semantic": {

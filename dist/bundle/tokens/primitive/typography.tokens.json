@@ -1,47 +1,50 @@
 {
-  "$description": "Citron typography. Modern humanist sans-serif. Clear hierarchy through spacing and weight, not size extremes.",
+  "$description": "Citron typography v2 — the brand voice. Space Grotesk carries the display identity (engineered geometry, product-lab confidence); IBM Plex Sans carries body and UI (rational, warm, endlessly legible); IBM Plex Mono carries code and data. Fonts ship self-hosted in the package — import '@citron-systems/citron-ds/fonts'.",
   "inkblot": {
     "typography": {
       "$type": "fontFamily",
-      "$description": "Font families — humanist sans-serif for warmth and readability",
+      "$description": "Brand font stack — geometric display over rational body, one engineered voice",
       "fontFamily": {
         "sans": {
-          "$value": "'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-          "$description": "Primary UI font — humanist, modern, highly legible"
+          "$value": "'IBM Plex Sans', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          "$description": "UI and body — IBM Plex Sans, rational and warm. Self-hosted variable font (wght 100–700)"
         },
         "mono": {
-          "$value": "'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace",
-          "$description": "Code and data"
+          "$value": "'IBM Plex Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace",
+          "$description": "Code, data, tabular numerals — IBM Plex Mono, same superfamily as body"
         },
         "display": {
-          "$value": "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-          "$description": "Headlines — same family, optical size variant"
+          "$value": "'Space Grotesk', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+          "$description": "Headlines and brand moments — Space Grotesk, engineered geometry with personality. Self-hosted variable font (wght 300–700)"
         }
       },
       "fontSize": {
         "$type": "dimension",
-        "$description": "Type scale — restrained, intentional. No oversized dramatic headings.",
-        "xs":   { "$value": "0.75rem",   "$description": "12px — captions, meta" },
+        "$description": "Dual-register scale: restrained UI sizes (xs–2xl) plus a display register (3xl–6xl) with real presence for brand moments",
+        "xs":   { "$value": "0.75rem",   "$description": "12px — captions, meta, labels" },
         "sm":   { "$value": "0.8125rem", "$description": "13px — secondary text" },
-        "base": { "$value": "0.9375rem", "$description": "15px — body text, slightly refined from 16" },
+        "base": { "$value": "0.9375rem", "$description": "15px — body text, refined from 16" },
         "md":   { "$value": "1.0625rem", "$description": "17px — emphasized body" },
         "lg":   { "$value": "1.25rem",   "$description": "20px — card titles, subheadings" },
         "xl":   { "$value": "1.5rem",    "$description": "24px — section titles" },
-        "2xl":  { "$value": "1.75rem",   "$description": "28px — page titles" },
-        "3xl":  { "$value": "2.125rem",  "$description": "34px — hero — composed, not shouting" },
-        "4xl":  { "$value": "2.75rem",   "$description": "44px — display, rarely used" },
-        "5xl":  { "$value": "3.25rem",   "$description": "52px — maximum display" }
+        "2xl":  { "$value": "1.875rem",  "$description": "30px — page titles" },
+        "3xl":  { "$value": "2.5rem",    "$description": "40px — display entry point, Space Grotesk territory" },
+        "4xl":  { "$value": "3.25rem",   "$description": "52px — hero headlines" },
+        "5xl":  { "$value": "4.25rem",   "$description": "68px — statement display" },
+        "6xl":  { "$value": "5.5rem",    "$description": "88px — maximum display, specimen and brand moments only" }
       },
       "fontWeight": {
         "$type": "fontWeight",
+        "light":    { "$value": "300", "$description": "Display-only — large Space Grotesk statements" },
         "regular":  { "$value": "400", "$description": "Body text" },
         "medium":   { "$value": "500", "$description": "Emphasis, labels, card titles" },
         "semibold": { "$value": "600", "$description": "Headings, buttons" },
-        "bold":     { "$value": "700", "$description": "Strong emphasis, sparingly" }
+        "bold":     { "$value": "700", "$description": "Strong emphasis, display headlines" }
       },
       "lineHeight": {
         "$type": "number",
-        "tight":   { "$value": 1.2,   "$description": "Headlines" },
+        "display": { "$value": 1.05,  "$description": "Statement display — tight, sculptural" },
+        "tight":   { "$value": 1.15,  "$description": "Headlines" },
         "snug":    { "$value": 1.375, "$description": "Subheadings" },
         "normal":  { "$value": 1.5,   "$description": "Body text" },
         "relaxed": { "$value": 1.65,  "$description": "Long-form, generous breathing room" },
@@ -49,11 +52,18 @@
       },
       "letterSpacing": {
         "$type": "dimension",
-        "tighter": { "$value": "-0.04em",  "$description": "Large headlines" },
-        "tight":   { "$value": "-0.02em",  "$description": "Headings" },
+        "tighter": { "$value": "-0.03em",  "$description": "Statement display — Space Grotesk needs less negative tracking than Inter did" },
+        "tight":   { "$value": "-0.015em", "$description": "Headings" },
         "normal":  { "$value": "0",        "$description": "Body" },
         "wide":    { "$value": "0.02em",   "$description": "Labels" },
-        "wider":   { "$value": "0.06em",   "$description": "Uppercase meta" }
+        "wider":   { "$value": "0.08em",   "$description": "Uppercase meta, eyebrow labels — the Citron editorial signature" }
+      },
+      "fontFeatures": {
+        "$type": "string",
+        "$description": "OpenType feature settings — part of the brand voice",
+        "display": { "$value": "'ss01' 1, 'ss03' 1", "$description": "Space Grotesk alternates — single-storey a, simplified forms at display sizes" },
+        "numeric": { "$value": "'tnum' 1, 'zero' 1", "$description": "Tabular figures + slashed zero for data, tables, and metrics" },
+        "default": { "$value": "normal", "$description": "Body text — default features" }
       }
     }
   }
