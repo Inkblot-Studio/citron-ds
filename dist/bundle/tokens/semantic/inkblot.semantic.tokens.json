@@ -1,15 +1,16 @@
 {
-  "$description": "Citron semantic tokens. Map primitives to component-ready meanings. Use these in components — never raw primitives.",
+  "$description": "Citron semantic tokens v2. Map primitives to component-ready meanings. Use these in components — never raw primitives.",
   "inkblot": {
     "semantic": {
       "color": {
         "$type": "color",
-        "$description": "Semantic color mappings — Citron identity: warm, restrained, premium",
+        "$description": "Semantic color mappings — Citron identity: warm, luminous, premium",
         "background": {
           "primary":   { "$value": "{inkblot.color.neutral.gray.50}", "$description": "Body background — warm off-white with barely perceptible beige" },
           "secondary": { "$value": "{inkblot.color.neutral.white}", "$description": "Elevated surfaces — clean white floating above base" },
           "tertiary":  { "$value": "{inkblot.color.neutral.gray.100}", "$description": "Grouped content, inset areas" },
-          "inverse":   { "$value": "{inkblot.color.neutral.gray.900}", "$description": "Inverted surfaces" }
+          "inverse":   { "$value": "{inkblot.color.neutral.gray.900}", "$description": "Inverted surfaces" },
+          "canvas":    { "$value": "{inkblot.color.neutral.ink}", "$description": "Cinematic backdrop — hero sections, specimen pages, brand moments" }
         },
         "text": {
           "primary":   { "$value": "{inkblot.color.neutral.gray.900}", "$description": "Primary text — deep warm slate, never pure black" },
@@ -31,6 +32,14 @@
           "secondary":     { "$value": "{inkblot.color.neutral.gray.100}", "$description": "Secondary surfaces with subtle depth" },
           "secondaryHover":{ "$value": "{inkblot.color.neutral.gray.200}", "$description": "Secondary hover" }
         },
+        "accent": {
+          "$description": "Brand accent roles — citron signature, leaf counterpoint",
+          "default":     { "$value": "{inkblot.color.accent.citron.500}", "$description": "The citron signature" },
+          "emphasis":    { "$value": "{inkblot.color.accent.citron.600}", "$description": "Citron with more weight" },
+          "subtle":      { "$value": "{inkblot.color.accent.citron.100}", "$description": "Citron wash — tinted surfaces, highlights" },
+          "leaf":        { "$value": "{inkblot.color.accent.leaf.500}", "$description": "Botanical counterpoint — data viz, secondary highlights" },
+          "leafSubtle":  { "$value": "{inkblot.color.accent.leaf.100}", "$description": "Leaf wash — tinted surfaces" }
+        },
         "status": {
           "success": { "$value": "{inkblot.color.semantic.success.main}", "$description": "Success state" },
           "warning": { "$value": "{inkblot.color.semantic.warning.main}", "$description": "Warning state" },
@@ -39,7 +48,42 @@
         }
       },
       "typography": {
-        "$description": "Semantic type styles — composed, intentional hierarchy through spacing and weight",
+        "$description": "Semantic type styles — dual register: composed UI hierarchy plus a display register with real presence",
+        "display": {
+          "statement": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{inkblot.typography.fontFamily.display}",
+              "fontSize": "{inkblot.typography.fontSize.6xl}",
+              "fontWeight": "{inkblot.typography.fontWeight.light}",
+              "lineHeight": "{inkblot.typography.lineHeight.display}",
+              "letterSpacing": "{inkblot.typography.letterSpacing.tighter}"
+            },
+            "$description": "Maximum display — brand moments, specimen pages. Space Grotesk light, sculptural."
+          },
+          "hero": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{inkblot.typography.fontFamily.display}",
+              "fontSize": "{inkblot.typography.fontSize.4xl}",
+              "fontWeight": "{inkblot.typography.fontWeight.medium}",
+              "lineHeight": "{inkblot.typography.lineHeight.display}",
+              "letterSpacing": "{inkblot.typography.letterSpacing.tighter}"
+            },
+            "$description": "Hero headlines — landing pages, marketing surfaces"
+          },
+          "eyebrow": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{inkblot.typography.fontFamily.mono}",
+              "fontSize": "{inkblot.typography.fontSize.xs}",
+              "fontWeight": "{inkblot.typography.fontWeight.medium}",
+              "lineHeight": "{inkblot.typography.lineHeight.normal}",
+              "letterSpacing": "{inkblot.typography.letterSpacing.wider}"
+            },
+            "$description": "Uppercase mono eyebrow above headlines — the Citron editorial signature. Pair with citron accent color."
+          }
+        },
         "heading": {
           "1": {
             "$type": "typography",
@@ -50,7 +94,7 @@
               "lineHeight": "{inkblot.typography.lineHeight.tight}",
               "letterSpacing": "{inkblot.typography.letterSpacing.tight}"
             },
-            "$description": "Page title — composed, not dramatic"
+            "$description": "Page title — Space Grotesk, composed confidence"
           },
           "2": {
             "$type": "typography",
@@ -66,13 +110,13 @@
           "3": {
             "$type": "typography",
             "$value": {
-              "fontFamily": "{inkblot.typography.fontFamily.sans}",
+              "fontFamily": "{inkblot.typography.fontFamily.display}",
               "fontSize": "{inkblot.typography.fontSize.xl}",
               "fontWeight": "{inkblot.typography.fontWeight.medium}",
               "lineHeight": "{inkblot.typography.lineHeight.snug}",
               "letterSpacing": "{inkblot.typography.letterSpacing.normal}"
             },
-            "$description": "Subsection title"
+            "$description": "Subsection title — display face carries down to h3"
           },
           "4": {
             "$type": "typography",
@@ -83,7 +127,7 @@
               "lineHeight": "{inkblot.typography.lineHeight.snug}",
               "letterSpacing": "{inkblot.typography.letterSpacing.normal}"
             },
-            "$description": "Card title"
+            "$description": "Card title — hands off to the body face"
           }
         },
         "body": {
@@ -96,7 +140,7 @@
               "lineHeight": "{inkblot.typography.lineHeight.normal}",
               "letterSpacing": "{inkblot.typography.letterSpacing.normal}"
             },
-            "$description": "Body text"
+            "$description": "Body text — IBM Plex Sans"
           },
           "small": {
             "$type": "typography",
@@ -118,7 +162,7 @@
               "lineHeight": "{inkblot.typography.lineHeight.relaxed}",
               "letterSpacing": "{inkblot.typography.letterSpacing.normal}"
             },
-            "$description": "Emphasized body"
+            "$description": "Emphasized body, lede paragraphs"
           }
         },
         "label": {
@@ -132,6 +176,19 @@
               "letterSpacing": "{inkblot.typography.letterSpacing.wide}"
             },
             "$description": "Form labels, badges"
+          }
+        },
+        "code": {
+          "default": {
+            "$type": "typography",
+            "$value": {
+              "fontFamily": "{inkblot.typography.fontFamily.mono}",
+              "fontSize": "{inkblot.typography.fontSize.sm}",
+              "fontWeight": "{inkblot.typography.fontWeight.regular}",
+              "lineHeight": "{inkblot.typography.lineHeight.normal}",
+              "letterSpacing": "{inkblot.typography.letterSpacing.normal}"
+            },
+            "$description": "Inline code, code blocks — IBM Plex Mono"
           }
         }
       }

@@ -1,7 +1,7 @@
 {
   "name": "@citron-systems/citron-ds",
-  "version": "1.0.4",
-  "description": "Inkblot Studio design token system — Apple-inspired, accessible, AI-ready. Citron design language.",
+  "version": "2.0.0",
+  "description": "Citron design system by Inkblot Studio — warm ink, luminous citron, engineered typography. Self-hosted brand fonts (Space Grotesk + IBM Plex), signature motion language, token-driven component layer. Accessible, AI-ready.",
   "type": "module",
   "main": "dist/js/inkblot-tokens.js",
   "bin": {
@@ -10,11 +10,13 @@
   "exports": {
     ".": "./dist/js/inkblot-tokens.js",
     "./css": "./dist/css/inkblot-variables.css",
+    "./components": "./dist/css/citron.css",
+    "./fonts": "./dist/fonts/fonts.css",
+    "./fonts/*": "./dist/fonts/*",
     "./scss": "./dist/scss/_inkblot-variables.scss",
     "./tokens": "./dist/ai/inkblot-tokens-resolved.json",
     "./ai-reference": "./dist/ai/inkblot-ai-reference.json",
-    "./brand/citron-mascot.svg": "./dist/brand/citron-mascot.svg",
-    "./brand/citron-mascot-mono.svg": "./dist/brand/citron-mascot-mono.svg",
+    "./brand/*": "./dist/brand/*",
     "./bundle": "./dist/bundle/README.md",
     "./bundle/*": "./dist/bundle/*",
     "./preview/mascot.html": "./dist/preview/mascot.html"

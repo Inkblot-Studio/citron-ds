@@ -46,9 +46,15 @@ copyFileIfExists(
   path.join(bundleRoot, 'tokens-schema.json'),
 );
 
+copyFileIfExists(
+  path.join(root, 'dist', 'css', 'citron.css'),
+  path.join(bundleRoot, 'components.css'),
+);
+
 copyDirIfExists(path.join(root, 'tokens'), path.join(bundleRoot, 'tokens'));
 copyDirIfExists(path.join(root, 'system'), path.join(bundleRoot, 'system'));
 copyDirIfExists(path.join(root, 'dist', 'brand'), path.join(bundleRoot, 'brand'));
+copyDirIfExists(path.join(root, 'dist', 'fonts'), path.join(bundleRoot, 'fonts'));
 copyFileIfExists(
   path.join(root, 'dist', 'preview', 'mascot.html'),
   path.join(bundleRoot, 'preview', 'mascot.html'),
@@ -66,6 +72,8 @@ Single folder with design tokens, system metadata, and brand assets. Generated o
 | \`tokens.flat.json\` | Same flat format from the JS build (duplicate pipeline output). |
 | \`variables.css\` | CSS custom properties (\`:root\`). |
 | \`variables.scss\` | SCSS variables. |
+| \`components.css\` | Ready-to-use component layer (buttons, cards, forms, reveals) on top of the variables. |
+| \`fonts/\` | Self-hosted brand fonts (Space Grotesk, IBM Plex Sans/Mono) + \`fonts.css\` @font-face layer. |
 | \`ai-reference.json\` | Inkblot / Citron AI and product reference. |
 | \`tokens-schema.json\` | Present when Style Dictionary emits it. |
 | \`tokens/\` | Authoritative DTCG-style source JSON (primitive + semantic). |

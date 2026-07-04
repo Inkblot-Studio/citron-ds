@@ -2,7 +2,7 @@
   <title id="citron-mascot-title">Citron</title>
   <desc id="citron-mascot-desc">Geometric face mark: two pause bars as eyes and a large smile, citron orange, sharp geometry.</desc>
   <g id="citron-mascot">
-    <g id="mascot-eyes" fill="var(--citron-mascot-fill, #c4a030)" stroke="none">
+    <g id="mascot-eyes" fill="var(--citron-mascot-fill, #c9a227)" stroke="none">
       <g id="mascot-eye-left">
         <rect x="31" y="17" width="13" height="34" />
       </g>
@@ -13,7 +13,7 @@
     <g id="mascot-smile" fill="none" stroke-linecap="butt" stroke-linejoin="miter">
       <path
         d="M 12 40 A 38 38 0 0 0 88 40"
-        stroke="var(--citron-mascot-fill, #c4a030)"
+        stroke="var(--citron-mascot-fill, #c9a227)"
         stroke-width="10"
       />
     </g>

@@ -1,31 +1,59 @@
 {
   "$schema": "https://inkblot.studio/system/v1/motion.schema.json",
   "name": "Motion & Interaction System",
-  "version": "1.0.0",
-  "description": "Standardized motion rules for all animations, transitions, and micro-interactions. Every motion must be purposeful.",
+  "version": "2.0.0",
+  "description": "The Citron motion language. Motion behaves like light responding to touch: instant attack, long luminous decay. Every motion is purposeful; the signature curve is the brand's fingerprint.",
 
   "principles": [
     "Motion communicates hierarchy and state changes — never decoration alone.",
-    "Fast by default. Users should never wait for an animation to complete before acting.",
+    "Fast by default. Users never wait for an animation to complete before acting.",
+    "One signature: fast attack, long decay (easing.signature). Reveals bloom like light; feedback snaps like a switch.",
+    "Choreograph, don't animate. Elements enter in reading order with staggered offsets, as one composed sequence.",
     "Respect prefers-reduced-motion. All motion must be gracefully degradable.",
-    "Use CSS transitions for simple state changes. Reserve JS animation for orchestrated sequences."
+    "Use CSS transitions for state changes. Reserve JS springs for drags, brand moments, and orchestrated sequences."
   ],
 
   "durations": {
     "instant": { "value": "0ms", "usage": "Immediate response. Color changes, opacity toggles with no motion." },
-    "fast": { "value": "150ms", "usage": "Micro-interactions: button press, checkbox toggle, ripple, hover state changes." },
-    "normal": { "value": "250ms", "usage": "Standard transitions: dropdown open, panel slide, tab switch." },
-    "slow": { "value": "400ms", "usage": "Complex reveals: modal entry, page section fade-in, accordion expand." },
-    "slower": { "value": "600ms", "usage": "Full page transitions, hero animations, onboarding sequences." }
+    "fast": { "value": "120ms", "usage": "Micro-interactions: button press, checkbox toggle, hover state changes." },
+    "normal": { "value": "200ms", "usage": "Standard transitions: dropdown open, panel slide, tab switch." },
+    "slow": { "value": "320ms", "usage": "Complex reveals: modal entry, accordion expand." },
+    "slower": { "value": "500ms", "usage": "Full page transitions, section reveals." },
+    "cinematic": { "value": "800ms", "usage": "Brand-moment reveals: hero entrances, specimen choreography. Never for interaction feedback." },
+    "stagger": { "value": "40ms", "usage": "Per-item offset for staggered entrances. Cap total sequence at 400ms." }
   },
 
   "easings": {
     "default": { "value": "cubic-bezier(0.25, 0.1, 0.25, 1)", "usage": "General purpose. Most transitions use this." },
-    "in": { "value": "cubic-bezier(0.42, 0, 1, 1)", "usage": "Elements leaving the screen. Accelerates out of view." },
-    "out": { "value": "cubic-bezier(0, 0, 0.58, 1)", "usage": "Elements entering the screen. Decelerates into position." },
-    "inOut": { "value": "cubic-bezier(0.42, 0, 0.58, 1)", "usage": "Elements moving across screen. Smooth start and end." },
-    "bounce": { "value": "cubic-bezier(0.68, -0.55, 0.265, 1.55)", "usage": "Playful feedback. Use sparingly: toggle switches, success states." },
-    "spring": { "value": "cubic-bezier(0.175, 0.885, 0.32, 1.275)", "usage": "Natural physics feel. Menus, popovers." }
+    "in": { "value": "cubic-bezier(0.32, 0, 0.67, 0)", "usage": "Elements leaving the screen. Accelerates out of view." },
+    "out": { "value": "cubic-bezier(0.33, 1, 0.68, 1)", "usage": "Elements entering the screen. Decelerates into position." },
+    "inOut": { "value": "cubic-bezier(0.65, 0, 0.35, 1)", "usage": "Elements moving across screen. Smooth start and end." },
+    "expressive": { "value": "cubic-bezier(0.22, 1, 0.36, 1)", "usage": "Confident arrival. Menus, popovers." },
+    "signature": { "value": "cubic-bezier(0.16, 1, 0.3, 1)", "usage": "THE CITRON CURVE. Near-instant attack, very long decay. Use for every reveal, hero entrance, and content bloom. This is the motion fingerprint of the brand." },
+    "swift": { "value": "cubic-bezier(0.55, 0, 0.1, 1)", "usage": "Assertive position changes: shared-element moves, tab indicator slides, reordering." }
+  },
+
+  "springs": {
+    "description": "Spring presets for JS animation (Framer Motion / Motion One). CSS fallback: easing.signature.",
+    "responsive": { "stiffness": 420, "damping": 34, "mass": 1, "usage": "Interaction feedback — toggles, drags. Critically damped, zero overshoot." },
+    "gentle": { "stiffness": 180, "damping": 26, "mass": 1, "usage": "Panels, sheets, popovers — settled and calm." },
+    "bloom": { "stiffness": 120, "damping": 20, "mass": 1.2, "usage": "Brand moments — mascot, hero marks. The only spring allowed a hint of overshoot." }
+  },
+
+  "choreography": {
+    "description": "Rules for composing multi-element sequences. A view enters as one gesture, not a pile of animations.",
+    "rules": [
+      "Entrance order follows reading order: eyebrow → headline → body → media → actions.",
+      "Stagger siblings by duration.stagger (40ms); cap the whole sequence at 400ms regardless of item count.",
+      "Parents fade + rise 12px with easing.signature over duration.slower; children inherit the reveal, they do not re-animate.",
+      "Exits are always faster than entrances (duration.fast, easing.in) and never staggered.",
+      "Only one cinematic-duration element per view — the hero. Everything else uses the interaction register.",
+      "Transform + opacity only. Never animate layout properties (width, height, top) except accordion height."
+    ],
+    "signatureReveal": {
+      "css": ".reveal { opacity: 0; transform: translateY(12px); animation: citron-reveal var(--inkblot-duration-slower) var(--ease-signature) forwards; } @keyframes citron-reveal { to { opacity: 1; transform: none; } }",
+      "staggerCss": ".reveal-group > * { animation-delay: calc(var(--i, 0) * var(--inkblot-duration-stagger)); }"
+    }
   },
 
   "transitions": {
@@ -37,7 +65,6 @@
         "to": { "opacity": "1" },
         "duration": "normal",
         "easing": "out",
-        "css": "opacity: 0; transition: opacity var(--inkblot-duration-normal) cubic-bezier(0, 0, 0.58, 1);",
         "usage": "Content appearing: toasts, tooltips, lazy-loaded images"
       },
       "fadeOut": {
@@ -48,28 +75,28 @@
         "easing": "in",
         "usage": "Content disappearing: dismissed toasts, closing tooltips"
       },
-      "slideUp": {
+      "bloomUp": {
         "properties": "transform, opacity",
-        "from": { "transform": "translateY(16px)", "opacity": "0" },
+        "from": { "transform": "translateY(12px)", "opacity": "0" },
         "to": { "transform": "translateY(0)", "opacity": "1" },
-        "duration": "normal",
-        "easing": "out",
-        "usage": "Modals, bottom sheets, dropdown menus appearing"
+        "duration": "slower",
+        "easing": "signature",
+        "usage": "THE signature entrance. Sections, cards, modals, any content reveal."
       },
       "slideDown": {
         "properties": "transform, opacity",
-        "from": { "transform": "translateY(-16px)", "opacity": "0" },
+        "from": { "transform": "translateY(-8px)", "opacity": "0" },
         "to": { "transform": "translateY(0)", "opacity": "1" },
         "duration": "normal",
-        "easing": "out",
+        "easing": "signature",
         "usage": "Dropdown menus, notification banners"
       },
       "scaleIn": {
         "properties": "transform, opacity",
-        "from": { "transform": "scale(0.95)", "opacity": "0" },
+        "from": { "transform": "scale(0.97)", "opacity": "0" },
         "to": { "transform": "scale(1)", "opacity": "1" },
         "duration": "normal",
-        "easing": "out",
+        "easing": "signature",
         "usage": "Modals, dialogs, context menus"
       },
       "collapse": {
@@ -89,32 +116,31 @@
       "effect": "transform: scale(0.98)",
       "duration": "fast",
       "easing": "default",
-      "release": "transform: scale(1)"
+      "release": "transform: scale(1) with easing.expressive"
     },
     "cardHover": {
       "trigger": "mouseenter",
-      "effect": "transform: translateY(-2px); box-shadow: var(--inkblot-shadow-md);",
+      "effect": "transform: translateY(-2px); box-shadow: var(--inkblot-shadow-md); on dark surfaces add var(--inkblot-shadow-glow-subtle)",
       "duration": "fast",
       "easing": "default"
     },
+    "citronGlow": {
+      "trigger": "hover / focus on primary actions over dark surfaces",
+      "effect": "box-shadow: var(--inkblot-shadow-glow) fades in — the light-source moment",
+      "duration": "normal",
+      "easing": "out"
+    },
     "toggleSwitch": {
       "trigger": "state change",
-      "effect": "Thumb slides to opposite end of track",
+      "effect": "Thumb slides with spring.responsive",
       "duration": "fast",
-      "easing": "spring"
+      "easing": "swift"
     },
     "checkboxCheck": {
       "trigger": "state change",
       "effect": "Checkmark draws in via stroke-dashoffset animation",
       "duration": "fast",
       "easing": "out"
-    },
-    "ripple": {
-      "trigger": "click on interactive surface",
-      "effect": "Radial circle expands from click point, fades out",
-      "duration": "slow",
-      "easing": "out",
-      "usage": "Optional — use for tactile feedback on touch devices"
     },
     "shimmer": {
       "trigger": "loading state",
@@ -135,18 +161,18 @@
   "pageTransitions": {
     "rule": "Use when navigating between views in SPAs. Keep under 400ms.",
     "crossfade": {
-      "out": "opacity 0 over 150ms ease-in",
-      "in": "opacity 1 over 250ms ease-out",
+      "out": "opacity 0 over 120ms ease-in",
+      "in": "opacity 1 over 200ms easing.signature",
       "usage": "Default page transition"
     },
     "slideForward": {
-      "out": "translateX(-30%) + opacity 0 over 250ms",
-      "in": "translateX(30%) to translateX(0) + opacity 1 over 250ms",
+      "out": "translateX(-24%) + opacity 0 over 200ms easing.swift",
+      "in": "translateX(24%) to translateX(0) + opacity 1 over 250ms easing.signature",
       "usage": "Navigating deeper in hierarchy"
     },
     "slideBack": {
-      "out": "translateX(30%) + opacity 0 over 250ms",
-      "in": "translateX(-30%) to translateX(0) + opacity 1 over 250ms",
+      "out": "translateX(24%) + opacity 0 over 200ms easing.swift",
+      "in": "translateX(-24%) to translateX(0) + opacity 1 over 250ms easing.signature",
       "usage": "Navigating back in hierarchy"
     }
   },

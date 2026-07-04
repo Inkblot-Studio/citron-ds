@@ -2,12 +2,12 @@
 
 **Package:** `@citron-systems/citron-ds` · **Studio:** Inkblot Studio
 
-Design tokens — Apple-inspired, accessible, AI-ready. Warmly minimal, quietly distinctive.
+**v2 — warm ink, luminous citron, engineered typography.** Design tokens, self-hosted brand fonts (Space Grotesk + IBM Plex), a signature motion language, a token-driven component layer, and full brand assets. Accessible, AI-ready.
 
-Brand accent (Citron **500**): `#c4a030`. Mascot and lockups ship as SVG under `brand/` (see [Brand assets](#brand-assets)).
+Brand accent (Citron **500**): `#c9a227` · Ink: `#0a0908` · Leaf **500**: `#478239`. Mascot, wordmark, and lockups ship as SVG under `brand/` (see [Brand assets](#brand-assets)).
 
-[![npm](https://img.shields.io/npm/v/@citron-systems/citron-ds?style=flat-square&logo=npm&logoColor=white&color=c4a030)](https://www.npmjs.com/package/@citron-systems/citron-ds)
-[![License: MIT](https://img.shields.io/badge/License-MIT-c4a030?style=flat-square)](https://opensource.org/licenses/MIT)
+[![npm](https://img.shields.io/npm/v/@citron-systems/citron-ds?style=flat-square&logo=npm&logoColor=white&color=c9a227)](https://www.npmjs.com/package/@citron-systems/citron-ds)
+[![License: MIT](https://img.shields.io/badge/License-MIT-c9a227?style=flat-square)](https://opensource.org/licenses/MIT)
 [![GitHub](https://img.shields.io/badge/repo-Inkblot--Studio%2Fcitron--ds-1a1814?style=flat-square&logo=github&logoColor=f5f0e6)](https://github.com/Inkblot-Studio/citron-ds)
 
 [Repository](https://github.com/Inkblot-Studio/citron-ds) · [npm](https://www.npmjs.com/package/@citron-systems/citron-ds)
@@ -33,7 +33,9 @@ npm install @citron-systems/citron-ds
 ### CSS (recommended)
 
 ```css
-@import '@citron-systems/citron-ds/css';
+@import '@citron-systems/citron-ds/fonts';       /* self-hosted brand fonts (@font-face) */
+@import '@citron-systems/citron-ds/css';         /* token variables */
+@import '@citron-systems/citron-ds/components';  /* optional: ready-made component layer */
 
 .button {
   background: var(--inkblot-semantic-color-interactive-primary);
@@ -91,13 +93,15 @@ import tokens from '@citron-systems/citron-ds/tokens';
 |-------------|----------|
 | `@citron-systems/citron-ds` | ESM JS tokens (default) |
 | `@citron-systems/citron-ds/css` | CSS variables (`:root`) |
+| `@citron-systems/citron-ds/components` | Component layer (buttons, cards, forms, badges, reveals) |
+| `@citron-systems/citron-ds/fonts` | `@font-face` layer for the self-hosted brand fonts |
+| `@citron-systems/citron-ds/fonts/*` | Individual woff2 files |
 | `@citron-systems/citron-ds/scss` | SCSS variables |
 | `@citron-systems/citron-ds/tokens` | Flat JSON (resolved values) |
 | `@citron-systems/citron-ds/ai-reference` | AI agent reference (token map, patterns, rules) |
-| `@citron-systems/citron-ds/brand/citron-mascot.svg` | Citron mascot (full color; optional `--citron-mascot-fill`) |
-| `@citron-systems/citron-ds/brand/citron-mascot-mono.svg` | Mascot lockup (`currentColor`) |
+| `@citron-systems/citron-ds/brand/*` | Mascot, wordmark, lockups, favicons (SVG/PNG) |
 | `@citron-systems/citron-ds/bundle` | Bundle entry (`dist/bundle/README.md`) |
-| `@citron-systems/citron-ds/bundle/*` | Resolved tokens, CSS/SCSS bundles, system JSON, etc. |
+| `@citron-systems/citron-ds/bundle/*` | Resolved tokens, CSS/SCSS bundles, fonts, system JSON, etc. |
 | `@citron-systems/citron-ds/preview/mascot.html` | Static mascot preview page |
 
 ---
@@ -108,8 +112,21 @@ Source SVGs live in `assets/brand/`; `npm run build` copies them into `dist/bran
 
 | File | Use |
 |------|-----|
-| `citron-mascot.svg` | Full-color mark (`#c4a030` citron **500**) |
+| `citron-mascot.svg` | Full-color mark (`#c9a227` citron **500**; optional `--citron-mascot-fill`) |
 | `citron-mascot-mono.svg` | Single-color / `currentColor` lockups |
+| `citron-wordmark.svg` / `citron-wordmark-citron.svg` | Space Grotesk wordmark, set as outlines |
+| `citron-lockup.svg` / `citron-lockup-ink.svg` | Mark + wordmark lockups (light / on-ink) |
+| `favicon.svg`, `favicon-16/32/512.png`, `apple-touch-icon.png` | Favicon set — mascot on ink tile |
+
+### Brand fonts
+
+| Face | Role | Weights |
+|------|------|---------|
+| **Space Grotesk** (variable) | Display, headlines, wordmark | 300–700 |
+| **IBM Plex Sans** (variable) | UI and body | 100–700 + italic |
+| **IBM Plex Mono** | Code, data, eyebrow labels | 400/500/600 + italic |
+
+All self-hosted (≈244 KB woff2 total, latin + latin-ext, `font-display: swap`). OFL licensed — no tracking, no CDN dependency.
 
 **GitHub (maintainers):** For **Social preview** (Settings → General), use any **1280×640** image you export yourself (PNG) from the mascot or your own layout — GitHub does not reliably show SVG in README `<img>` tags. For the repo or org **avatar**, `citron-mascot-mono.svg` stays readable at small sizes.
 

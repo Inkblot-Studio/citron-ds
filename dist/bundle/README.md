@@ -10,6 +10,8 @@ Single folder with design tokens, system metadata, and brand assets. Generated o
 | `tokens.flat.json` | Same flat format from the JS build (duplicate pipeline output). |
 | `variables.css` | CSS custom properties (`:root`). |
 | `variables.scss` | SCSS variables. |
+| `components.css` | Ready-to-use component layer (buttons, cards, forms, reveals) on top of the variables. |
+| `fonts/` | Self-hosted brand fonts (Space Grotesk, IBM Plex Sans/Mono) + `fonts.css` @font-face layer. |
 | `ai-reference.json` | Inkblot / Citron AI and product reference. |
 | `tokens-schema.json` | Present when Style Dictionary emits it. |
 | `tokens/` | Authoritative DTCG-style source JSON (primitive + semantic). |

@@ -79,8 +79,8 @@
   },
 
   "typography": {
-    "system": "System font stack for native rendering. -apple-system on Apple, Segoe UI on Windows, Roboto on Android.",
-    "scale": "1.25 modular scale (Major Third) from 16px base",
+    "system": "Self-hosted brand fonts: Space Grotesk (display), IBM Plex Sans (UI/body), IBM Plex Mono (code/data). System stacks as fallback. Import '@citron-systems/citron-ds/fonts'.",
+    "scale": "Dual register: restrained UI scale (12–30px) plus display register (40–88px) for brand moments",
     "semanticRules": [
       { "element": "h1", "token": "semantic.typography.heading.1", "usage": "One per page. Page title." },
       { "element": "h2", "token": "semantic.typography.heading.2", "usage": "Section titles. Multiple per page." },
