@@ -1,6 +1,6 @@
 {
   "name": "@citron-systems/citron-ds",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "Citron design system by Inkblot Studio — warm ink, luminous citron, engineered typography. Self-hosted brand fonts (Space Grotesk + IBM Plex), signature motion language, token-driven component layer. Accessible, AI-ready.",
   "type": "module",
   "main": "dist/js/inkblot-tokens.js",
