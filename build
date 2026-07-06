@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+cd "$ROOT"
+node devtools/inject.mjs citron
+case "${1:-}" in
+  web) npm run build; echo "→ dist/" ;;
+  preview) npm run build:preview; echo "→ dist preview bundle" ;;
+  *) echo "Usage: ./build web|preview"; exit 1 ;;
+esac

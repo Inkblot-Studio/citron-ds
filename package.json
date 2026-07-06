@@ -28,6 +28,8 @@
     "README.md"
   ],
   "scripts": {
+    "hc": "node devtools/hillcode.mjs",
+    "hillcode": "node devtools/hillcode.mjs",
     "build": "style-dictionary build --config style-dictionary.config.js && node -e \"require('fs').copyFileSync('system/inkblot-ai-reference.json', 'dist/ai/inkblot-ai-reference.json')\" && node scripts/copy-brand-assets.cjs && node scripts/copy-mascot-preview.cjs && node scripts/bundle-desktop.cjs",
     "build:tokens": "style-dictionary build --config style-dictionary.config.js",
     "dev": "concurrently \"npm run build:watch\" \"vite\"",

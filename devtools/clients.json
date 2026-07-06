@@ -1,0 +1,4 @@
+{
+  "projectName": "Citron DS",
+  "clients": [{ "id": "citron", "displayName": "Inkblot / Citron tokens" }]
+}
