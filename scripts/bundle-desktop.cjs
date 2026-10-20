@@ -78,7 +78,7 @@ Single folder with design tokens, system metadata, and brand assets. Generated o
 | \`tokens-schema.json\` | Present when Style Dictionary emits it. |
 | \`tokens/\` | Authoritative DTCG-style source JSON (primitive + semantic). |
 | \`system/\` | Extra system JSON (foundations, motion, icons, \`cli.json\` for terminal/TUI/AI CLIs, etc.). |
-| \`brand/\` | SVG logos / mascot. |
+| \`brand/\` | SVG logos (brand v2); v1 mascot set under \`brand/legacy/\`. |
 | \`preview/mascot.html\` | Double-click mascot preview in a browser (no server). |
 
 ## Rust / Tauri / egui

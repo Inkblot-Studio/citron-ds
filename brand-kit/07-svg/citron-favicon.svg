@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Citron">
+<title>Citron</title>
+<style>.t{fill:#121212}.r{fill:#F2F0EA}.s{fill:#FF6A2B;stroke:#FF6A2B}@media (prefers-color-scheme:dark){.t{fill:#F2F0EA}.r{fill:#121212}.s{fill:#FF5A1F;stroke:#FF5A1F}}</style>
+<rect class="t" width="32" height="32" rx="7"/><g transform="translate(3.2 3.2) scale(0.8)"><path class="r" d="M25.93 7.77A12.9 12.9 0 1 0 25.93 24.23L21.5 21.67A7.9 7.9 0 1 1 21.5 10.33Z"/><path class="s" d="M17.2 16L26.9 10.4A11.2 11.2 0 0 1 26.9 21.6Z" stroke-width="2" stroke-linejoin="round"/></g>
+</svg>

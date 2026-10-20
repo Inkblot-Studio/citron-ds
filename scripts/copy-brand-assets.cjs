@@ -13,10 +13,20 @@ function copyDir(src, dest, filter) {
   }
 }
 
+// Start clean, so a file renamed or moved in assets/brand doesn't linger in dist.
+fs.rmSync(path.join(root, 'dist', 'brand'), { recursive: true, force: true });
+
 // Brand SVGs
 copyDir(
   path.join(root, 'assets', 'brand'),
   path.join(root, 'dist', 'brand'),
+  (n) => n.endsWith('.svg') || n.endsWith('.png') || n.endsWith('.ico'),
+);
+
+// Brand v1 (gold, Space Grotesk, mascot), kept for anything still on it.
+copyDir(
+  path.join(root, 'assets', 'brand', 'legacy'),
+  path.join(root, 'dist', 'brand', 'legacy'),
   (n) => n.endsWith('.svg') || n.endsWith('.png') || n.endsWith('.ico'),
 );
 

@@ -2,9 +2,9 @@
 
 **Package:** `@citron-systems/citron-ds` · **Studio:** Inkblot Studio
 
-**v2 — warm ink, luminous citron, engineered typography.** Design tokens, self-hosted brand fonts (Space Grotesk + IBM Plex), a signature motion language, a token-driven component layer, and full brand assets. Accessible, AI-ready.
+**v2: warm ink, luminous citron, engineered typography.** Design tokens, self-hosted brand fonts (Space Grotesk + IBM Plex), a signature motion language, a token-driven component layer, and full brand assets. Accessible, AI-ready.
 
-Brand accent (Citron **500**): `#c9a227` · Ink: `#0a0908` · Leaf **500**: `#478239`. Mascot, wordmark, and lockups ship as SVG under `brand/` (see [Brand assets](#brand-assets)).
+Brand accent (Citron **500**): `#c9a227` · Ink: `#0a0908` · Leaf **500**: `#478239`. The logo is brand v2, "the Slice" (see [Brand assets](#brand-assets) and `docs/brand.md`); upload-ready PNG/JPG files are in [`brand-kit/`](brand-kit/README.md).
 
 [![npm](https://img.shields.io/npm/v/@citron-systems/citron-ds?style=flat-square&logo=npm&logoColor=white&color=c9a227)](https://www.npmjs.com/package/@citron-systems/citron-ds)
 [![License: MIT](https://img.shields.io/badge/License-MIT-c9a227?style=flat-square)](https://opensource.org/licenses/MIT)
@@ -99,7 +99,7 @@ import tokens from '@citron-systems/citron-ds/tokens';
 | `@citron-systems/citron-ds/scss` | SCSS variables |
 | `@citron-systems/citron-ds/tokens` | Flat JSON (resolved values) |
 | `@citron-systems/citron-ds/ai-reference` | AI agent reference (token map, patterns, rules) |
-| `@citron-systems/citron-ds/brand/*` | Mascot, wordmark, lockups, favicons (SVG/PNG) |
+| `@citron-systems/citron-ds/brand/*` | Brand v2 mark, wordmark, lockups, app icon, favicon (SVG); v1 files under `brand/legacy/` |
 | `@citron-systems/citron-ds/bundle` | Bundle entry (`dist/bundle/README.md`) |
 | `@citron-systems/citron-ds/bundle/*` | Resolved tokens, CSS/SCSS bundles, fonts, system JSON, etc. |
 | `@citron-systems/citron-ds/preview/mascot.html` | Static mascot preview page |
@@ -108,15 +108,18 @@ import tokens from '@citron-systems/citron-ds/tokens';
 
 ## Brand assets
 
-Source SVGs live in `assets/brand/`; `npm run build` copies them into `dist/brand/` for publishing. Import from the package as in the table above, or copy from `dist/brand/` in a checkout.
+Brand v2 ("the Slice", adopted 2026-09; rules in [`docs/brand.md`](docs/brand.md)). Source SVGs live in `assets/brand/`; `npm run build` copies them into `dist/brand/`.
 
 | File | Use |
 |------|-----|
-| `citron-mascot.svg` | Full-color mark (`#c9a227` citron **500**; optional `--citron-mascot-fill`) |
-| `citron-mascot-mono.svg` | Single-color / `currentColor` lockups |
-| `citron-wordmark.svg` / `citron-wordmark-citron.svg` | Space Grotesk wordmark, set as outlines |
-| `citron-lockup.svg` / `citron-lockup-ink.svg` | Mark + wordmark lockups (light / on-ink) |
-| `favicon.svg`, `favicon-16/32/512.png`, `apple-touch-icon.png` | Favicon set — mascot on ink tile |
+| `citron-lockup.svg` / `-inverse` | Default logo: mark + wordmark (light / on ink) |
+| `citron-mark.svg` / `-inverse` | Mark alone: small spots, avatars |
+| `citron-wordmark.svg` / `-inverse` | Wordmark where the mark already shows nearby |
+| `citron-app-icon.svg` / `-light` | Rounded tile: app icon, social avatar |
+| `citron-favicon.svg`, `safari-pinned-tab.svg` | Browser tab |
+| `legacy/` | Brand v1 (gold mascot, Space Grotesk wordmark), kept for anything still on it |
+
+**Need a PNG or JPG** (Jira, Slack, Google Workspace, GitHub, LinkedIn, X, email signatures)? Use [`brand-kit/`](brand-kit/README.md): every file at the size each service asks for, with a table of which file goes where. Regenerate it with `npm run brand:kit` after changing a source SVG. The kit is in the repo, not in the npm package.
 
 ### Brand fonts
 
@@ -126,9 +129,9 @@ Source SVGs live in `assets/brand/`; `npm run build` copies them into `dist/bran
 | **IBM Plex Sans** (variable) | UI and body | 100–700 + italic |
 | **IBM Plex Mono** | Code, data, eyebrow labels | 400/500/600 + italic |
 
-All self-hosted (≈244 KB woff2 total, latin + latin-ext, `font-display: swap`). OFL licensed — no tracking, no CDN dependency.
+All self-hosted (≈244 KB woff2 total, latin + latin-ext, `font-display: swap`). OFL licensed, with no tracking and no CDN dependency.
 
-**GitHub (maintainers):** For **Social preview** (Settings → General), use any **1280×640** image you export yourself (PNG) from the mascot or your own layout — GitHub does not reliably show SVG in README `<img>` tags. For the repo or org **avatar**, `citron-mascot-mono.svg` stays readable at small sizes.
+**GitHub (maintainers):** for **Social preview** use `brand-kit/05-services/share-card-1200x630.jpg`; for the repo or org **avatar** use `brand-kit/01-avatar/citron-avatar-ink-512.png`.
 
 ---
 
@@ -152,11 +155,11 @@ npx --package=@citron-systems/citron-ds citron-mascot
 
 ## Principles
 
-- **Radical Clarity** — One correct interpretation per rule. No ambiguity.
-- **Composable Independence** — Every component is self-contained and works in isolation.
-- **Universal Access** — WCAG AAA. 7:1 contrast. 44px touch targets. Full keyboard nav.
-- **AI-First** — Every token, component, and rule is machine-parseable JSON.
-- **Deliberate Restraint** — Minimum visual complexity. Every element earns its place.
+- **Radical Clarity**: One correct interpretation per rule. No ambiguity.
+- **Composable Independence**: Every component is self-contained and works in isolation.
+- **Universal Access**: WCAG AAA. 7:1 contrast. 44px touch targets. Full keyboard nav.
+- **AI-First**: Every token, component, and rule is machine-parseable JSON.
+- **Deliberate Restraint**: Minimum visual complexity. Every element earns its place.
 
 ---
 
@@ -202,7 +205,7 @@ npm run build
 npm run dev        # Live preview at localhost:5173
 ```
 
-- **`npm run build`** — Style Dictionary outputs plus copy steps for brand assets, mascot preview, and desktop bundle (`dist/`).
+- **`npm run build`**: Style Dictionary outputs plus copy steps for brand assets, mascot preview, and desktop bundle (`dist/`).
 - **`prepublishOnly`** runs `npm run build` before `npm publish`.
 
 ### Publish note (maintainers)
@@ -215,7 +218,7 @@ If you publish with **npm provenance** from GitHub Actions, `package.json` **`re
 
 1. Push to GitHub and [import the repo](https://vercel.com/new) in Vercel.
 2. Vercel will auto-detect the build from `vercel.json`.
-3. Deploy — the preview site will be live.
+3. Deploy. The preview site goes live.
 
 Or deploy from the CLI:
 
